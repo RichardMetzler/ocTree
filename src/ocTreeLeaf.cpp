@@ -67,7 +67,15 @@ ocTreeLeaf::ocTreeLeaf(
 	id[identifierSize-3] = splitDirections[0];
 	identifier = id;
 
+	// debugging identifier as binary string for testing purposes
 	debugIdentifierasString();
+
+	/** BEWARE THE FOLLOWING LINE FOR IT BEARETH ONLY THE MOST UNSPEAKABLE OF HORRORS
+	 * ITS NUMBER, UNHALLOWED AS THE NAME OF THE BEAST ITSELF, HAS EVEN THE MIGHTIEST OF SORCERES SHIVER FOR 'TIS WAS
+	 * FORTOLD BY THE GREAT WIZARD OF AZAGTHOTH LONG BEFORE TIME, AS PUNY MORTALS HAVE TRIED FOR AEONS TO UNDERSTAND IT, EXISTED
+	 */
+//	 buildTreeRecursively(vertices);
+
 }
 
 // destructor
