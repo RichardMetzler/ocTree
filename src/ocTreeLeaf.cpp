@@ -42,11 +42,9 @@ ocTreeLeaf::ocTreeLeaf(
 		std::vector<bool> &parentIdentifier,
 		std::vector<bool> &splitDirections)
 {
-//	std::cout << "parentIdentifier[1]: " << parentIdentifier[1] << std::endl;
-
 	for(std::vector<bool>::iterator it = parentIdentifier.begin(); it != parentIdentifier.end(); ++it){
 		if ((*it) == false) {
-//			std::cout << "we got a false " << std::endl;
+//			std::cout << "we got a false " << std::endl;	// funktioniert
 		}
 	}
 
@@ -57,21 +55,50 @@ ocTreeLeaf::ocTreeLeaf(
 	level = parentLevel+1;
 
 	// initialize identifier
-	std::vector<bool> identifier(maxSplitDepth*3);
-	for (int i = 0; i <= identifier.size(); i++) {
+	int identifierSize = parentIdentifier.size();
+	std::vector<bool> identifier(identifierSize);
+	std::cout << "identifier size: " << identifier.size() << std::endl;
+	for (int i = 0; i <= identifierSize; i++) {
 //		std::cout << "parentIdentifier at " << i << ": " << parentIdentifier[i] << std::endl;
-//		identifier[i] = parentIdentifier[i];
-		std::cout << "blblblblblblbghjk2ß34506" << std::endl;
+		identifier[i] = parentIdentifier[i];
 	}
-	// overwriting last 3 elements of identifier
-//	std::cout << "leaf identifier length: " << identifier.size()/ << std::endl;
-//	for (unsigned j = 1; j != 3; j++) {
+
+//	if (splitDirections[2] == false) {
+//		std::cout << "splitDirections[2]: = false" << std::endl;
+//	} else {
+//		std::cout << "splitDirections[2]: = true" << std::endl;
+//	}
+//	if (splitDirections[1] == false) {
+//		std::cout << "splitDirections[1]: = false" << std::endl;
+//	} else {
+//		std::cout << "splitDirections[1]: = true" << std::endl;
+//	}
+//	if (splitDirections[0] == false) {
+//		std::cout << "splitDirections[0]: = false" << std::endl;
+//	} else {
+//		std::cout << "splitDirections[0]: = true" << std::endl;
 //	}
 
-//	std::vector<bool>::iterator parentBeg = parentIdentifier.begin();
-//	std::vector<bool>::iterator parentEnd = parentIdentifier.end()-4;
-//	std::vector<bool> identifier (parentBeg, parentEnd);
-//	identifier.insert(identifier.end(), splitDirections.begin(), splitDirections.end()-1);
+	// set last 3 elements of identifier (splitDirections)
+	identifier[identifierSize-1] = splitDirections[0];
+	identifier[identifierSize-2] = splitDirections[1];
+	identifier[identifierSize-3] = splitDirections[2];
+
+	if (identifier[identifierSize-1] == false) {
+		std::cout << "identifier[3rd-to-last]: = false" << std::endl;
+	} else {
+		std::cout << "identifier[3rd-to-last]: = true" << std::endl;
+	}
+	if (identifier[identifierSize-2] == false) {
+		std::cout << "identifier[2rd-to-last1]: = false" << std::endl;
+	} else {
+		std::cout << "identifier[3rd-to-last]: = true" << std::endl;
+	}
+	if (identifier[identifierSize-3] == false) {
+		std::cout << "identifier[last]: = false" << std::endl;
+	} else {
+		std::cout << "identifier[last]: = true" << std::endl;
+	}
 
 	// debugIdentifierasString();
 }
