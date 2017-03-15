@@ -56,51 +56,18 @@ ocTreeLeaf::ocTreeLeaf(
 
 	// initialize identifier
 	int identifierSize = parentIdentifier.size();
-	std::vector<bool> identifier(identifierSize);
-	std::cout << "identifier size: " << identifier.size() << std::endl;
+	std::vector<bool> id(identifierSize);
 	for (int i = 0; i <= identifierSize; i++) {
-//		std::cout << "parentIdentifier at " << i << ": " << parentIdentifier[i] << std::endl;
-		identifier[i] = parentIdentifier[i];
+		id[i] = parentIdentifier[i];
 	}
-
-//	if (splitDirections[2] == false) {
-//		std::cout << "splitDirections[2]: = false" << std::endl;
-//	} else {
-//		std::cout << "splitDirections[2]: = true" << std::endl;
-//	}
-//	if (splitDirections[1] == false) {
-//		std::cout << "splitDirections[1]: = false" << std::endl;
-//	} else {
-//		std::cout << "splitDirections[1]: = true" << std::endl;
-//	}
-//	if (splitDirections[0] == false) {
-//		std::cout << "splitDirections[0]: = false" << std::endl;
-//	} else {
-//		std::cout << "splitDirections[0]: = true" << std::endl;
-//	}
 
 	// set last 3 elements of identifier (splitDirections)
-	identifier[identifierSize-1] = splitDirections[0];
-	identifier[identifierSize-2] = splitDirections[1];
-	identifier[identifierSize-3] = splitDirections[2];
+	id[identifierSize-1] = splitDirections[2];
+	id[identifierSize-2] = splitDirections[1];
+	id[identifierSize-3] = splitDirections[0];
+	identifier = id;
 
-	if (identifier[identifierSize-1] == false) {
-		std::cout << "identifier[3rd-to-last]: = false" << std::endl;
-	} else {
-		std::cout << "identifier[3rd-to-last]: = true" << std::endl;
-	}
-	if (identifier[identifierSize-2] == false) {
-		std::cout << "identifier[2rd-to-last1]: = false" << std::endl;
-	} else {
-		std::cout << "identifier[3rd-to-last]: = true" << std::endl;
-	}
-	if (identifier[identifierSize-3] == false) {
-		std::cout << "identifier[last]: = false" << std::endl;
-	} else {
-		std::cout << "identifier[last]: = true" << std::endl;
-	}
-
-	// debugIdentifierasString();
+	debugIdentifierasString();
 }
 
 // destructor
@@ -319,11 +286,6 @@ bool ocTreeLeaf::split() {
 	std::vector<bool> split6 = {true,	true,	false};
 	std::vector<bool> split7 = {true,	true,	true};
 
-//	if (identifier[3] == false) {
-//		std::cout << "FAALLSESESEE" << std::endl;
-//	} else {
-//		std::cout << "TRRUERUUUEUUUUEEE" << std::endl;
-//	}
 	// turning the leaf into a node
 	ocTree * newOcTreee = new ocTree(
 		verticesInBounds,
@@ -422,13 +384,14 @@ void ocTreeLeaf::debugAllVertices(void) {
 }
 
 void ocTreeLeaf::debugIdentifierasString(void) {
-	std::cout << "debugIdentifierasString called" << std::endl;
-
-	std::vector<bool>::iterator blub = identifier.begin();
-//	blub++;
-	if ((*blub) == false) {
-		std::cout << "FAALLSESESEE" << std::endl;
-	} else {
-		std::cout << "TRRUERUUUEUUUUEEE" << std::endl;
+	int identifierSize = identifier.size();
+	std::cout << "my Identifier: ";
+	for (int i = 0; i < identifierSize; i++) {
+		if (identifier[i] == false) {
+			std::cout << "0";
+		} else {
+			std::cout << "1";
+		}
 	}
+	std::cout << std::endl;
 }
