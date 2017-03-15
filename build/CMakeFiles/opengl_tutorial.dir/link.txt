@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/opengl_tutorial.dir/src/main.cpp.o CMakeFiles/opengl_tutorial.dir/src/arcball.cpp.o  -o opengl_tutorial -rdynamic -lfreeimage -lglut -lXmu -lXi -lGLEW -lGLU -lGL -lassimp 

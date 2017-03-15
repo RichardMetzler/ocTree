@@ -1,0 +1,123 @@
+#ifndef ocTreeLeaf_H
+#define ocTreeLeaf_H
+
+#include <glm/glm.hpp>
+#include <mesh.h>
+#include <ocTree.h>
+#include <string>
+#include <vector>
+
+
+class ocTreeLeaf {
+
+	private:
+		std::vector<Mesh*> myMeshes;							// meshes containing vertices
+		std::vector<glm::vec3> verticesInBounds;				// vertices within the dimensions of current node
+		int maxVerticesPerNode;									// maximum number of vertices that one oct can hold
+		int maxSplitDepth;										// maximum split depth
+		int level;												// current split level
+		std::vector<bool> identifier;							// boolean representation of this leafs identifier
+		ocTree* parent;											// pointer to parent-ocTree
+
+		float minX, maxX, meanX;								// limits & mean in x dimension
+		float minY, maxY, meanY;								// limits & mean in y dimension
+		float minZ, maxZ, meanZ;								// limits & mean in z dimension
+
+		/**
+		 * private function to set dimensions of none-root octs based on given split directions
+		 * @PARAM float parentDimensions - float array of parents values for min-, max- and mean values in x, y and z- dimension
+		 * @PARAM std::vector<bool> splitDirections - split directions given by parent oct
+		 *
+		 */
+		void setDimensions(float parentDimensions[], std::vector<bool> &splitDirections);
+
+		/**
+		 * private split function to create 8 new nodes with the calling node as parent
+		 * is called when the number of vertices assigned to the current node exceeds the maximum number of vertices per node
+		 * in this case, the current ocTreeLeaf number is deleted and 8 new ones are created
+		 *
+		 * @RETURN true if splitting was successful, otherwise false
+		 */
+		bool split();
+
+		/**
+		 * private turn into leaf function
+		 * If the number of nodes in the bounds of a node does not exceed the maxmium number of verts per node, it is turned
+		 * into a leaf.
+		 *
+		 * @RETURN true if turning into a leaf was successful, otherwise false
+		 */
+		bool turnIntoNode();
+
+
+	public:
+		/**
+		 * root constructor
+		 * to be called from main
+		 * @PARAM std::vector<Mesh*> &meshesPointer - vector of pointers to Mesh objects
+		 * @PARAM int maximumVertsPerLeaf - maximum number of vertices a Leaf can hold
+		 * @PARAM int maximumSplitDepth - maximum number of splits
+		 */
+		ocTreeLeaf(
+			std::vector<Mesh*> &meshesPointer,
+			int maximumVertsPerLeaf,
+			int maximumSplitDepth
+		);
+
+
+		/**
+		 * subTree constructor
+		 * to be called from parent ocTreeLeaf object (nodes)
+		 *
+		 * @PARAM std::vector<glm::vec3*> vertices - vector of pointers ot vertices (float x,y,z- coordinates)
+		 * @PARAM int parentLevel - split-depth (level) of parent-node
+		 * @PARAM int maximumVertsPerLeaf - maximum number of vertices a leaf can hold until it has to split and become an ocTreeLeaf
+		 * @PARAM int maximumSplitDepth - maximum split depth (level)
+		 * @PARAM float parentDimensions[] - limits and mean values in x,y and z dimensions of parent node
+		 * @PARAM std::vector<bool> &parentIdentifier - binary representation of the parent node's identifier
+		 * @PARAM std::vector<bool> &splitDirections - binary representation of this node's identifier on the current split-depth level
+		 */
+		ocTreeLeaf(
+			std::vector<glm::vec3> vertices,
+			int parentLevel,
+			int vertsMax,
+			int splitsMax,
+			float parentDimensions[],
+			std::vector<bool> &parentIdentifier,
+			std::vector<bool> &splitDirections
+		);
+
+		/**
+		 * DESTRUCTOR
+		 */
+		~ocTreeLeaf();
+
+		void getRootDimensions(void);							// calculate min and max values as well as means for x, y and z
+
+		/**
+		 * getters
+		 */
+		std::vector<Mesh*> getMyMeshes(void);					// getter for all meshes
+		std::vector<Mesh*>::iterator getMesh (int n);			// getter for mesh at position n
+		std::vector<glm::vec3> getVertices();					// getter for vertices of all meshes
+		std::vector<glm::vec3> getVerticesOfMesh (int n);		// getter for all vertices of mesh at position n
+
+		/**
+		 * private buildRecursively function
+		 * iterates through given vector of vertices, checking if their coordinates are within the bounds of the current node
+		 *
+		 * @FIXME: make private; add call in the public consructor
+		 * @PARAM std::vector<glm::vec3*> vector of pointers to vertices
+		 */
+		void buildTreeRecursively(std::vector<glm::vec3> subsetVerts);
+
+		/**
+		 * console out functions for testing purposes
+		 */
+		void debugTreeInfo(void);								// prints assorted relevant data to console
+		void debugFirstVertex(void);							// prints vertex at position [0] of first mesh to console
+		void debugAllVertices(void);							// prints all vertices to console
+		void debugIdentifierasString(void);						// prints identifier as sequence of binary numbers
+};
+
+#endif

@@ -1,0 +1,3 @@
+/home/ri43hiq/opengl_tutorial/CMakeFiles/edit_cache.dir
+/home/ri43hiq/opengl_tutorial/CMakeFiles/rebuild_cache.dir
+/home/ri43hiq/opengl_tutorial/CMakeFiles/opengl_tutorial.dir
