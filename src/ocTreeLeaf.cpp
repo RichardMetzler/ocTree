@@ -5,6 +5,7 @@
  */
 ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLeaf, int maximumSplitDepth)
 {
+	isNode = false;
 	std::cout << "root constructor called" << std::endl;
 	myMeshes = meshesPointer;
 	maxVerticesPerNode = maximumVertsPerLeaf;
@@ -27,7 +28,6 @@ ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLea
 
 	// calculate and set dimensions
 	getRootDimensions();
-	std::cout << "root identifier length: " << identifier.size() << std::endl;
 }
 
 /**
@@ -39,48 +39,80 @@ ocTreeLeaf::ocTreeLeaf(
 		int vertsMax,
 		int splitsMax,
 		float parentDimensions[],
-		std::vector<bool> &parentIdentifier,
+		std::vector<bool> &parId,
 		std::vector<bool> &splitDirections)
 {
-	for(std::vector<bool>::iterator it = parentIdentifier.begin(); it != parentIdentifier.end(); ++it){
-		if ((*it) == false) {
-//			std::cout << "we got a false " << std::endl;	// funktioniert
-		}
-	}
-
-	std::cout << "leaf constructor called" << std::endl;
+	isNode = false;
 	setDimensions(parentDimensions, splitDirections);
 	maxVerticesPerNode = vertsMax;
-	maxSplitDepth = vertsMax;
+	maxSplitDepth = splitsMax;
 	level = parentLevel+1;
+	parentIdentifier = parId;
 
 	// initialize identifier
-	int identifierSize = parentIdentifier.size();
+	int identifierSize = parId.size();
+	int levelOffset = level*3-3;
 	std::vector<bool> id(identifierSize);
-	for (int i = 0; i <= identifierSize; i++) {
-		id[i] = parentIdentifier[i];
+	std::cout << "identifierBuilt: ";
+	for (int i = 0; i < levelOffset; i++) {
+		  id[i] = parId[i];
+		  if (id[i] == true) {
+			  std::cout << "1";
+		  } else {
+			  std::cout << "0";
+		  }
 	}
 
-	// set last 3 elements of identifier (splitDirections)
-	id[identifierSize-1] = splitDirections[2];
-	id[identifierSize-2] = splitDirections[1];
-	id[identifierSize-3] = splitDirections[0];
+	// set the latest values of the identifier, the given splitDirections
+	id[levelOffset] = splitDirections[0];
+		if (id[levelOffset] == true) {
+		  std::cout << "1";
+		} else {
+		  std::cout << "0";
+		}
+	id[levelOffset+1] = splitDirections[1];
+		if (id[levelOffset+1] == true) {
+		  std::cout << "1";
+		} else {
+		  std::cout << "0";
+		}
+	id[levelOffset+2] = splitDirections[2];
+		if (id[levelOffset+2] == true) {
+		  std::cout << "1";
+		} else {
+		  std::cout << "0";
+		}
+	for (int j = levelOffset+3; j < identifierSize; j++) {
+		id[j] = false;
+		if (id[j] == false) {
+			std::cout << "0";
+		}
+		if (id[j] == true) {{
+			std::cout << "1";
+		}
+	}
+	std::cout<<std::endl;
 	identifier = id;
 
 	// debugging identifier as binary string for testing purposes
-	debugIdentifierasString();
+//	debugIdentifierasString();
 
-	/** BEWARE THE FOLLOWING LINE FOR IT BEARETH ONLY THE MOST UNSPEAKABLE OF HORRORS
-	 * ITS NUMBER, UNHALLOWED AS THE NAME OF THE BEAST ITSELF, HAS EVEN THE MIGHTIEST OF SORCERES SHIVER FOR 'TIS WAS
+	/** BEHOLD THE FOLLOWING LINE FOR IT BEARETH ONLY THE MOST UNSPEAKABLE OF HORRORS
+	 * ITS NUMBER, UNHALLOWED AS THE NAME OF THE BEAST ITSELF, HAS EVEN THE MIGHTIEST OF SORCERERS SHIVER FOR 'TIS WAS
 	 * FORTOLD BY THE GREAT WIZARD OF AZAGTHOTH LONG BEFORE TIME, AS PUNY MORTALS HAVE TRIED FOR AEONS TO UNDERSTAND IT, EXISTED
 	 */
-//	 buildTreeRecursively(vertices);
+	 buildTreeRecursively(vertices);
 
 }
 
 // destructor
 ocTreeLeaf::~ocTreeLeaf() {
-	// @FIXME destroy everything
+	// do something
+}
+
+// getter for boolean attribute isNode
+bool ocTreeLeaf::getIsNode() {
+	return isNode;
 }
 
 /**
@@ -269,6 +301,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 			}
 		}
 	}
+//	std::cout << "NUMBER OF verticesInBounds: " << verticesInBounds.size() << std::endl;
 	/**
 	 * #########################################################
 	 * ######## END FOR-LOOP THROUGH ALL GIVEN VERTICES ########
@@ -276,6 +309,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 	 */
 	if (verticesInBounds.size() > maxVerticesPerNode) {
 		if (level <= maxSplitDepth) {
+			std::cout << "!!! WILL BE DELETED !!!" << std::endl;
 			split();
 		} else {
 			// @FIXME do something
@@ -285,14 +319,14 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 
 bool ocTreeLeaf::split() {
 	float parDimensions[9] = {minX, maxX, meanX, minY, maxY, maxY, minZ, maxZ, meanZ};
-	std::vector<bool> split0 = {false,	false,	false};
-	std::vector<bool> split1 = {false,	false,	true};
-	std::vector<bool> split2 = {false,	true,	false};
-	std::vector<bool> split3 = {false,	true,	true};
-	std::vector<bool> split4 = {true,	false,	false};
-	std::vector<bool> split5 = {true,	false,	true};
-	std::vector<bool> split6 = {true,	true,	false};
-	std::vector<bool> split7 = {true,	true,	true};
+	std::vector<bool> split0 = {false,	false,	false};		// 000
+	std::vector<bool> split1 = {false,	false,	true};		// 001
+	std::vector<bool> split2 = {false,	true,	false};		// 010
+	std::vector<bool> split3 = {false,	true,	true};		// 011
+	std::vector<bool> split4 = {true,	false,	false};		// 100
+	std::vector<bool> split5 = {true,	false,	true};		// 101
+	std::vector<bool> split6 = {true,	true,	false};		// 110
+	std::vector<bool> split7 = {true,	true,	true};		// 111
 
 	// turning the leaf into a node
 	ocTree * newOcTreee = new ocTree(
@@ -314,11 +348,12 @@ bool ocTreeLeaf::split() {
 	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(verticesInBounds, level, maxVerticesPerNode, maxSplitDepth, parDimensions, identifier, split7);
 
 	turnIntoNode();
-	// ~ocTreeLeaf();
+//	~ocTreeLeaf();
 	return true;
 }
 
 bool  ocTreeLeaf::turnIntoNode() {
+	isNode = true;
 //	myVertices.swap(verticesInBounds);
 	return true;
 }
@@ -392,14 +427,26 @@ void ocTreeLeaf::debugAllVertices(void) {
 }
 
 void ocTreeLeaf::debugIdentifierasString(void) {
-	int identifierSize = identifier.size();
-	std::cout << "my Identifier: ";
-	for (int i = 0; i < identifierSize; i++) {
-		if (identifier[i] == false) {
-			std::cout << "0";
-		} else {
-			std::cout << "1";
+	if (isNode == false) {
+		int identifierSize = identifier.size();
+		std::cout << "LEAF:: my level: " << level << std::endl;
+		std::cout << "parentIdentir: ";
+		for (int i = 0; i < identifierSize; i++) {
+			if (parentIdentifier[i] == false) {
+				std::cout << "0";
+			} else {
+				std::cout << "1";
+			}
 		}
+		std::cout << std::endl;
+		std::cout << "my identifier: ";
+		for (int i = 0; i < identifierSize; i++) {
+			if (identifier[i] == false) {
+				std::cout << "0";
+			} else {
+				std::cout << "1";
+			}
+		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 }

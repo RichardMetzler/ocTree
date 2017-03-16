@@ -15,9 +15,8 @@ ocTree::ocTree (
 		std::vector<bool> &identifierOld
 	)
 {
+	isNode = false;
 	myVertices = vertices;
-
-
 
 	minX	= parentDimensions[0];
 	maxX	= parentDimensions[1];
@@ -33,6 +32,11 @@ ocTree::ocTree (
 // destructor
 ocTree::~ocTree() {
 	// @FIXME destroy everything
+}
+
+// getter for boolean attribute isNode
+bool ocTree::getIsNode() {
+	return isNode;
 }
 
 //bool Leaf::split(std::vector<Mesh*> meshes, bool parentName[], bool splitDirections[]) {

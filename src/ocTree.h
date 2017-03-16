@@ -11,6 +11,7 @@
 class ocTree {
 
 	private:
+		bool isNode;
 		std::vector<glm::vec3> myVertices;						// vertices held by this node
 
 		float minX, maxX, meanX;								// limits & mean in x dimension
@@ -18,7 +19,7 @@ class ocTree {
 		float minZ, maxZ, meanZ;								// limits & mean in z dimension
 
 		std::vector<bool> identifier;							// bool vector describing the identifier of this node
-		ocTree* parent;											// pointer to parent-ocTree
+//		ocTree* parent;											// pointer to parent-ocTree
 
 	public:
 
@@ -50,6 +51,11 @@ class ocTree {
 		 * DESTRUCTOR
 		 */
 		~ocTree();
+
+		/**
+		 * determine whether this is a node or not
+		 */
+		bool getIsNode();
 };
 
 

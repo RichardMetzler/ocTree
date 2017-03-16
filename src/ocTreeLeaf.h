@@ -11,13 +11,14 @@
 class ocTreeLeaf {
 
 	private:
+		bool isNode;
 		std::vector<Mesh*> myMeshes;							// meshes containing vertices
 		std::vector<glm::vec3> verticesInBounds;				// vertices within the dimensions of current node
 		int maxVerticesPerNode;									// maximum number of vertices that one oct can hold
 		int maxSplitDepth;										// maximum split depth
 		int level;												// current split level
 		std::vector<bool> identifier;							// boolean representation of this leafs identifier
-		ocTree* parent;											// pointer to parent-ocTree
+		std::vector<bool> parentIdentifier;						// boolean representation of this leafs parents identifier
 
 		float minX, maxX, meanX;								// limits & mean in x dimension
 		float minY, maxY, meanY;								// limits & mean in y dimension
@@ -91,6 +92,11 @@ class ocTreeLeaf {
 		 * DESTRUCTOR
 		 */
 		~ocTreeLeaf();
+
+		/**
+		 * determine whether this is a node or not
+		 */
+		bool getIsNode();
 
 		void getRootDimensions(void);							// calculate min and max values as well as means for x, y and z
 
