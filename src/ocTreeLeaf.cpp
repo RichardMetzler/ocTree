@@ -87,7 +87,7 @@ ocTreeLeaf::ocTreeLeaf(
 		if (id[j] == false) {
 			std::cout << "0";
 		}
-		if (id[j] == true) {{
+		if (id[j] == true) {
 			std::cout << "1";
 		}
 	}
@@ -97,9 +97,8 @@ ocTreeLeaf::ocTreeLeaf(
 	// debugging identifier as binary string for testing purposes
 //	debugIdentifierasString();
 
-	// next line is importat
+	// next line is important
 	buildTreeRecursively(vertices);
-
 }
 
 // destructor
