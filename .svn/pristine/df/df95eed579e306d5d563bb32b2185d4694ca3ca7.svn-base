@@ -1,0 +1,16 @@
+- feature saliency for 3D objects
+- experiments that examine if salient features exist and can be predicted (using eye-tracking)
+- investigate if fisuel fideltiy of simplified models can be improved by emphasizing the detail of salient features identified this way
+- experiments showed that the fidelty increased for natural objects, the opposite was true for man-made (synthetic) objects
+- naming time, matching time and forced-preference experiments were carried out
+- experiments confirmed that previously predicted salient features were focused during the experiments
+
+- salient features (faces) were determined using an eye-tracking system
+- testing set contained 37 familiar objects, 19 natural objects and 18 man-made artifacts
+- all objects were simplified to have a more or less equal amount of faces (using Qslim)
+- second set contained 30 objects (animals cars, fish and gears), classified in natural/man-made, familiar/unfamiliar, symmetric/nonsymmetric; these objects were simplified too
+
+
+- animals heads did not "pop out" preattentively, but they were salient features that attracted almost all of the participants' attention
+- with man-made artifacts, in most cases, attention was not drawn to any specific features; In general, teh attention was centered on the area around the fixation dot that was present prior to the experiment
+- pop-out effect for highly salient features such as human faces does not generalize to animal faces

@@ -1,0 +1,42 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\citation{lee2005mesh}
+\citation{cignoni1998comparison}
+\citation{shamir2008survey}
+\citation{wu2013mesh}
+\citation{howlett2005predicting}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Related work}{3}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Mesh saliency}{3}{section.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Human attention in Virtual Reality}{4}{section.2.2}}
+\bibstyle{alpha}
+\bibdata{./Bib/metz17}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline List of Figures}{5}{chapter*.2}}
+\bibcite{cignoni1998comparison}{CMS98}
+\bibcite{howlett2005predicting}{HHO05}
+\bibcite{lee2005mesh}{LVJ05}
+\bibcite{shamir2008survey}{Sha08}
+\bibcite{wu2013mesh}{WSZL13}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline Bibliography}{7}{chapter*.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}

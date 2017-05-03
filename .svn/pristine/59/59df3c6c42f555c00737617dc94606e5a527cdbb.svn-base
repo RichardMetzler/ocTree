@@ -1,0 +1,111 @@
+Fehlender Bezug zu uns:
+- wir haben keine key poses
+- kein VR
+- keine Selektion von Segmenten durch Nutzer
+
+key contents:
+- extend concept of Mesh Saliency to deformable objects
+- construct vertex-level saliency map that accurately captures the regions of high perceptual importance over a range fo mesh poses or deformations
+- multip-pose saliency := multi-scale aggregate of curvature values over locally stable vertex neighborhoods
+- apply Mesh Saliency to the problem of mesh segmentation and view-dependent rendering
+
+Multi-Pose Mesh Saliency
+- Mesh Saliency extended to cover deformable meshes with multiple poses
+- input: original mesh, set of key deformations or poses
+- output: scalar multi-pose saliency map
+
+Saliency-Guided Mesh Segmentation (p. 24)
+- Mesh segmentation = cornerstone of object manipulation, parameterization, analysis..
+- Most processes, even those that try to detect prominent features, do so with little to no regard of their perceptual importance; available techniques that do, usuaully require user input
+- combining mesh saliency with mesh segmentation => partition of meshes into sets of face clusters representing perceptually interesting features
+
+Saliency-guided view-depended rendering steps: (p. 27)
+	- saliency computation (according to Lee et al.)
+	- salient clustering
+	- estimate cluster importance
+	- rendering of multi-resolution mesh
+
+Contributions -> Improvised single-pose mesh saliency:
+	geodesic distance, instead of Euclidean
+Contributions -> Multi-pose mesh saliency:
+	single saliency map over several deformations
+Contributions -> Multi-pose simplification:
+	using edge collapses, based on calculated multi-pose mesh saliency
+Contributions -> Salient clustering
+	saliency used as peasure of perceptual importance; used to determine cluster
+	starting points and propagation
+Contributions -> Multi-resolution salient simplification
+	saliency-guided QSlim, weighted by cluster-localized saliency maps
+Contributions -> Saliency-guided view-depended rendering
+	resolution is preserved for clusters with high estimated saliecny AND visiblity
+
+- "saliency bottom-up / top-down"
+	- bottom-up:	based in pixel/vertex information
+	- top-down:	based on a given task
+
+Single-Pose Mesh Saliency (p. 35)
+- recent techniques: mostly rely on local curvature or user input etc
+- visual attention models: (p.35)
+	- two-component framewrk where scenes are analysed for interesting objects
+	bottom-up and top-down (image-/task-oriented manner)
+	- feature contrast matters most in early stages of bottom-up attention (not
+	feature strength)
+	- most models agree: center-surround analysis is essentila for seperating
+	salient regions
+
+Saliency Overview (p. 37):
+short, insightful explanation of Mesh Saliency
+
+Geodesic Saliency (. 38):
+- calculate geodesic distance (parameterized over mesh edges)
+- propagation stops when distance esceends the lmit of desired local neighborhood
+
+Multi-Pose Mesh Saliency (p. 39):
+- mesh saliency, being based on *local* curvature, may generate false/incomplete results for deformed or skeletally animated objects
+- input: base Mesh, set of al key poses
+	- per-pose saliency computation:
+	computation of mesh saliency maps using geodesic distance
+	- Multi-pose mesh saleincy computation:
+	obtained by combining all per-pose saliency values
+		- base saliency of a vertex i := lowest saliency of i in all per-pose maps
+		- multi-pose saliency = sum (saliency in pose-map - base) for all pose-maps
+
+Multi-pose Salient Simplifcation (40):
+- extend QSlim method by wieghting error quadrics
+
+- user guided simplification: weight map : multi-pose saliency!
+
+Salient Clustering:
+- faces in one cluster share spatial proximity and orientation etc.
+- Seed initialization:
+	- sampling from regions of highest importance
+	- randomly chose, from each cluster, a user-defined number of vertices
+	- all faces that share a seed vertex are placed on cluster propagation queue
+- Cluster growth:
+	- works Dijkastra-like, performed simultaneously for all clusters
+	- Each search starts on highest-saliency face in the queue; subsequent faces are
+	evaluated through cost function that considers
+		- normal deviation
+		- distance variaten
+		- saliency variation
+	- promotes fairly planar clusters
+	- growth proceeds until all faces are assigned to a cluster
+- Cluster re-seeding:
+	- each cluster has seed and initial data updated
+	- new seeds: most interior high-saliency vertex possible
+	- new seeds are also selectres thorugh Dijkstra seach, starting from faces located at the
+	cluster border and advancing indwards
+	- edge cost := combination of distance and saliency variation
+- Convergence
+	- successive growth and re-seeding phases
+	- repeated until new seeds are identical to encountered on previous iteration
+
+Cluster-level Properties:
+total saliency, mean saliency, peak saliency, base saliency, total area, mean normal, peak normal
+
+Multi-resulution salient simplification:
+- generate multi-res. representations of a clustered mesh
+- saliency can be considred QSlims quadric weighting factor in QSlim
+- globally important details are better preserved
+
+View-dependent rendering (51)

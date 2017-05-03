@@ -1,0 +1,58 @@
+#######################################################################################################
+
+Zusammenfassung der bisher gefunden Paper (Stand der Technik(?)):
+
+- Vorhersagen von salienten Bereichen; Abgleich mit tatsächlichem Nutzerverhalten beim Selektieren; Aufmerksamkeit beeinflussen
+	- mesh_saliency (Standardwerk)
+		-> Bereiche, die Interesse wecken, können errechnet werden (lokale curbature maps)
+		-> identifiziert Regionen die sich von ihrer Umgebung unterscheiden
+	- guided_search_2.0... (Standardwerk)
+		-> menschl. Wahrnehmung: 2 Phasen
+			1.) preattentive: Kontrast, Bewegung, usw.
+			2.) langsamere, Aufgaben-gebundene Phase mit geringerer Kapazität (Objekterkennung usw.)
+	- measuring_and_predicting_vidual..
+		-> simplification wirkt sich auf Erkennung von Objekten aus
+		-> QSlim in jeder Hinsicht besserer simplicify-Algorithmus als VClus
+	- predicting_and_evaluating...
+		-> based on eye-tracking
+		-> Experimente bestätigten, saliente Bereiche mehr fokusiert wurden
+		-> Gesichter (bei Tieren Köpfe) wurden stark fokusiert
+		-> bei "man-made" (künstlich hergestellten Objekten) gab es keine Tendenzen
+	- attention_control...
+		-> Aufmerksamkeit kann auf Tiefenebene gelenkt werden
+		-> Ablenkende Reize in selber Tiefenebener, wie die "ziel-Ebene" lenken sehr viel mehr ab als in anderer Ebene
+		-> Aufgabengelenkte (task-driven) Interaktion erhöht die Aufmerksamkeit auf die "Ziel-Ebene"
+	- Mesh_saliency_global...
+		-> (damals) "first time global rarity was taken into account when computing vertex saliency"
+		-> Vertex-saliency auch auf gesamte Szene bezogen
+	- Tracking_visually_attended..
+		-> Aufmerksamkeits-tracking bezogen auf mehrere Objekte in einer VR-Szene
+		-> sehr Objekt-bezogen, nur geringfügig auf saliente Bereiche einzelner Meshes
+	- MA_perceptual_...
+		-> Mesh saliency für deformierbare (animierte) Objekte
+		-> verbesserte Mesh Saliency; multi-pose mesh saliency
+- Mesh segmentation & simplification:
+	- mesh_segmentation_fast_marching..
+		-> Segmentierung basierend auf Mesh Saliency
+	- user-guided_simplification:
+		-> weight map gegeben durch Bereiche, welche von Nutzer markiert wurden
+		-> teils automatisierbar, indem "Nutzer-Eingabe" durch saliency-map ersetzt wird
+
+
+#######################################################################################################
+
+Fragen:
+- Wollen wir mit vor-veränderten Modifikationen versuchen, die Aufmerksamkeit der Nutzer auf Bereiche zu lenken?
+- Bleiben wir immer nur einem Objekt oder interessiert uns der "globale Zusammenhang" (in einer Szene mit mehreren Objekten)
+- interessiert uns, welche anhand von bekannten Methoden ermittelte Bereiche, simplifiziert werden können, sodass der User es trotzdem im VR erkennt? Wollen wir dann untersuchen, wie sich das auf die korrekte Benennung der Objekte durch den User auswirkt?
+
+#######################################################################################################
+
+Themen zu denen ich wenig bis gar nichts gefunden habe:
+- Deckt sich die Auswahl von Nutzern mit errechneten Saliency Maps?
+- Kann ein Usereingabe-basiertes erstellen von Saliency Maps über VR zu "besseren" Ergebnissen nach Simplification führen?
+- Wie wirkt sich die jederzeit völlig frei wählbare Perspektive darauf aus?
+- was tendieren Nutzer mit als salient erkannten Vertex-Gruppen zu tun?
+	-> wirken sich errechnete Saliency überhaupt aus?
+- Unterschiedliche Auswahlen basierend auf "tasks"? (interessiert uns das?)
+- Wie positionieren sich Nutzer, basierend auf zuvor errechneten Saliencies? (interessiert uns das?)

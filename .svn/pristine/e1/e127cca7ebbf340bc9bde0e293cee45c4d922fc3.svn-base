@@ -1,0 +1,233 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{WCAH{\etalchar{+}}16}
+
+\bibitem[AK]{atchleyattentional}
+Paul Atchley and Arthur~F Kramer.
+\newblock Attentional control within 3-d space.
+
+\bibitem[BB14]{baus2014moving}
+Oliver Baus and St{\'e}phane Bouchard.
+\newblock Moving from virtual reality exposure-based therapy to augmented
+  reality exposure-based therapy: a review.
+\newblock {\em Frontiers in human neuroscience}, 8:112, 2014.
+
+\bibitem[CHR13]{ciptadi2013depth}
+Arridhana Ciptadi, Tucker Hermans, and James~M Rehg.
+\newblock An in depth view of saliency.
+\newblock Georgia Institute of Technology, 2013.
+
+\bibitem[CMS98]{cignoni1998comparison}
+Paolo Cignoni, Claudio Montani, and Roberto Scopigno.
+\newblock A comparison of mesh simplification algorithms.
+\newblock {\em Computers \& Graphics}, 22(1):37--54, 1998.
+
+\bibitem[DCG12]{dutagaci2012evaluation}
+Helin Dutagaci, Chun~Pan Cheung, and Afzal Godil.
+\newblock Evaluation of 3d interest point detection techniques via
+  human-generated ground truth.
+\newblock {\em The Visual Computer}, 28(9):901--917, 2012.
+
+\bibitem[dRKH{\etalchar{+}}14]{de2014healthcare}
+Sandrine de~Ribaupierre, Bill Kapralos, Faizal Haji, Eleni Stroulia, Adam
+  Dubrowski, and Roy Eagleson.
+\newblock Healthcare training enhancement through virtual reality and serious
+  games.
+\newblock In {\em Virtual, Augmented Reality and Serious Games for Healthcare
+  1}, pages 9--27. Springer, 2014.
+
+\bibitem[GH97]{garland1997qslim}
+Michael Garland and Paul~S Heckbert.
+\newblock Qslim simplification software, 1997.
+
+\bibitem[HHO05]{howlett2005predicting}
+Sarah Howlett, John Hamill, and Carol O'Sullivan.
+\newblock Predicting and evaluating saliency for simplified polygonal models.
+\newblock {\em ACM Transactions on Applied Perception (TAP)}, 2(3):286--308,
+  2005.
+
+\bibitem[KG03]{kho2003user}
+Youngihn Kho and Michael Garland.
+\newblock User-guided simplification.
+\newblock In {\em Proceedings of the 2003 symposium on Interactive 3D
+  graphics}, pages 123--126. ACM, 2003.
+
+\bibitem[Kos03]{koschan2003perception}
+AF~Koschan.
+\newblock Perception-based 3d triangle mesh segmentation using fast marching
+  watersheds.
+\newblock In {\em Computer Vision and Pattern Recognition, 2003. Proceedings.
+  2003 IEEE Computer Society Conference on}, volume~2, pages II--II. IEEE,
+  2003.
+
+\bibitem[KU87]{koch1987shifts}
+Christof Koch and Shimon Ullman.
+\newblock Shifts in selective visual attention: towards the underlying neural
+  circuitry.
+\newblock In {\em Matters of intelligence}, pages 115--141. Springer, 1987.
+
+\bibitem[LKC07]{lee2007real}
+Sungkil Lee, Gerard~Jounghyun Kim, and Seungmoon Choi.
+\newblock Real-time tracking of visually attended objects in interactive
+  virtual environments.
+\newblock In {\em Proceedings of the 2007 ACM symposium on Virtual reality
+  software and technology}, pages 29--38. ACM, 2007.
+
+\bibitem[LPP15]{le2015social}
+Quang~Tuan Le, Akeem Pedro, and Chan~Sik Park.
+\newblock A social virtual reality based construction safety education system
+  for experiential learning.
+\newblock {\em Journal of Intelligent \& Robotic Systems}, 79(3-4):487, 2015.
+
+\bibitem[LVJ05]{lee2005mesh}
+Chang~Ha Lee, Amitabh Varshney, and David~W Jacobs.
+\newblock Mesh saliency.
+\newblock In {\em ACM transactions on graphics (TOG)}, volume~24, pages
+  659--666. ACM, 2005.
+
+\bibitem[MEC14]{marks2014towards}
+Stefan Marks, Javier~E Estevez, and Andy~M Connor.
+\newblock Towards the holodeck: fully immersive virtual reality visualisation
+  of scientific and engineering data.
+\newblock In {\em Proceedings of the 29th International Conference on Image and
+  Vision Computing New Zealand}, pages 42--47. ACM, 2014.
+
+\bibitem[MF14]{merians2014rehabilitation}
+Alma~S Merians and Gerard~G Fluet.
+\newblock Rehabilitation applications using virtual reality for persons with
+  residual impairments following stroke.
+\newblock In {\em Virtual Reality for Physical and Motor Rehabilitation}, pages
+  119--144. Springer, 2014.
+
+\bibitem[MGC{\etalchar{+}}14]{merchant2014effectiveness}
+Zahira Merchant, Ernest~T Goetz, Lauren Cifuentes, Wendy Keeney-Kennicutt, and
+  Trina~J Davis.
+\newblock Effectiveness of virtual reality-based instruction on students'
+  learning outcomes in k-12 and higher education: A meta-analysis.
+\newblock {\em Computers \& Education}, 70:29--40, 2014.
+
+\bibitem[Mun07]{munaretti2007perceptual}
+Rodrigo~Barni Munaretti.
+\newblock Perceptual guidance in mesh processing and rendering using mesh
+  saliency.
+\newblock 2007.
+
+\bibitem[NNVL{\etalchar{+}}16]{nguyen2016applying}
+Minh-Tu Nguyen, Hai-Khanh Nguyen, Khanh-Duy Vo-Lam, Xuan-Gieng Nguyen, and
+  Minh-Triet Tran.
+\newblock Applying virtual reality in city planning.
+\newblock In {\em International Conference on Virtual, Augmented and Mixed
+  Reality}, pages 724--735. Springer, 2016.
+
+\bibitem[ODK99]{o1999fmri}
+Kathleen~M O'craven, Paul~E Downing, and Nancy Kanwisher.
+\newblock fmri evidence for objects as the units of attentional selection.
+\newblock {\em Nature}, 401(6753):584--587, 1999.
+
+\bibitem[OF{\etalchar{+}}15]{ott2015literature}
+Michela Ott, Laura FREINA, et~al.
+\newblock A literature review on immersive virtual reality in education: state
+  of the art and perspectives.
+\newblock In {\em Conference proceedings of{\guillemotright} eLearning and
+  Software for Education {\guillemotleft}(eLSE)}, number~01, pages 133--141.
+  Universitatea Nationala de Aparare Carol I, 2015.
+
+\bibitem[OHH{\etalchar{+}}15]{ovtcharova2015innovation}
+Jivka Ovtcharova, Polina H{\"a}fner, Victor H{\"a}fner, Jurica Katicic, and
+  Christina Vinke.
+\newblock Innovation braucht resourceful humans aufbruch in eine neue
+  arbeitskultur durch virtual engineering.
+\newblock In {\em Zukunft der Arbeit in Industrie 4.0}, pages 111--124.
+  Springer, 2015.
+
+\bibitem[PZV11]{potapova2011learning}
+Ekaterina Potapova, Michael Zillich, and Markus Vincze.
+\newblock Learning what matters: combining probabilistic models of 2d and 3d
+  saliency cues.
+\newblock In {\em International Conference on Computer Vision Systems}, pages
+  132--142. Springer, 2011.
+
+\bibitem[SCDM10]{sandor2010augmented}
+Christian Sandor, Andrew Cunningham, Arindam Dey, and Ville-Veikko Mattila.
+\newblock An augmented reality x-ray system based on visual saliency.
+\newblock In {\em Mixed and Augmented Reality (ISMAR), 2010 9th IEEE
+  International Symposium on}, pages 27--36. IEEE, 2010.
+
+\bibitem[SG01]{shaffer2001efficient}
+Eric Shaffer and Michael Garland.
+\newblock Efficient adaptive simplification of massive meshes.
+\newblock In {\em Proceedings of the conference on Visualization'01}, pages
+  127--134. IEEE Computer Society, 2001.
+
+\bibitem[Sha08]{shamir2008survey}
+Ariel Shamir.
+\newblock A survey on mesh segmentation techniques.
+\newblock In {\em Computer graphics forum}, volume~27, pages 1539--1556. Wiley
+  Online Library, 2008.
+
+\bibitem[SJRT13]{stouffs2013happening}
+R~Stouffs, P~Janssen, S~Roudavski, and B~Tun{\c{c}}er.
+\newblock What is happening to virtual and augmented reality applied to
+  architecture?
+\newblock In {\em Conference on Computer-Aided Architectural Design Research in
+  Asia (CAADRIA 2013)}, volume~1, page~10, 2013.
+
+\bibitem[SM14]{sampaio2014application}
+Alc{\'\i}nia~Z Sampaio and Oct{\'a}vio~P Martins.
+\newblock The application of virtual reality technology in the construction of
+  bridge: The cantilever and incremental launching methods.
+\newblock {\em Automation in construction}, 37:58--67, 2014.
+
+\bibitem[SP08]{sokolov2008virtual}
+Dmitry Sokolov and Dimitri Plemenos.
+\newblock Virtual world explorations by using topological and semantic
+  knowledge.
+\newblock {\em The Visual Computer}, 24(3):173--185, 2008.
+
+\bibitem[SSK{\etalchar{+}}05]{surazhsky2005fast}
+Vitaly Surazhsky, Tatiana Surazhsky, Danil Kirsanov, Steven~J Gortler, and
+  Hugues Hoppe.
+\newblock Fast exact and approximate geodesics on meshes.
+\newblock In {\em ACM transactions on graphics (TOG)}, volume~24, pages
+  553--560. Acm, 2005.
+
+\bibitem[Ste92]{steuer1992defining}
+Jonathan Steuer.
+\newblock Defining virtual reality: Dimensions determining telepresence.
+\newblock {\em Journal of communication}, 42(4):73--93, 1992.
+
+\bibitem[Tho13]{thorsteinsson2013developing}
+Gisli Thorsteinsson.
+\newblock Developing an understanding of the pedagogy of using a virtual
+  reality learning environment (vrle) to support innovation education.
+\newblock {\em The Routledge International Handbook of Innovation Education.
+  Edited by LV Shavinina. Oxford: Routledge. ISBN-10}, 415682215:456--470,
+  2013.
+
+\bibitem[WCAH{\etalchar{+}}16]{wendrich2016hybrid}
+Robert~E Wendrich, Kris-Howard Chambers, Wadee Al-Halabi, Eric~J Seibel, Olaf
+  Grevenstuk, David Ullman, and Hunter~G Hoffman.
+\newblock Hybrid design tools in a social virtual reality using networked
+  oculus rift: a feasibility study in remote real-time interaction.
+\newblock In {\em ASME 2016 International Design Engineering Technical
+  Conferences and Computers and Information in Engineering Conference}, pages
+  V01BT02A042--V01BT02A042. American Society of Mechanical Engineers, 2016.
+
+\bibitem[WL10]{wei2010feature}
+Jin Wei and Yu~Lou.
+\newblock Feature preserving mesh simplification using feature sensitive
+  metric.
+\newblock {\em Journal of Computer Science and Technology}, 25(3):595--605,
+  2010.
+
+\bibitem[WSZL13]{wu2013mesh}
+Jinliang Wu, Xiaoyong Shen, Wei Zhu, and Ligang Liu.
+\newblock Mesh saliency with global rarity.
+\newblock {\em Graphical Models}, 75(5):255--264, 2013.
+
+\bibitem[ZLSZ12]{zhao2012saliency}
+Yitian Zhao, Yonghuai Liu, Ran Song, and Min Zhang.
+\newblock A saliency detection based method for 3d surface simplification.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE
+  International Conference on}, pages 889--892. IEEE, 2012.
+
+\end{thebibliography}

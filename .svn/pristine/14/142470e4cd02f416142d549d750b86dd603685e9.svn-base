@@ -1,0 +1,23 @@
+Eingrenzung des Themas:
+- Vorhersagen von salienten Bereichen (genug Literatur dazu vorhanden)
+- Abgleichen mit dem Verhalten von Nutzern in der Cave
+	-> neuer Faktor: VR-Umgebung
+	-> neuer Faktor: Interaktion mit Controller
+- Kombinieren mit simplifizierten Meshes (gleiche saliencies erkannt und vom Nutzer gewählt?)
+- was tendieren Nutzer mit als salient erkannten Vertex-Gruppen zu tun?
+	-> wirken sich errechnete Saliency überhaupt aus?
+
+- Wollen wir mit vor-veränderten Modifikationen versuchen, die Aufmerksamkeit der Nutzer auf Bereiche zu lenken?
+- Bleiben wir immer nur einem Objekt oder interessiert uns der "globale Zusammenhang" (in einer Szene mit mehreren Objekten)
+- interessiert uns, welche anhand von bekannten Methoden ermittelte Bereiche, simplifiziert
+werden können, sodass der User es trotzdem im VR erkennt? Wollen wir dann untersuchen, wie sich das auf die korrekte Benennung der Objekte durch den User auswirkt?
+- Unterschiedliche Auswahlen basierend auf "tasks"?
+- "ganz stumpf": Vergleich zwischen den Ergebnissen bekannter saliency Methoden und dem was User selektieren?
+
+- Saliency-basiertes Simplifizieren + User-Input per VR-Controller, wo "es besser sein könnte"?
+
+- user-guided Saliency, via input über VR-Controller?
+
+- Auswirkung der jederzeit frei wählbaren Perspektive (Rendering) auf das, was als wichtig empfunden wird
+- Auswirkung von "bekannten" saliencies auf Position und Blickwinkel des Nutzers
+

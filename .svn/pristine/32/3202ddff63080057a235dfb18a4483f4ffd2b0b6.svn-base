@@ -1,0 +1,71 @@
+@incollection{koch1987shifts,
+  title={Shifts in selective visual attention: towards the underlying neural circuitry},
+  author={Koch, Christof and Ullman, Shimon},
+  booktitle={Matters of intelligence},
+  pages={115--141},
+  year={1987},
+  publisher={Springer}
+}
+
+@article{wu2013mesh,
+  title={Mesh saliency with global rarity},
+  author={Wu, Jinliang and Shen, Xiaoyong and Zhu, Wei and Liu, Ligang},
+  journal={Graphical Models},
+  volume={75},
+  number={5},
+  pages={255--264},
+  year={2013},
+  publisher={Elsevier}
+}
+
+@article{howlett2005predicting,
+  title={Predicting and evaluating saliency for simplified polygonal models},
+  author={Howlett, Sarah and Hamill, John and O'Sullivan, Carol},
+  journal={ACM Transactions on Applied Perception (TAP)},
+  volume={2},
+  number={3},
+  pages={286--308},
+  year={2005},
+  publisher={ACM}
+}
+
+@inproceedings{lee2005mesh,
+  title={Mesh saliency},
+  author={Lee, Chang Ha and Varshney, Amitabh and Jacobs, David W},
+  booktitle={ACM transactions on graphics (TOG)},
+  volume={24},
+  number={3},
+  pages={659--666},
+  year={2005},
+  organization={ACM}
+}
+
+@article{cignoni1998comparison,
+  title={A comparison of mesh simplification algorithms},
+  author={Cignoni, Paolo and Montani, Claudio and Scopigno, Roberto},
+  journal={Computers \& Graphics},
+  volume={22},
+  number={1},
+  pages={37--54},
+  year={1998},
+  publisher={Elsevier}
+}
+
+@inproceedings{shamir2008survey,
+  title={A survey on mesh segmentation techniques},
+  author={Shamir, Ariel},
+  booktitle={Computer graphics forum},
+  volume={27},
+  number={6},
+  pages={1539--1556},
+  year={2008},
+  organization={Wiley Online Library}
+}
+
+@MANUAL{scrguide07,
+  author       = {Kohm, Markus and Morawski, Jens-Uwe},
+  title        = {KOMA-Script -- Die Anleitung},
+  year         = {2011},
+  month        = apr,
+  note         = {\url{http://www.bitlib.net/mirror/ctan/macros/latex/contrib/koma-script/scrguide.pdf}},
+}

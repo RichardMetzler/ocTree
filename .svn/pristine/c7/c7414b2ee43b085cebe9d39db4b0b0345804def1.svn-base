@@ -1,0 +1,31 @@
+Shifts in selective visual attention: towards the underlying neural circuitry
+C. Koch and S. ullman
+Artificial Intelligence Laboratory and Center for Biological Information Processing, MIT, E 25-201,
+Cambridge, MA, 02139, USA and
+Department of Applied Mathematics, Weizmann Institute of Science, Rehovot 76100, Israel and
+Department of Psychology, MIT, Cambridge, MA, USA
+
+
+Das menschl. visuelle System hat speziellen Fokusierungs-Vorgang beim Blicken auf einee visuelle Szene
+
+Kern-Aussagen:
+	- Eine Menge elementarer Features (Farbe, Orientierung, Bewegungsrichtung, Ungleichheit) werden in
+	parallelen, verschiedenen topographischen Maps als "early representation" repräsentiert
+	- Es gibt eine selektive Abbildungsfunktion von den early representations zu einer mehr zentralen, nicht
+	topographischen Darstellung. Die "selektiete" Position ist die fokusierte und die zentrale Repräsentation
+	enthält nur dessen eigenschaften. Diese ist zu jeder Zeit eindeutig
+	- Es gibt bestimmte Selektionsregeln, die bestimmen, welche Stellen in die zentrale Repräsentation abgebildet
+	werden
+	
+die early representation spielt entscheidende Rolle beim Bestimmen, welche Stelle der vis. Szene die zentrale
+Repräsentation wird
+
+2 Mechanismen dabei:
+	- Salienccy map
+		lokale größere Unterschiede zwischen den elementaren Eigenschaften
+	- Selective Mapping
+		nur die auffälligsten Bereiche werden aus der early rep in die zentrale Wahrnehmung abgebildet
+	
+WTA-Model (Winnter Taks it All):
+	Von vielen Punkten einer Saliency Map wird nur ein bestimmter in die zentrale Wahrnehmung abgebildet
+	

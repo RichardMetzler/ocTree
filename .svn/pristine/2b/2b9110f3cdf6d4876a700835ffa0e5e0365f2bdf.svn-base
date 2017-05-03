@@ -1,0 +1,20 @@
+\begin{thebibliography}{HAN99}
+
+\bibitem[HAN99]{han99}
+Heinz-Gerd Hegering, Sebastian Abeck, and Bernhard Neumair.
+\newblock {\em Integrated Management of Networked Systems -- Concepts,
+  Architectures and their Operational Application}.
+\newblock Morgan Kaufmann Publishers, San Fransisco, 1999.
+
+\bibitem[KM11]{scrguide07}
+Markus Kohm and Jens-Uwe Morawski.
+\newblock {\em KOMA-Script -- Die Anleitung}, April 2011.
+\newblock
+  \url{http://www.bitlib.net/mirror/ctan/macros/latex/contrib/koma-script/scrguide.pdf}.
+
+\bibitem[Kop05]{kop02}
+Helmut Kopka.
+\newblock {\em LaTeX, Band 1: Einführung}.
+\newblock Pearson Studium, München, 3. edition, 2005.
+
+\end{thebibliography}

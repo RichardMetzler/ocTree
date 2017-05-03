@@ -1,0 +1,75 @@
+- framework for tracking user attention in virtual environment
+- bottom-up (stimulus-driven) vs top-down (goal-directed)
+- object distance from viwer; image coverage, novelty: top-down factors
+- based on OpenGL, GLSL and OpenSceneGraph
+
+in dynamic, interactive virtual environments, saliency models have not been employed for human gaze estimation because:
+1) virtual environments require saliency tracking of “objects” rather than that of pixels
+2) regions of interest derived from saliency maps based on bottom-up feaures (which don't
+   reflect user's volitional factors)
+3) computational cost for generating saliency maps are relatively expensive
+4) accuracy of attention estimation needs to be proved in real application
+
+Framework - 2 main parts:
+- building buttom-up saliency map
+	- extends Itti et al. using 2 image features (luminance, hue)
+	- uses 3 3D dynamic featrues (depth, object size, object motion)
+	- feature maps for all of these features are generated ad image pyramids
+	- image pyramids are converted by center-surround to build contrast maps,
+	  indicating regions with abrupt changes of pixel values
+	- contras maps are linearly combined into 1 saliency map, representing the
+	  saliency of each pixel found from the bottom-up features
+	- pixel saliency map is converted into object saliency map:
+		- pixels corresponding to an object hav the same saliency value
+		- top-down factros are computed; object saliency map is modulated accordingly
+	
+- modulationg the saliency map using top-down context
+
+Sptial context based on user motion:
+- 3-stage model for spatial perception: landmakrs, route & survey knowledge; requires
+hierarchical map of objects (object saliency map)
+- consider:
+	- normalized distance from observer to an object in the scene
+	- normalized distance between center of screen and the object in screen coordinates
+	- viewing direction of the observer
+	- moving direction of the observer
+- first observations:
+	- observers tend to situate so they can see objects in the screen-center during
+	  navigation
+	- observers tend to maintain proper distance from objects of interest
+	- when moving toward the target object, observers objects that become more are
+	  very unlikely to recieve any attention
+
+Temporal Context:
+- temporal context can provide insights in the users' long-term intentions
+- immediate tasks are more likely to be mediated by spatial context
+- temporal ocntext was defined for objects using a running average of spatial contexts
+
+Experiment for attention esimation accuracy:
+- Methods: eye tracking device; 1 dynamic and 1 static virtual environment
+- 16 participants
+	- task 1: navigation, seeing dynamic objects (fishes) via keyboard
+	- task 2: find specific (number-labeled) objects
+
+Data analysis:
+	Feature groups:
+		- featrue maps computed according according to pyramid images
+		- experiments were carried out using/not using different sets of feature maps
+	For each frame:
+	- if an object that was found to be most attentive was also gazed by particpant,
+	  the frame was considered 1 frame with correct attention estimation
+	- total number C of frames with correct attention estimation was counted
+	- C was divided by total number of frames that contained foreground objects
+	- 3 quantitative measures: A1, A2, A3
+	  -> comparing the most attentive 1/2/3 object(s) to the ones looked at
+
+Results:
+- accuracy increased signifficantly with use of feature maps and broader quantitative
+measure A3)
+- accuracy averages increased from 0.443 for A1 to 0.914 for A3
+
+- Human attention can focus on multiple objects -> defining a single object that's most
+attentive is inherently difficult
+- specific tasks imposed on participants brought significant diffenreces in attention
+estimation accuracies
+- 

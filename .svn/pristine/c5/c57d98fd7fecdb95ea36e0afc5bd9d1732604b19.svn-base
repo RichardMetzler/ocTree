@@ -1,0 +1,587 @@
+
+#ifdef WIN32
+#include <windows.h>
+#endif 
+#include <iostream>
+#include <string>
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+#include <GL/freeglut.h>
+#include <glm/glm.hpp>
+#include <glm/matrix.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#define FREEIMAGE_LIB
+#include <FreeImage.h>
+#include <arcball.h>
+#include <foo.h>
+#include <mesh.h>
+#include <object.h>
+#include <ocTree.h>
+#include <ocTreeLeaf.h>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+
+// Forward declarations of the needed functions
+void setup(void);
+
+void cleanup(void);
+
+void draw(void);
+
+void reshape(int w, int h);
+
+bool createShaders();
+
+void keyboardFunction(unsigned char k, int x, int y);
+
+void motionFunction (int x, int y);
+
+void mouseFunction (int Button, int state, int x, int y);
+
+FIBITMAP* loadImage(const std::string filename);
+
+// Global variables
+
+glm::mat4 proj_matrix;
+glm::mat4 view_matrix;
+glm::mat4 model_matrix;
+
+float screen_width = 30.0; //real size in cm
+float screen_height = 30.0; //real size in cm
+float near_clipping = 50.; //how far is the screen away from the user (in cm)
+float far_clipping = 4000.; // up to where do we want to render (in cm)
+
+int max_window_width;
+int max_window_height;
+
+int old_window_x;
+int old_window_y;
+int old_mouse_x = 0;
+int old_mouse_y = 0;
+
+int left_button_state = 0;
+int middle_button_state = 0;
+
+glm::vec3 translation = glm::vec3(0.f,0.f,-100.f);
+
+FIBITMAP* img_texture = 0;
+GLuint shaderprogram;
+
+GLuint vao; // Vertex array object
+GLuint vertexBuffer; // Declare ID holder vertex buffer
+GLuint colourBuffer; // Declare colour buffer
+GLuint indexBuffer; // Declare index buffer
+
+Arcball arcball;
+
+GLint pvm_matrix_location;
+Object object1;
+std::vector<Mesh*> meshes;
+std::vector<glm::vec3> vertices;
+
+/* #####################################################
+/	Main program
+/  ##################################################### */
+int main(int argc, char **argv) {
+	// Get maximum window size (screen resolution of primary monitor)
+#ifdef WIN32
+	max_window_width = GetSystemMetrics(SM_CXSCREEN);
+	max_window_height = GetSystemMetrics(SM_CYSCREEN);
+
+
+#else
+
+#endif
+
+	// BEGIN	TESTING SITE
+	// foo d1;
+	// std::string nameTemp = d1.getName();
+	// std::cout << "foo -> name: " << nameTemp << std::endl;
+	// Mesh mesh1(false);
+	// mesh1.saysomethingmeshy();
+	// Loading with ASSIMPvertices
+	// ASSIMP stuff via object.cpp
+	// END		TESTING SITE
+
+	// testfiles
+	// std::string obj_path = "obj_files/teapot.obj"		// teapot
+	std::string obj_path = "obj_files/pedal.obj";		// drum pedal
+
+	glutInit(&argc, argv);		// First initialise GLUT
+	/* ################# Call our setup function ################# */
+	setup();
+
+	max_window_height = glutGet((GLenum)GLUT_SCREEN_HEIGHT);
+	max_window_width = glutGet((GLenum)GLUT_SCREEN_WIDTH);
+
+	// initialize & load Object object1
+	if(!object1.loadObject(obj_path,
+		aiProcess_CalcTangentSpace       |
+		aiProcess_Triangulate            |
+		aiProcess_JoinIdenticalVertices  |
+		aiProcess_SortByPType)) {
+			std::cout<<"not found"<<std::endl;
+	} else {
+		// if the file could be opened via ASSIMP, call its uploadAllMeshes() function
+		object1.uploadAllMeshes();
+	}
+	// retrieve mesh objects from loaded object
+	meshes = object1.getMeshes();
+
+	ocTreeLeaf * myOcTree = new ocTreeLeaf(meshes, 100, 5);
+	std::vector<glm::vec3> vertices = myOcTree->getVertices();
+
+//	@FIXME
+	myOcTree->buildTreeRecursively(vertices);
+
+//	myOcTree->debugFirstVertex();
+//	myOcTree->debugTreeInfo();
+	// Call our function for creating shaders (compiling and linking)
+	if(!createShaders()){
+		std::cout<<"Error creating shaders"<<std::endl;
+		exit(0);
+	}
+
+	GLint pvm_matrix_location = glGetUniformLocation(shaderprogram, "pvmMatrix");
+
+    glutMainLoop();    // Go into the glut main loop
+
+	cleanup();
+    return 0;
+}
+
+/* #####################################################
+/	create Window, setup openGL states
+/  ##################################################### */
+void setup(void) {
+	/* ######################
+	/ GLUT Setup
+	/  ###################### */
+	glutInitContextVersion (3, 3);
+
+	// setting up display
+    glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE);
+    // Configure Window Postion
+    glutInitWindowPosition(old_window_x, old_window_y);
+    // Configure Window Size
+    glutInitWindowSize(1200,800);
+
+    // Create Window (creates also a context)
+    glutCreateWindow("VR LAB 02: OpenGL Recab + OpenGL Core");
+
+	// Initialise glew
+	glewExperimental = GL_TRUE; //needed as it is old!
+	GLenum err = glewInit();
+	if (GLEW_OK != err)	{
+	   std::cerr<<"Error: "<<glewGetErrorString(err)<<std::endl;
+	} else {
+	   if (GLEW_VERSION_3_3)
+	   {
+		  std::cout<<"Driver supports OpenGL 3.3:"<<std::endl;
+	   }
+	}
+
+	{ // Ignore first error as it is within the GLEW/OpenGL relationship ;)
+		GLenum glErr;
+		glErr = glGetError();
+	}
+
+    glutDisplayFunc(draw); // Call to the drawing function (if glutPostDisplay is called or anything else has changed)
+	glutIdleFunc(draw); // Call to drawing function (if nothing has happed, but we want animations to be drawn smoothly)
+
+	// Call to keyboard function (on key press)
+	glutKeyboardFunc(keyboardFunction);
+	glutReshapeFunc(reshape);
+	glutMotionFunc(motionFunction);
+	glutMouseFunc(mouseFunction);
+
+	/* ################### - 2.2 - ################### */
+
+	// Set closing behaviour: If we leave the mainloop (e.g. through user input or closing the window) we continue after the function "glutMainLoop()"
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+
+	/* ######################
+	/ OpenGL Setup
+	/  ###################### */
+
+	// insert gluErrorString beneath every line here to debug error
+	glClearColor(.40f,0.4f,0.4f,1.0f);
+	// Set depth which is used when clearing the drawing buffer (1.0 is maximum depth)
+	glClearDepth(1.0);
+
+	// Enable depth test
+	glEnable(GL_DEPTH_TEST);
+
+	// Accept fragment if it closer to the camera than the former one
+	glDepthFunc(GL_LESS);
+	// Disable blending
+	glDisable(GL_BLEND);
+
+	// ArcBall setup
+	arcball.init();
+	arcball.set_damping(.01f);
+	arcball.set_params(glm::vec2(float(max_window_width)/2.,float(max_window_height)/2.f),1000.f);
+	arcball.idle();
+}
+
+//	Clean up function
+void cleanup(void){
+	// Free memory for texture and deinitialise image loading library
+	if(img_texture)
+		FreeImage_Unload(img_texture);
+	FreeImage_DeInitialise();
+
+	//Free up graphics memory
+	glDeleteBuffers(1,&vertexBuffer);
+	glDeleteProgram(shaderprogram);
+	glDeleteVertexArrays(1, &vao);
+}
+
+//	Drawing function (is called for every frame)
+void draw(void) {
+	GLenum glErr;
+/* ################### - 3.3 - ################### */
+	int screen_pos_x = glutGet((GLenum)GLUT_WINDOW_X);
+	int screen_pos_y = glutGet((GLenum)GLUT_WINDOW_Y);
+
+	if(screen_pos_x != old_window_x || screen_pos_y != old_window_y){
+		old_window_x = screen_pos_x;
+		old_window_y = screen_pos_y;
+		int size_x = glutGet((GLenum)GLUT_WINDOW_WIDTH);
+		int size_y = glutGet((GLenum)GLUT_WINDOW_HEIGHT);
+		reshape(size_x, size_y);
+	}
+
+    // Clear drawing buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glUseProgram(shaderprogram);
+
+	view_matrix = glm::translate(translation);
+	model_matrix =	glm::scale(glm::vec3(10.,10.,10.f));
+	model_matrix = model_matrix * arcball.rot;
+
+	// ROTATE
+	// http://stackoverflow.com/questions/8844585/glm-rotate-usage-in-opengl
+	glm::mat4 pvmMatrix = proj_matrix * view_matrix * model_matrix;
+	for (int i=0; i!=4; i++) {
+		for (int j=0; j!=4; j++) {
+			break;
+		}
+	}
+//	std::cout<<"pvm:"<<"\n"<<proj_matrix[0][0]<<","<<proj_matrix[0][1]<<","<<proj_matrix[0][2]<<","<<proj_matrix[0][3]<<","<<std::endl;
+	glProgramUniformMatrix4fv(shaderprogram, pvm_matrix_location, 1, GL_FALSE,glm::value_ptr(pvmMatrix));
+
+	// Draw into the back buffer (front is displayed)
+	glDrawBuffer(GL_BACK);
+
+	// proj_matrix, view_matrix, model_matrix
+	object1.drawWithoutParams();
+
+
+	// object1.draw(proj_matrix, view_matrix, model_matrix);
+
+	glutSwapBuffers();
+}
+
+/* #####################################################
+/	Reshape function (is called if the window size is changed and on window creation)
+/  ##################################################### */
+void reshape(int w, int h) {
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h); // Set our viewport to the size of our window
+	int screen_pos_x = glutGet((GLenum)GLUT_WINDOW_X);
+	int screen_pos_y = glutGet((GLenum)GLUT_WINDOW_Y);
+
+	/* calculate corners of the window with respect to the center of the screen:
+	/  screen_pos_* gives us the number of pixels from the upper left corner
+	*/
+	float left = -(screen_width/2.f -  float(screen_pos_x) / float(max_window_width) * screen_width);
+	float right = left + float(w) / float(max_window_width) * screen_width;
+	float top = screen_height/2.f - float(screen_pos_y) / float(max_window_height) * screen_height;
+	float bottom = top - float(h) / float(max_window_height) * screen_height;
+
+	//create new frustum
+	proj_matrix = glm::frustum(left, right, bottom, top, near_clipping, far_clipping);
+
+	glutPostRedisplay();
+}
+
+// WASD navigation
+void keyboardFunction(unsigned char k, int x, int y) {
+	switch (k) {
+		case 27: // 27 = esc-button
+			// Leave the main loop (only possible with freeglut, not glut alone. But you should use glut anyway as it is not maintained since May 2005!
+			glutLeaveMainLoop();
+			break;
+		case 'w':
+		case 'W':	// forward
+			translation[2] += 0.8f;
+			break;
+		case 'a':
+		case 'A':	// left
+			translation[0] += 0.2f;
+			break;
+		case 's':
+		case 'S':	// backwards
+			translation[2] -= 0.8f;
+			break;
+		case 'd':
+		case 'D':	// right
+			translation[0] -= 0.2f;
+			break;
+		case 52:	// 4/left
+			break;
+		case 56:	// 8/up
+			break;
+		case 54:	// 6/right
+			break;
+		case 50:	// 2/down
+			break;
+		default:
+			break;
+	}
+}
+
+// MOUSE: pan
+void motionFunction (int x, int y) {
+	if (middle_button_state) {
+		translation[0] += float(x - old_mouse_x) / float(max_window_width) * screen_width;
+		translation[1] += -float(y - old_mouse_y) / float(max_window_height) * screen_height;
+		old_mouse_x = x;
+		old_mouse_y = y;
+	}
+	else if(left_button_state) {
+		arcball.mouse_motion(x,y);
+	}
+	glutPostRedisplay();
+}
+
+// MOUSE: pan, rotate
+void mouseFunction (int Button, int state, int x, int y) {
+	if (Button == 3){
+		translation[2] += 1.f;
+	} else if (Button == 4){
+		translation[2] += -1.f;
+	} else if(Button == GLUT_MIDDLE_BUTTON){
+		if(state == GLUT_DOWN){
+			middle_button_state = 1;
+			old_mouse_x = x;
+			old_mouse_y = y;
+		} else {
+			middle_button_state = 0;
+		}
+	}
+
+	if(left_button_state) {
+		arcball.mouse_motion(x,y);
+	}
+	else if (Button == GLUT_LEFT_BUTTON) {
+		if(state == GLUT_DOWN){
+			left_button_state = 1;
+			arcball.mouse_down(x,y);
+		} else{
+			left_button_state = 0;
+			arcball.mouse_up();
+		}
+	}
+}
+
+	// Simple function to read a shader file (from "https://www.opengl.org/wiki/Tutorial2:_VAOs,_VBOs,_Vertex_and_Fragment_Shaders_(C_/_SDL)" )
+char* filetobuf(char *file)
+{
+    FILE *fptr;
+    long length;
+    char *buf;
+
+    fptr = fopen(file, "rb"); /* Open file for reading */
+    if (!fptr) /* Return NULL on failure */{
+		std::cout<<"could not open "<<file<<std::endl;
+        return NULL;
+	}
+    fseek(fptr, 0, SEEK_END); /* Seek to the end of the file */
+    length = ftell(fptr); /* Find out how many bytes into the file we are */
+    buf = (char*)malloc(length+1); /* Allocate a buffer for the entire length of the file and a null terminator */
+    fseek(fptr, 0, SEEK_SET); /* Go back to the beginning of the file */
+    fread(buf, length, 1, fptr); /* Read the contents of the file in to the buffer */
+    fclose(fptr); /* Close the file */
+    buf[length] = 0; /* Null terminator */
+
+    return buf; /* Return the buffer */
+}
+
+	// Simple function to create, compile and link shaders (from "https://www.opengl.org/wiki/Tutorial2:_VAOs,_VBOs,_Vertex_and_Fragment_Shaders_(C_/_SDL)" )
+bool createShaders(){
+	int IsCompiled_VS, IsCompiled_FS;
+    int IsLinked;
+    int maxLength;
+    char *vertexInfoLog;
+    char *fragmentInfoLog;
+    char *shaderProgramInfoLog;
+
+	/* These pointers will receive the contents of our shader source code files */
+    char *vertexsource, *fragmentsource;
+
+    /* These are handles used to reference the shaders */
+    GLuint vertexshader, fragmentshader;
+
+	 /* Read our shaders into the appropriate buffers */
+
+/* ################### - 4.10 - (REPLACE FOLLOWING TWO LINES) ################### */
+    vertexsource = filetobuf("/home/ri43hiq/opengl_tutorial/shader/vertex.vert");
+    fragmentsource = filetobuf("/home/ri43hiq/opengl_tutorial/shader/fragment.frag");
+
+    vertexshader = glCreateShader(GL_VERTEX_SHADER); // Create an empty vertex shader handle
+
+    /* Send the vertex shader source code to GL */
+    /* Note that the source code is NULL character terminated. */
+    /* GL will automatically detect that therefore the length info can be 0 in this case (the last parameter) */
+    glShaderSource(vertexshader, 1, (const GLchar**)&vertexsource, 0);
+
+    /* Compile the vertex shader */
+    glCompileShader(vertexshader);
+
+    glGetShaderiv(vertexshader, GL_COMPILE_STATUS, &IsCompiled_VS);
+    if(IsCompiled_VS == FALSE)
+    {
+       glGetShaderiv(vertexshader, GL_INFO_LOG_LENGTH, &maxLength);
+
+       /* The maxLength includes the NULL character */
+       vertexInfoLog = (char *)malloc(maxLength);
+
+       glGetShaderInfoLog(vertexshader, maxLength, &maxLength, vertexInfoLog);
+	   	   	 std::cout<<"could not compile vertex shader: \n"<<vertexInfoLog<<std::endl;
+       /* Handle the error in an appropriate way such as displaying a message or writing to a log file. */
+       /* In this simple program, we'll just leave */
+       free(vertexInfoLog);
+	   free(vertexsource);
+	   free(fragmentsource);
+       return false;
+    }
+
+    /* Create an empty fragment shader handle */
+    fragmentshader = glCreateShader(GL_FRAGMENT_SHADER);
+
+    /* Send the fragment shader source code to GL */
+    /* Note that the source code is NULL character terminated. */
+    /* GL will automatically detect that therefore the length info can be 0 in this case (the last parameter) */
+    glShaderSource(fragmentshader, 1, (const GLchar**)&fragmentsource, 0);
+
+    /* Compile the fragment shader */
+    glCompileShader(fragmentshader);
+
+    glGetShaderiv(fragmentshader, GL_COMPILE_STATUS, &IsCompiled_FS);
+    if(IsCompiled_FS == FALSE)
+    {
+       glGetShaderiv(fragmentshader, GL_INFO_LOG_LENGTH, &maxLength);
+
+       /* The maxLength includes the NULL character */
+       fragmentInfoLog = (char *)malloc(maxLength);
+
+       glGetShaderInfoLog(fragmentshader, maxLength, &maxLength, fragmentInfoLog);
+	   	 std::cout<<"could not compile fragment shader: \n"<<fragmentInfoLog<<std::endl;
+       /* Handle the error in an appropriate way such as displaying a message or writing to a log file. */
+       /* In this simple program, we'll just leave */
+       free(fragmentInfoLog);
+	   free(vertexsource);
+	   free(fragmentsource);
+       return false;
+    }
+
+    /* If we reached this point it means the vertex and fragment shaders compiled and are syntax error free. */
+    /* We must link them together to make a GL shader program */
+    /* GL shader programs are monolithic. It is a single piece made of 1 vertex shader and 1 fragment shader. */
+    /* Assign our program handle a "name" */
+    shaderprogram = glCreateProgram();
+
+    /* Attach our shaders to our program */
+    glAttachShader(shaderprogram, vertexshader);
+    glAttachShader(shaderprogram, fragmentshader);
+
+
+	/* ################### - 4.11 - ################### */
+
+
+    /* Link our program */
+    /* At this stage, the vertex and fragment programs are inspected, optimized and a binary code is generated for the shader. */
+    /* The binary code is uploaded to the GPU, if there is no error. */
+    glLinkProgram(shaderprogram);
+
+    /* Again, we must check and make sure that it linked. If it fails, it would mean either there is a mismatch between the vertex */
+    /* and fragment shaders. It might be that you have surpassed your GPU's abilities. Perhaps too many ALU operations or */
+    /* too many texel fetch instructions or too many interpolators or dynamic loops. */
+
+    glGetProgramiv(shaderprogram, GL_LINK_STATUS, (int *)&IsLinked);
+    if(IsLinked == FALSE)
+    {
+       /* Noticed that glGetProgramiv is used to get the length for a shader program, not glGetShaderiv. */
+       glGetProgramiv(shaderprogram, GL_INFO_LOG_LENGTH, &maxLength);
+
+       /* The maxLength includes the NULL character */
+       shaderProgramInfoLog = (char *)malloc(maxLength);
+
+       /* Notice that glGetProgramInfoLog, not glGetShaderInfoLog. */
+       glGetProgramInfoLog(shaderprogram, maxLength, &maxLength, shaderProgramInfoLog);
+	   std::cout<<"could not link program: \n"<<shaderProgramInfoLog<<std::endl;
+
+       /* Handle the error in an appropriate way such as displaying a message or writing to a log file. */
+       /* In this simple program, we'll just leave */
+       free(shaderProgramInfoLog);
+	   free(vertexsource);
+	   free(fragmentsource);
+       return false;
+    }
+
+	return true;
+}
+
+FIBITMAP* loadImage(const std::string filename){
+    FreeImage_Initialise();
+
+    // Determine the format of the image.
+    // Note: The second paramter ('size') is currently unused, and we should use 0 for it.
+    FREE_IMAGE_FORMAT format = FreeImage_GetFileType(filename.c_str(), 0);
+
+    // Image not found? Abort! Without this section we get a 0 by 0 image with 0 bits-per-pixel but we don't abort, which
+    // you might find preferable to dumping the user back to the desktop.
+    if (format == -1) {
+        std::cerr << "Could not find image: " << filename << " - Aborting." << std::endl;
+        return false;
+    }
+
+    // Found image, but couldn't determine the file format? Try again...
+    if (format == FIF_UNKNOWN) {
+        std::cerr << "Couldn't determine file format - attempting to get from file extension..." << std::endl;
+
+        // ...by getting the filetype from the filename extension (i.e. .PNG, .GIF etc.)
+        // Note: This is slower and more error-prone that getting it from the file itself,
+        // also, we can't use the 'U' (unicode) variant of this method as that's Windows only.
+        format = FreeImage_GetFIFFromFilename(filename.c_str());
+
+        // Check that the plugin has reading capabilities for this format (if it's FIF_UNKNOWN,
+        // for example, then it won't have) - if we can't read the file, then we bail out =(
+        if (!FreeImage_FIFSupportsReading(format)) {
+            std::cerr << "Detected image format cannot be read!" << std::endl;
+            return false;
+        }
+    }
+
+    // If we're here we have a known image format, so load the image into a bitap
+    FIBITMAP* bitmap = FreeImage_Load(format, filename.c_str());
+
+    // How many bits-per-pixel is the source image?
+    int bitsPerPixel = FreeImage_GetBPP(bitmap);
+    FIBITMAP* bitmap32;
+    if (bitsPerPixel == 32) {
+            bitmap32 = bitmap;
+    } else {
+
+        bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+        FreeImage_Unload(bitmap);
+    }
+
+
+    return bitmap32;
+}

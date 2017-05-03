@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ./build/metz17.aux
+The style file: alpha.bst
+Database file #1: ./Bib/metz17.bib
+Warning--empty journal in atchleyattentional
+Warning--empty year in atchleyattentional
+Warning--empty booktitle in ciptadi2013depth
+Warning--empty journal in cruz1993surround
+Warning--can't use both volume and number fields in lee2005mesh
+Warning--empty journal in munaretti2007perceptual
+Warning--there's a number but no series in ott2015literature
+Warning--can't use both volume and number fields in shamir2008survey
+Warning--can't use both volume and number fields in surazhsky2005fast
+You've used 38 entries,
+            2543 wiz_defined-function locations,
+            785 strings with 11915 characters,
+and the built_in function-call counts, 18902 in all, are:
+= -- 1969
+> -- 910
+< -- 30
++ -- 330
+- -- 322
+* -- 1350
+:= -- 2948
+add.period$ -- 130
+call.type$ -- 38
+change.case$ -- 265
+chr.to.int$ -- 38
+cite$ -- 47
+duplicate$ -- 765
+empty$ -- 1340
+format.name$ -- 358
+if$ -- 4010
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 37
+newline$ -- 192
+num.names$ -- 114
+pop$ -- 274
+preamble$ -- 1
+purify$ -- 303
+quote$ -- 0
+skip$ -- 668
+stack$ -- 0
+substring$ -- 1144
+swap$ -- 232
+text.length$ -- 30
+text.prefix$ -- 5
+top$ -- 0
+type$ -- 304
+warning$ -- 9
+while$ -- 188
+width$ -- 42
+write$ -- 508
+(There were 9 warnings)

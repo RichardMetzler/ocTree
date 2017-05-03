@@ -1,0 +1,214 @@
+@incollection{koch1987shifts,
+  title={Shifts in selective visual attention: towards the underlying neural circuitry},
+  author={Koch, Christof and Ullman, Shimon},
+  booktitle={Matters of intelligence},
+  pages={115--141},
+  year={1987},
+  publisher={Springer}
+}
+
+@article{wu2013mesh,
+  title={Mesh saliency with global rarity},
+  author={Wu, Jinliang and Shen, Xiaoyong and Zhu, Wei and Liu, Ligang},
+  journal={Graphical Models},
+  volume={75},
+  number={5},
+  pages={255--264},
+  year={2013},
+  publisher={Elsevier}
+}
+
+@inproceedings{ciptadi2013depth,
+  title={An in depth view of saliency},
+  author={Ciptadi, Arridhana and Hermans, Tucker and Rehg, James M},
+  year={2013},
+  organization={Georgia Institute of Technology}
+}
+
+@inproceedings{koschan2003perception,
+  title={Perception-based 3D triangle mesh segmentation using fast marching watersheds},
+  author={Koschan, AF},
+  booktitle={Computer Vision and Pattern Recognition, 2003. Proceedings. 2003 IEEE Computer Society Conference on},
+  volume={2},
+  pages={II--II},
+  year={2003},
+  organization={IEEE}
+}
+
+@article{dutagaci2012evaluation,
+  title={Evaluation of 3D interest point detection techniques via human-generated ground truth},
+  author={Dutagaci, Helin and Cheung, Chun Pan and Godil, Afzal},
+  journal={The Visual Computer},
+  volume={28},
+  number={9},
+  pages={901--917},
+  year={2012},
+  publisher={Springer}
+}
+
+@inproceedings{surazhsky2005fast,
+  title={Fast exact and approximate geodesics on meshes},
+  author={Surazhsky, Vitaly and Surazhsky, Tatiana and Kirsanov, Danil and Gortler, Steven J and Hoppe, Hugues},
+  booktitle={ACM transactions on graphics (TOG)},
+  volume={24},
+  number={3},
+  pages={553--560},
+  year={2005},
+  organization={Acm}
+}
+
+@article{munaretti2007perceptual,
+  title={Perceptual guidance in mesh processing and rendering using mesh saliency},
+  author={Munaretti, Rodrigo Barni},
+  year={2007}
+}
+
+@inproceedings{sandor2010augmented,
+  title={An augmented reality x-ray system based on visual saliency},
+  author={Sandor, Christian and Cunningham, Andrew and Dey, Arindam and Mattila, Ville-Veikko},
+  booktitle={Mixed and Augmented Reality (ISMAR), 2010 9th IEEE International Symposium on},
+  pages={27--36},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{sokolov2008virtual,
+  title={Virtual world explorations by using topological and semantic knowledge},
+  author={Sokolov, Dmitry and Plemenos, Dimitri},
+  journal={The Visual Computer},
+  volume={24},
+  number={3},
+  pages={173--185},
+  year={2008},
+  publisher={Springer}
+}
+
+@article{o1999fmri,
+  title={fMRI evidence for objects as the units of attentional selection},
+  author={O'craven, Kathleen M and Downing, Paul E and Kanwisher, Nancy},
+  journal={Nature},
+  volume={401},
+  number={6753},
+  pages={584--587},
+  year={1999},
+  publisher={Nature Publishing Group}
+}
+
+@inproceedings{lee2007real,
+  title={Real-time tracking of visually attended objects in interactive virtual environments},
+  author={Lee, Sungkil and Kim, Gerard Jounghyun and Choi, Seungmoon},
+  booktitle={Proceedings of the 2007 ACM symposium on Virtual reality software and technology},
+  pages={29--38},
+  year={2007},
+  organization={ACM}
+}
+
+@article{atchleyattentional,
+  title={Attentional Control Within 3-D Space},
+  author={Atchley, Paul and Kramer, Arthur F}
+}
+
+@inproceedings{potapova2011learning,
+  title={Learning what matters: combining probabilistic models of 2d and 3d saliency cues},
+  author={Potapova, Ekaterina and Zillich, Michael and Vincze, Markus},
+  booktitle={International Conference on Computer Vision Systems},
+  pages={132--142},
+  year={2011},
+  organization={Springer}
+}
+
+@article{howlett2005predicting,
+  title={Predicting and evaluating saliency for simplified polygonal models},
+  author={Howlett, Sarah and Hamill, John and O'Sullivan, Carol},
+  journal={ACM Transactions on Applied Perception (TAP)},
+  volume={2},
+  number={3},
+  pages={286--308},
+  year={2005},
+  publisher={ACM}
+}
+
+@inproceedings{lee2005mesh,
+  title={Mesh saliency},
+  author={Lee, Chang Ha and Varshney, Amitabh and Jacobs, David W},
+  booktitle={ACM transactions on graphics (TOG)},
+  volume={24},
+  number={3},
+  pages={659--666},
+  year={2005},
+  organization={ACM}
+}
+
+@inproceedings{zhao2012saliency,
+  title={A saliency detection based method for 3d surface simplification},
+  author={Zhao, Yitian and Liu, Yonghuai and Song, Ran and Zhang, Min},
+  booktitle={Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE International Conference on},
+  pages={889--892},
+  year={2012},
+  organization={IEEE}
+}
+
+@inproceedings{kho2003user,
+  title={User-guided simplification},
+  author={Kho, Youngihn and Garland, Michael},
+  booktitle={Proceedings of the 2003 symposium on Interactive 3D graphics},
+  pages={123--126},
+  year={2003},
+  organization={ACM}
+}
+
+@misc{garland1997qslim,
+  title={QSlim simplification software},
+  author={Garland, Michael and Heckbert, Paul S},
+  year={1997}
+}
+
+@inproceedings{shaffer2001efficient,
+  title={Efficient adaptive simplification of massive meshes},
+  author={Shaffer, Eric and Garland, Michael},
+  booktitle={Proceedings of the conference on Visualization'01},
+  pages={127--134},
+  year={2001},
+  organization={IEEE Computer Society}
+}
+
+@article{wei2010feature,
+  title={Feature preserving mesh simplification using feature sensitive metric},
+  author={Wei, Jin and Lou, Yu},
+  journal={Journal of Computer Science and Technology},
+  volume={25},
+  number={3},
+  pages={595--605},
+  year={2010},
+  publisher={Springer}
+}
+
+@article{cignoni1998comparison,
+  title={A comparison of mesh simplification algorithms},
+  author={Cignoni, Paolo and Montani, Claudio and Scopigno, Roberto},
+  journal={Computers \& Graphics},
+  volume={22},
+  number={1},
+  pages={37--54},
+  year={1998},
+  publisher={Elsevier}
+}
+
+@inproceedings{shamir2008survey,
+  title={A survey on mesh segmentation techniques},
+  author={Shamir, Ariel},
+  booktitle={Computer graphics forum},
+  volume={27},
+  number={6},
+  pages={1539--1556},
+  year={2008},
+  organization={Wiley Online Library}
+}
+
+@MANUAL{scrguide07,
+  author       = {Kohm, Markus and Morawski, Jens-Uwe},
+  title        = {KOMA-Script -- Die Anleitung},
+  year         = {2011},
+  month        = apr,
+  note         = {\url{http://www.bitlib.net/mirror/ctan/macros/latex/contrib/koma-script/scrguide.pdf}},
+}

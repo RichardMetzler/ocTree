@@ -1,0 +1,3 @@
+- computing both exact and approximate shortest (geodesic) paths on triangle meshes
+- geodesic paths for parameterizing meshes -> less distortion (in general)
+- geodesic paths establish a surface distance metric

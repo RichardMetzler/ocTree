@@ -1,0 +1,41 @@
+questions tackled in this:
+- can human attention be focused on a single depth plane?
+- is it possible to search a color singleton within an attended depth plane without interference from singletons in ohter
+depth planes?
+- is it possible for an element to pop out in one depth plane without any interference from salient elements in other depth planes? 
+
+Experiment 1:
+- participants were shown 12 randomly tilted (+/-20°) green lines in the frontal plane and 12 green lines in the back plane on a screen
+- a green outline rectangle was shown for 100ms around the plane that would contain the red line with 80% probabilty (visual cue; the red line line appeared in the other plane in 20% of cases)
+- 1 randomly element turned red for 100 ms
+- the entire scene was only shown for 1.5 seconds 
+- participants were asked whether the element was in the front or the back plane
+- Results:
+	- participants were faster and made fewer errors when the target line appeared in cued plane
+	- this suggests that attention could be and was focused on the cued depth plane
+	- it takes the same amount of time to shift attention from the front to the back plane and vice versa
+
+Experiment 2:
+- very similar to experiment 1; the goal was to find out whether searching for a target in a cued plane would prevent attentional capture from singletons (with the same color) in another plane
+- 12 lines were shown in a front plane, 12 other lines in a back plane; a 100% correct cue in which plane the red line would appear was given
+- lines were tilted randomly or perfectly vertical
+- participants had to search for a tilted, red line and ignore the vertical one
+- 3 conditions: no distractor; distractor in the same depth plane; distractor in antoher depth plane
+- Results:
+	- distractor in another plane caused significantly less distraction than distractor in the same plane
+	- directing attention to a specific plane does not prevent attentional capture from a singleton presented in another (nonattended) plane 
+
+Experiment 3:
+- was aimed at ensuring that participants really were paying attention to cued depth plane
+- setup and procedure very similar to experiment 2
+- instead of changing the color of the target and the distractor, the color of every non-target line was changed (red -> green)
+- Results:
+	- similar to results of experiment 2
+	- directing attention to a particular depth plane could not prevent capture from a singleton from anpther depth plane
+
+Experiment 4:
+- setup and proceducre very similar toe experiment 2
+- non-target lines remained grey, target- and distractor-line were green/red
+- Results:
+	- when distracting singleton appeared in the same plane as the target did, there was interference
+	- when distracting singleton appeared in another plane, there was no more interference

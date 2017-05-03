@@ -1,0 +1,5 @@
+\chapter{Introduction}
+
+With resources such as memory and compute power getting more and more available at an ever-increasing rate, 3D objects and their mesh representations are constantly growing in complexity and size, in terms of shaders, texture maps as well as the sheer number of vertices, as well. Still, many professional applications revolving around interaction with such models require means of displaying them in real-time without significant perceived loss of quality to ensure a smooth and fast workflow. This is where mesh simplification and segmentation plays an important role [\cite{wei2010feature}], [\cite{shaffer2001efficient}], [\cite{zhao2012saliency}] etc.
+
+Little has been done so far concerning research on \textit{mesh saliency} on a vertex level in a virtual reality environment. With the rising popularity 

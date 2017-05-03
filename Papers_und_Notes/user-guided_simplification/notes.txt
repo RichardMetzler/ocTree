@@ -1,0 +1,10 @@
+- existing simplification algorithms: very low LoD: visual appearance of the original is not preserved
+- method in this paper is absed on quadric based simplification algorithm (1997)
+- 2 main tools: adaptive simplification and geometric constraints
+- quadric for each vertex: sum of fundamental quadrics (formed by unit normal and offset of its incident faces)
+
+- key idea: guide simplification by manipulating the quadric associated with each vertex
+
+adaptive weighting of quadrics:
+- during simplification, areas with heavey weights have higher contraction costs
+-edge contractions in those areas are delayed and the regions maintain higher LoD

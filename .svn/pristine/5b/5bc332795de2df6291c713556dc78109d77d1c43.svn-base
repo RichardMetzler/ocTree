@@ -1,0 +1,4 @@
+- framework for tracking user attention in virtual environment
+
+- virtual environments require temporally coherent saliency tracking of “objects” rather than that of pixels
+- four reasons (p. 2!)

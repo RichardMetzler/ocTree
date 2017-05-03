@@ -1,0 +1,32 @@
+Algorithm "Fast Marching Watersheds"
+segments meshes into visual parts based on human vision theory called the minima rule.
+
+minima rule: defines contures of negative curvatures as visual part boundaries.
+
+contributions of this paper:
+- robust hill climbing algorithm for watershed-segmentation on a triangle mesh data structure
+- definition of a directional height map appropriate for the minima rule using local principle curvatures
+- application of morphological operations to improve the initial marker set for the watersher algorithm
+
+"range image selection: abundance of literature"
+"mesh segmentation only recently became interesting"
+
+3D triangle mesh = collection of triangles and vertices approximating a 3D surface.
+Mesh segmentation = partitioning of a mesh into more visually meaningful regions or parts.
+
+state of the art:
+- Mangan and Whitaker
+	- coins the term mesh segmentation
+	- propose implementation of watershed segmentation from image processing
+- Wu and Levine
+	- alternative algorithm based on simulated distribution of electrical charge acress the surface of a mesh
+	- loosely based on the minima rule
+- Limitations of the state of the art:
+	- Wu and Levine's algorithm is not true to the minimal rule
+	- genus-one topology, no dents on the surface and the object must have at least one part boundary
+The algorithm proposed in this paper does not need these premises to be fulfilled.
+
+
+Algorithm:
+- estimates principal curvatures and principal directions for each vertex
+- central aspects: grow() function and heap: positive curvature keys bubble to the top, negative ones sink tot he bottom

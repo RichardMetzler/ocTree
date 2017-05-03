@@ -1,0 +1,39 @@
+"to the best of their knowledge, this was the first time that global rarity was taken into
+account when computing saliency in 3D geometric contents"
+
+new approach for computing saliency for 3D mesh surfaces considering
+	- local contrast
+	- global rarity := speciality to all other vertices
+final saliency = linear combination of local contrast & global rarity
+
+//#### hier für jede Menge Quellen zu menschl. Wahrnehmung reinschauen! ####//
+human attention is triggered by following 2 basic principles:
+	- local contrast
+	high contrast against local surroundings; distinctive differences with local neighbors
+	- global rarity
+	global rarity in the entire scene -> more attention & high saliency
+
+IN DETAIL: local saliency
+- a vertex is salient only if its featrues are unique
+- local height map around vertices (Maximo et al./ "a_robust_..."
+	- height map for a vertex v: 16x16 grid, a square sub-region with side length r
+	- the distance of every vertex in this grid to the tanget plane of v is calculated
+	- it encodes the local shape surrounding the vertex
+	- rotation-independent (Zernike) coefficient is computed from the hight map and used
+	- multi-scale vector depends on different size hight maps and their coefficients
+	  (in this paper: R =  {2l, 3l, 4l}, l := 0.05% of the mesh's bounding box)
+
+- mesh := weighted graph
+	- vertices = nodes
+	- weighted edges = measure of dissimilarity between nodes
+- input Mesh is segmented into patches with similar vertices
+- for each patch: saliency := weighted sum o fcontrast to its neighboring patches
+- saliency of individual vertices are computed by interpolation of its neighboring patches
+
+IN DETAIL: global rarity
+- the rarity of a vertex can be evaluated by its contrast to all other vertices
+- contrary to local saliency, global saliency puts more emphasis on regions of a mesh, not the boundaries
+- glbal saliency := sum over the differences between given vertex' and all other vertices' in one Mesh heightmal-coefficients
+- complexity: = (n²), which is bad
+-> computation uses the grouping idea for solving image edit propaganation problems
+- group vertices into clusters; compute cluster saliency

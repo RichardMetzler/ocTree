@@ -1,0 +1,11 @@
+human perception:
+1.) preattentive, massively parallel stage that processes
+	- color
+	- contrast
+	- motion
+	- various depth cues
+
+2.) limited-capacity stage for more complex operations
+	- face recognition
+	- reading
+	- object identifying

@@ -1,0 +1,25 @@
+- polygonal models growing steadily in complexity -> need for visual quality control!
+- interactive computer graphics abbplications need fidelity of displayed scenes to be adjusted in real time
+- less interactive applications need models to be simplified (containing fewer polygons while preserving visual appearance
+- image generators must preserve appearance while reducing image size
+
+experiment:
+- naming time, rating, preference fidelity measures
+	- goals: learna bout relative strengths and weaknesses of these measures
+	- provide an experimental test for evaluation of automatic fidelity measures
+- 34 3D polygonal models, none contained color, texture, vertex or normal information
+- half of the objects were man-made, the other half were animals
+- resulting independed variables:
+	- simplification type (Vclust / Qslim)
+	- simplification level (3 levels including unsimplified)
+	- object type (animals/artifacts)
+- participants were shown pictures of objects, varying in above 3 variables
+- participants were aksed to name shown objects as quickly and accurately as they could
+- participants were aksed to rate each object at every simplification level
+
+results:
+- all 3 factors affected performance
+- animals were named more slowly than artifacts, naming times were longer with increasing simplification
+- naming times were longer with Vclust
+- automatic fidelity measures correlate to naming times
+- Qslim is by all measures a more effective simplicifaction tool than Vclust

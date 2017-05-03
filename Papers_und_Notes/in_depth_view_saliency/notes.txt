@@ -1,0 +1,25 @@
+- focuses on depth information and depth maps
+- doesn't treat them as "just another image channel"
+- constructs 3D-layout and shape features exclusively from depth information
+- no learning required, works on scenes on which the system has no previous knowledge
+- existing methods mostly work based on color and texture while more or less ignoring depth
+
+- depth make it possible to seperate objects which may be similar in appearance
+
+Thesis:
+depth is a fundamentally different source of information and correct exploitation of depth will change the computation of saliencies
+
+Approach:
+- in general: extract panes (walls, floor, surfaces) to enhance the saliency of parts of these planes
+- compute feature vectors for each pixel of an image
+- design depth-based features which can be extracted at each image site
+- determine how to measure the dissimilarity feature vectors at multiple scales
+
+Results:
+- dataset: 80 color and depth images of real-world home invironment
+- using depth-features produced better results than priviously known state of the art approaches:
+	- ceter surround with depth information
+	- context-aware saliency
+	- graph-based visual saliency
+	- image signature
+- better results = more objects recognized, less background falsely identified as objects

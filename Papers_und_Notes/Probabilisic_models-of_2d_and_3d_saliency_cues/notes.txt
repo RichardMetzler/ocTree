@@ -1,0 +1,23 @@
+- focuses on vision in robotics as part of a bigger system
+- robotic taskts considered for this paper include manipulation, grasping and tracking
+- goal: A system that segments objects that can be picked up, or if it's cluttered, detect good initial grasp points
+
+- uses a Kinect-sensor to generate a RGB-D image database containing
+	- isolated free-standing objects (IFSO)
+	- occluded objects (OO)
+	- objects placed in a box (BO)
+	- a box containing objects and sorrunded by other objects (BOSO)
+- investigated cues (derived from preattentive human vision):
+	- surface height
+	- relative surface orientation
+	- occluded edges
+- these 3 and ther combination was used to pick seed points for segmentation of objects
+
+
+
+
+
+
+3d context		CHECK
+object, selection	CHECK
+Mesh-selection		nope

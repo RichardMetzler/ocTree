@@ -1,0 +1,31 @@
+\begin{thebibliography}{WSZL13}
+
+\bibitem[CMS98]{cignoni1998comparison}
+Paolo Cignoni, Claudio Montani, and Roberto Scopigno.
+\newblock A comparison of mesh simplification algorithms.
+\newblock {\em Computers \& Graphics}, 22(1):37--54, 1998.
+
+\bibitem[HHO05]{howlett2005predicting}
+Sarah Howlett, John Hamill, and Carol O'Sullivan.
+\newblock Predicting and evaluating saliency for simplified polygonal models.
+\newblock {\em ACM Transactions on Applied Perception (TAP)}, 2(3):286--308,
+  2005.
+
+\bibitem[LVJ05]{lee2005mesh}
+Chang~Ha Lee, Amitabh Varshney, and David~W Jacobs.
+\newblock Mesh saliency.
+\newblock In {\em ACM transactions on graphics (TOG)}, volume~24, pages
+  659--666. ACM, 2005.
+
+\bibitem[Sha08]{shamir2008survey}
+Ariel Shamir.
+\newblock A survey on mesh segmentation techniques.
+\newblock In {\em Computer graphics forum}, volume~27, pages 1539--1556. Wiley
+  Online Library, 2008.
+
+\bibitem[WSZL13]{wu2013mesh}
+Jinliang Wu, Xiaoyong Shen, Wei Zhu, and Ligang Liu.
+\newblock Mesh saliency with global rarity.
+\newblock {\em Graphical Models}, 75(5):255--264, 2013.
+
+\end{thebibliography}

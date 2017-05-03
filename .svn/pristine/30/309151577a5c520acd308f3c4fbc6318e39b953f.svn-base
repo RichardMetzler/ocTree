@@ -1,0 +1,73 @@
+http://www.cs.umd.edu/~djacobs/pubs_files/mesh_saliency_sig05.pdf
+
+Mesh Saliency
+
+Chang Ha Lee
+David W. Jacobs
+
+Department of Computer Science
+University of Maryland, college Park, MD 20742, USA
+{chlee, varshney, djacobs} @cs.umd.edu
+
+
+
+
+Bekannt:
+- mathematische Grundlagen für Repräsentation und Analyse von 3D Meshes
+- nicht explizit ausgearbeitet für Modelle, die von Natur aus wenig menschliche Aufmerksamkeit bekommen
+- Wahrnehmungsbasiertes LoD-Management
+- Mesh Saliencies: Maß für regionale Wichtigkeit grafischer Meshes
+
+Berücksichtigung der Wahrnehmung im Bezug auf LoD-Management: gut erforscht
+Berücksichtigung der Wahrnehmung beim Verarbeiten von Meshes: wenig erforscht
+
+Mesh Saliency:
+Maß für regionalie Wichtigkeit von 3D Meshes
+	- center-surround mechanism
+	- identifiziert Regionen die sich von ihrer Umgebung unterscheiden
+	- ist abhängig von Skalierung des Objekts
+
+- 2D:
+	- Farbe ist wichtigste Eigenschaft zum Erkennen von Saliencies
+	- Intensität ist Funktion von Form und Licht
+	- 0 Saliency: Region mit uniformer Intensität
+- 3D:
+	- Geometrie der Meshes ist wichtigste Eigenschaft zum Erkennen von Saliencies
+	- Intensiätit ist Funkton von Form, unabh. von Licht
+	- Kugel ist kanonisches, 0-Saliency feature
+		-> uniformes Attr ist Biegung (curvature) => Das ist intuitiv ausschlaggebendes Attr. für Erkennung von Saliencies
+		-> mittlere Biegung als Grundlage für Berehnung von Saliencies
+	
+	
+Saliency Erkennung in diesem Paper basiert auf Gauß' gewichteter zentral-umgebender Evaluation von Mesh Oberflächen,
+ist geeignet, um zu erkennen, was die meisten Menschen als visuell interessante Regionen eines Meshes klassifizieren würden.
+
+Ausgankgspunkt für Berechnung der Saliency für jeden Vertex: Curvature Map
+Mehrere Saliency Maps werden errechnet (unterschiedliche Skalierungen) und kombiniert für endgültiges Ergebnis
+
+Ziel der Visualisierung (initialer Blickwinkel auf Objekt):
+	Maximiere sehbare Saliencies
+
+
+
+Fehlende Inhalte zu meiner Arbeit:
+- Selektion
+- Interaktion mit VR (Wahrnehmung & Interaktion)
+
+
+next up:
+Kamada and Kawai [1988]
+
+
+
+
+
+
+==========================================================================================================================================
+
+Schreibstil:
+- Abstracht (als letztes schreiben!)
+- Introduction:
+	- Überblick über Related Work, aufgeteilt nach Representation, Analysis, Transmission und Rendering
+	- Motivation: Gewaltige Anzahl an qualitativ hochwertigen Meshes -> Notwendigkeit einer Wahrnehmungs-basierten Herangehensweise an Mesh-Processing
+

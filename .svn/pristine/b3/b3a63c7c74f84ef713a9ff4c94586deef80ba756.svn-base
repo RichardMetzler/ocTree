@@ -1,0 +1,543 @@
+root constructor called
+I contain 2561 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 1, identifierBuilt: 000000000000000
+I contain 0 vertices.
+level: 1, identifierBuilt: 001000000000000
+I contain 0 vertices.
+level: 1, identifierBuilt: 010000000000000
+I contain 529 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 2, identifierBuilt: 010000000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010001000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010010000000000
+I contain 265 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 3, identifierBuilt: 010010000000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010001000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010010000000
+I contain 153 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 010010010000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010010001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010010010000
+I contain 73 vertices.
+level: 4, identifierBuilt: 010010010011000
+I contain 80 vertices.
+level: 4, identifierBuilt: 010010010100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010010101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010010110000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010010111000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010011000000
+I contain 112 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 010010011000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010011001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010011010000
+I contain 52 vertices.
+level: 4, identifierBuilt: 010010011011000
+I contain 60 vertices.
+level: 4, identifierBuilt: 010010011100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010011101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010011110000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010010011111000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010100000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010101000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010110000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010010111000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010011000000000
+I contain 264 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 3, identifierBuilt: 010011000000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011001000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011010000000
+I contain 112 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 010011010000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011010001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011010010000
+I contain 60 vertices.
+level: 4, identifierBuilt: 010011010011000
+I contain 52 vertices.
+level: 4, identifierBuilt: 010011010100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011010101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011010110000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011010111000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011011000000
+I contain 152 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 010011011000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011011001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011011010000
+I contain 80 vertices.
+level: 4, identifierBuilt: 010011011011000
+I contain 72 vertices.
+level: 4, identifierBuilt: 010011011100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011011101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011011110000
+I contain 0 vertices.
+level: 4, identifierBuilt: 010011011111000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011100000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011101000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011110000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 010011111000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010100000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010101000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010110000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 010111000000000
+I contain 0 vertices.
+level: 1, identifierBuilt: 011000000000000
+I contain 58 vertices.
+level: 1, identifierBuilt: 100000000000000
+I contain 0 vertices.
+level: 1, identifierBuilt: 101000000000000
+I contain 0 vertices.
+level: 1, identifierBuilt: 110000000000000
+I contain 1327 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 2, identifierBuilt: 110000000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 110001000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 110010000000000
+I contain 642 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 3, identifierBuilt: 110010000000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010001000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010010000000
+I contain 319 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 110010010000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010010001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010010010000
+I contain 21 vertices.
+level: 4, identifierBuilt: 110010010011000
+I contain 298 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 5, identifierBuilt: 110010010011000
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010010011001
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010010011010
+I contain 149 vertices.
+level: 5, identifierBuilt: 110010010011011
+I contain 149 vertices.
+level: 5, identifierBuilt: 110010010011100
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010010011101
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010010011110
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010010011111
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010010100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010010101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010010110000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010010111000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010011000000
+I contain 323 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 110010011000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010011001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010011010000
+I contain 302 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 5, identifierBuilt: 110010011010000
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010011010001
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010011010010
+I contain 153 vertices.
+level: 5, identifierBuilt: 110010011010011
+I contain 149 vertices.
+level: 5, identifierBuilt: 110010011010100
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010011010101
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010011010110
+I contain 0 vertices.
+level: 5, identifierBuilt: 110010011010111
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010011011000
+I contain 21 vertices.
+level: 4, identifierBuilt: 110010011100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010011101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010011110000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110010011111000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010100000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010101000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010110000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110010111000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 110011000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 110100000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 110101000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 110110000000000
+I contain 685 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 3, identifierBuilt: 110110000000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110110001000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110110010000000
+I contain 178 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 110110010000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110010001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110010010000
+I contain 15 vertices.
+level: 4, identifierBuilt: 110110010011000
+I contain 163 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 5, identifierBuilt: 110110010011000
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110010011001
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110010011010
+I contain 83 vertices.
+level: 5, identifierBuilt: 110110010011011
+I contain 80 vertices.
+level: 5, identifierBuilt: 110110010011100
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110010011101
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110010011110
+I contain 8 vertices.
+level: 5, identifierBuilt: 110110010011111
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110010100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110010101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110010110000
+I contain 3 vertices.
+level: 4, identifierBuilt: 110110010111000
+I contain 13 vertices.
+level: 3, identifierBuilt: 110110011000000
+I contain 184 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 110110011000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110011001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110011010000
+I contain 12 vertices.
+level: 4, identifierBuilt: 110110011011000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110011100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110011101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110011110000
+I contain 157 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 5, identifierBuilt: 110110011110000
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110011110001
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110011110010
+I contain 43 vertices.
+level: 5, identifierBuilt: 110110011110011
+I contain 39 vertices.
+level: 5, identifierBuilt: 110110011110100
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110011110101
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110011110110
+I contain 31 vertices.
+level: 5, identifierBuilt: 110110011110111
+I contain 44 vertices.
+level: 4, identifierBuilt: 110110011111000
+I contain 15 vertices.
+level: 3, identifierBuilt: 110110100000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110110101000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 110110110000000
+I contain 177 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 110110110000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110110001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110110010000
+I contain 13 vertices.
+level: 4, identifierBuilt: 110110110011000
+I contain 153 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 5, identifierBuilt: 110110110011000
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110110011001
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110110011010
+I contain 44 vertices.
+level: 5, identifierBuilt: 110110110011011
+I contain 22 vertices.
+level: 5, identifierBuilt: 110110110011100
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110110011101
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110110011110
+I contain 39 vertices.
+level: 5, identifierBuilt: 110110110011111
+I contain 43 vertices.
+level: 4, identifierBuilt: 110110110100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110110101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110110110000
+I contain 1 vertices.
+level: 4, identifierBuilt: 110110110111000
+I contain 10 vertices.
+level: 3, identifierBuilt: 110110111000000
+I contain 178 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 110110111000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110111001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110111010000
+I contain 13 vertices.
+level: 4, identifierBuilt: 110110111011000
+I contain 3 vertices.
+level: 4, identifierBuilt: 110110111100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110111101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 110110111110000
+I contain 165 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 5, identifierBuilt: 110110111110000
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110111110001
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110111110010
+I contain 28 vertices.
+level: 5, identifierBuilt: 110110111110011
+I contain 36 vertices.
+level: 5, identifierBuilt: 110110111110100
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110111110101
+I contain 0 vertices.
+level: 5, identifierBuilt: 110110111110110
+I contain 55 vertices.
+level: 5, identifierBuilt: 110110111110111
+I contain 39 vertices.
+level: 4, identifierBuilt: 110110111111000
+I contain 13 vertices.
+level: 2, identifierBuilt: 110111000000000
+I contain 0 vertices.
+level: 1, identifierBuilt: 111000000000000
+I contain 642 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 2, identifierBuilt: 111000000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 111001000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 111010000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 111011000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 111100000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 111101000000000
+I contain 0 vertices.
+level: 2, identifierBuilt: 111110000000000
+I contain 319 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 3, identifierBuilt: 111110000000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111110001000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111110010000000
+I contain 19 vertices.
+level: 3, identifierBuilt: 111110011000000
+I contain 53 vertices.
+level: 3, identifierBuilt: 111110100000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111110101000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111110110000000
+I contain 124 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 111110110000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110110001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110110010000
+I contain 12 vertices.
+level: 4, identifierBuilt: 111110110011000
+I contain 13 vertices.
+level: 4, identifierBuilt: 111110110100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110110101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110110110000
+I contain 44 vertices.
+level: 4, identifierBuilt: 111110110111000
+I contain 55 vertices.
+level: 3, identifierBuilt: 111110111000000
+I contain 123 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 111110111000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110111001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110111010000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110111011000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110111100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110111101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111110111110000
+I contain 62 vertices.
+level: 4, identifierBuilt: 111110111111000
+I contain 61 vertices.
+level: 2, identifierBuilt: 111111000000000
+I contain 323 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 3, identifierBuilt: 111111000000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111111001000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111111010000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111111011000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111111100000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111111101000000
+I contain 0 vertices.
+level: 3, identifierBuilt: 111111110000000
+I contain 180 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 111111110000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111110001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111110010000
+I contain 17 vertices.
+level: 4, identifierBuilt: 111111110011000
+I contain 12 vertices.
+level: 4, identifierBuilt: 111111110100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111110101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111110110000
+I contain 76 vertices.
+level: 4, identifierBuilt: 111111110111000
+I contain 75 vertices.
+level: 3, identifierBuilt: 111111111000000
+I contain 143 vertices.
+!!! WILL BE DELETED !!!
+split() called
+level: 4, identifierBuilt: 111111111000000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111111001000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111111010000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111111011000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111111100000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111111101000
+I contain 0 vertices.
+level: 4, identifierBuilt: 111111111110000
+I contain 87 vertices.
+level: 4, identifierBuilt: 111111111111000
+I contain 56 vertices.
+
