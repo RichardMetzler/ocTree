@@ -5,7 +5,7 @@
  */
 ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLeaf, int maximumSplitDepth)
 {
-	isNode = false;
+	isLeaf = true;
 	std::cout << "root constructor called" << std::endl;
 	myMeshes = meshesPointer;
 	maxVerticesPerNode = maximumVertsPerLeaf;
@@ -37,7 +37,7 @@ ocTreeLeaf::ocTreeLeaf(
 		std::vector<bool> &parId,
 		std::vector<bool> &splitDirections)
 {
-	isNode = false;
+	isLeaf = true;
 	setDimensions(parentDimensions, splitDirections);
 	maxVerticesPerNode = vertsMax;
 	maxSplitDepth = splitsMax;
@@ -90,10 +90,7 @@ ocTreeLeaf::ocTreeLeaf(
 	identifier = id;
 
 	// debugging identifier as binary string for testing purposes
-	//	debugIdentifierasString();
-
-	std::vector<bool> check = {false,false,false,true,false,false,false,false,false,false,false,false,false,false,false};
-	getNodeByIdentifierArray(check, true);
+	// debugIdentifierasString();
 
 	// next line is very important
 	buildTreeRecursively(vertices);
@@ -104,9 +101,9 @@ ocTreeLeaf::~ocTreeLeaf() {
 	//  @FIXME do something
 }
 
-// getter for boolean attribute isNode
-bool ocTreeLeaf::getIsNode() {
-	return isNode;
+// getter for boolean attribute isLeaf
+bool ocTreeLeaf::getisLeaf() {
+	return isLeaf;
 }
 
 /**
@@ -233,7 +230,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z > minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -245,7 +242,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z > minZ && (*it).z <= maxZ) {
 							 		verticesInBounds.push_back((*it));
 							 		if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-							 			std::cout << "DELETING EDGECASE" << std::endl;
+							 			// std::cout << "DELETING EDGECASE" << std::endl;
 							 			subsetVerts.erase(it);
 									}
 								}
@@ -259,7 +256,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z > minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -271,7 +268,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z > minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -287,7 +284,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z >= minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -299,7 +296,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z >= minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -313,7 +310,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z >= minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -325,7 +322,7 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 								if ((*it).z >= minZ && (*it).z <= maxZ) {
 									verticesInBounds.push_back((*it));
 									if ((*it).x==minX||(*it).x==maxX||(*it).y==minY||(*it).y==maxY||(*it).z==minZ||(*it).z==maxZ){
-										std::cout << "DELETING EDGECASE" << std::endl;
+										// std::cout << "DELETING EDGECASE" << std::endl;
 										subsetVerts.erase(it);
 									}
 								}
@@ -351,6 +348,8 @@ void ocTreeLeaf:: buildTreeRecursively (std::vector<glm::vec3> subsetVerts) {
 			// @FIXME do something
 		}
 	}
+	std::vector<bool> check = {false,false,true,false,false,false,false,false,false};	// 001000000
+	getNodeByIdentifierArray(check, true);
 }
 
 bool ocTreeLeaf::split() {
@@ -385,12 +384,13 @@ bool ocTreeLeaf::split() {
 	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(verticesInBounds, level, maxVerticesPerNode, maxSplitDepth, parDimensions, identifier, split7);
 
 	turnIntoNode();
+
 //	~ocTreeLeaf();
 	return true;
 }
 
 bool  ocTreeLeaf::turnIntoNode() {
-	isNode = true;
+	isLeaf = false;
 //	myVertices.swap(verticesInBounds);
 	return true;
 }
@@ -464,7 +464,7 @@ void ocTreeLeaf::debugAllVertices(void) {
 }
 
 void ocTreeLeaf::debugIdentifierasString(void) {
-	if (isNode == false) {
+	if (isLeaf == true) {
 		int identifierSize = identifier.size();
 		std::cout << "LEAF:: my level: " << level << std::endl;
 		std::cout << "parentIdentir: ";
@@ -488,8 +488,8 @@ void ocTreeLeaf::debugIdentifierasString(void) {
 	}
 }
 
-bool ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo) {
-	if (this->getIsNode() == false) {
+ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo) {
+	if (this->getisLeaf() == false) {	// current node is not a leaf -> skip
 		return NULL;
 	} else {
 		int checksum = 0;
@@ -499,13 +499,31 @@ bool ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool debugI
 			}
 		}
 		if (checksum == 15) {
-			std::cout << "RIGHT ONE HERE!!!" << std::endl;
 			if (debugInfo == true) {
+				debugIdentifierasString();
+				std::cout << "leaf found!" << std::endl;
 				std::cout << "minX: " << minX << ", meanX: " << meanX << ",maxX: " << maxX << std::endl;
 				std::cout << "minY: " << minY << ", meanY: " << meanY << ",maxY: " << maxY << std::endl;
 				std::cout << "minZ: " << minZ << ", meanZ: " << meanZ << ",maxZ: " << maxZ << std::endl;
 			}
-
+			ocTreeLeaf *result = new ocTreeLeaf(*this);
+			return result;
 		}
 	}
+}
+
+ocTreeLeaf* ocTreeLeaf::getNodeByCoordinates(float x, float y, float z, bool debugInfo) {
+	// if one of the coordinates is less than minimum / higher than maximum values of this, return NULL
+	if (x < minX || x > maxX || y < minY || y > maxY || z < minZ || z > maxZ) {
+		return NULL;
+	}
+
+	if (x < meanX) {				//
+
+	} else {
+
+	}
+
+	ocTreeLeaf *result = new ocTreeLeaf(*this);
+	return result;
 }

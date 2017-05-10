@@ -25,7 +25,7 @@ Framework - 2 main parts:
 	
 - modulationg the saliency map using top-down context
 
-Sptial context based on user motion:
+Spatial context based on user motion:
 - 3-stage model for spatial perception: landmakrs, route & survey knowledge; requires
 hierarchical map of objects (object saliency map)
 - consider:

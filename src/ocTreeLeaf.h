@@ -11,7 +11,7 @@
 class ocTreeLeaf {
 
 	private:
-		bool isNode;
+		bool isLeaf;
 		std::vector<Mesh*> myMeshes;							// meshes containing vertices
 		std::vector<glm::vec3> verticesInBounds;				// vertices within the dimensions of current node
 		int maxVerticesPerNode;									// maximum number of vertices that one oct can hold
@@ -94,9 +94,10 @@ class ocTreeLeaf {
 		~ocTreeLeaf();
 
 		/**
-		 * determine whether this is a node or not
+		 * determine whether this is a leaf or not
+		 * returns bool variable isLeaf
 		 */
-		bool getIsNode();
+		bool getisLeaf();
 
 		/**
 		 * get a leaf node via a boolean input array representing its identifier
@@ -107,7 +108,15 @@ class ocTreeLeaf {
 		 * @PARAM bool debugInfo if this is true, additional information (dimensions etc) about the node will be written to the console
 		 * @RETURN null | pointer to matching leaf node
 		 */
-		bool getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo = false);
+		ocTreeLeaf* getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo = false);
+
+		/**
+		 * get a leaf containing a coordinate given via 3 input values x, y and z
+ 	 	 * @PARAM bool debugInfo if this is true, additional information about the node will be written to the console
+		 * @PARAM float x, y, z float coordinates
+		 * @RETURN null | pointer to matching leaf node
+		 */
+		ocTreeLeaf* getNodeByCoordinates(float x, float y, float z, bool debugInfo = false);
 
 		void getRootDimensions(void);							// calculate min and max values as well as means for x, y and z
 

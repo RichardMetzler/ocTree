@@ -32,7 +32,7 @@ Contributions -> Multi-pose mesh saliency:
 Contributions -> Multi-pose simplification:
 	using edge collapses, based on calculated multi-pose mesh saliency
 Contributions -> Salient clustering
-	saliency used as peasure of perceptual importance; used to determine cluster
+	saliency used as measure of perceptual importance; used to determine cluster
 	starting points and propagation
 Contributions -> Multi-resolution salient simplification
 	saliency-guided QSlim, weighted by cluster-localized saliency maps
