@@ -145,13 +145,10 @@ int main(int argc, char **argv) {
 	}
 	myOcTree->buildTreeRecursively(verticesList);
 
-	std::vector<bool> check = {true,true,false,true,true,false,true,false,false};		// 110110100
-	ocTreeLeaf* testNode = myOcTree->getNodeByIdentifierArray(check, true);
-
 //	myOcTree->debugFirstVertex();
 	myOcTree->debugTreeInfo();
 
-	// ocTreeLeaf * coNode = myOcTree->getNodeByCoordinates(0.23, 2.33, 1.855, true);
+	ocTreeLeaf * coNode = myOcTree->getNodeByCoordinates(0.23, 2.33, 1.855, true);
 
 	// Call our function for creating shaders (compiling and linking)
 	if(!createShaders()){

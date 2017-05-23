@@ -11,19 +11,18 @@
 class ocTreeLeaf {
 
 	private:
-		bool m_isLeaf;
-		std::vector<Mesh*> m_myMeshes;							// meshes containing vertices
-		std::vector<glm::vec3> m_verticesInBounds;				// vertices within the dimensions of current node
-		int m_maxVerticesPerNode;								// maximum number of vertices that one oct can hold
-		int m_maxSplitDepth;									// maximum split depth
-		int m_level;											// current split level
-		std::vector<bool> m_identifier;							// boolean representation of this leafs identifier
-		std::vector<bool> m_parentIdentifier;					// boolean representation of this leafs parents identifier
-		ocTreeLeaf* m_myChildren [8];							// array of children nodes
+		bool isLeaf;
+		std::vector<Mesh*> myMeshes;							// meshes containing vertices
+		std::vector<glm::vec3> verticesInBounds;				// vertices within the dimensions of current node
+		int maxVerticesPerNode;									// maximum number of vertices that one oct can hold
+		int maxSplitDepth;										// maximum split depth
+		int level;												// current split level
+		std::vector<bool> identifier;							// boolean representation of this leafs identifier
+		std::vector<bool> parentIdentifier;						// boolean representation of this leafs parents identifier
 
-		float m_minX, m_maxX, m_meanX;							// limits & mean in x dimension
-		float m_minY, m_maxY, m_meanY;							// limits & mean in y dimension
-		float m_minZ, m_maxZ, m_meanZ;							// limits & mean in z dimension
+		float minX, maxX, meanX;								// limits & mean in x dimension
+		float minY, maxY, meanY;								// limits & mean in y dimension
+		float minZ, maxZ, meanZ;								// limits & mean in z dimension
 
 		/**
 		 * private function to set dimensions of none-root octs based on given split directions
@@ -102,7 +101,6 @@ class ocTreeLeaf {
 
 		/**
 		 * get a leaf node via a boolean input array representing its identifier
-		 * traverses through an entire tree and will return the node with given identifier and the lowest level
 		 * compare has to contain 15 boolean values representing the identifier of a node, i.e.
 		 * {false,false,false,false,false,true,false,false,false,false,false,false,false,false,false} = 000001000000000
 		 *
@@ -114,8 +112,6 @@ class ocTreeLeaf {
 
 		/**
 		 * get a leaf containing a coordinate given via 3 input values x, y and z
-		 * recursively traverses through the tree until the correct leaf node is found
-		 *
  	 	 * @PARAM bool debugInfo if this is true, additional information about the node will be written to the console
 		 * @PARAM float x, y, z float coordinates
 		 * @RETURN null | pointer to matching leaf node
@@ -137,9 +133,9 @@ class ocTreeLeaf {
 		 * iterates through given vector of vertices, checking if their coordinates are within the bounds of the current node
 		 *
 		 * @FIXME: make private; add call in the public consructor
-		 * @PARAM std::list<glm::vec3*> list of vector of vertices
+		 * @PARAM std::vector<glm::vec3*> pointer to vector of vertices
 		 */
-		void buildTreeRecursively(std::list<glm::vec3>& subsetVerts);
+		void buildTreeRecursively(std::vector<glm::vec3> subsetVerts);
 
 		/**
 		 * console out functions for testing purposes

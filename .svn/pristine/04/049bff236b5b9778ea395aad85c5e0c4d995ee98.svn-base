@@ -102,7 +102,6 @@ class ocTreeLeaf {
 
 		/**
 		 * get a leaf node via a boolean input array representing its identifier
-		 * traverses through an entire tree and will return the node with given identifier and the lowest level
 		 * compare has to contain 15 boolean values representing the identifier of a node, i.e.
 		 * {false,false,false,false,false,true,false,false,false,false,false,false,false,false,false} = 000001000000000
 		 *
@@ -113,9 +112,7 @@ class ocTreeLeaf {
 		ocTreeLeaf* getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo = false);
 
 		/**
-		 * get a leaf containing a coordinate given via 3 input values x, y and z
-		 * recursively traverses through the tree until the correct leaf node is found
-		 *
+		 * recursively get a leaf containing a coordinate given via 3 input values x, y and z
  	 	 * @PARAM bool debugInfo if this is true, additional information about the node will be written to the console
 		 * @PARAM float x, y, z float coordinates
 		 * @RETURN null | pointer to matching leaf node
