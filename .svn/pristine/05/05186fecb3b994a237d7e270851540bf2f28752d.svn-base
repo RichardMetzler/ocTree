@@ -11,7 +11,6 @@ ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLea
 	m_maxVerticesPerNode = maximumVertsPerLeaf;
 	m_maxSplitDepth = maximumSplitDepth;
 	m_level = 0;
-	m_root = this;
 
 	// initialize identifier
 	std::vector<bool> id(m_maxSplitDepth*3);
@@ -35,13 +34,11 @@ ocTreeLeaf::ocTreeLeaf(
 		int vertsMax,
 		int splitsMax,
 		float parentDimensions[],
-		ocTreeLeaf* root,
 		std::vector<bool> &parId,
 		std::vector<bool> &splitDirections)
 {
 	m_isLeaf = true;
 	setDimensions(parentDimensions, splitDirections);
-	m_root = root;
 	m_maxVerticesPerNode = vertsMax;
 	m_maxSplitDepth = splitsMax;
 	m_level = parentLevel+1;
@@ -364,14 +361,24 @@ bool ocTreeLeaf::split() {
 	std::vector<bool> split6 = {true,	true,	false};		// 110
 	std::vector<bool> split7 = {true,	true,	true};		// 111
 
-	ocTreeLeaf* chidlLeaf0 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split0);
-	ocTreeLeaf* chidlLeaf1 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split1);
-	ocTreeLeaf* chidlLeaf2 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split2);
-	ocTreeLeaf* chidlLeaf3 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split3);
-	ocTreeLeaf* chidlLeaf4 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split4);
-	ocTreeLeaf* chidlLeaf5 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split5);
-	ocTreeLeaf* chidlLeaf6 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split6);
-	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split7);
+	// turning the leaf into a node
+	ocTree * newOcTreee = new ocTree(
+		m_verticesInBounds,
+		m_level,
+		m_maxVerticesPerNode,
+		m_maxSplitDepth,
+		parDimensions,
+		m_identifier
+	);
+
+	ocTreeLeaf* chidlLeaf0 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split0);
+	ocTreeLeaf* chidlLeaf1 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split1);
+	ocTreeLeaf* chidlLeaf2 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split2);
+	ocTreeLeaf* chidlLeaf3 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split3);
+	ocTreeLeaf* chidlLeaf4 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split4);
+	ocTreeLeaf* chidlLeaf5 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split5);
+	ocTreeLeaf* chidlLeaf6 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split6);
+	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_identifier, split7);
 	m_myChildren[0] = chidlLeaf0;
 	m_myChildren[1] = chidlLeaf1;
 	m_myChildren[2] = chidlLeaf2;
@@ -424,19 +431,6 @@ std::vector<glm::vec3> ocTreeLeaf::getVerticesOfMesh (int n) {
 	}
 }
 
-std::list<glm::vec3> ocTreeLeaf::convertVectorToList(std::vector<glm::vec3> inputVector) {
-	std::cout << "convertVectorToList() called" << std::endl;
-	std::list<glm::vec3> result;
-	for(size_t t = 0; t < inputVector.size();++t){
-		result.push_back(inputVector[t]);
-	}
-	return result;
-}
-
-void ocTreeLeaf::saySomething(void) {
-	std::cout << "hello, I am a node in an ocTree" << std::endl;
-}
-
 // @FIXME: keep this up to date!
 void ocTreeLeaf::debugTreeInfo(void) {
 	std::cout << "==========[ocTreeLeaf INFO]==========" << std::endl;
@@ -475,29 +469,25 @@ void ocTreeLeaf::debugAllVertices(void) {
 }
 
 void ocTreeLeaf::debugIdentifierasString(void) {
-	if (m_level == 0) {
-		std::cout << "I am root." << std::endl;
-	} else {
-		std::cout << "my level: " << m_level << std::endl;
-		std::cout << "parentIdentifier: ";
-		for (int i = 0; i != m_parentIdentifier.size(); i++) {
-			if (m_parentIdentifier[i] == false) {
-				std::cout << "0";
-			} else {
-				std::cout << "1";
-			}
+	std::cout << "my level: " << m_level << std::endl;
+	std::cout << "parentIdentifier: ";
+	for (int i = 0; i != m_parentIdentifier.size(); i++) {
+		if (m_parentIdentifier[i] == false) {
+			std::cout << "0";
+		} else {
+			std::cout << "1";
 		}
-		std::cout << std::endl;
-		std::cout << "my identifier: ";
-		for (int i = 0; i != m_identifier.size(); i++) {
-			if (m_identifier[i] == false) {
-				std::cout << "0";
-			} else {
-				std::cout << "1";
-			}
-		}
-		std::cout << std::endl;
 	}
+	std::cout << std::endl;
+	std::cout << "my identifier: ";
+	for (int i = 0; i != m_identifier.size(); i++) {
+		if (m_identifier[i] == false) {
+			std::cout << "0";
+		} else {
+			std::cout << "1";
+		}
+	}
+	std::cout << std::endl;
 }
 
 ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo) {
@@ -511,11 +501,14 @@ ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool
 //				std::cout << "vertex #"<<i<<": (" <<m_verticesInBounds[i].x<< ","<<m_verticesInBounds[i].y<<","<<m_verticesInBounds[i].z<<")" << std::endl;
 //			}
 		}
-		ocTreeLeaf *result = this;
+		ocTreeLeaf *result = new ocTreeLeaf(*this);
 		return result;
 	}
 
 	int levelOffset = m_level*3;
+	std::cout << "levelOffset: " << levelOffset << std::endl;
+
+
 	// pass query down to the correct child node
 	if (compare[levelOffset] == false) {
 		if (compare[levelOffset+1] == false) {
@@ -548,7 +541,7 @@ ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool
 	}
 }
 
-ocTreeLeaf* ocTreeLeaf::getNodeByCoordinates(float x, float y, float z, float radius, bool debugInfo) {
+ocTreeLeaf* ocTreeLeaf::getNodeByCoordinates(float x, float y, float z, bool debugInfo) {
 	std::cout << "getNodeByCoordinates() called" << std::endl;
 	std::cout << "Coordinates passed: x, y & z: " << x << ", " << y <<", " << z << std::endl;
 	// given coordinate is out of bounds; return NULL
@@ -564,67 +557,13 @@ ocTreeLeaf* ocTreeLeaf::getNodeByCoordinates(float x, float y, float z, float ra
 		// debug additional information if wanted
 		if (debugInfo == true) {
 			std::cout << "node found via getNodeByCoordinates()" << std::endl;
-			if (radius == 0) {
-				std::cout <<"I am also most likely a neighbor" << std::endl;
-			}
 			debugIdentifierasString();
+			std::cout << "leaf found via getNodeByCoodinates()" << std::endl;
 			std::cout << "minX: " << m_minX << ", meanX: " << m_meanX << ",maxX: " << m_maxX << std::endl;
 			std::cout << "minY: " << m_minY << ", meanY: " << m_meanY << ",maxY: " << m_maxY << std::endl;
 			std::cout << "minZ: " << m_minZ << ", meanZ: " << m_meanZ << ",maxZ: " << m_maxZ << std::endl;
-			std::cout << "I contain " << m_verticesInBounds.size() << " vertices" << std::endl;
 		}
-		ocTreeLeaf *result = this;
-
-		std::list<glm::vec3> verticesToCheck;
-		std::list<glm::vec3> selection;
-
-		for(size_t t = 0; t < result->m_verticesInBounds.size();++t){
-			verticesToCheck.push_back(result->m_verticesInBounds[t]);
-		}
-
-		/**
-		 * if this is the original request, check if radius extends over the boundaries of this node
-		 * do not check if radius == 0 (if this is a neigbor)
-		 */
-		if (radius != 0) {
-			if (x - radius < m_minX) {
-				std::cout << "crossing minX" << std::endl;
-				ocTreeLeaf *neighbor = m_root->getNodeByCoordinates(x-radius,y,z,0,false);
-				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
-				std::cout << "verticesToCheck size: " << verticesToCheck.size() << std::endl;
-			}
-			if (x + radius > m_maxX) {
-				std::cout << "crossing maxX" << std::endl;
-			}
-			if (y - radius < m_minY) {
-				std::cout << "crossing minY" << std::endl;
-			}
-			if (y + radius > m_maxY) {
-				std::cout << "crossing maxY" << std::endl;
-				std::cout << "neighbor up next" << std::endl;
-				ocTreeLeaf * neighbor = m_root->getNodeByCoordinates(x,y+radius,z,0,true);
-				std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
-
-				// std::list<glm::vec3> newVertices = this->convertVectorToList(neighbor->m_verticesInBounds);
-				// verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
-				std::cout << "verticesToCheck size: " << verticesToCheck.size() << std::endl;
-			}
-			if (z - radius < m_minZ) {
-				std::cout << "crossing minZ" << std::endl;
-			}
-			if (z + radius > m_maxZ) {
-				std::cout << "crossing maxZ" << std::endl;
-			}
-
-			std::list<glm::vec3>::const_iterator it;
-			for (it = verticesToCheck.begin(); it != verticesToCheck.end(); ++it) {
-				if ((*it).x < x+radius && (*it).x > x-radius && (*it).y < y+radius && (*it).y > y-radius && (*it).z < z+radius && (*it).z > z-radius) {
-					selection.push_back((*it));
-					std::cout << "vertex added to selection" << std::endl;
-				}
-			}
-		}
-
+		ocTreeLeaf *result = new ocTreeLeaf(*this);
 		return result;
 	}
 
@@ -636,34 +575,64 @@ ocTreeLeaf* ocTreeLeaf::getNodeByCoordinates(float x, float y, float z, float ra
 	if (x < m_meanX) {
 		if (y < m_meanY) {
 			if (z < m_meanZ) {
-				m_myChildren[6]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 110
+				m_myChildren[6]->getNodeByCoordinates(x,y,z, debugInfo);	// 110
 			} else {
-				m_myChildren[2]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 010
+				m_myChildren[2]->getNodeByCoordinates(x,y,z, debugInfo);	// 010
 			}
 		} else {
 			if (z < m_meanZ) {
-				m_myChildren[4]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 100
+				m_myChildren[4]->getNodeByCoordinates(x,y,z, debugInfo);	// 100
 			} else {
-				m_myChildren[0]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 000
+				m_myChildren[0]->getNodeByCoordinates(x,y,z, debugInfo);	// 000
 			}
 		}
 	} else {
 		if (y < m_meanY) {
 			if (z < m_meanZ) {
-				m_myChildren[7]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 111
+				m_myChildren[7]->getNodeByCoordinates(x,y,z, debugInfo);	// 111
 			} else {
-				m_myChildren[3]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 011
+				m_myChildren[3]->getNodeByCoordinates(x,y,z, debugInfo);	// 011
 			}
 		} else {
 			if (z < m_meanZ) {
-				m_myChildren[5]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 101
+				m_myChildren[5]->getNodeByCoordinates(x,y,z, debugInfo);	// 101
 			} else {
-				m_myChildren[1]->getNodeByCoordinates(x,y,z, radius, debugInfo);	// 001
+				m_myChildren[1]->getNodeByCoordinates(x,y,z, debugInfo);	// 001
 			}
 		}
 	}
-}
 
-//std::list<glm::vec3> ocTreeLeaf::getVerticesFromNeighbourNodes(float x, float y, float z, int direction, float radius, bool debugInfo = false) {
-//	return NULL;
-//}
+	// building the identifier of the target node
+	// copy current identifier up until offset
+//	std::cout << "beginning to build target identifier" << std::endl;
+//	std::cout << "levelOffset: " << levelOffset << std::endl;
+//	for (int i = 0; i < levelOffset; i++) {
+//		target_identifier[i] = m_identifier[i];
+//	}
+//	// set the latest values of the identifier, the given splitDirections
+//	std::cout << "setting individual stuff" << std::endl;
+//	target_identifier[levelOffset]		= target[0];
+//	target_identifier[levelOffset+1]	= target[1];
+//	target_identifier[levelOffset+2]	= target[2];
+//
+//	// set the rest of the target identifier
+//	for (int j = levelOffset+3; j < m_maxSplitDepth*3; j++) {
+//		target_identifier[j] = m_identifier[j];
+//	}
+//
+//	// @FIXME
+//	// debug
+//	std::cout << "target_identifier built: ";
+//	for (int k = 0; k < target_identifier.size(); k++) {
+//		if (target_identifier[k] == true) {
+//			std::cout << "1";
+//		} else {
+//			std::cout << "0";
+//		}
+//	}
+//	std::cout << std::endl;
+//
+//	// recursively pass the coordinate down to the next level
+//	std::cout << "recursive call" << std::endl;
+//	getNodeByIdentifierArray(target_identifier, true)->getNodeByCoordinates(x,y,z, debugInfo);
+}

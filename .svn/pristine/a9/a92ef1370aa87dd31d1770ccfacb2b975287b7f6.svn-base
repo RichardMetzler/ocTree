@@ -151,13 +151,7 @@ int main(int argc, char **argv) {
 	std::vector<bool> check = {true,true,false,true,true,false,true,false,false};		// 110110100
 	ocTreeLeaf* testNodeId = myOcTree->getNodeByIdentifierArray(check, true);
 
-	std::cout << "debugging testNodeId" << std::endl;
-	testNodeId->debugIdentifierasString();
-
-//	ocTreeLeaf * testNodeCo = myOcTree->getNodeByCoordinates(-1.58,0.88,-1.65, 0.05, true);
-	ocTreeLeaf * testNodeCo = myOcTree->getNodeByCoordinates(-1.58,1.0,-1.65, 0.05, true);
-	std::cout << "debugging testNodeCo" << std::endl;
-	testNodeCo->debugIdentifierasString();
+	ocTreeLeaf * testNodeCo = myOcTree->getNodeByCoordinates(-1.58,0.88,-1.65, true);
 
 	// Call our function for creating shaders (compiling and linking)
 	if(!createShaders()){
