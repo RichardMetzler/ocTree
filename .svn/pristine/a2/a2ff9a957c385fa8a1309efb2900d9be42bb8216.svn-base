@@ -1,0 +1,1 @@
+WIP: changing color of vertices selected via getNodeByCoordinates(); added debugInfo param to root constructor of ocTree
