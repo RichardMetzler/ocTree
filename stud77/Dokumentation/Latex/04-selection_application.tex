@@ -1,0 +1,74 @@
+\chapter{Selection Application}
+\label{sec:selection_application}
+
+In this chapter, I will describe the implemented selection application used for this work. After a rundown of third party requirements and a summery of relevant C++ classes the description will be further segmented subdivided according to its abstract, key requirements.
+The goal of this chapter is to describe how the application, especially the Octree\cite{Octree} was designed and implemented. Accordingly, key lines of source code as well als plenty of explanatory comments will be provided.
+
+\section{Additional Third Party Libraries}
+\label{sec:additional_third_party_libraries}
+
+To ensure a scalable, platform independent implementation of the application, the following third party libraries, frameworks and APIs were used.
+
+\subsection{OpenGL}
+\label{sec:opengl}
+
+The Open Graphics Library OpenGL \cite{OpenGL} is a powerful, industry standard API for rendering 2D and 3D grahpics, independently of programming language and operating system. One of its most outstanding features is its ability to directly perform operations on the graphics processing unit of a pc, allowing fast, hardware-accelerated display of graphic elements. For this work, openGL was used for displaying the 3D objects both in the user study and throughout development of the selection application. The task of displaying rendered images across multiple projection surfaces on a 360\degree panorama view was handled by software developed at the Zentrum f\"ur Virtuelle Realit\"at und Visualisierung (V2C) of the Leibniz-Rechenzentrum \cite{v2c}.
+
+\subsection{GLUT}
+\label{sec:glut}
+
+As stated on its official webpage \cite{GLUT}, GLUT is an official OpenGL Utility Toolkit which provides, among other features, support for multiple windows, control of such windows and handling input from devices such as keyboards and mouses. It is commonly used to achieve interactive windows with cross-platform compatibility displaying rendered images produced by OpenGL. Handling input via the handheld controller in the user study was achieved with the help of GLUT during this work.
+
+\subsection{GLEW}
+\label{sec:glew}
+
+The OpenGL Extension Wrangler Library (GLEW)\cite{GLEW} is a cross-platform extension loading library, specifically designed to be used by C/C++ applications. It provides run-time mechanisms for OpenGL extensions supported on the target platform, allowing to faster query and load those extensions.
+
+\subsection{ASSIMP}
+\label{sec:assimp}
+
+Available across multiple operating systems including Android and iOS, The Open Asset Import Library \cite{ASP}, is a powerful open source library that offers import, export and post-processing functions for most commonly used 3D data formats. In this work, its easy to use import function for OBJ files was used loading the 3D objects to be displayed in the user study.
+
+\section{Relevant Class Files}
+\label{sec:relevant_class_files}
+
+This section will cover all the relevant C++ classes used to implement the selection application. Note that these descriptions will only cover the general structure and purpose of these classes within the context of the applicatoin. For a more detailed description of the most crucial functions as well as a complete UML diagram representation of the application, please refer to \hyperref[sec:key_features]{Key Features}.
+
+\subsection{Object}
+\label{sec:object}
+
+The object class is used to represent a 3D file within the project. It uses import functions from ASSIMP to load a file via a given source path.
+
+\subsection{Mesh}
+\label{sec:mesh}
+
+One object can consist of multiple meshes. 
+
+\subsection{ocTree}
+\label{sec:octree}
+
+\section{Key Features}
+\label{sec:key_features}
+
+\section{Testing Setup}
+\label{sec:testing_setup}
+
+\subsection{Spatial Indexing via Octree}
+\label{sec:spatial_indexing_via_octree}
+Testfile, Blender, yolo
+
+\subsection{User Selection}
+
+
+\begin{lstlisting}language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em
+for (int i=0; i<10;++i) {
+	std::cout << "yolo" << i << std::endl;
+	// comment
+	/**
+	 * multi
+	 * line
+	 * comment
+	 */
+}
+\end{lstlisting}
+

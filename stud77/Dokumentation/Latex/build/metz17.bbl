@@ -25,12 +25,6 @@ Paolo Cignoni, Claudio Montani, and Roberto Scopigno.
 \newblock A comparison of mesh simplification algorithms.
 \newblock {\em Computers \& Graphics}, 22(1):37--54, 1998.
 
-\bibitem[CNSD93]{cruz1993surround}
-Carolina Cruz-Neira, Daniel~J Sandin, and Thomas~A DeFanti.
-\newblock Surround-screen projection-based virtual reality: The design and
-  implementation of the cave.
-\newblock 1993.
-
 \bibitem[DCG12]{dutagaci2012evaluation}
 Helin Dutagaci, Chun~Pan Cheung, and Afzal Godil.
 \newblock Evaluation of 3d interest point detection techniques via
@@ -252,6 +246,11 @@ Gabriel Taubin.
   approximation.
 \newblock In {\em Computer Vision, 1995. Proceedings., Fifth International
   Conference on}, pages 902--907. IEEE, 1995.
+
+\bibitem[v2c]{v2c}
+{V2C} official website.
+\newblock \url{https://www.lrz.de/services/v2c_en/}.
+\newblock Accessed: 2017-06-07.
 
 \bibitem[VCSF16]{valente2016live}
 Luis Valente, Esteban Clua, Alexandre~Ribeiro Silva, and Bruno Feij{\'o}.

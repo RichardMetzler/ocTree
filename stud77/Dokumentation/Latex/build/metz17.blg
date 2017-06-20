@@ -5,13 +5,13 @@ The style file: alpha.bst
 Database file #1: ./Bib/metz17.bib
 Warning--to sort, need author or key in Octree
 Warning--to sort, need author or key in OpenGL
+Warning--to sort, need author or key in v2c
 Warning--to sort, need author or key in GLUT
 Warning--to sort, need author or key in GLEW
 Warning--to sort, need author or key in ASP
 Warning--empty journal in atchleyattentional
 Warning--empty year in atchleyattentional
 Warning--empty booktitle in ciptadi2013depth
-Warning--empty journal in cruz1993surround
 Warning--can't use both volume and number fields in lee2005mesh
 Warning--empty journal in munaretti2007perceptual
 Warning--there's a number but no series in ott2015literature
@@ -19,43 +19,43 @@ Warning--can't use both volume and number fields in shamir2008survey
 Warning--can't use both volume and number fields in surazhsky2005fast
 You've used 47 entries,
             2543 wiz_defined-function locations,
-            831 strings with 13380 characters,
-and the built_in function-call counts, 22040 in all, are:
-= -- 2292
-> -- 1024
+            830 strings with 13272 characters,
+and the built_in function-call counts, 21898 in all, are:
+= -- 2281
+> -- 1000
 < -- 33
-+ -- 370
-- -- 362
-* -- 1557
-:= -- 3393
++ -- 361
+- -- 353
+* -- 1542
+:= -- 3352
 add.period$ -- 158
 call.type$ -- 47
-change.case$ -- 316
+change.case$ -- 313
 chr.to.int$ -- 47
-cite$ -- 66
-duplicate$ -- 894
-empty$ -- 1616
-format.name$ -- 402
-if$ -- 4698
+cite$ -- 67
+duplicate$ -- 891
+empty$ -- 1623
+format.name$ -- 392
+if$ -- 4682
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 41
+missing$ -- 40
 newline$ -- 236
-num.names$ -- 126
-pop$ -- 362
+num.names$ -- 123
+pop$ -- 366
 preamble$ -- 1
-purify$ -- 363
+purify$ -- 360
 quote$ -- 0
-skip$ -- 771
+skip$ -- 766
 stack$ -- 0
-substring$ -- 1302
-swap$ -- 259
+substring$ -- 1303
+swap$ -- 260
 text.length$ -- 33
 text.prefix$ -- 6
 top$ -- 0
 type$ -- 376
 warning$ -- 14
-while$ -- 208
+while$ -- 205
 width$ -- 51
 write$ -- 615
 (There were 14 warnings)

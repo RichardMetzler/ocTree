@@ -4,6 +4,7 @@
 #endif 
 #include <iostream>
 #include <string>
+#include <set>
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <GL/glut.h>
@@ -51,9 +52,12 @@ glm::mat4 proj_matrix;
 glm::mat4 view_matrix;
 glm::mat4 model_matrix;
 
+std::list<glm::vec3> verticesList;
+
 ocTreeLeaf * myOcTree;
 
-std::list<glm::vec3> vertexSelection;
+std::set<size_t> vertexSelection;
+
 
 float screen_width = 30.0; //real size in cm
 float screen_height = 30.0; //real size in cm
@@ -116,7 +120,7 @@ int main(int argc, char **argv) {
 	// std::string obj_path = "obj_files/teapot.obj";		// teapot
 	// std::string obj_path = "obj_files/pedal.obj";		// drum pedal
 	// std::string obj_path = "obj_files/suzie.obj";		// monkey
-	std::string obj_path = "obj_files/testthing.obj";		// test thing
+	std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
 	// std::string obj_path = "obj_files/cube.obj";
 
 	glutInit(&argc, argv);		// First initialise GLUT
@@ -146,7 +150,6 @@ int main(int argc, char **argv) {
 	std::vector<glm::vec3> vertices = myOcTree->getVertices();
 
 //	@FIXME
-	std::list<glm::vec3> verticesList;
 	for(size_t t = 0; t < vertices.size();++t){
 		verticesList.push_back(vertices[t]);
 	}
@@ -377,7 +380,12 @@ void keyboardFunction(unsigned char k, int x, int y) {
 				// ocTreeLeaf* nodeByCos = myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.1, vertexSelection, false);
 				// ocTreeLeaf* nodeByCos = myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.1, vertexSelection, false);
 				myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.05, vertexSelection, false);
-				std::cout << "vertexSelection size for real: " << vertexSelection.size() << std::endl;
+				// std::cout << "global variable vertexSelection size: " << vertexSelection.size() << std::endl;
+
+				for (std::set<size_t>::iterator i = vertexSelection.begin(); i != vertexSelection.end(); i++) {
+					std::cout << "counter: " << *i << std::endl;
+				}
+
 				break;
 			}
 		default:

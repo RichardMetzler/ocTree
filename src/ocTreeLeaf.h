@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include <mesh.h>
 #include <ocTree.h>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -15,6 +16,8 @@ class ocTreeLeaf {
 		bool m_debugInfo;										// debug additional information if true
 		std::vector<Mesh*> m_myMeshes;							// meshes containing vertices
 		std::vector<glm::vec3> m_verticesInBounds;				// vertices within the dimensions of current node
+		std::vector<std::pair<size_t, std::vector
+			<glm::vec3> > > m_verticesInBounds2;				// vertices within the dimensions of current node
 		int m_maxVerticesPerNode;								// maximum number of vertices that one oct can hold
 		int m_maxSplitDepth;									// maximum split depth
 		int m_level;											// current split level
@@ -127,26 +130,19 @@ class ocTreeLeaf {
 		 * @PARAM float x, y, z - float coordinates
 		 * @PARAM float radius - search radius for vertices to be added to the selection in relationship to given coordinates
 		 * if any of the target node's boundaries is within the radius, its neighboring nodes are retrieved
-		 * @PARAM std::list<glm::vec3> &selection - reference to global variable which stores selected vertices
+		 * @PARAM std::set<size_t> &intermediateSelection - reference to global set variable which stores selected vertices via their position within the set of vertices held by a node
 		 * @PARAM bool debugInfo - if this is true, additional information about the node will be written to the console
 		 * @RETURN null | pointer to matching leaf node
 		 */
-		ocTreeLeaf* getVerticesByCoordinates(float x, float y, float z, float radius, std::list<glm::vec3> &intermediateSelection, bool debugInfo = false);
+		ocTreeLeaf* getVerticesByCoordinates(float x, float y, float z, float radius, std::set<size_t> &intermediateSelection, bool debugInfo);
 
 		/**
-		 * get vertices from within given radius neighboring nodes of a node found by getNodeByCoordinates
-		 * encoding for direction:
-		 * 		0 = positive X, 1 = negative X
-		 * 		2 = positive Y, 3 = negative Y
-		 * 		4 = positive Z, 5 = negative Z
+		 * binary predicate helper function to determine whether a vertex had already been added to the selection or not
 		 *
-		 *@PARAM float x, y, z - float coordinates
-		 *@PARAM int direction - indicator of direction to be searched, see above
-		 *@PARAM float radius - radius to be searched
-		 *@PARAM debugInfo - if true, additional information is written to the console
-		 *@RETURN null | list of vertices
+		 * @PARAM glm::vec3 frst - first vertex
+		 * @PARAM glm::vec3 scnd - second vertex
 		 */
-		std::list<glm::vec3> getVerticesFromNeighbourNodes(float x, float y, float z, std::list<glm::vec3> verticesToCheck, bool debugInfo = false);
+//		bool same_coordinates (glm::vec3 frst, glm::vec3 scnd);
 
 		void getRootDimensions(void);							// calculate min and max values as well as means for x, y and z
 

@@ -468,20 +468,21 @@ void ocTreeLeaf::saySomething(void) {
 
 // @FIXME: keep this up to date!
 void ocTreeLeaf::debugTreeInfo(void) {
-	std::cout << "=================[ocTreeLeaf INFO]=================" << std::endl;
-	std::cout << "total number of vertices in this ocTreeLeaf:" << (*getMesh(0))->getNumVertices() << std::endl;
-	std::cout << "maximum number of vertices per leaf node: " << m_maxVerticesPerNode << std::endl;
-	std::cout << "maximum split depth: " << m_maxSplitDepth << std::endl;
-	std::cout << "dimension x: " << m_minX << " to " << m_maxX << ", mean value: " << m_meanX << std::endl;
-	std::cout << "dimension y: " << m_minY << " to " << m_maxY << ", mean value: " << m_meanY << std::endl;
-	std::cout << "dimension z: " << m_minZ << " to " << m_maxZ << ", mean value: " << m_meanZ << std::endl;
-	std::cout << "total number of nodes: [@FIXME]" << std::endl;
-	std::cout << "total number of leafs: [@FIXME]" << std::endl;
-	std::cout << "average number of vertices / leaf: [@FIXME]" << std::endl;
-	std::cout << "highest number of vertices in one leaf: [@FIXME]" << std::endl;
-	std::cout << "lowest number of vertices in one leaf: [@FIXME]" << std::endl;
-	std::cout << "===============[ocTreeLeaf INFO END]===============" << std::endl;
-
+	if (m_debugInfo) {
+		std::cout << "=================[ocTreeLeaf INFO]=================" << std::endl;
+		std::cout << "total number of vertices in this ocTreeLeaf:" << (*getMesh(0))->getNumVertices() << std::endl;
+		std::cout << "maximum number of vertices per leaf node: " << m_maxVerticesPerNode << std::endl;
+		std::cout << "maximum split depth: " << m_maxSplitDepth << std::endl;
+		std::cout << "dimension x: " << m_minX << " to " << m_maxX << ", mean value: " << m_meanX << std::endl;
+		std::cout << "dimension y: " << m_minY << " to " << m_maxY << ", mean value: " << m_meanY << std::endl;
+		std::cout << "dimension z: " << m_minZ << " to " << m_maxZ << ", mean value: " << m_meanZ << std::endl;
+		std::cout << "total number of nodes: [@FIXME]" << std::endl;
+		std::cout << "total number of leafs: [@FIXME]" << std::endl;
+		std::cout << "average number of vertices / leaf: [@FIXME]" << std::endl;
+		std::cout << "highest number of vertices in one leaf: [@FIXME]" << std::endl;
+		std::cout << "lowest number of vertices in one leaf: [@FIXME]" << std::endl;
+		std::cout << "===============[ocTreeLeaf INFO END]===============" << std::endl;
+	}
 }
 
 void ocTreeLeaf::debugFirstVertex(void) {
@@ -579,7 +580,8 @@ ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool
 	return result;
 }
 
-ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, float radius, std::list<glm::vec3> &intermediateSelection, bool debugInfo) {
+//ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, float radius, std::list<glm::vec3> &intermediateSelection, bool debugInfo) {
+ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, float radius, std::set<size_t> &intermediateSelection, bool debugInfo) {
 	if (debugInfo) {
 		std::cout << "getNodeByCoordinates() called" << std::endl;
 		std::cout << "Coordinates passed: x, y & z: " << x << ", " << y <<", " << z << std::endl;
@@ -591,6 +593,8 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 		std::cout << "everything is out of bounds" << std::endl;
 		return NULL;
 	}
+m_verticesInBounds2[1].second;
+
 
 	// right node found; end recursion; return current node
 	if (this->getisLeaf() == true) {
@@ -711,14 +715,20 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 		 * vertices are added to the selection if they are within (x,y,z)+|radius|
 		 */
 		std::list<glm::vec3>::const_iterator it;
+		size_t counter = 0;
 		for (it = verticesToCheck.begin(); it != verticesToCheck.end(); ++it) {
 			if ((*it).x < x+radius && (*it).x > x-radius && (*it).y < y+radius && (*it).y > y-radius && (*it).z < z+radius && (*it).z > z-radius) {
-				intermediateSelection.push_back((*it));
+				// @FIXME here we are
+				// intermediateSelection.insert(std::make_pair(counter,(*it)));/
+				intermediateSelection.insert(counter);
+				std::cout << "x coordinate of added vertex: " << counter << std::endl;
 				if (debugInfo) {
 					std::cout << "vertex added to selection" << std::endl;
 				}
 			}
+			counter++;
 		}
+		// removing duplicates
 		std::cout << "number of vertices selected: " << intermediateSelection.size() << std::endl;
 		return result;
 	}

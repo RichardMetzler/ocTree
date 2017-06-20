@@ -121,7 +121,7 @@ bool Mesh::loadMesh(const aiMesh* mesh)
 
 //TODO: we only support one color channel (multiple need custom shaders)
     if(mesh->HasVertexColors(0)){
-        m_colors.resize(mesh->mNumVertices);
+    	m_colors.resize(mesh->mNumVertices);
         for(int i = 0; i < mesh->mNumVertices; ++i) {
             m_colors[i][0] = mesh->mColors[0][i].r;
             m_colors[i][1] = mesh->mColors[0][i].g;
@@ -243,20 +243,32 @@ bool Mesh::uploadToGPU()
 //        std::cerr<<" There are "<<m_tCoords.size()<<" sets of texture coords and "<<m_textureIDs.size()<<" textures"<<std::endl;
 //    }
 //
+
 //    upload colors
     if(m_colors.size() != 0){
-    	std::cout << "m_colors.size() != 0" << std::endl;
+    	std::cout << "m_colors.size()"<<m_colors.size()<<" vsize: "<<m_vertices.size() << std::endl;
+    	//erzeuge buffer
         glGenBuffers(1, &m_colorsID);
+        //binde buffer (zum Benutzen)
         glBindBuffer(GL_ARRAY_BUFFER, m_colorsID);
+        //upload data
         glBufferData(GL_ARRAY_BUFFER, m_colors.size() * sizeof(glm::vec4), &(m_colors[0][0]), GL_STATIC_DRAW);
     }
-//
+    // enable location 1 for VAO
+    glEnableVertexAttribArray(1);
+    // set metadata in VAO (location 1, 4 floats, not normalized, stride = 0, offset = 0)
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+
 //    upload normals
-//    if(m_normals.size() != 0){
-//        glGenBuffers(1, &m_normalID);
-//        glBindBuffer(GL_ARRAY_BUFFER, m_normalID);
-//        glBufferData(GL_ARRAY_BUFFER, m_normals.size() * sizeof(glm::vec3), &(m_normals[0][0]), GL_STATIC_DRAW);
-//    }
+    if(m_normals.size() != 0){
+    	std::cout << "m_normals.size() != 0" << std::endl;
+        glGenBuffers(1, &m_normalID);
+        glBindBuffer(GL_ARRAY_BUFFER, m_normalID);
+        glBufferData(GL_ARRAY_BUFFER, m_normals.size() * sizeof(glm::vec3), &(m_normals[0][0]), GL_STATIC_DRAW);
+    }
+	    glEnableVertexAttribArray(2);
+	    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 //
 //    upload texture coords
 //    for(std::vector<std::vector<glm::vec2> >::iterator it = m_tCoords.begin(); it != m_tCoords.end(); ++it){
@@ -277,9 +289,13 @@ bool Mesh::uploadToGPU()
 //    glEnableVertexAttribArray(0);
 //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 //
-//    glBindBuffer(GL_ARRAY_BUFFER,0);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER,0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(2);
     return true;
 }
 
@@ -302,13 +318,13 @@ void Mesh::draw()
 //        glEnableClientState(GL_VERTEX_ARRAY);//!
 //        glVertexPointer(3,GL_FLOAT,0,0);//!
 //    }
-    if(m_colorsID){
-    	std::cout << "m_colorsID found!" << std::endl;
-    	std::cout << "colorsID" << std::endl;
-        glBindBuffer(GL_ARRAY_BUFFER, m_colorsID);
-        glEnableClientState(GL_COLOR_ARRAY);//!
-        glColorPointer(4,GL_FLOAT,0,0);//!
-    }
+//    if(m_colorsID){
+//    	std::cout << "m_colorsID found!" << std::endl;
+//    	std::cout << "colorsID" << std::endl;
+//        glBindBuffer(GL_ARRAY_BUFFER, m_colorsID);
+//        glEnableClientState(GL_COLOR_ARRAY);//!
+//        glColorPointer(4,GL_FLOAT,0,0);//!
+//    }
 //    if(m_normalID){
 //    	std::cout << "normalID" << std::endl;
 //        glBindBuffer(GL_ARRAY_BUFFER, m_normalID);
@@ -339,7 +355,6 @@ void Mesh::draw()
 //    }
 	glBindVertexArray(m_vao);
     if(m_indicesID){
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,m_indicesID);
         glDrawElements(m_drawMode,m_indices.size(), GL_UNSIGNED_INT, (GLvoid*)0);
     } else {
         glDrawArrays(GL_TRIANGLES,0,m_vertices.size());
