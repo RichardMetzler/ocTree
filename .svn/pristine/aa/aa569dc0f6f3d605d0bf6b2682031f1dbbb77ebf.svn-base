@@ -52,7 +52,7 @@ glm::mat4 proj_matrix;
 glm::mat4 view_matrix;
 glm::mat4 model_matrix;
 
-std::vector <std::pair <size_t, glm::vec3> >  verticesList;
+std::list<glm::vec3> verticesList;
 
 ocTreeLeaf * myOcTree;
 
@@ -150,10 +150,8 @@ int main(int argc, char **argv) {
 	std::vector<glm::vec3> vertices = myOcTree->getVertices();
 
 //	@FIXME
-
 	for(size_t t = 0; t < vertices.size();++t){
-
-		verticesList.push_back(std::make_pair (t,vertices[t]));
+		verticesList.push_back(vertices[t]);
 	}
 	myOcTree->buildTreeRecursively(verticesList);
 
@@ -379,12 +377,13 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		case 'h':
 		case 'H':	// highlight a selection @FIXME testing purpose
 			{
-				// ocTreeLeaf* nodeByCos = myOcTree->getVerticesByCoordinates(-1.28,0.88,-1.65, 0.1, vertexSelection, false);
+				// ocTreeLeaf* nodeByCos = myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.1, vertexSelection, false);
+				// ocTreeLeaf* nodeByCos = myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.1, vertexSelection, false);
 				myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.05, vertexSelection, false);
 				// std::cout << "global variable vertexSelection size: " << vertexSelection.size() << std::endl;
 
 				for (std::set<size_t>::iterator i = vertexSelection.begin(); i != vertexSelection.end(); i++) {
-					std::cout << "x CO: " << *i << std::endl;
+					std::cout << "counter: " << *i << std::endl;
 				}
 
 				break;

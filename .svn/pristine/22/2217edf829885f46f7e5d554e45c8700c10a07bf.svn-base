@@ -34,7 +34,7 @@ ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLea
  * subTree constructor
  */
 ocTreeLeaf::ocTreeLeaf(
-		std::vector <std::pair <size_t, glm::vec3> > &vertices,
+		std::vector<glm::vec3> vertices,
 		int parentLevel,
 		int vertsMax,
 		int splitsMax,
@@ -117,14 +117,12 @@ ocTreeLeaf::ocTreeLeaf(
 	/**
 	 * converting the vector to a list for convenience
 	 */
-	std::list<std::pair<size_t, glm::vec3> > verticesList;
-	std::vector <std::pair <size_t, glm::vec3> > verticesVector = vertices;
-//	for(size_t t = 0; t < vertices.size();++t){
-//		verticesList.push_back(std::make_pair(t, vertices[t]));
-//	}
+	std::list<glm::vec3> verticesList;
+	for(size_t t = 0; t < vertices.size();++t){
+		verticesList.push_back(vertices[t]);
+	}
 	// next line is very important
-//	buildTreeRecursively(verticesList);
-	buildTreeRecursively(verticesVector);
+	buildTreeRecursively(verticesList);
 }
 
 // destructor
@@ -216,18 +214,20 @@ void ocTreeLeaf::setDimensions(float parentDimensions[], std::vector<bool> &spli
 	m_meanX = (m_minX+m_maxX)/2;
 }
 
-void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3> > & subsetVerts) {
+void ocTreeLeaf:: buildTreeRecursively (std::list<glm::vec3>& subsetVerts) {
 	/**
 	 * ###########################################################
 	 * ######## BEGIN FOR-LOOP THROUGH ALL GIVEN VERTICES ########
 	 * ###########################################################
 	 */
-	for(std::vector<std::pair <size_t, glm::vec3> >::iterator it = subsetVerts.begin(); it != subsetVerts.end(); it++) {
+	for(std::list<glm::vec3>::iterator it = subsetVerts.begin(); it != subsetVerts.end(); ) {
 		// add every vertex to the root node
 		if (m_level == 0) {
-			m_verticesInBounds3.push_back((*it));
+			m_verticesInBounds.push_back((*it));
 			++it;
 		} else {
+
+
 			/**
 			 * if the current node is on a level greater than 0, vertices that share x,y or z-values with
 			 * the maximum values of the current node need to be treated differently
@@ -245,22 +245,22 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 			if (determineZ == false) {									// 3rd-to-last	= false
 				if (determineY == false) {									// 2nd-to-last	= false
 					if (determineX == false) {									// identifier = 000
-						if (it->second.x >= m_minX && it->second.x < m_maxX) {
-							if (it->second.y >= m_minY && it->second.y < m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z < m_maxZ) {
-									m_verticesInBounds3.push_back(*it);			// add to vertices of this node
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x < m_maxX) {
+							if ((*it).y >= m_minY && (*it).y < m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z < m_maxZ) {
+									m_verticesInBounds.push_back((*it));			// add to vertices of this node
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 										eraseVertex = true;
 									}
 								}
 							}
 						}
 					} else {													// identifier = 001
-						if (it->second.x >= m_minX && it->second.x <= m_maxX) {
-							if (it->second.y >= m_minY && it->second.y <= m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z < m_maxZ) {
-							 		m_verticesInBounds3.push_back(*it);
-							 		if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x <= m_maxX) {
+							if ((*it).y >= m_minY && (*it).y <= m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z < m_maxZ) {
+							 		m_verticesInBounds.push_back((*it));
+							 		if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 							 			eraseVertex = true;
 									}
 								}
@@ -269,22 +269,22 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 					}
 				} else {
 					if (determineX == false) {									// identifier = 010
-						if (it->second.x >= m_minX && it->second.x < m_maxX) {
-							if (it->second.y >= m_minY && it->second.y <= m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z <= m_maxZ) {
-									m_verticesInBounds3.push_back(*it);
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x < m_maxX) {
+							if ((*it).y >= m_minY && (*it).y <= m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z <= m_maxZ) {
+									m_verticesInBounds.push_back((*it));
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 										eraseVertex = true;
 									}
 								}
 							}
 						}
 					} else {													// identifier = 011
-						if (it->second.x >= m_minX && it->second.x <= m_maxX) {
-							if (it->second.y >= m_minY && it->second.y <= m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z <= m_maxZ) {
-									m_verticesInBounds3.push_back(*it);
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x <= m_maxX) {
+							if ((*it).y >= m_minY && (*it).y <= m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z <= m_maxZ) {
+									m_verticesInBounds.push_back((*it));
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 										eraseVertex = true;
 									}
 								}
@@ -295,22 +295,22 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 			} else {													// 3rd-to-last = true
 				if (determineY == false) {									// 2nd-to-last = false
 					if (determineX == false) {									// identifier = 100
-						if (it->second.x >= m_minX && it->second.x < m_maxX) {
-							if (it->second.y >= m_minY && it->second.y < m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z < m_maxZ) {
-									m_verticesInBounds3.push_back(*it);
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x < m_maxX) {
+							if ((*it).y >= m_minY && (*it).y < m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z < m_maxZ) {
+									m_verticesInBounds.push_back((*it));
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 										eraseVertex = true;
 									}
 								}
 							}
 						}
 					} else {													// identifier = 101
-						if (it->second.x >= m_minX && it->second.x <= m_maxX) {
-							if (it->second.y >= m_minY && it->second.y < m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z < m_maxZ) {
-									m_verticesInBounds3.push_back(*it);
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x <= m_maxX) {
+							if ((*it).y >= m_minY && (*it).y < m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z < m_maxZ) {
+									m_verticesInBounds.push_back((*it));
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 										eraseVertex = true;
 									}
 								}
@@ -319,23 +319,23 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 					}
 				} else {
 					if (determineX == false) {									// identifier = 110
-						if (it->second.x >= m_minX && it->second.x < m_maxX) {
-							if (it->second.y >= m_minY && it->second.y < m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z <= m_maxZ) {
-									m_verticesInBounds3.push_back(*it);
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
+						if ((*it).x >= m_minX && (*it).x < m_maxX) {
+							if ((*it).y >= m_minY && (*it).y < m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z <= m_maxZ) {
+									m_verticesInBounds.push_back((*it));
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
 										eraseVertex = true;
 									}
 								}
 							}
 						}
 					} else {													// identifier = 111
-						if (it->second.x >= m_minX && it->second.x <= m_maxX) {
-							if (it->second.y >= m_minY && it->second.y < m_maxY) {
-								if (it->second.z >= m_minZ && it->second.z <= m_maxZ) {
-									m_verticesInBounds3.push_back(*it);
-									if (it->second.x==m_minX||it->second.x==m_maxX||it->second.y==m_minY||it->second.y==m_maxY||it->second.z==m_minZ||it->second.z==m_maxZ){
-										std::cout << "DELETED vertex X: " << it->second.x << ", Y: " <<it->second.y << ", Z: "<<it->second.z << std::endl;
+						if ((*it).x >= m_minX && (*it).x <= m_maxX) {
+							if ((*it).y >= m_minY && (*it).y < m_maxY) {
+								if ((*it).z >= m_minZ && (*it).z <= m_maxZ) {
+									m_verticesInBounds.push_back((*it));
+									if ((*it).x==m_minX||(*it).x==m_maxX||(*it).y==m_minY||(*it).y==m_maxY||(*it).z==m_minZ||(*it).z==m_maxZ){
+										std::cout << "DELETED vertex X: " << (*it).x << ", Y: " <<(*it).y << ", Z: "<<(*it).z << std::endl;
 										eraseVertex = true;
 									}
 
@@ -345,22 +345,15 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 					}
 				}
 			}
-			if(eraseVertex) {
+			if(eraseVertex)
 				it = subsetVerts.erase(it);
-			} else {
+			else
 				++it;
-			}
 		}
 	}
-
-	if(m_level > 0) {
-		// @FIXME: passiert nicht
-		std::cout << "subTree->buildTreeRecursively: End of great for-loop reached" << std::endl;
-	}
-
 	// std::cout << "subVerts size AFTER: " << subsetVerts.size() << std::endl;
 	if (m_debugInfo) {
-		std::cout << "I contain " << m_verticesInBounds3.size() << " vertices." << std::endl;
+		std::cout << "I contain " << m_verticesInBounds.size() << " vertices." << std::endl;
 	}
 
 	/**
@@ -368,7 +361,7 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 	 * ######## END FOR-LOOP THROUGH ALL GIVEN VERTICES ########
 	 * #########################################################
 	 */
-	if (m_verticesInBounds3.size() > m_maxVerticesPerNode) {
+	if (m_verticesInBounds.size() > m_maxVerticesPerNode) {
 		if (m_level < m_maxSplitDepth) {
 			split();
 		} else {
@@ -394,14 +387,14 @@ bool ocTreeLeaf::split() {
 	std::vector<bool> split6 = {true,	true,	false};		// 110
 	std::vector<bool> split7 = {true,	true,	true};		// 111
 
-	ocTreeLeaf* chidlLeaf0 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split0, m_debugInfo);
-	ocTreeLeaf* chidlLeaf1 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split1, m_debugInfo);
-	ocTreeLeaf* chidlLeaf2 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split2, m_debugInfo);
-	ocTreeLeaf* chidlLeaf3 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split3, m_debugInfo);
-	ocTreeLeaf* chidlLeaf4 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split4, m_debugInfo);
-	ocTreeLeaf* chidlLeaf5 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split5, m_debugInfo);
-	ocTreeLeaf* chidlLeaf6 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split6, m_debugInfo);
-	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(m_verticesInBounds3, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split7, m_debugInfo);
+	ocTreeLeaf* chidlLeaf0 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split0, m_debugInfo);
+	ocTreeLeaf* chidlLeaf1 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split1, m_debugInfo);
+	ocTreeLeaf* chidlLeaf2 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split2, m_debugInfo);
+	ocTreeLeaf* chidlLeaf3 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split3, m_debugInfo);
+	ocTreeLeaf* chidlLeaf4 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split4, m_debugInfo);
+	ocTreeLeaf* chidlLeaf5 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split5, m_debugInfo);
+	ocTreeLeaf* chidlLeaf6 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split6, m_debugInfo);
+	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split7, m_debugInfo);
 	m_myChildren[0] = chidlLeaf0;
 	m_myChildren[1] = chidlLeaf1;
 	m_myChildren[2] = chidlLeaf2;
@@ -458,16 +451,16 @@ int ocTreeLeaf::getLevel(void) {
 	return m_level;
 }
 
-//std::vector<std::pair<size_t, glm::vec3>> ocTreeLeaf::convertVectorToList(std::vector<glm::vec3> inputVector) {
-//	if (m_debugInfo) {
-//		std::cout << "convertVectorToList() called" << std::endl;
-//	}
-//	std::list<glm::vec3> result;
-//	for(size_t t = 0; t < inputVector.size();++t){
-//		result.push_back(inputVector[t]);
-//	}
-//	return result;
-//}
+std::list<glm::vec3> ocTreeLeaf::convertVectorToList(std::vector<glm::vec3> inputVector) {
+	if (m_debugInfo) {
+		std::cout << "convertVectorToList() called" << std::endl;
+	}
+	std::list<glm::vec3> result;
+	for(size_t t = 0; t < inputVector.size();++t){
+		result.push_back(inputVector[t]);
+	}
+	return result;
+}
 
 void ocTreeLeaf::saySomething(void) {
 	std::cout << "hello, I am a node in an ocTree" << std::endl;
@@ -600,7 +593,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 		std::cout << "everything is out of bounds" << std::endl;
 		return NULL;
 	}
-// m_verticesInBounds2[1].second;
+m_verticesInBounds2[1].second;
 
 
 	// right node found; end recursion; return current node
@@ -618,16 +611,15 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 				std::cout << "minX: " << m_minX << ", meanX: " << m_meanX << ",maxX: " << m_maxX << std::endl;
 				std::cout << "minY: " << m_minY << ", meanY: " << m_meanY << ",maxY: " << m_maxY << std::endl;
 				std::cout << "minZ: " << m_minZ << ", meanZ: " << m_meanZ << ",maxZ: " << m_maxZ << std::endl;
-				std::cout << "I contain " << m_verticesInBounds3.size() << " vertices" << std::endl;
+				std::cout << "I contain " << m_verticesInBounds.size() << " vertices" << std::endl;
 			}
 		}
 		result = this;
 
-		// std::list<glm::vec3> verticesToCheck;
-		std::vector<std::pair<size_t, glm::vec3> > verticesToCheck;
+		std::list<glm::vec3> verticesToCheck;
 
-		for(size_t t = 0; t < result->m_verticesInBounds3.size();++t){
-			verticesToCheck.push_back(result->m_verticesInBounds3[t]);
+		for(size_t t = 0; t < result->m_verticesInBounds.size();++t){
+			verticesToCheck.push_back(result->m_verticesInBounds[t]);
 		}
 		if (debugInfo) {
 			std::cout << "verticesToCheck size (without neighbors): " << verticesToCheck.size() << std::endl;
@@ -644,9 +636,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 					std::cout << "crossing minX" << std::endl;
 				}
 				ocTreeLeaf * neighbor = m_root->getVerticesByCoordinates(x-radius,y,z,0,intermediateSelection,debugInfo);
-				// verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds3));
-				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds3.begin(), neighbor->m_verticesInBounds3.end() );
-
+				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
 					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
@@ -659,7 +649,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 					std::cout << "crossing maxX" << std::endl;
 				}
 				ocTreeLeaf * neighbor = m_root->getVerticesByCoordinates(x+radius,y,z,0,intermediateSelection,debugInfo);
-				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds3.begin(), neighbor->m_verticesInBounds3.end() );
+				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
 					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
@@ -672,7 +662,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 					std::cout << "crossing minY" << std::endl;
 				}
 				ocTreeLeaf * neighbor = m_root->getVerticesByCoordinates(x,y-radius,z,0,intermediateSelection,debugInfo);
-				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds3.begin(), neighbor->m_verticesInBounds3.end() );
+				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
 					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
@@ -685,7 +675,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 					std::cout << "crossing maxY" << std::endl;
 				}
 				ocTreeLeaf * neighbor = m_root->getVerticesByCoordinates(x,y+radius,z,0,intermediateSelection,debugInfo);
-				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds3.begin(), neighbor->m_verticesInBounds3.end() );
+				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
 					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
@@ -698,7 +688,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 					std::cout << "crossing minZ" << std::endl;
 				}
 				ocTreeLeaf * neighbor = m_root->getVerticesByCoordinates(x,y,z-radius,0,intermediateSelection,debugInfo);
-				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds3.begin(), neighbor->m_verticesInBounds3.end() );
+				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
 					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
@@ -711,7 +701,7 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 					std::cout << "crossing maxZ" << std::endl;
 				}
 				ocTreeLeaf * neighbor = m_root->getVerticesByCoordinates(x,y,z+radius,0,intermediateSelection,debugInfo);
-				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds3.begin(), neighbor->m_verticesInBounds3.end() );
+				verticesToCheck.splice(verticesToCheck.end(), convertVectorToList(neighbor->m_verticesInBounds));
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
 					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
@@ -724,14 +714,14 @@ ocTreeLeaf* ocTreeLeaf::getVerticesByCoordinates(float x, float y, float z, floa
 		 * considers all vertices within the target node as well as every one of its neighboring nodes that contain (x,y,z)+|radius|
 		 * vertices are added to the selection if they are within (x,y,z)+|radius|
 		 */
-		std::vector<std::pair<size_t, glm::vec3>>::const_iterator it;
+		std::list<glm::vec3>::const_iterator it;
 		size_t counter = 0;
 		for (it = verticesToCheck.begin(); it != verticesToCheck.end(); ++it) {
-			if (it->second.x < x+radius && it->second.x > x-radius && it->second.y < y+radius && it->second.y > y-radius && it->second.z < z+radius && it->second.z > z-radius) {
+			if ((*it).x < x+radius && (*it).x > x-radius && (*it).y < y+radius && (*it).y > y-radius && (*it).z < z+radius && (*it).z > z-radius) {
 				// @FIXME here we are
 				// intermediateSelection.insert(std::make_pair(counter,(*it)));/
 				intermediateSelection.insert(counter);
-				std::cout << "x coordinate of added vertex: " << it->second.x << std::endl;
+				std::cout << "x coordinate of added vertex: " << counter << std::endl;
 				if (debugInfo) {
 					std::cout << "vertex added to selection" << std::endl;
 				}

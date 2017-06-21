@@ -220,6 +220,17 @@
   publisher={INTECH Open Access Publisher}
 }
 
+@article{kim2014effects,
+  title={Effects of virtual environment platforms on emotional responses},
+  author={Kim, Kwanguk and Rosenthal, M Zachary and Zielinski, David J and Brady, Rachael},
+  journal={Computer methods and programs in biomedicine},
+  volume={113},
+  number={3},
+  pages={882--893},
+  year={2014},
+  publisher={Elsevier}
+}
+
 @article{santos2009head,
   title={Head-mounted display versus desktop for 3D navigation in virtual reality: a user study},
   author={Santos, Beatriz Sousa and Dias, Paulo and Pimentel, Angela and Baggerman, Jan-Willem and Ferreira, Carlos and Silva, Samuel and Madeira, Joaquim},
@@ -229,31 +240,6 @@
   pages={161},
   year={2009},
   publisher={Springer}
-}
-
-@inproceedings{ware1993fish,
-  title={Fish tank virtual reality},
-  author={Ware, Colin and Arthur, Kevin and Booth, Kellogg S},
-  booktitle={Proceedings of the INTERACT'93 and CHI'93 conference on Human factors in computing systems},
-  pages={37--42},
-  year={1993},
-  organization={ACM}
-}
-
-@article{mizell2002comparing,
-  title={Comparing immersive virtual reality with other display modes for visualizing complex 3D geometry},
-  author={Mizell, David W and Jones, Stephen P and Slater, Mel and Spanlang, Bernhard},
-  journal={University College London, technical report},
-  year={2002}
-}
-
-@inproceedings{qi2006comparison,
-  title={A comparison of immersive HMD, fish tank VR and fish tank with haptics displays for volume visualization},
-  author={Qi, Wen and Taylor II, Russell M and Healey, Christopher G and Martens, Jean-Bernard},
-  booktitle={Proceedings of the 3rd Symposium on Applied Perception in Graphics and Visualization},
-  pages={51--58},
-  year={2006},
-  organization={ACM}
 }
 
 @inproceedings{pausch1997quantifying,

@@ -73,6 +73,12 @@ AF~Koschan.
   2003 IEEE Computer Society Conference on}, volume~2, pages II--II. IEEE,
   2003.
 
+\bibitem[KRZB14]{kim2014effects}
+Kwanguk Kim, M~Zachary Rosenthal, David~J Zielinski, and Rachael Brady.
+\newblock Effects of virtual environment platforms on emotional responses.
+\newblock {\em Computer methods and programs in biomedicine}, 113(3):882--893,
+  2014.
+
 \bibitem[KU87]{koch1987shifts}
 Christof Koch and Shimon Ullman.
 \newblock Shifts in selective visual attention: towards the underlying neural
@@ -118,12 +124,6 @@ Zahira Merchant, Ernest~T Goetz, Lauren Cifuentes, Wendy Keeney-Kennicutt, and
 \newblock Effectiveness of virtual reality-based instruction on students'
   learning outcomes in k-12 and higher education: A meta-analysis.
 \newblock {\em Computers \& Education}, 70:29--40, 2014.
-
-\bibitem[MJSS02]{mizell2002comparing}
-David~W Mizell, Stephen~P Jones, Mel Slater, and Bernhard Spanlang.
-\newblock Comparing immersive virtual reality with other display modes for
-  visualizing complex 3d geometry.
-\newblock {\em University College London, technical report}, 2002.
 
 \bibitem[Mun07]{munaretti2007perceptual}
 Rodrigo~Barni Munaretti.
@@ -183,13 +183,6 @@ Ekaterina Potapova, Michael Zillich, and Markus Vincze.
   saliency cues.
 \newblock In {\em International Conference on Computer Vision Systems}, pages
   132--142. Springer, 2011.
-
-\bibitem[QTIHM06]{qi2006comparison}
-Wen Qi, Russell~M Taylor~II, Christopher~G Healey, and Jean-Bernard Martens.
-\newblock A comparison of immersive hmd, fish tank vr and fish tank with
-  haptics displays for volume visualization.
-\newblock In {\em Proceedings of the 3rd Symposium on Applied Perception in
-  Graphics and Visualization}, pages 51--58. ACM, 2006.
 
 \bibitem[SCDM10]{sandor2010augmented}
 Christian Sandor, Andrew Cunningham, Arindam Dey, and Ville-Veikko Mattila.
@@ -263,12 +256,6 @@ Gabriel Taubin.
 Luis Valente, Esteban Clua, Alexandre~Ribeiro Silva, and Bruno Feij{\'o}.
 \newblock Live-action virtual reality games.
 \newblock {\em arXiv preprint arXiv:1601.01645}, 2016.
-
-\bibitem[WAB93]{ware1993fish}
-Colin Ware, Kevin Arthur, and Kellogg~S Booth.
-\newblock Fish tank virtual reality.
-\newblock In {\em Proceedings of the INTERACT'93 and CHI'93 conference on Human
-  factors in computing systems}, pages 37--42. ACM, 1993.
 
 \bibitem[WCAH{\etalchar{+}}16]{wendrich2016hybrid}
 Robert~E Wendrich, Kris-Howard Chambers, Wadee Al-Halabi, Eric~J Seibel, Olaf

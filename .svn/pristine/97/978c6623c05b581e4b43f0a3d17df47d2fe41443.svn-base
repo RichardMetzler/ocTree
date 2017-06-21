@@ -246,6 +246,7 @@ bool Mesh::uploadToGPU()
 
 //    upload colors
     if(m_colors.size() != 0){
+    	std::cout << "m_colors.size()"<<m_colors.size()<<" vsize: "<<m_vertices.size() << std::endl;
     	//erzeuge buffer
         glGenBuffers(1, &m_colorsID);
         //binde buffer (zum Benutzen)
@@ -261,6 +262,7 @@ bool Mesh::uploadToGPU()
 
 //    upload normals
     if(m_normals.size() != 0){
+    	std::cout << "m_normals.size() != 0" << std::endl;
         glGenBuffers(1, &m_normalID);
         glBindBuffer(GL_ARRAY_BUFFER, m_normalID);
         glBufferData(GL_ARRAY_BUFFER, m_normals.size() * sizeof(glm::vec3), &(m_normals[0][0]), GL_STATIC_DRAW);

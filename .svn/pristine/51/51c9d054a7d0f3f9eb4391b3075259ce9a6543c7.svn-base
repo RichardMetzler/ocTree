@@ -15,9 +15,9 @@ class ocTreeLeaf {
 		bool m_isLeaf;
 		bool m_debugInfo;										// debug additional information if true
 		std::vector<Mesh*> m_myMeshes;							// meshes containing vertices
-
-		// vertices within the bounds of this leaf
-		std::vector<std::pair<size_t, glm::vec3> > m_verticesInBounds3;
+		std::vector<glm::vec3> m_verticesInBounds;				// vertices within the dimensions of current node
+		std::vector<std::pair<size_t, std::vector
+			<glm::vec3> > > m_verticesInBounds2;				// vertices within the dimensions of current node
 		int m_maxVerticesPerNode;								// maximum number of vertices that one oct can hold
 		int m_maxSplitDepth;									// maximum split depth
 		int m_level;											// current split level
@@ -78,26 +78,26 @@ class ocTreeLeaf {
 		 * subTree constructor
 		 * to be called from parent ocTreeLeaf object (nodes)
 		 *
-		 * @PARAM std::vector<std::pair<size_t, glm::vec3>> vertices - vector of indices and vertices (float x,y,z- coordinates)
+		 * @PARAM std::vector<glm::vec3*> vertices - vector of pointers ot vertices (float x,y,z- coordinates)
 		 * @PARAM int parentLevel - split-depth (level) of parent-node
 		 * @PARAM int maximumVertsPerLeaf - maximum number of vertices a leaf can hold until it has to split and become an ocTreeLeaf
 		 * @PARAM int maximumSplitDepth - maximum split depth (level)
 		 * @PARAM float parentDimensions[] - limits and mean values in x,y and z dimensions of parent node
 		 * @PARAM ocTreeLeaf* root - pointer to root node
-		 * @PARAM std::vector<bool> &parId - binary representation of the parent node's identifier
+		 * @PARAM std::vector<bool> &parentIdentifier - binary representation of the parent node's identifier
 		 * @PARAM std::vector<bool> &splitDirections - binary representation of this node's identifier on the current split-depth level
 		 * @PARAM bool debugInfo - if true, print additional information to the console during construction
 		 */
 		ocTreeLeaf(
-				std::vector <std::pair <size_t, glm::vec3> > &vertices,
-				int parentLevel,
-				int vertsMax,
-				int splitsMax,
-				float parentDimensions[],
-				ocTreeLeaf* root,
-				std::vector<bool> &parId,
-				std::vector<bool> &splitDirections,
-				bool debugInfo
+			std::vector<glm::vec3> vertices,
+			int parentLevel,
+			int vertsMax,
+			int splitsMax,
+			float parentDimensions[],
+			ocTreeLeaf* root,
+			std::vector<bool> &parentIdentifier,
+			std::vector<bool> &splitDirections,
+			bool debugInfo
 		);
 
 		/**
@@ -159,19 +159,19 @@ class ocTreeLeaf {
 		/**
 		 * covert a vector of glm::vec3 (vertices) to a list
 		 *
-		 * @PARAM std::vector<glm::vec3> inputVector - input vector of vertices
-		 * @RETURN std::vector<std::pair<size_t, glm::vec3>> - output ordered list of vertices
+		 * @PARAM std::vector<glm::vec3> - input vector of vertices
+		 * @RETURN std::list<glm:vec3> - output list of vertices
 		 */
-		// std::vector<std::pair<size_t, glm::vec3>> convertVectorToList(std::vector<glm::vec3> inputVector);
+		std::list<glm::vec3> convertVectorToList(std::vector<glm::vec3>);
 
 		/**
 		 * private buildRecursively function
 		 * iterates through given vector of vertices, checking if their coordinates are within the bounds of the current node
 		 *
 		 * @FIXME: make private; add call in the public consructor
-		 * @PARAM std::list <std::pair <size_t, glm::vec3> > & subsetVerts - ordered list of vector of vertices
+		 * @PARAM std::list<glm::vec3*> list of vector of vertices
 		 */
-		void buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3> > & subsetVerts);
+		void buildTreeRecursively(std::list<glm::vec3>& subsetVerts);
 
 		/**
 		 * console out functions for testing purposes
