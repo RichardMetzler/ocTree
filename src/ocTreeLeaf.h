@@ -89,7 +89,7 @@ class ocTreeLeaf {
 		 * @PARAM bool debugInfo - if true, print additional information to the console during construction
 		 */
 		ocTreeLeaf(
-				std::vector <std::pair <size_t, glm::vec3> > &vertices,
+				std::vector <std::pair <size_t, glm::vec3> > vertices,
 				int parentLevel,
 				int vertsMax,
 				int splitsMax,

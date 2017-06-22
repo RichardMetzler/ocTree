@@ -58,7 +58,6 @@ ocTreeLeaf * myOcTree;
 
 std::set<size_t> vertexSelection;
 
-
 float screen_width = 30.0; //real size in cm
 float screen_height = 30.0; //real size in cm
 float near_clipping = 50.; //how far is the screen away from the user (in cm)
@@ -120,8 +119,10 @@ int main(int argc, char **argv) {
 	// std::string obj_path = "obj_files/teapot.obj";		// teapot
 	// std::string obj_path = "obj_files/pedal.obj";		// drum pedal
 	// std::string obj_path = "obj_files/suzie.obj";		// monkey
-	std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
-	// std::string obj_path = "obj_files/cube.obj";
+
+	// std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
+	std::string obj_path = "obj_files/testthing_thick.ply";
+
 
 	glutInit(&argc, argv);		// First initialise GLUT
 	/* ################# Call our setup function ################# */
@@ -145,23 +146,26 @@ int main(int argc, char **argv) {
 	meshes = object1.getMeshes();
 
 
-	// myOcTree = new ocTreeLeaf(meshes, 100, 3, true);		// additional information will be printed during construction
-	myOcTree = new ocTreeLeaf(meshes, 100, 3, false);	// no additional information will be printed during construction
+//	myOcTree = new ocTreeLeaf(meshes, 100, 3, true);		// additional information will be printed during construction
+	myOcTree = new ocTreeLeaf(meshes, 100, 3, false);		// no additional information will be printed during construction
 	std::vector<glm::vec3> vertices = myOcTree->getVertices();
 
-//	@FIXME
-
+	// converting the <vec3> vector to a vector of <size_t, vec3> pairs
 	for(size_t t = 0; t < vertices.size();++t){
-
-		verticesList.push_back(std::make_pair (t,vertices[t]));
+		std::pair<size_t, glm::vec3> myPair;
+		myPair = std::make_pair(t,vertices[t]);
+//		std::cout << "pairToBePushed.t: " << myPair.first << ", pairToBePushed.x: " << myPair.second.x << std::endl;
+//		verticesList.push_back(std::make_pair (t,vertices[t]));
+		verticesList.push_back(myPair);
 	}
+
 	myOcTree->buildTreeRecursively(verticesList);
 
 //	myOcTree->debugFirstVertex();
-	myOcTree->debugTreeInfo();
+//	myOcTree->debugTreeInfo();
 
 	std::vector<bool> check = {true,true,false,true,true,false,true,false,false};		// 110110100
-	// ocTreeLeaf* testNodeId = myOcTree->getNodeByIdentifierArray(check, true);
+	ocTreeLeaf* testNodeId = myOcTree->getNodeByIdentifierArray(check, true);
 
 //	std::cout << "debugging testNodeId" << std::endl;
 //	testNodeId->debugIdentifierasString();
@@ -381,12 +385,19 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			{
 				// ocTreeLeaf* nodeByCos = myOcTree->getVerticesByCoordinates(-1.28,0.88,-1.65, 0.1, vertexSelection, false);
 				myOcTree->getVerticesByCoordinates(-1.28,1.0,-1.65, 0.05, vertexSelection, false);
-				// std::cout << "global variable vertexSelection size: " << vertexSelection.size() << std::endl;
+				std::cout << "global variable vertexSelection size: " << vertexSelection.size() << std::endl;
 
-				for (std::set<size_t>::iterator i = vertexSelection.begin(); i != vertexSelection.end(); i++) {
-					std::cout << "x CO: " << *i << std::endl;
+				std::set<size_t>::iterator it = vertexSelection.begin();
+				for (int n=0; n != vertexSelection.size(); ++n) {
+					std::cout << "here's : " << *it << " x: " << verticesList[*it].second.x << std::endl;
+
+					std::advance(it, 1);
 				}
 
+//				for (std::set<size_t>::iterator i = vertexSelection.begin(); i != vertexSelection.end(); i++) {
+//					std::cout << "x CO of selected vertex: " << vertices[].x << std::endl;
+//				}
+				std::cout << "global variable vertexSelection size: " << vertexSelection.size() << std::endl;
 				break;
 			}
 		default:
