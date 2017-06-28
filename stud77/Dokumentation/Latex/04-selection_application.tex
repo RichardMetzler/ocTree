@@ -14,6 +14,15 @@ To ensure a scalable, platform independent implementation of the application, th
 
 The Open Graphics Library OpenGL \cite{OpenGL} is a powerful, industry standard API for rendering 2D and 3D grahpics, independently of programming language and operating system. One of its most outstanding features is its ability to directly perform operations on the graphics processing unit of a pc, allowing fast, hardware-accelerated display of graphic elements. For this work, openGL was used for displaying the 3D objects both in the user study and throughout development of the selection application. The task of displaying rendered images across multiple projection surfaces on a 360\degree panorama view was handled by software developed at the Zentrum f\"ur Virtuelle Realit\"at und Visualisierung (V2C) of the Leibniz-Rechenzentrum \cite{v2c}.
 
+OpenGL is based on the following basic structures and concepts.
+
+\begin{description}
+	\item[Vertex Array Objects] (VAOs) are objects which can contain one or more Vertex Buffer Objects and store information for complete, rendered objects. In other words, VAOs store descriptions of vertex data stored in VBOs. For example, the number of coordinates the vertices are made of, in which order etc. From a performance aware point of view, they are a great improvement over older, deprectecated concepts in OpenGL since multiple calls to bind and upload distinct sets of data belonging to the same object to the graphics processing unit can be bundled in one call to a VAO.
+	\item[Vertex Buffer Objects] (VBOs) contain the actual vertex data. Coordinates, normal and color information, texture mapping and any other kind of data that is desired can be saved in these kinds of objects. They are designed as buffer objects to be stored directly within the memopry of the video card, ensuring extremely fast access times.
+	\item[Vertex Shaders] are small pieces of C-like code which can perform fast, basic operations on every vertex of a vertex data input stream. They are fed vertex attribute data, as specified in a VAO by the call of a openGL draw function. In many cases, vertex shaders will solely compute the position of 3D data on a 2D screen as well as paint it in basic colors. For more complex applications, vertex shaders can also perform super fast manipulation of large amounts of vertex data to achieve transitions in geometry, texture mapping, directions of normals \dots
+	\item[Fragment Shaders] Fragments, not to be confused with triangles or faces, are sets of values resulting from rasterisation. They are frequently, informally described as \textit{potential pixels}, meaning the color value they describe, is what could be seen on a screen at a specific pixel under certain circumstances. For each fragment, one or more sets of values may be computed and things like lighting and postprocessing effects, bump maps, antialiasing or simply occlusion by another object may be determining factors as to which one will be rendered to one specific pixel on the output screen. Fragment shaders are used to define how color values for fragments will be selected to be displayed at their respective pixel.
+\end{description}
+
 \subsection{GLUT}
 \label{sec:glut}
 
@@ -27,40 +36,56 @@ The OpenGL Extension Wrangler Library (GLEW)\cite{GLEW} is a cross-platform exte
 \subsection{ASSIMP}
 \label{sec:assimp}
 
-Available across multiple operating systems including Android and iOS, The Open Asset Import Library \cite{ASP}, is a powerful open source library that offers import, export and post-processing functions for most commonly used 3D data formats. In this work, its easy to use import function for OBJ files was used loading the 3D objects to be displayed in the user study.
+Available across multiple operating systems including Android and iOS, The Open Asset Import Library \cite{ASP}, is a powerful open source library that offers import, export and post-processing functions for most commonly used 3D data formats. In this work, its easy to use import function for OBJ files was used loading the 3D objects to be displayed in the user study. ASSIMP implements a set of hierarchically organised data structures or so-called nodes. Two of the most relevant ones for this work will be briefly described below.
+
+\begin{description}
+	\item[aiScene] is the root of all the imported data returned from a successful call to one of ASSIMPs import functions. Global information such as the direction of the coordinate system, its origin location as well as references to all the other data in the scene are stored here.
+	\item[aiMeshes] represent imported meshes within the scene. Each aiMesh has its own local coordinate system with an origin point and all the vertices belonging to it. Multiple sets of data describing one imported mesh can be stored in these mesh objects but sets of vertices and faces are always guaranteed to be present, thus enabling a basic graphic representation of the mesh.
+\end{description}
+
 
 \section{Relevant Class Files}
 \label{sec:relevant_class_files}
 
 This section will cover all the relevant C++ classes used to implement the selection application. Note that these descriptions will only cover the general structure and purpose of these classes within the context of the applicatoin. For a more detailed description of the most crucial functions as well as a complete UML diagram representation of the application, please refer to \hyperref[sec:key_features]{Key Features}.
+% "UML diagram" *hust*
 
 \subsection{Object}
 \label{sec:object}
 
-The object class is used to represent a 3D file within the project. It uses import functions from ASSIMP to load a file via a given source path.
+The object class is used to represent a 3D object within the project. It uses import functions from ASSIMP to load a file via a given source path. An object can contain multiple mesh objects, segmentation happens automatically based on a threshold number of vertices that can be stored in one mesh. This class is used to work with potentially very large 3D files in a uniform and quick way, mostly by implementing wrapper functions that have each mesh object associated to an object call their upload and draw functions, their destructors etc.
 
 \subsection{Mesh}
 \label{sec:mesh}
 
-One object can consist of multiple meshes. 
+One object can consist of multiple meshes. These meshes are coherent with instances of aiMesh (see \hyperref[sec:assimp]{ASSIMP}) and all the important attributes such as vertices, faces, normals, texture coordinates and IDs are stored here. OpenGL functions such as uploading vertex buffer data to the graphics proccessing unit and drawing are implemented here. Some of the applications most crucial functionalities such as adding to and removing vertices from the global selection of vertics to be highlighted are implemented in this class, see \hyperref[sec:key_features]{Key Features}.
 
 \subsection{ocTree}
 \label{sec:octree}
+Spatial indexing of loaded objects in the application is entirely handled in this class. It has been one of the most labour-intensive parts of the application since formal guides to implementing it, independent of coding language, are next to non-existent and working with the data that was stored in the object and mesh classes above required an extensive amount of customisation.
+% aktuell noch ocTreeLeaf
 
 \section{Key Features}
 \label{sec:key_features}
+This section will describe the following features and functionalities which are most crucial to the selection application.
+
+\begin{description}
+	\item[testing setup] WIP
+	\item[spatial indexing via ocTree] WIP
+\end{description}
 
 \section{Testing Setup}
 \label{sec:testing_setup}
 
 \subsection{Spatial Indexing via Octree}
 \label{sec:spatial_indexing_via_octree}
-Testfile, Blender, yolo
+Testfile, Blender, etc
 
 \subsection{User Selection}
+\label{sec:user_selection}
 
-
-\begin{lstlisting}language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em
+\begin{lstlisting}
+language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em
 for (int i=0; i<10;++i) {
 	std::cout << "yolo" << i << std::endl;
 	// comment
@@ -72,3 +97,5 @@ for (int i=0; i<10;++i) {
 }
 \end{lstlisting}
 
+\subsection{Output Selection}
+\label{sec:output_selection}
