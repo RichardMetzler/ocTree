@@ -43,7 +43,6 @@ Available across multiple operating systems including Android and iOS, The Open 
 	\item[aiMeshes] represent imported meshes within the scene. Each aiMesh has its own local coordinate system with an origin point and all the vertices belonging to it. Multiple sets of data describing one imported mesh can be stored in these mesh objects but sets of vertices and faces are always guaranteed to be present, thus enabling a basic graphic representation of the mesh.
 \end{description}
 
-
 \section{Relevant Class Files}
 \label{sec:relevant_class_files}
 
@@ -69,17 +68,63 @@ Spatial indexing of loaded objects in the application is entirely handled in thi
 \label{sec:key_features}
 This section will describe the following features and functionalities which are most crucial to the selection application.
 
-\begin{description}
-	\item[testing setup] WIP
-	\item[spatial indexing via ocTree] WIP
-\end{description}
-
-\section{Testing Setup}
-\label{sec:testing_setup}
+\begin{itemize}  
+	\item Spatial indexing via ocTree
+	\item User selection
+	\item Tracking selection
+	\item Testing setup 
+\end{itemize}
 
 \subsection{Spatial Indexing via Octree}
 \label{sec:spatial_indexing_via_octree}
-Testfile, Blender, etc
+
+As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of ocTrees was designed with a heavy emphasis on its recursive design. Instances of it can be created from everywhere in the application by the call of its public root constructor function.
+
+\begin{description}
+	\item[Root constructor \texttt{ocTree}] This public constructor will create a new instance of the class \texttt{ocTree}. Parameters required are
+	\begin{enumerate*}
+		\item a sequence container, such as an array (\texttt{std::vector} was used in this work) holding the \texttt{mesh} objects to be spatially indexed,
+		\item an integer determing the maximum amount of vertices that one leaf node can store and
+		\item an integer determing the maximum split depth, in other words the maximum depth of the tree
+	\end{enumerate*}.
+	As an optional fourth parameter, a boolean flag can be passed as well. Its default value is set to be \texttt{false}, if it is set to \texttt{true}, additional information regarding the recursive construction of the tree, including identifiers, level, dimensions and number of vertices held by each subtree, will be printed to the console via \texttt{std::cout}. During subsequent creation of subtrees, this parameter will be used for each new object.
+	\item[subtree constructor \texttt{ocTree}] This, considerably more complex function is used for every \texttt{ocTree} object that is not a node. In addition to the parameters that were used for the root node, the following parameters are required.
+	\begin{enumerate*}
+		\item a set of vertices to be searched through for those located within the bounds of this particular subtree (\texttt{std::vector} of \texttt{glm::vec3} objects was used in this work), 
+		\item an integer determing the level of the parent node, the level of this new subtree will be set to that level plus one,
+		\item an array of nine float values describing its parents dimensions (together wit the split directions, this will be used to determine the bounds, or dimensions, of this new subtree),
+		\item a reference to the root node of this subtree,
+		\item a vector of boolean values describing its parents unique identifier and
+		\item a vector of three boolean values describing the split directions passed by the parent node
+	\end{enumerate*}.
+	Again, an additional boolean flag determing whether, during the recursive building proccess of the subTree, iformation will be printed to the console or not, is also passed with the value of the respective member variable of the parent node.
+	\item[\texttt{getRootDimensions()}] This is called by a newly created root \texttt{ocTree}. In this first, basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
+	\item[\texttt{buildTreeRecursively()}] A call to this function will cause an entire set of given vertices to be indexed and assigned to a leaf node in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3> >}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexing and the \texttt{vec3} parts representing the vertices with their three coordinates, was used in this work. 
+
+	Most of what this function does, happens in a fairly complex \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices.
+
+\begin{algorithm}[H]
+ \KwData{this text}
+ \KwResult{how to write algorithm with \LaTeX2e }
+ initialization\;
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
+
+	\item[\texttt{split()}] hurrr
+	\item[\texttt{getNodeByIdentifierArray()}] x~ddddD
+\end{description}
+ 
+% Testfile, Blender, etc
+
 
 \subsection{User Selection}
 \label{sec:user_selection}
@@ -97,5 +142,9 @@ for (int i=0; i<10;++i) {
 }
 \end{lstlisting}
 
-\subsection{Output Selection}
-\label{sec:output_selection}
+\subsection{Tracking Selection}
+\label{sec:tracking_selection}
+
+\section{Testing Setup}
+\label{sec:testing_setup}
+This section will describe the steps I took to ensure that the selection application meets all its requirements and ensures its key features described above are implemented correclty.

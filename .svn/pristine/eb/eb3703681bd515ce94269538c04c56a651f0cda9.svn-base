@@ -1,9 +1,9 @@
-#include <ocTreeLeaf.h>
+#include <ocTree.h>
 
 /**
  * root constructor
  */
-ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLeaf, int maximumSplitDepth, bool debugInfo)
+ocTree::ocTree(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLeaf, int maximumSplitDepth, bool debugInfo)
 {
 	m_isLeaf = true;
 	m_myMeshes = meshesPointer;
@@ -33,13 +33,13 @@ ocTreeLeaf::ocTreeLeaf(std::vector<Mesh*> &meshesPointer, int maximumVertsPerLea
 /**
  * subTree constructor
  */
-ocTreeLeaf::ocTreeLeaf(
+ocTree::ocTree(
 		std::vector <std::pair <size_t, glm::vec3> > vertices,
 		int parentLevel,
 		int vertsMax,
 		int splitsMax,
 		float parentDimensions[],
-		ocTreeLeaf* root,
+		ocTree* root,
 		std::vector<bool> &parId,
 		std::vector<bool> &splitDirections,
 		bool debugInfo)
@@ -127,19 +127,19 @@ ocTreeLeaf::ocTreeLeaf(
 }
 
 // destructor
-ocTreeLeaf::~ocTreeLeaf() {
+ocTree::~ocTree() {
 	//  @FIXME do something
 }
 
 // getter for boolean attribute isLeaf
-bool ocTreeLeaf::getisLeaf() {
+bool ocTree::getisLeaf() {
 	return m_isLeaf;
 }
 
 /**
- * get Root dimensions based on all vertices in the ocTreeLeaf
+ * get Root dimensions based on all vertices in the ocTree
  */
-void ocTreeLeaf::getRootDimensions(void) {
+void ocTree::getRootDimensions(void) {
 	m_minX = 0.;
 	m_maxX = 0.;
 	m_minY = 0.;
@@ -190,7 +190,7 @@ void ocTreeLeaf::getRootDimensions(void) {
  *
  * parDimensions: {[0]minX, [1]maxX, [2]meanX, [3]minY, [4]maxY, [5]meanY, [6]minZ, [7]maxZ, [8]meanZ};
  */
-void ocTreeLeaf::setDimensions(float parentDimensions[], std::vector<bool> &splitDirections) {
+void ocTree::setDimensions(float parentDimensions[], std::vector<bool> &splitDirections) {
 	// splitDirectios::at(0)
 	if (splitDirections.at(0) == false) {
 		m_minZ = parentDimensions[8];	// minZ = p.meanZ
@@ -224,7 +224,7 @@ void ocTreeLeaf::setDimensions(float parentDimensions[], std::vector<bool> &spli
 	m_meanX = (m_minX+m_maxX)/2;
 }
 
-void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3> > & subsetVerts) {
+void ocTree:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3> > & subsetVerts) {
 	/**
 	 * ###########################################################
 	 * ######## BEGIN FOR-LOOP THROUGH ALL GIVEN VERTICES ########
@@ -384,7 +384,7 @@ void ocTreeLeaf:: buildTreeRecursively(std::vector <std::pair <size_t, glm::vec3
 	std::vector<bool> check = {false,false,true,false,false,false,false,false,false};	// 001000000
 }
 
-bool ocTreeLeaf::split() {
+bool ocTree::split() {
 	if (m_debugInfo) {
 		std::cout << "split() called at level " << m_level << std::endl;
 	}
@@ -398,14 +398,14 @@ bool ocTreeLeaf::split() {
 	std::vector<bool> split6 = {true,	true,	false};		// 110
 	std::vector<bool> split7 = {true,	true,	true};		// 111
 
-	ocTreeLeaf* chidlLeaf0 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split0, m_debugInfo);
-	ocTreeLeaf* chidlLeaf1 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split1, m_debugInfo);
-	ocTreeLeaf* chidlLeaf2 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split2, m_debugInfo);
-	ocTreeLeaf* chidlLeaf3 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split3, m_debugInfo);
-	ocTreeLeaf* chidlLeaf4 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split4, m_debugInfo);
-	ocTreeLeaf* chidlLeaf5 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split5, m_debugInfo);
-	ocTreeLeaf* chidlLeaf6 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split6, m_debugInfo);
-	ocTreeLeaf* chidlLeaf7 = new ocTreeLeaf(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split7, m_debugInfo);
+	ocTree* chidlLeaf0 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split0, m_debugInfo);
+	ocTree* chidlLeaf1 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split1, m_debugInfo);
+	ocTree* chidlLeaf2 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split2, m_debugInfo);
+	ocTree* chidlLeaf3 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split3, m_debugInfo);
+	ocTree* chidlLeaf4 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split4, m_debugInfo);
+	ocTree* chidlLeaf5 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split5, m_debugInfo);
+	ocTree* chidlLeaf6 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split6, m_debugInfo);
+	ocTree* chidlLeaf7 = new ocTree(m_verticesInBounds, m_level, m_maxVerticesPerNode, m_maxSplitDepth, parDimensions, m_root, m_identifier, split7, m_debugInfo);
 
 	m_myChildren[0] = chidlLeaf0;
 	m_myChildren[1] = chidlLeaf1;
@@ -418,21 +418,21 @@ bool ocTreeLeaf::split() {
 
 	turnIntoNode();
 
-//	~ocTreeLeaf();
+//	~ocTree();
 	return true;
 }
 
-bool  ocTreeLeaf::turnIntoNode() {
+bool  ocTree::turnIntoNode() {
 	m_isLeaf = false;
 //	myVertices.swap(verticesInBounds);
 	return true;
 }
 
-std::vector<Mesh*> ocTreeLeaf::getMyMeshes (void) {
+std::vector<Mesh*> ocTree::getMyMeshes (void) {
 	return m_myMeshes;
 }
 
-std::vector<Mesh*>::iterator ocTreeLeaf::getMesh (int n) {
+std::vector<Mesh*>::iterator ocTree::getMesh (int n) {
 	int count = 0;
 	for(std::vector<Mesh*>::iterator it = m_myMeshes.begin(); it != m_myMeshes.end(); ++it) {
 		if (count == n) {
@@ -441,7 +441,7 @@ std::vector<Mesh*>::iterator ocTreeLeaf::getMesh (int n) {
 	}
 }
 
-std::vector <glm::vec3> ocTreeLeaf::getVertices(void) {
+std::vector <glm::vec3> ocTree::getVertices(void) {
 	std::vector<glm::vec3> result;
 	for(std::vector<Mesh*>::iterator it = m_myMeshes.begin(); it != m_myMeshes.end(); ++it) {
 		std::vector<glm::vec3> itVerts = (*it)->get_m_vertices(); 		// get vertices of current Mesh
@@ -450,7 +450,7 @@ std::vector <glm::vec3> ocTreeLeaf::getVertices(void) {
 	return result;
 }
 
-std::vector<glm::vec3> ocTreeLeaf::getVerticesOfMesh (int n) {
+std::vector<glm::vec3> ocTree::getVerticesOfMesh (int n) {
 	int count = 0;
 	for(std::vector<Mesh*>::iterator it = m_myMeshes.begin(); it != m_myMeshes.end(); ++it) {
 		if (count == n) {
@@ -460,30 +460,18 @@ std::vector<glm::vec3> ocTreeLeaf::getVerticesOfMesh (int n) {
 	}
 }
 
-int ocTreeLeaf::getLevel(void) {
+int ocTree::getLevel(void) {
 	return m_level;
 }
 
-// @FIXME: check if necessary, delete if not
-//std::vector<std::pair<size_t, glm::vec3>> ocTreeLeaf::convertVectorToList(std::vector<glm::vec3> inputVector) {
-//	if (m_debugInfo) {
-//		std::cout << "convertVectorToList() called" << std::endl;
-//	}
-//	std::list<glm::vec3> result;
-//	for(size_t t = 0; t < inputVector.size();++t){
-//		result.push_back(inputVector[t]);
-//	}
-//	return result;
-//}
-
-void ocTreeLeaf::saySomething(void) {
+void ocTree::saySomething(void) {
 	std::cout << "hello, I am a node in an ocTree" << std::endl;
 }
 
 // @FIXME: keep this up to date!
-void ocTreeLeaf::debugTreeInfo(void) {
-		std::cout << "=================[ocTreeLeaf INFO]=================" << std::endl;
-		std::cout << "total number of vertices in this ocTreeLeaf:" << (*getMesh(0))->getNumVertices() << std::endl;
+void ocTree::debugTreeInfo(void) {
+		std::cout << "=================[ocTree INFO]=================" << std::endl;
+		std::cout << "total number of vertices in this ocTree:" << (*getMesh(0))->getNumVertices() << std::endl;
 		std::cout << "maximum number of vertices per leaf node: " << m_maxVerticesPerNode << std::endl;
 		std::cout << "maximum split depth: " << m_maxSplitDepth << std::endl;
 		std::cout << "dimension x: " << m_minX << " to " << m_maxX << ", mean value: " << m_meanX << std::endl;
@@ -494,16 +482,16 @@ void ocTreeLeaf::debugTreeInfo(void) {
 		std::cout << "average number of vertices / leaf: [@FIXME]" << std::endl;
 		std::cout << "highest number of vertices in one leaf: [@FIXME]" << std::endl;
 		std::cout << "lowest number of vertices in one leaf: [@FIXME]" << std::endl;
-		std::cout << "===============[ocTreeLeaf INFO END]===============" << std::endl;
+		std::cout << "===============[ocTree INFO END]===============" << std::endl;
 }
 
-void ocTreeLeaf::debugFirstVertex(void) {
+void ocTree::debugFirstVertex(void) {
 	std::vector<Mesh*>::iterator firstMesh = getMesh(0);
 	std::vector<glm::vec3> vertices = (*firstMesh)->get_m_vertices();
 	std::cout << "First vertex(x,y,z): " << vertices[0].x <<", "<< vertices[0].y <<", "<< vertices[0].z <<", "<< std::endl;
 }
 
-void ocTreeLeaf::debugAllVertices(void) {
+void ocTree::debugAllVertices(void) {
 	for(std::vector<Mesh*>::iterator it = m_myMeshes.begin(); it != m_myMeshes.end(); ++it) {
 		std::vector<glm::vec3> vertices = (*it)->get_m_vertices();
 		for (int i=0; i <= (*it)->getNumVertices(); i++) {
@@ -516,7 +504,7 @@ void ocTreeLeaf::debugAllVertices(void) {
 	}
 }
 
-void ocTreeLeaf::debugIdentifierasString(void) {
+void ocTree::debugIdentifierasString(void) {
 	if (m_level == 0) {
 		std::cout << "I am root." << std::endl;
 	} else {
@@ -542,8 +530,8 @@ void ocTreeLeaf::debugIdentifierasString(void) {
 	}
 }
 
-ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo) {
-	ocTreeLeaf *result;
+ocTree* ocTree::getNodeByIdentifierArray(std::vector<bool> compare, bool debugInfo) {
+	ocTree *result;
 	if (this->getisLeaf() == true) {
 		if (debugInfo == true) {
 			std::cout << "node found via getNodeByIdentifierArray()" << std::endl;
@@ -592,13 +580,13 @@ ocTreeLeaf* ocTreeLeaf::getNodeByIdentifierArray(std::vector<bool> compare, bool
 	return result;
 }
 
-ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, float z, float radius, std::set<size_t> &intermediateSelection, bool debugInfo) {
+ocTree* ocTree::addVerticesToSelectionByCoordinates(float x, float y, float z, float radius, std::set<size_t> &intermediateSelection, bool debugInfo) {
 	if (debugInfo) {
 		std::cout << "getNodeByCoordinates() called" << std::endl;
 		std::cout << "Coordinates passed: x, y & z: " << x << ", " << y <<", " << z << std::endl;
 	}
 	// given coordinate is out of bounds; return NULL
-	ocTreeLeaf *result;
+	ocTree *result;
 	// check if given coordinates are out of bounds. if so @FIXME do something
 	if (x < m_minX || x > m_maxX || y < m_minY || y > m_maxY || z < m_minZ || z > m_maxZ) {
 		std::cout << "everything is out of bounds" << std::endl;
@@ -644,7 +632,7 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 				if (debugInfo) {
 					std::cout << "crossing minX" << std::endl;
 				}
-				ocTreeLeaf * neighbor = m_root->addVerticesToSelectionByCoordinates(x-radius,y,z,0,intermediateSelection,debugInfo);
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x-radius,y,z,0,intermediateSelection,debugInfo);
 				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
 
 				if (debugInfo) {
@@ -658,7 +646,7 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 				if (debugInfo) {
 					std::cout << "crossing maxX" << std::endl;
 				}
-				ocTreeLeaf * neighbor = m_root->addVerticesToSelectionByCoordinates(x+radius,y,z,0,intermediateSelection,debugInfo);
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x+radius,y,z,0,intermediateSelection,debugInfo);
 				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
@@ -671,7 +659,7 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 				if (debugInfo) {
 					std::cout << "crossing minY" << std::endl;
 				}
-				ocTreeLeaf * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y-radius,z,0,intermediateSelection,debugInfo);
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y-radius,z,0,intermediateSelection,debugInfo);
 				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
@@ -684,7 +672,7 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 				if (debugInfo) {
 					std::cout << "crossing maxY" << std::endl;
 				}
-				ocTreeLeaf * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y+radius,z,0,intermediateSelection,debugInfo);
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y+radius,z,0,intermediateSelection,debugInfo);
 				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
@@ -697,7 +685,7 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 				if (debugInfo) {
 					std::cout << "crossing minZ" << std::endl;
 				}
-				ocTreeLeaf * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y,z-radius,0,intermediateSelection,debugInfo);
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y,z-radius,0,intermediateSelection,debugInfo);
 				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
@@ -710,7 +698,7 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 				if (debugInfo) {
 					std::cout << "crossing maxZ" << std::endl;
 				}
-				ocTreeLeaf * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y,z+radius,0,intermediateSelection,debugInfo);
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y,z+radius,0,intermediateSelection,debugInfo);
 				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
 				if (debugInfo) {
 					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
@@ -742,6 +730,176 @@ ocTreeLeaf* ocTreeLeaf::addVerticesToSelectionByCoordinates(float x, float y, fl
 	std::vector<bool> target_identifier(m_maxSplitDepth*3);
 
 	// redirecting the query to correct child node
+	std::vector<bool> target (3);
+	if (x < m_meanX) {
+		if (y < m_meanY) {
+			if (z < m_meanZ) {
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 110
+			} else {
+				result = m_myChildren[2]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 010
+			}
+		} else {
+			if (z < m_meanZ) {
+				result = m_myChildren[4]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 100
+			} else {
+				result = m_myChildren[0]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 000
+			}
+		}
+	} else {
+		if (y < m_meanY) {
+			if (z < m_meanZ) {
+				result = m_myChildren[7]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 111
+			} else {
+				result = m_myChildren[3]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection,debugInfo);	// 011
+			}
+		} else {
+			if (z < m_meanZ) {
+				result = m_myChildren[5]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 101
+			} else {
+				result = m_myChildren[1]->addVerticesToSelectionByCoordinates(x,y,z, radius, intermediateSelection, debugInfo);	// 001
+			}
+		}
+	}
+	return result;
+}
+
+ocTree* ocTree::removeVerticesFromSelectionByCoordinates(float x, float y, float z, float radius, std::set<size_t> &intermediateSelection, bool debugInfo) {
+	if (debugInfo) {
+		std::cout << "getNodeByCoordinates() called" << std::endl;
+		std::cout << "Coordinates passed: x, y & z: " << x << ", " << y <<", " << z << std::endl;
+	}
+	ocTree *result;
+	if (x < m_minX || x > m_maxX || y < m_minY || y > m_maxY || z < m_minZ || z > m_maxZ) {
+		std::cout << "everything is out of bounds" << std::endl;
+		return NULL;
+	}
+
+
+	if (this->getisLeaf() == true) {
+		if (debugInfo == true) {
+			std::cout << "node found via getNodeByCoordinates()" << std::endl;
+			if (radius == 0) {
+				if (debugInfo) {
+					std::cout <<"I am also most likely a neighbor" << std::endl;
+				}
+			}
+			if (debugInfo) {
+			debugIdentifierasString();
+				std::cout << "minX: " << m_minX << ", meanX: " << m_meanX << ",maxX: " << m_maxX << std::endl;
+				std::cout << "minY: " << m_minY << ", meanY: " << m_meanY << ",maxY: " << m_maxY << std::endl;
+				std::cout << "minZ: " << m_minZ << ", meanZ: " << m_meanZ << ",maxZ: " << m_maxZ << std::endl;
+				std::cout << "I contain " << m_verticesInBounds.size() << " vertices" << std::endl;
+			}
+		}
+		result = this;
+
+		std::vector<std::pair<size_t, glm::vec3> > verticesToCheck;
+
+		for(size_t t = 0; t < result->m_verticesInBounds.size();++t){
+			verticesToCheck.push_back(result->m_verticesInBounds[t]);
+		}
+		if (debugInfo) {
+			std::cout << "verticesToCheck size (without neighbors): " << verticesToCheck.size() << std::endl;
+		}
+
+		if (radius != 0) {
+			if (x - radius < m_minX) {
+				if (debugInfo) {
+					std::cout << "crossing minX" << std::endl;
+				}
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x-radius,y,z,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
+
+				if (debugInfo) {
+					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
+					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
+				}
+			}
+
+			if (x + radius > m_maxX) {
+				if (debugInfo) {
+					std::cout << "crossing maxX" << std::endl;
+				}
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x+radius,y,z,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
+				if (debugInfo) {
+					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
+					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
+				}
+			}
+
+			if (y - radius < m_minY) {
+				if (debugInfo) {
+					std::cout << "crossing minY" << std::endl;
+				}
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y-radius,z,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
+				if (debugInfo) {
+					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
+					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
+				}
+			}
+
+			if (y + radius > m_maxY) {
+				if (debugInfo) {
+					std::cout << "crossing maxY" << std::endl;
+				}
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y+radius,z,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
+				if (debugInfo) {
+					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
+					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
+				}
+			}
+
+			if (z - radius < m_minZ) {
+				if (debugInfo) {
+					std::cout << "crossing minZ" << std::endl;
+				}
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y,z-radius,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
+				if (debugInfo) {
+					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
+					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
+				}
+			}
+
+			if (z + radius > m_maxZ) {
+				if (debugInfo) {
+					std::cout << "crossing maxZ" << std::endl;
+				}
+				ocTree * neighbor = m_root->addVerticesToSelectionByCoordinates(x,y,z+radius,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert(verticesToCheck.end(), neighbor->m_verticesInBounds.begin(), neighbor->m_verticesInBounds.end() );
+				if (debugInfo) {
+					std::cout << "neighbor LEVEL: " << neighbor->m_level << std::endl;
+					std::cout << "verticesToCheck size (with neighbors): " << verticesToCheck.size() << std::endl;
+				}
+			}
+		}
+
+		std::vector<std::pair<size_t, glm::vec3>>::const_iterator it;
+		for (it = verticesToCheck.begin(); it != verticesToCheck.end(); ++it) {
+			if (it->second.x < x+radius && it->second.x > x-radius && it->second.y < y+radius && it->second.y > y-radius && it->second.z < z+radius && it->second.z > z-radius) {
+				// check if vertex is already selected (element of global selection set)
+
+				for (std::set<size_t>::iterator i = intermediateSelection.begin(); i != intermediateSelection.end(); ++i)
+				{
+				    if ((*i) == it->first) {
+						intermediateSelection.erase(it->first);
+						if (debugInfo) {
+							std::cout << "vertex "<< it->first << " removed; x,y,z: " << it->second.x << ", " << it->second.y << ", " << it->second.z << ", "<< std::endl;
+						}
+				    }
+				}
+			}
+		}
+		std::cout << "number of vertices selected: " << intermediateSelection.size() << std::endl;
+		return result;
+	}
+
+	int levelOffset = m_level*3;
+	std::vector<bool> target_identifier(m_maxSplitDepth*3);
+
 	std::vector<bool> target (3);
 	if (x < m_meanX) {
 		if (y < m_meanY) {
