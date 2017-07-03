@@ -1,0 +1,1 @@
+reworked vertex selection to be more memory frienly; refactored ocTreeLeaf to ocTree; removed lots of comments

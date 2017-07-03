@@ -78,7 +78,28 @@ This section will describe the following features and functionalities which are 
 \subsection{Spatial Indexing via Octree}
 \label{sec:spatial_indexing_via_octree}
 
-As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of ocTrees was designed with a heavy emphasis on its recursive design. Instances of it can be created from everywhere in the application by the call of its public root constructor function.
+As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of ocTrees was designed with a heavy emphasis on its recursive design. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents. They solely save vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
+
+For better understanding during development and clearer, human-readable log messages, the unique, binary identifiers were implemented with care. Each node of the tree has a private \texttt{std::vector} which serves as a unique combination of boolean values describing its identifier. It can be used for directly accessig any desired \texttt{ocTree} (subtree) object within a tree through its root node.
+
+Starting from the root node (current level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three consecutive values within it. At any level \textit{l}, those  values of \textit{Id} can be found at positions \textit{l}, \textit{l+1} and \textit{l+2} within it. If \textit{l+2} equals its length \textit{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes maximum and minimum values as table 4.1 depicts. The suffix \texttt{p} for new values stands refers to the parent node.
+
+\begin{table}[]
+\begin{tabular}{l|llllll}
+Id{[}l, l+1, l+2{]} & X min & X max & Y min & Y max & Z min & Z manx \\ \hline
+000 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
+001 & \textit{p}.X mean & \textit{p}. X max & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
+010 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z mean & \textit{p}.Z max \\
+011 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z mean & \textit{p}.Z max \\
+100 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z min & \textit{p}.Z mean \\
+101 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z min & \textit{p}.Z mean \\
+110 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z min & \textit{p}.Z mean \\
+111 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z min & \textit{p}.Z mean
+\end{tabular}
+\caption{child node bounding values}
+\end{table}
+
+The most important functions of the \texttt{ocTree} class, as implemented in this work, are described below.
 
 \begin{description}
 	\item[Root constructor \texttt{ocTree}] This public constructor will create a new instance of the class \texttt{ocTree}. Parameters required are
@@ -99,28 +120,18 @@ As mentioned above, the \texttt{ocTree} class handles spatial indexing and, ther
 	\end{enumerate*}.
 	Again, an additional boolean flag determing whether, during the recursive building proccess of the subTree, iformation will be printed to the console or not, is also passed with the value of the respective member variable of the parent node.
 	\item[\texttt{getRootDimensions()}] This is called by a newly created root \texttt{ocTree}. In this first, basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
-	\item[\texttt{buildTreeRecursively()}] A call to this function will cause an entire set of given vertices to be indexed and assigned to a leaf node in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3> >}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexing and the \texttt{vec3} parts representing the vertices with their three coordinates, was used in this work. 
-
-	Most of what this function does, happens in a fairly complex \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices.
-
-\begin{algorithm}[H]
- \KwData{this text}
- \KwResult{how to write algorithm with \LaTeX2e }
- initialization\;
- \While{not at end of this document}{
-  read current\;
-  \eIf{understand}{
-   go to next section\;
-   current section becomes this one\;
-   }{
-   go back to the beginning of current section\;
-  }
- }
- \caption{How to write algorithms}
-\end{algorithm}
-
 	\item[\texttt{split()}] hurrr
 	\item[\texttt{getNodeByIdentifierArray()}] x~ddddD
+	\item[\texttt{buildTreeRecursively()}] A call to this function will cause an entire set of given vertices to be indexed and assigned to a leaf node in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3>>}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexes and the \texttt{vec3} parts representing the vertices with their three coordinates, was used in this work. 
+
+	Most of what this function does, happens in a \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices. Its basic procedure is depicted in the following simplified, C++ like pseudo-code snippet.
+
+\begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em]
+for(int t = 0; t != vertices.size(); ++t) {
+	
+}
+\end{lstlisting}
+
 \end{description}
  
 % Testfile, Blender, etc
@@ -129,8 +140,7 @@ As mentioned above, the \texttt{ocTree} class handles spatial indexing and, ther
 \subsection{User Selection}
 \label{sec:user_selection}
 
-\begin{lstlisting}
-language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em
+\begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em]
 for (int i=0; i<10;++i) {
 	std::cout << "yolo" << i << std::endl;
 	// comment
