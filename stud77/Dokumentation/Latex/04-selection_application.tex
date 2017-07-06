@@ -78,15 +78,15 @@ This section will describe the following features and functionalities which are 
 \subsection{Spatial Indexing via Octree}
 \label{sec:spatial_indexing_via_octree}
 
-As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of ocTrees was designed with a heavy emphasis on its recursive design. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents. They solely save vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
+As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of ocTrees was desigend with a heavy emphasis on its recursive features. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents, they solely save vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
 
 For better understanding during development and clearer, human-readable log messages, the unique, binary identifiers were implemented with care. Each node of the tree has a private \texttt{std::vector} which serves as a unique combination of boolean values describing its identifier. It can be used for directly accessig any desired \texttt{ocTree} (subtree) object within a tree through its root node.
 
-Starting from the root node (current level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three consecutive values within it. At any level \textit{l}, those  values of \textit{Id} can be found at positions \textit{l}, \textit{l+1} and \textit{l+2} within it. If \textit{l+2} equals its length \textit{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes maximum and minimum values as table 4.1 depicts. The suffix \texttt{p} for new values stands refers to the parent node.
+Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at any time. At any level \textit{l}, those  values of \textit{Id} can be found at positions \textit{l*3}, \textit{l*3+1} and \textit{l*3+2} within it. If \textit{l*3+2} equals its length \textit{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \texttt{p} for new values stands refers to the parent node, \textit{ID}[\textit{n}] is the \textit{n}th element of identifer \textit{ID}. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
 
 \begin{table}[]
 \begin{tabular}{l|llllll}
-Id{[}l, l+1, l+2{]} & X min & X max & Y min & Y max & Z min & Z manx \\ \hline
+Id{[}l*3, l*3+1, l*3+2{]} & X min & X max & Y min & Y max & Z min & Z manx \\ \hline
 000 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
 001 & \textit{p}.X mean & \textit{p}. X max & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
 010 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z mean & \textit{p}.Z max \\
@@ -96,8 +96,9 @@ Id{[}l, l+1, l+2{]} & X min & X max & Y min & Y max & Z min & Z manx \\ \hline
 110 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z min & \textit{p}.Z mean \\
 111 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z min & \textit{p}.Z mean
 \end{tabular}
-\caption{child node bounding values}
+\caption{child node bounding values}\label{tab:child_node_bounding_values}
 \end{table}
+% table 4.1
 
 The most important functions of the \texttt{ocTree} class, as implemented in this work, are described below.
 
@@ -120,11 +121,24 @@ The most important functions of the \texttt{ocTree} class, as implemented in thi
 	\end{enumerate*}.
 	Again, an additional boolean flag determing whether, during the recursive building proccess of the subTree, iformation will be printed to the console or not, is also passed with the value of the respective member variable of the parent node.
 	\item[\texttt{getRootDimensions()}] This is called by a newly created root \texttt{ocTree}. In this first, basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
-	\item[\texttt{split()}] hurrr
-	\item[\texttt{getNodeByIdentifierArray()}] x~ddddD
-	\item[\texttt{buildTreeRecursively()}] A call to this function will cause an entire set of given vertices to be indexed and assigned to a leaf node in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3>>}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexes and the \texttt{vec3} parts representing the vertices with their three coordinates, was used in this work. 
+	\item[\texttt{split()}] This private function, called by a leaf node in case there are more vertices within its bounds than the maximum number of allowed vertices per leaf, takes care of turning a leaf node into a intermediate node, the root of a subtree in other words. The vertices that have been stored by the calling node up to the point this function was called, will make up the set of vertices to check by its eight children nodes. These eight subtree \texttt{ocTree} objects are created via a call to the private constructor of the \texttt{ocTree} class.
+	\item[\texttt{getNodeByIdentifierArray()}] This recursive, public function returns a pointer to a leaf node via a boolean input vector representing its identifier. Starting at the root node, it traverses through tree and will return the node with given identifier at the lowest level. The only parameter required is a \texttt{std::vector} \textit{Id} of \textit{n} = \textit{L}*3 boolean values where \textit{L} is the maximum level of the \texttt{ocTree} object calling this function.
 
-	Most of what this function does, happens in a \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices. Its basic procedure is depicted in the following simplified, C++ like pseudo-code snippet.
+As described above, a node at level \textit{l} that is recursively calling this function, first calculates the current level offset $O_l = l*3$ and then considers elements $O_l, O_l+1$ and $O_l+2$ of passed identifier vector \textit{Id}. Depending on these values, the matching child node will perform the next recursive call of \texttt{getNodeByIdentifierArray()}. Every \texttt{ocTree} object has a private array as a member variable that holds eight other \texttt{ocTree} objects, its children nodes. Given the bounds of a parent node, which are defined as minimum and maximum values in x, y and z direction, calculating the three mean values in all three dimensions is trivial. The resulting  set of minimum, maximum and mean values can be combined in multiple ways and used for minimum and maximum values of all eight subtree nodes, see table \ref{tab:child_node_bounding_values}. To geometrically locate the children nodes, one must check the three relevant boolean values and search either before or beyond the median values in x, y and z direction. A \texttt{false} value of x means, the respective child node lies within the parent node's minimum and mean values in x direction, \texttt{true} means it lies within mean and maximum x values. This pattern is inverted in directions y and z. In both cases, \texttt{false} means the child node starts at the mean value of the parent node (its minimum value equals the mean value of the parent) and ends at its maximum value, whereas \texttt{true} indicates the opposite. Figure \ref{fig:child_node_000_101.png} depicts two exemplary parent nodes at level \textit{l} (checkered) and their bounds with one of their eight subtree nodes, the ones indicated by \textit{Id}[$O_l$, $O_l+1$, $O_l+2$], highlighted in red. Again, note that \texttt{$O_l+3$} determines the bounds in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z direction.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.8\textwidth]{child_node_000_101.png}\\ % PNG-File
+  \caption{Parent node (checkered) highlighted child nodes. Left: 000, right: 101}\label{fig:child_node_000_101.png}
+\end{figure}
+
+\texttt{getNodeByIdentifierArray()} returns a reference to an \texttt{ocTree} object whose identifier matches the series of boolean values passed during the call. It mainly served testing and debugging purposes during development of the application, making sure the spatial indexing structure would be computed correctly for any given set of input 3D data. It is a utility function that provides fast, direct acces to any one desired node within an \texttt{ocTree} structure.
+
+	\item[\texttt{buildTreeRecursively()}] A call to this function will cause an entire set of given vertices to be indexed and assigned to a leaf node in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3>>}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexes and the \texttt{vec3} parts representing the vertices with three coordinates each, was used in this work.
+
+%% HIER GEHTS WEITER
+
+	Most of what this function does, happens in a \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices. Its basic procedure is depicted in the following simplified C++ code snippet.
 
 \begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em]
 for(int t = 0; t != vertices.size(); ++t) {
@@ -132,7 +146,16 @@ for(int t = 0; t != vertices.size(); ++t) {
 }
 \end{lstlisting}
 
-\end{description}
+Figure \ref{fig:ocTree_levels.png} depicts a very simple \texttt{ocTree} that could be result from indexing a small set of 3D data. This particular tree has a root node at level zero, represented as a basic cube, in the upper part of the figure. As the number of vertices within the bounds of the root exceeds the maximum numbers of vertices a node may hold in this particular tree, the root will call \texttt{split()} (see \ref{sec:spatial_indexing_via_octree}) so that eight new subtrees are created and the root switches its boolean flag \texttt{isLeaf} to \texttt{false}, indicating that it is no longer a leaf node but the root of an actual subtree within the entire \texttt{ocTree}. Given that the maximum level of subtrees visible in the figure is 2, we assume that this is also the maximum allowed level for subtrees. This would mean that the identifier \texttt{vectors} of every node within this tree will have a length of $3*2$. The level 1 subtrees 000100 and 000111, as shown in the figure, also have more vertices within their bounds than what is the maximum number of vertices per node so they, too, split and created a total of 16 new child nodes, each at level 2.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.9\textwidth]{ocTree_levels.png}\\ % PNG-File
+  \caption{depiction of a very simple \texttt{ocTree}, both three- and two-dimensional}\label{fig:ocTree_levels.png}
+\end{figure}
+
+
+\end{description} % Liste der Funktionen
  
 % Testfile, Blender, etc
 
@@ -155,6 +178,6 @@ for (int i=0; i<10;++i) {
 \subsection{Tracking Selection}
 \label{sec:tracking_selection}
 
-\section{Testing Setup}
+\subsection{Testing Setup}
 \label{sec:testing_setup}
 This section will describe the steps I took to ensure that the selection application meets all its requirements and ensures its key features described above are implemented correclty.
