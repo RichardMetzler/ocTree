@@ -23,9 +23,7 @@
 \BOOKMARK [3][-]{subsubsection.4.3.1.6}{getNodeByIdentifierArray\(\)}{subsection.4.3.1}% 23
 \BOOKMARK [3][-]{subsubsection.4.3.1.7}{buildTreeRecursively\(\)}{subsection.4.3.1}% 24
 \BOOKMARK [2][-]{subsection.4.3.2}{User Selection}{section.4.3}% 25
-\BOOKMARK [3][-]{subsubsection.4.3.2.1}{addVerticesToSelectionByCoordinates\(\)}{subsection.4.3.2}% 26
-\BOOKMARK [3][-]{subsubsection.4.3.2.2}{removeVerticesFromSelectionByCoordinates\(\)}{subsection.4.3.2}% 27
-\BOOKMARK [2][-]{subsection.4.3.3}{Tracking Selection}{section.4.3}% 28
-\BOOKMARK [2][-]{subsection.4.3.4}{Testing Setup}{section.4.3}% 29
-\BOOKMARK [0][-]{chapter*.2}{List of Figures}{}% 30
-\BOOKMARK [0][-]{chapter*.3}{Bibliography}{}% 31
+\BOOKMARK [2][-]{subsection.4.3.3}{Tracking Selection}{section.4.3}% 26
+\BOOKMARK [2][-]{subsection.4.3.4}{Testing Setup}{section.4.3}% 27
+\BOOKMARK [0][-]{chapter*.2}{List of Figures}{}% 28
+\BOOKMARK [0][-]{chapter*.3}{Bibliography}{}% 29

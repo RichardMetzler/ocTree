@@ -126,8 +126,6 @@
 \newlabel{fig:ocTree_levels.png}{{\relax 4.2}{21}{depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}{figure.4.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}User Selection}{21}{subsection.4.3.2}}
 \newlabel{sec:user_selection}{{4.3.2}{21}{User Selection}{subsection.4.3.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.1}\texttt  {addVerticesToSelectionByCoordinates()}}{21}{subsubsection.4.3.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.2}\texttt  {removeVerticesFromSelectionByCoordinates()}}{21}{subsubsection.4.3.2.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Tracking Selection}{21}{subsection.4.3.3}}
 \newlabel{sec:tracking_selection}{{4.3.3}{21}{Tracking Selection}{subsection.4.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Testing Setup}{21}{subsection.4.3.4}}
