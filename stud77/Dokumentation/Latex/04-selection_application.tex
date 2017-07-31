@@ -82,11 +82,11 @@ As mentioned above, the \texttt{ocTree} class handles spatial indexing and, ther
 
 For better understanding during development and clearer, human-readable log messages, the unique, binary identifiers were implemented with care. Each node of the tree has a private \texttt{std::vector} which serves as a unique combination of boolean values describing its identifier. It can be used for directly accessig any desired \texttt{ocTree} (subtree) object within a tree through its root node.
 
-Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at any time. At any level \textit{l}, those  values of \textit{Id} can be found at positions \textit{l*3}, \textit{l*3+1} and \textit{l*3+2} within it. If \textit{l*3+2} equals its length \textit{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \texttt{p} for new values stands refers to the parent node, \textit{ID}[\textit{n}] is the \textit{n}th element of identifer \textit{ID}. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
+Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at a time. At any level \textit{l}, those  values of \texttt{Id} can be found at positions \textit{$O_l$}, \textit{$O_l$+1} and \textit{$O_l$+2} within it, where $O_l$ is the \textit{level offset} $l*3-3$. If \textit{$O_l$+2} equals its length \texttt{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes' maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \texttt{p} for new values refers to the parent node, \texttt{[n]} is the \texttt{n}th element of identifer \texttt{ID}. $O_l$ describes the \textit{level offset} $l*3-3$. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
 
 \begin{table}[]
 \begin{tabular}{l|llllll}
-Id{[}l*3, l*3+1, l*3+2{]} & X min & X max & Y min & Y max & Z min & Z max \\ \hline
+Id{[}$O_l$, $O_l$+1, $O_l$+2{]} & X min & X max & Y min & Y max & Z min & Z max \\ \hline
 000 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
 001 & \textit{p}.X mean & \textit{p}. X max & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
 010 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z mean & \textit{p}.Z max \\
@@ -131,41 +131,44 @@ This will create a spatial indexing structure for the 3D data stored in \texttt{
 		\item a vector of boolean values describing its parents unique identifier and
 		\item a vector of three boolean values describing the \textit{split directions} passed by the parent node
 	\end{enumerate*}.
-	Again, an additional boolean flag determing whether, during the recursive building proccess of the subTree, iformation will be printed to the console or not, is also passed with the value of the respective member variable of the parent node.
+	Again, an additional boolean flag determing whether, during the recursive building proccess of the subtree, information will be printed to the console or not, is also passed with the value of the respective member variable of the parent node.
 
 The crucial task of setting the right unique identifier of a newly created subtree node is also handled in this constructor. The following code-snippet shows how that was implemented in this work.
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em,tabsize=3]
-int identifierSize = m_parentIdentifier.size();
-int levelOffset = m_level*3-3;
-std::vector<bool> id(identifierSize);
+ocTree::ocTree(...) {
+	int identifierSize = m_parentIdentifier.size();
+	int levelOffset = m_level*3-3;
+	std::vector<bool> id(identifierSize);
 
-for (int i = 0; i < levelOffset; i++) {
-	id[i] = parId[i];
+	for (int i = 0; i < levelOffset; i++) {
+		id[i] = parId[i];
+	}
+
+	id[levelOffset] = splitDirections[0];
+	id[levelOffset+1] = splitDirections[1];
+	id[levelOffset+2] = splitDirections[2];
+
+	for (int j = levelOffset+3; j < identifierSize; j++) {
+		id[j] = false;
+	}
+	m_identifier = id;
 }
-
-id[levelOffset] = splitDirections[0];
-id[levelOffset+1] = splitDirections[1];
-id[levelOffset+2] = splitDirections[2];
-
-for (int j = levelOffset+3; j < identifierSize; j++) {
-	id[j] = false;
-}
-m_identifier = id;
 \end{lstlisting}
 \end{minipage}
 
-After setting up the essential variables, lines 5 - 7 copy the parts of the parents identifier up until the current level offset. Every new subtree node is a child of a lower-level node and this step implicitly entails that relationship. If an \texttt{ocTree} object at a level higher than 0 has child nodes - which makes it the root of a subtree within the octree - has the unique identifier 010000, the first three values of the identifiers of its eight children nodes will be 010.
+After setting up the essential variables, lines 6 - 8 copy the parts of the parents identifier up until the current level offset. Every new subtree node is a child of a lower-level node and this step implicitly entails that relationship. If an \texttt{ocTree} object at a level higher than 0 has child nodes - which makes it the root of a subtree within the octree - has the unique identifier 010000, the first three values of the identifiers of its eight children nodes will be 010.
 
-Lines 9 - 10 set the crucial values at the level offset $O_l$, $O_l+1$ and $O_l+2$ according to the values passed via \texttt{splitDirections}. In the context of a parent node calling \texttt{split()}, these passed values are eight sets of three boolean values each that can be represented as 000, 001, 010, 011, 100, 101, 110 and 111.
+Lines 10 - 11 set the crucial values at the level offset $O_l$, $O_l+1$ and $O_l+2$ according to the values passed via \texttt{splitDirections}. In the context of a parent node calling \texttt{split()}, these passed values are eight sets of three boolean values each that can be represented as 000, 001, 010, 011, 100, 101, 110 and 111.
 
-Since every identifier of every node within an octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 13 - 15 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 16, the final identifier of the current node is set as its private member variable.
+Since every identifier of every node within an octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 14 - 16 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 17, the final identifier of the current node is set as its private member variable.
 
 	\subsubsection{\texttt{getRootDimensions()}}
 This is called by a newly created root \texttt{ocTree}. In this first, basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
 
 	\subsubsection{\texttt{setDimensions()}}
+	\label{sec:setDimensions}
 This simple private function takes care of setting up correct minimum, mean and maximum values in x, y and z dimension for a newly created subtree node. The following parameters are required.
 \begin{enumerate*}
 	\item an array of nine \texttt{float} values containing the parent nodes' bounding and mean values and
@@ -190,33 +193,35 @@ To convey the idea of what this function does more clearly, consider figure \ref
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em,tabsize=3]
-if (splitDirections.at(0) == false) {
-	m_minZ = parentDimensions[8];	// minZ = p.meanZ
-	m_maxZ = parentDimensions[7];	// maxZ = p.maxZ
-} else {
-	m_minZ = parentDimensions[6];	// minZ = p.minZ
-	m_maxZ = parentDimensions[8];	// maxZ = p.meanZ
-}
+void ocTree::setDimensions(...) {
+	if (splitDirections.at(0) == false) {
+		m_minZ = parentDimensions[8];	// minZ = p.meanZ
+		m_maxZ = parentDimensions[7];	// maxZ = p.maxZ
+	} else {
+		m_minZ = parentDimensions[6];	// minZ = p.minZ
+		m_maxZ = parentDimensions[8];	// maxZ = p.meanZ
+	}
 
-if (splitDirections.at(1) == false) {
-	m_minY = parentDimensions[5];	// minY = p.meanY
-	m_maxY = parentDimensions[4];	// maxY = p.maxY
-} else {
-	m_minY = parentDimensions[3];	// minY = p.minY
-	m_maxY = parentDimensions[5];	// maxY = p.meanY
-}
+	if (splitDirections.at(1) == false) {
+		m_minY = parentDimensions[5];	// minY = p.meanY
+		m_maxY = parentDimensions[4];	// maxY = p.maxY
+	} else {
+		m_minY = parentDimensions[3];	// minY = p.minY
+		m_maxY = parentDimensions[5];	// maxY = p.meanY
+	}
 
-if (splitDirections.at(2) == false) {
-	m_minX = parentDimensions[0];	// minX = p.minX
-	m_maxX = parentDimensions[2];	// maxX = p.meanX
-} else {
-	m_minX = parentDimensions[2];	// minX = p.meanX
-	m_maxX = parentDimensions[1];	// maxX = p.maxX
-}
+	if (splitDirections.at(2) == false) {
+		m_minX = parentDimensions[0];	// minX = p.minX
+		m_maxX = parentDimensions[2];	// maxX = p.meanX
+	} else {
+		m_minX = parentDimensions[2];	// minX = p.meanX
+		m_maxX = parentDimensions[1];	// maxX = p.maxX
+	}
 
-m_meanZ = (m_minZ+m_maxZ)/2;
-m_meanY = (m_minY+m_maxY)/2;
-m_meanX = (m_minX+m_maxX)/2;
+	m_meanZ = (m_minZ+m_maxZ)/2;
+	m_meanY = (m_minY+m_maxY)/2;
+	m_meanX = (m_minX+m_maxX)/2;
+}
 \end{lstlisting}
 \end{minipage}
 
@@ -231,45 +236,49 @@ child node & minX & maxX & minY & maxY & minZ & maxZ \\ \hline
 % table 4.2
 
 	\subsubsection{\texttt{split()}}
-This private function, called by a leaf node in case there are more vertices within its bounds than the maximum number of allowed vertices per leaf, takes care of turning a leaf node into a intermediate node, the root of a subtree in other words. The vertices that have been stored by the calling node up to the point this function was called, will make up the set of vertices to check by its eight children nodes. These eight subtree \texttt{ocTree} objects are created via a call to the private constructor of the \texttt{ocTree} class. To illustrate the purpose this function serves, the following simplified C++ code snippet shows the necessary steps for the creation of two of the eight new subtree nodes that are to be constructed.
+	\label{sec:split}
+This private function, called by a leaf node in case there are more vertices within its bounds than the maximum number of allowed vertices per leaf, takes care of turning a leaf node into a intermediate node, the root of a subtree in other words. The vertices that have been stored by the calling node up to the point this function was called, will make up the set of vertices to check by its eight children nodes. These eight subtree \texttt{ocTree} objects are created via a call to the private constructor of the \texttt{ocTree} class. To illustrate the purpose this function serves, the following simplified C++ code-snippet shows the necessary steps for the creation of two of the eight new subtree nodes that are to be constructed.
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em,tabsize=3]
-float parDimensions[9] = {
-	m_minX,	m_maxX,	m_meanX,
-	m_minY,	m_maxY, m_meanY,
-	m_minZ, m_maxZ, m_meanZ
-};
+bool ocTree::split() {
+	float parDimensions[9] = {
+		m_minX,	m_maxX,	m_meanX,
+		m_minY,	m_maxY, m_meanY,
+		m_minZ, m_maxZ, m_meanZ
+	};
 
-std::vector<bool> split0 = {false, false, false};	// 000
-std::vector<bool> split1 = {false, false, true};	// 001
-// <repeat for six remaining bool vectors>
+	std::vector<bool> split0 = {false, false, false};	// 000
+	std::vector<bool> split1 = {false, false, true};	// 001
+	// <repeat for six remaining bool vectors>
 
-ocTree* chidlLeaf0 = new ocTree(m_verticesInBounds, m_level,
-	m_maxVerticesPerNode, m_maxSplitDepth, parDimensions,
-	m_root, m_identifier, split0, m_debugInfo);
-ocTree* chidlLeaf1 = new ocTree(m_verticesInBounds, m_level,
-	m_maxVerticesPerNode, m_maxSplitDepth, parDimensions,
-	m_root, m_identifier, split1, m_debugInfo);
-// <repeat for six remaining ocTree objects
+	ocTree* chidlLeaf0 = new ocTree(m_verticesInBounds, m_level,
+		m_maxVerticesPerNode, m_maxSplitDepth, parDimensions,
+		m_root, m_identifier, split0, m_debugInfo);
+	ocTree* chidlLeaf1 = new ocTree(m_verticesInBounds, m_level,
+		m_maxVerticesPerNode, m_maxSplitDepth, parDimensions,
+		m_root, m_identifier, split1, m_debugInfo);
+	// <repeat for six remaining ocTree objects
 
-m_myChildren[0] = chidlLeaf0;
-m_myChildren[1] = chidlLeaf1;
-// <assign six remaining children to private array of ocTree nodes>
+	m_myChildren[0] = chidlLeaf0;
+	m_myChildren[1] = chidlLeaf1;
+	// <assign six remaining children to private array of ocTree nodes>
 
-m_isLeaf = false;
+	m_isLeaf = false;
+}
 \end{lstlisting}
 \end{minipage}
 
-Lines 1 - 4 define an array of \texttt{float} values which contains minimum, mean and maximum values in x, y and z dimension for this node. Depending on the so-called \textit{split directions} given via \texttt{split0}, \texttt{split1} \..., the children nodes of this node will be able to retrieve their spatial bounding values directly from \texttt{parDimensions}.
+Lines 2 - 5 define an array of \texttt{float} values which contains minimum, mean and maximum values in x, y and z dimension for this node. Depending on the so-called \textit{split directions} given via \texttt{split0}, \texttt{split1} and so on, the children nodes of this node will be able to retrieve their spatial bounding values directly from \texttt{parDimensions}.
 
-Lines 7 and 8 show the first two vectors of \textit{split directions}. The remaining six (not shown here) go on to describe values 010, 011, 100, 101, 110 and 111.
+Lines 8 and 9 show the first two vectors of \textit{split directions}. The remaining six (not shown here) go on to describe values 010, 011, 100, 101, 110 and 111.
 
-Lines 11 - 13 and 14 - 16 show the initialisations of two new \texttt{ocTree} objects using the class' private subtree constructor. Note that the two shown calls differ only in one parameter, \texttt{split}\textit{n}. This is also true for the remaining six (not shown) objects to be constructed.
+Lines 12 - 14 and 15 - 17 show the initialisations of two new \texttt{ocTree} objects using the class' private subtree constructor. Note that the two shown calls differ only in one parameter, \texttt{split}\textit{n}. This is also true for the remaining six (not shown) objects to be constructed.
 
-Lines 19 and 20 show the assignments of newly created subtree nodes to their place in the current node's private array of pointers to \texttt{ocTree} objects - its children nodes. This provides fast and direct access to them for later queries. 
+Lines 20 and 21 show the assignments of newly created subtree nodes to their place in the current node's private array of pointers to \texttt{ocTree} objects - its children nodes. This provides fast and direct access to them for later queries. 
 
-\subsubsection{\texttt{getNodeByIdentifierArray()}}
+	\subsubsection{\texttt{getNodeByIdentifierArray()}}
+	\label{set:getNodeByIdentifierArray}
 This recursive, public function returns a pointer to a leaf node via a boolean input vector representing its identifier. Starting at the root node, it traverses through tree and will return the node with given identifier at the lowest level. The only parameter required is a \texttt{std::vector} \textit{Id} of \textit{n} = \textit{L}*3 boolean values where \textit{L} is the maximum level of the \texttt{ocTree} object calling this function.
 
 As described above, a node at level \textit{l} that is recursively calling this function, first calculates the current level offset $O_l = l*3-3$ and then considers elements $O_l, O_l+1$ and $O_l+2$ of passed identifier vector \textit{Id}. Depending on these values, the matching child node will perform the next recursive call of \texttt{getNodeByIdentifierArray()}. Every \texttt{ocTree} object has a private array as a member variable that holds eight other \texttt{ocTree} objects, its children nodes. Given the bounds of a parent node, which are defined as minimum and maximum values in x, y and z direction, calculating the three mean values in all three dimensions is trivial. The resulting  set of minimum, maximum and mean values can be combined in multiple ways and used for minimum and maximum values of all eight subtree nodes, see table \ref{tab:child_node_bounding_values}. To geometrically locate the children nodes, one must check the three relevant boolean values and search either before or beyond the median values in x, y and z direction. A \texttt{false} value of x means, the respective child node lies within the parent node's minimum and mean values in x direction, \texttt{true} means it lies within mean and maximum x values. This pattern is inverted in directions y and z. In both cases, \texttt{false} means the child node starts at the mean value of the parent node (its minimum value equals the mean value of the parent) and ends at its maximum value, whereas \texttt{true} indicates the opposite. Figure \ref{fig:child_node_000_101.png} depicts two exemplary parent nodes at level \textit{l} (checkered) and their bounds with one of their eight subtree nodes, the ones indicated by \textit{Id}[$O_l$, $O_l+1$, $O_l+2$], highlighted in red. Again, note that \texttt{$O_l+3$} determines the bounds in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z direction.
@@ -283,37 +292,40 @@ As described above, a node at level \textit{l} that is recursively calling this 
 	\texttt{getNodeByIdentifierArray()} returns a reference to an \texttt{ocTree} object whose identifier matches the series of boolean values passed during the call. It mainly served testing and debugging purposes during development of the application, making sure the spatial indexing structure would be computed correctly for any given set of input 3D data. It is a utility function that provides fast, direct acces to any one desired node within an \texttt{ocTree} structure.
 
 	\subsubsection{\texttt{buildTreeRecursively()}}
-A call to this function will cause an entire set of given vertices to be indexed and assigned to a leaf node in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3>>}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexes and the \texttt{vec3} parts representing the vertices with three coordinates each, was used in this work.
+	\label{sec:buildTreeRecursively}
+A call to this function will cause an entire set of given vertices to be indexed and assigned leaf nodes in the tree. Its only parameter required is an indexed list of vertices. A \texttt{std::vector<std::pair<size\_t, glm::vec3>>}, with the \texttt{size\_t} parts of the \texttt{pairs} providing ordered indexes and the \texttt{vec3} parts representing the vertices with three coordinates each, was used in this work.
 
-	Most of what this function does, happens in a \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices. Its basic procedure is depicted in the following simplified C++ code snippet.
+	Most of what this function does, happens in a \texttt{for}-loop which iterates thorugh the entirety of the set of passed vertices. Its basic procedure is depicted in the following simplified C++ code-snippet.
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em,tabsize=3]
-for(int t = 0; t != vertices.size(); ++t) {
-	it = &vertices[t];
-	if (it->second.x >= m_minX && it->second.x < m_maxX) {
-		if (it->second.y >= m_minY && it->second.y < m_maxY) {
-			if (it->second.z >= m_minZ && it->second.z < m_maxZ) {
-				m_verticesInBounds.push_back(*it);
+void ocTree:: buildTreeRecursively(...) {
+	for(int t = 0; t != vertices.size(); ++t) {
+		it = &vertices[t];
+		if (it->second.x >= m_minX && it->second.x < m_maxX) {
+			if (it->second.y >= m_minY && it->second.y < m_maxY) {
+				if (it->second.z >= m_minZ && it->second.z < m_maxZ) {
+					m_verticesInBounds.push_back(*it);
+				}
 			}
 		}
 	}
-}
 
-if (m_verticesInBounds.size() > m_maxVerticesPerNode) {
-		if (m_level < m_maxSplitDepth) {
-			split();
-		} else {
-			std::cout << "EXCEPTION[...]" << std::endl;
-			return false;
+	if (m_verticesInBounds.size() > m_maxVerticesPerNode) {
+			if (m_level < m_maxSplitDepth) {
+				split();
+			} else {
+				std::cout << "EXCEPTION" << std::endl;
+				return false;
+		}
 	}
 }
 \end{lstlisting}
 \end{minipage}
 
-Lines 1 - 10 check whether the current vertex lies within the bounds of the calling node. Note that each node calling this function will consider every vertex its parent node held in their member variable \texttt{m\_verticesInBounds}. In turn, if the calling node is to call \texttt{split()} later on, creating eight new subtree nodes, those nodes will consider each of the vertices that, via this loop have been determined to be located within their parent node. This stems from the trivial observation that a subtree can only contain vertices that are also contain by their parent node. So the root node of an \texttt{ocTree} will always check every single vertex of the loadedc 3D object but the higher their level, the subtree nodes will have to check fewer and fewer vertices.
+Lines 2 - 11 check whether the current vertex lies within the bounds of the calling node. Note that each node calling this function will consider every vertex its parent node held in their member variable \texttt{m\_verticesInBounds}. In turn, if the calling node is to call \texttt{split()} later on, creating eight new subtree nodes, those nodes will consider each of the vertices that, via this loop have been determined to be located within their parent node. This stems from the trivial observation that a subtree can only contain vertices that are also contain by their parent node. So the root node of an \texttt{ocTree} will always check every single vertex of the loaded 3D object but the higher their level, the subtree nodes will have to check fewer and fewer vertices.
 
-Line 12 shows the crucial check wheter the number of vertices within the bounds of the calling node exceeds the maximum allowed number of vertices per node. If this is the case and the maximum allowed level (\texttt{m\_maxSplitDepth}) of subtrees is not reached yet (line 13), a call of \texttt{split()} by this node follows.
+Line 13 shows the crucial check wheter the number of vertices within the bounds of the calling node exceeds the maximum allowed number of vertices per node. If this is the case and the maximum allowed level (\texttt{m\_maxSplitDepth}) of subtrees is not reached yet (line 13), a call of \texttt{split()} by this node follows.
 
 Figure \ref{fig:ocTree_levels.png} depicts a simple \texttt{ocTree} structure that could result from indexing a small set of 3D data. This particular tree has a root node at level zero, represented as a basic cube, in the upper left part of the figure. As the number of vertices within the bounds of the root exceeds the maximum numbers of vertices a node may hold in this particular tree, the root will call \texttt{split()} so that eight new subtrees are created and the root switches its boolean flag \texttt{isLeaf} to \texttt{false}, indicating that it is no longer a leaf node but the root of an actual subtree within the entire \texttt{ocTree}. Given that the maximum level of subtrees visible in the figure is 2, we assume that this is also the maximum allowed level for subtrees. This would mean that the identifier \texttt{vectors} of every node within this tree will have a length of $3*2$. The level 1 subtrees 000100 and 000111, as shown in the figure, also have more vertices within their bounds than what is the maximum number of vertices per node so they, too, split and created a total of 16 new child nodes, each at level 2.
 
@@ -324,19 +336,217 @@ Figure \ref{fig:ocTree_levels.png} depicts a simple \texttt{ocTree} structure th
 \end{figure}
 
 
-\pagebreak % @TODO Das im Auge behalten!
+\pagebreak % @TODO Das im Auge behalten! Zeilenumbruch usw
 \subsection{User Selection}
 \label{sec:user_selection}
 
 This section covers the elementary functions that handle the selection of vertices through user input. The two crucial functions explained in the subsequent subsections implement means to add vertices to an initially empty set of vertices and remove them later if desired. Selected vertices will be visually highlighted in the application and, at any time, the current set of selected vertices can be saved to an external text file.
 
 	\subsubsection{\texttt{addVerticesToSelectionByCoordinates()}}
+	\label{sec:addVerticesToSelectionByCoordinates()}
+This private, recursive function adds vertices to a set of selected vertices by reference, based on three-dimensional coordinates and a search radius. The following parameters are required.
+\begin{enumerate*}
+	\item an input coordinate depicting the point in real space where a user was using the input device (a \texttt{glm::vec3} was used in this work),
+	\item a \texttt{float} value describing the radius around thee input coordinate in which vertices are to be added to the selection and
+	\item a reference to the set of indexes of vertices (\texttt{std::set<size\_t} was used in this work)
+	\item bool debugInfo
+\end{enumerate*}.
+
+An additional boolean flag determing whether, during the recursive search for the correct node, information will be printed to the console or not, is passed with a default value of \texttt{false}. If set to \texttt{true}, it cuases information to be displayed. The general course of events within this function proceeds as follows:
+\begin{enumerate}
+	\item check if any of the given input point's coordinates are located outside of the bounds of the root of the \texttt{ocTree} indexing the 3D object. Throws exception if this is the case.
+	\item check if the current node is a leaf (i.e. has no child nodes). This terminates the recursive search and proceeds with finding vertices around the given input coordinates, as it is save to assume that the correct node was found.
+	\item add all vertices within this node to the set of vertices to be checked.
+	\item determine if the radius around the query point crosses the bounds of this node in any direction. If so, add all the vertices of the neighbouring node to the set of vertices to be checked.
+	\item iterate over the entire set of vertices to be checked to find which ones lie in radius around the query point and add those to the set of selected vertices.
+	\item if this node is not a leaf node - steps 3, 4 and 5 were skipped in this case - determine the correct child node in which the query point is located and have that node recursively call \texttt{addVerticesToSelectionByCoordinates()}.
+\end{enumerate}
+
+Consider figure \ref{fig:a01_without_neighbours} for a clear depection of the process. For the sake of a simplified, clear presentation, an orthographic top view which only considers axes x and y was is shown here. Four of an implicitly shown parent node's eight subtree nodes are shown. The figure illustrates, from left to right, three vital steps towards finding vertices that lie within a search radius $r$ around an input query coordinate $P_q$. Throughout these steps, $P_q$ is depicted as an orange point, $r$ is shaded blue. Vertices within this radius will compose the result of the query $V_{result}$ and get added to the set of currently selected vertices. Vertices which are considered to get checked if they lay within $r$, $V_{check}$, are highlighted blue, the ones where this is not the case are plain grey.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.0\textwidth]{a01_without_neighbors.png}
+  \caption{Determing vertices to check and final set of selected vertices}\label{fig:a01_without_neighbours}
+\end{figure}
+
+The leftmost part of figure \ref{fig:a01_without_neighbours} shows the state after two crucial steps have already been taken: Leaf node $N_q$, i.e. the node that contains $P_q$ and does not have child nodes (001 in the figure) was found and all the vertices within it added to $V_{check}$ (highlighted blue). Furthermore, since the search radius around $P_q$ crosses the bounds of $N_q$ in negative x direction, an additional call to \texttt{addVerticesToSelectionByCoordinates()} with parameters $P_{q}^{'}$ and radius $r^{'}$ = 0 was executed, with $P_{q}^{'}$ = [$P_q.x-r$, $P_q.y$, $P_q.z$] (highlighted purple). This additional query found that $P_{q}^{'}$ is located in leaf node 000. Thus, as shown in the middle part of the figure, vertices in 000 are added to $V_{check}$. Note that one vertex that is located within $r$ - but not the bounds of $N_q$ was added to $V_{check}$ this way. The righthand part of the figure shows the result of the original query. After checking all vertices in $V_{check}$ whether they lie within $r$ around $P_q$, a set of vertices which fulfill this very condition $V_{result}$, containing three vertices (highlighted white) is returned.
+
+The following code-snippets show how the process described above was implemented in this work.
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em,tabsize=3]
+ocTree* ocTree::addVerticesToSelectionByCoordinates(...) {
+	if (target.x < m_minX || target.x > m_maxX || target.y < m_minY
+		|| target.y > m_maxY || target.z < m_minZ || target.z > m_maxZ) {
+		std::cout << "EXCEPTION" << std::endl;
+		return NULL;
+	}
+
+	if (this->getisLeaf() == true) {
+		result = this;
+		std::vector<std::pair<size_t, glm::vec3> > verticesToCheck;
+		for(size_t t = 0; t < result->m_verticesInBounds.size();++t){
+			verticesToCheck.push_back(result->m_verticesInBounds[t]);
+		}
+		if (radius != 0) {
+			glm::vec3 neighbourCo;
+			if (target.x - radius < m_minX) {
+				neighbourCo = {target.x-radius, target.y, target.z};
+				ocTree * neighbour = m_root->addVerticesToSelectionByCoordinates
+				(neighbourCo,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert
+				(verticesToCheck.end(), neighbour->m_verticesInBounds.begin(),
+				neighbour->m_verticesInBounds.end());
+			}
+			if (target.x + radius > m_maxX) {
+				neighbourCo = {target.x+radius,target.y,target.z};
+				ocTree * neighbour = m_root->addVerticesToSelectionByCoordinates
+				(neighbourCo,0,intermediateSelection,debugInfo);
+				verticesToCheck.insert
+				(verticesToCheck.end(), neighbour->m_verticesInBounds.begin(),
+				neighbour->m_verticesInBounds.end() );
+			}
+			// <repeat for y and z direction>
+		}
+
+		std::vector<std::pair<size_t, glm::vec3>>::const_iterator it;
+		for (it = verticesToCheck.begin(); it!=verticesToCheck.end(); ++it) {
+			if (radiusContainsCoordinates(r, it->second) {
+				intermediateSelection.insert(it->first);
+			}
+		}
+		return result;
+	}
+}
+\end{lstlisting}
+\end{minipage}
+
+In lines 2 - 6, it is validated whether the input coordinates of $P_q$ given via \texttt{target} is located within the bounds of the calling node - that is usually going to be the root node of an \texttt{ocTree} structure. If this is not the case, null is returned.
+If line 8 evaluates to \texttt{true}, this means that the current node is a leaf node and since given input coordinates do not lie outside its bounds, this has to be target node of the query $N_q$.
+
+In line 10 - 13, a new \texttt{vector} of \texttt{pairs} consisting of \texttt{size\_t} values and \texttt{glm::vec3} vectors, representing the set of vertices to be checked is created. The \texttt{size\_t} parts of  \texttt{pairs} in this vector provide unique indexing, ensuring fast and direct access to each element. However, at this stage, this set only contains vertices within initial target node $N_q$. Without the rest of the code, vertices within one or multiple \textit{neighbour nodes} that contain $P_{q}^{'}$ vertices which sould get selected, would be ignored.
+
+Line 14 - 36 show two out of six possible types of \textit{neighbour node queries} - both possible ways in which \textit{r} can cross the bounds of $N_q$ in x direction and how they are handled are illustrated. Note how parameter \texttt{radius} is used here (line 14). If it is set to 0, this request (which is also handled by \texttt{addVerticesToSelectionByCoordinates} can be classified as a \textit{neighbour query} which means that it cannot possibly envoke further \textit{neighbour queries}. In lines 17 and 28, varying intermediate versions of $P_{q}^{'}$ are derived by adding and subtracting \texttt{radius} to initial x value of $P_{q}$ after it was found that they are located within a neighbouring node of $N_q$ (lines 16 and 24). After this, assitional queries are processed via \texttt{addVerticesToSelectionByCoordinates} with crucial input parameters $P_{q}^{'}$ and \texttt{radius} = 0 (lines 18, 19 and 26, 27). Finally, the vertices within the found \textit{neighbour node} are added to the set of vertices to be checked (lines 20 - 22 and 28 - 30). As hinted by the comment in line 32, this process is repeated for y and z directions.
+
+Before recursively returning the calling node in line 41, the most important part of this function - that is actually determining which vertices are located in raidus \textit{r} around input coordinates $N_q$ - takes place in lines 36 - 40. Here, we see a \texttt{for} loop through $V_{check}$, the set of vertices that lie within the bounds of $N_q$ as well as those within one or more \textit{neighbour nodes} $N_q^{'}$. The simple utility function \texttt{radiusContainsCoordinates} takes care of this. Note that, in case it evaluates to \texttt{true}, the \texttt{first} element of a pair within \texttt{verticesToCheck} (or $V_{check}$) is added to \texttt{intermediateSelection} (or $V_{result}$). This first element is a simple \texttt{size\_t} number which serves as a unique identifier for every vertex of the entire loaded object. This approach ensures that almost negligibly small amounts of data are actually transferred within the application - between server to client instances (see
+% @TODO: Referenz zu dem Kapitel einbauen)
+% @TODO: Wie groß sind size_t?
+% @TODO: auch größe von vec3 prüfen
+). Depending on what system architecture the application is ran on, these \texttt{size\_t} values only take 32 or 64 bits of space in memory, whereas \texttt{glm::vec3} take up to 12 times as much space.
+
+Note that the code-snippet above only considers cases in which \texttt{radius} $r$ around $N_q$ crosses one set of bounds of \texttt{ocTree} nodes. However, it is a trivial observation of the conceptual structure of octrees that, depending on combinations of a large \texttt{radius}, a low maximum allowed number of vertices per node and a high maximum allowed \texttt{level}, critical situations could emerge. Such a situation could take place in a fine-grained octree structure with a large number of high level leaf nodes. For any node $N$ on a level $l$, the following is true.
+
+$N_s$($d$) = $N_{R}$($d$) / $2^{l}$ where $N_s$($d$) is the size of $N$ in dimension $d$ and $N_{R}$($d$) is the size of root node $N_{R}$ in dimension $d$.
+
+So in this application, after the object is loaded and spatially indexed, we consider the maximum allowed level for leaf nodes $l_{max}$ as well as the bounding values of its root node. The minimum difference between the maximum and mininum values in a dimension indicate the shortest dimension $d_{min}$ of the root node. Based on these values, we can set a maximum allowed value $r_{max}$ for the search radius as follows.
+
+$r_{max}$ = $d_{min}$ / $2^{l_{max}}$ * 1/2. In other words, the maximum allowed search radius will be half the size of the smallest possible leaf node. Thus, no search query can evoke more than three additional queries for \textit{neighbour nodes}, one in each dimension.
+
+Finally, the following simplified code-snippet shows how, making use of recursion, child nodes perform further calls to \texttt{addVerticesToSelectionByCoordinates} until $N_q$ (or $N_{q}^{'}$) is found, based on the directions in which $P_{q}^{'}$ crosses the bounds of the calling node.
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=C++,numberstyle=\zebra{black!5}{white}{},numbers=left,xleftmargin=2em,tabsize=3]
+ocTree* ocTree::addVerticesToSelectionByCoordinates(...) {
+	// <cont.>
+	if (target.x < m_meanX) {
+		if (target.y < m_meanY) {
+			if (target.z < m_meanZ) {
+				// 110
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			} else {
+				// 010
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			}
+		} else {
+			if (target.z < m_meanZ) {
+				// 100
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			} else {
+				// 000
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			}
+		}
+	} else {
+		if (target.y < m_meanY) {
+			if (target.z < m_meanZ) {
+				// 111
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			} else {
+				// 011
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			}
+		} else {
+			if (target.z < m_meanZ) {
+				// 101
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			} else {
+				// 001
+				result = m_myChildren[6]->addVerticesToSelectionByCoordinates();
+			}
+		}
+	}
+}
+\end{lstlisting}
+\end{minipage}
+
+Finding which child node $N_{l+1}$ is to perform the next recursive call happens in three simple \texttt{if - else} statements, the first one consisting of blocks of lines 3 - 20 and 21 - 39. In case the first \texttt{if} in line 3 evaluates to \texttt{true}, $P_q$ lies between the calling subtree node's minimum and mean values in x direction, thus the relevant child node's identifier must be \texttt{false} (0) at its \textit{level offset} $O_{l+1}$+2. If the statement in line 4 is \texttt{true}, the second $O_{l+1}$+1 can only be \texttt{true} (1). Whether the last value at $O_{l+1}$ is \texttt{true} or \texttt{false} is determined in line 5. We see exemplary, shortened recursive calls to \texttt{addVerticesToSelectionByCoordinates} in lines 7, 10, 13, 15, 18 and so on which are returned at the end of the function.
 
 	\subsubsection{\texttt{removeVerticesFromSelectionByCoordinates()}}
+	\label{sec:removeVerticesFromSelectionByCoordinates()}
+
+This is the counterpart to \texttt{addVerticesToSelectionByCoordinates} and the second of two elementary methods that allow users to create and modifiy vertex selections in this application. Using the exact same parameters in identical order, it is a private, recursive function that allows for vertices added to the current selection to be removed again. In fact, the two functions vary so little, we can use the same list of general tasks as shown in \ref{sec:removeVerticesFromSelectionByCoordinates()}. The crucial differences will be highlighted in bold text.
+
+\begin{enumerate}
+	\item check if any of the given input point's coordinates are located outside of the bounds of the root of the \texttt{ocTree} indexing the 3D object. Throws exception if this is the case.
+	\item check if the current node is a leaf (i.e. has no child nodes). This terminates the recursive search and proceeds with finding vertices around the given input coordinates, as it is save to assume that the correct node was found.
+	\item add all vertices within this node to the set of vertices to be checked.
+	\item determine if the radius around the query point crosses the bounds of this node in any direction. If so, add all the vertices of the neighbouring node to the set of vertices to be checked.
+	\item iterate over the entire set of vertices to be checked to find which ones lie in radius around the query point and \textbf{remove those from} the set of selected vertices.
+	\item if this node is not a leaf node - steps 3, 4 and 5 were skipped in this case - determine the correct child node in which the query point is located and have that node recursively call \textbf{\texttt{removeVerticesFromSelectionByCoordinates()}}.
+\end{enumerate}
+
+At this point it is worth noting that these two fundamental functions were mapped to two different buttons on the handheld controller used at the V2C. Figure \ref{fig:selection.png} shows a simple 3D object at various stages during consecutively performing these fundamental operations on it. The leftmost part of the figure shows a simple sphere with no vertices selected. The middle part shows the same sphere after eight vertices have been added to the selection and how they are highlighted. The righthand part of the figure shows the object after four vertices have been removed from the selection via \texttt{addVerticesToSelectionByCoordinates} with other coordinates.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{selection.png}
+  \caption{A basic vertex selection process}\label{fig:selection.png}
+\end{figure}
 
 
 \subsection{Tracking Selection}
 \label{sec:tracking_selection}
+
+The set of user selected vertices was being kept track of as described in this section. Using the two fundamental functions described in \ref{sec:removeVerticesFromSelectionByCoordinates()} and \ref{sec:addVerticesToSelectionByCoordinates()}, every vertex of a spatially indexed 3D object can be selected and deselected at will. At each frame, every currently selected vertex is highlighted in an easily distinguishable bright red shade. Additionally, at any point during runtime, the server program of the application can print the current set of selected vertices to an external textfile.
+
+Vertices in this application can either be selected or not selected. Only selected vertices are tracked. This is implemented using the following two variables in the main class.
+
+\begin{description}
+	\item[\texttt{std::set<size\_t> vertexSelection}] - a set of unsigned integers. A \texttt{set} is a C++ specific type of container with two handy properties for this use case. It guarantees the uniqueness of each element, as the value of an element is also the key used to identify it, and it is allocator-aware, which means it uses an allocator object to dynamically handle its storage needs (see \cite{set}).
+	\item[\texttt{std::vector <std::pair <size\_t, glm::vec3> >  verticesList}] - A \texttt{vector} containing \texttt{pairs} of unique \texttt{size\_t} values and \texttt{glm::vec3} objects. \texttt{vectors} are contiguous storage containers that can store any type of objects, provide access to elements by using offsets (just like arrays) but also change their size dynamically (see \cite{vector}). Since the actual content of this variable is created and stored during spatially indexing a loaded 3D object during the recursive building process of an octree structure (see \ref{sec:buildTreeRecursively}), its final required size is not know at startup of the application, hence an ordinary \texttt{array} was not a suitable datatype here.
+\end{description}
+
+After the setup process of the application, \texttt{verticesList} will essentially hold an ordered list of pairs of integer numbers and three-dimensional coordinates. Table \ref{tab:verticesList-startup} illustrates an excerpt of its possible content after startup. Note that the order of coordinates is arbitrary and, in no way, represents the structure or order of the loaded 3D file.
+
+
+% @TODO hier geht's weiter
+
+\begin{table}[]
+\centering
+	\begin{tabular}{l|l}
+	offset (\texttt{size\_t}) & coordinate (\texttt{glm::vec3}) \\ \hline
+	0 & [0.481, 0.461, 0.458] \\
+	1 & [0.351, 0.335, 0.024] \\
+	2 & [0.385, 0.324, 0.021] \\
+	3 & [0.452, 0.342, 0.125]
+	\end{tabular}
+	\caption{content of \texttt{verticesList} at startup}
+	\label{tab:verticesList-startup}
+\end{table}
+% table 4.3
+
+% print, genaueres zu add und remove in der CAVE, globales set von size_t und vec3s
 
 \subsection{Testing Setup}
 \label{sec:testing_setup}

@@ -1,10 +1,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{10}{figure.3.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{19}{figure.4.1}
 \contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{21}{figure.4.2}
 \contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{22}{figure.4.3}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{27}{figure.4.4}
 \addvspace {10\p@ }

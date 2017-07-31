@@ -76,13 +76,6 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
 \newlabel{sec:concept}{{3}{9}{Concept}{chapter.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.0.1}Implementing a selection application for the V2C's projection installation}{9}{subsection.3.0.1}}
-\newlabel{sec:implementing_selection_application_v2c}{{3.0.1}{9}{Implementing a selection application for the V2C's projection installation}{subsection.3.0.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.0.2}Spatial indexing of 3D data}{9}{subsection.3.0.2}}
-\newlabel{sec:impl_spatial_indexing_3d}{{3.0.2}{9}{Spatial indexing of 3D data}{subsection.3.0.2}{}}
-\citation{Octree}
-\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{10}{figure.3.1}}
-\newlabel{fig:obj_content}{{\relax 3.1}{10}{Notation in .OBJ format}{figure.3.1}{}}
 \citation{Octree}
 \citation{OpenGL}
 \citation{v2c}

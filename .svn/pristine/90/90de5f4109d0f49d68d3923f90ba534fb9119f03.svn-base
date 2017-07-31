@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.3.20)  31 JUL 2017 11:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.3.20)  13 JUL 2017 15:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -492,7 +492,7 @@ LaTeX Info: Redefining \nameref on input line 70.
 \openout3 = `metz17.out'.
 
  (./Titel/titel-lmu.tex
-<./Bilder/lmu_siegel.pdf, id=136, 201.75375pt x 201.75375pt>
+<./Bilder/lmu_siegel.pdf, id=128, 201.75375pt x 201.75375pt>
 File: ./Bilder/lmu_siegel.pdf Graphic file (type pdf)
 
 <use ./Bilder/lmu_siegel.pdf>
@@ -526,7 +526,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ] (build/metz17.toc
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 20.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 18.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 ))
@@ -567,22 +567,12 @@ chapter 2.
 
 ]
 chapter 3.
+) (./04-selection_application.tex [9] [10
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 20.
 
-<./Bilder/obj_content.png, id=354, 440.64626pt x 343.2825pt>
-File: ./Bilder/obj_content.png Graphic file (type png)
-
-<use ./Bilder/obj_content.png>
-Package pdftex.def Info: ./Bilder/obj_content.png used on input line 31.
-(pdftex.def)             Requested size: 262.47937pt x 204.48871pt.
- [9]) (./04-selection_application.tex [10 <./Bilder/obj_content.png>]
+]
 chapter 4.
-[11
-
-
-] [12]
+[11] [12]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 72.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -612,79 +602,66 @@ Overfull \hbox (10.95003pt too wide) in paragraph at lines 138--160
  []
 
 [15]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 194--227
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 193--226
 []$[]$ 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 228.
+               Default added (so using `tbp') on input line 227.
 
 [16]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 242--271
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 240--269
 []$[]$ 
  []
 
-[17] [18] <./Bilder/child_node_000_101.png, id=529, 1027.84pt x 513.92pt>
+[17] [18] <./Bilder/child_node_000_101.png, id=507, 1027.84pt x 513.92pt>
 File: ./Bilder/child_node_000_101.png Graphic file (type png)
 
 <use ./Bilder/child_node_000_101.png>
-Package pdftex.def Info: ./Bilder/child_node_000_101.png used on input line 288
+Package pdftex.def Info: ./Bilder/child_node_000_101.png used on input line 285
 .
 (pdftex.def)             Requested size: 349.97028pt x 174.98926pt.
 
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 300--325
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 296--321
 []$[]$ 
  []
 
 [19 <./Bilder/child_node_000_101.png>]
-<./Bilder/ocTree_levels.png, id=537, 1007.765pt x 727.71875pt>
+<./Bilder/ocTree_levels.png, id=515, 1007.765pt x 727.71875pt>
 File: ./Bilder/ocTree_levels.png Graphic file (type png)
 
 <use ./Bilder/ocTree_levels.png>
-Package pdftex.def Info: ./Bilder/ocTree_levels.png used on input line 334.
+Package pdftex.def Info: ./Bilder/ocTree_levels.png used on input line 330.
 (pdftex.def)             Requested size: 415.58678pt x 300.09885pt.
  [20] [21 <./Bilder/ocTree_levels.png>]
-<./Bilder/a01_without_neighbors.png, id=577, 2668.97125pt x 827.09pt>
+<./Bilder/a01_without_neighbors.png, id=555, 2668.97125pt x 827.09pt>
 File: ./Bilder/a01_without_neighbors.png Graphic file (type png)
 
 <use ./Bilder/a01_without_neighbors.png>
 Package pdftex.def Info: ./Bilder/a01_without_neighbors.png used on input line 
-369.
+364.
 (pdftex.def)             Requested size: 437.46118pt x 135.55528pt.
  [22 <./Bilder/a01_without_neighbors.png>]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 377--424
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 372--422
 []$[]$ 
  []
 
-[23] [24]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 448--492
+[23]
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 426--469
 []$[]$ 
  []
 
-[25] <./Bilder/selection.png, id=693, 652.4375pt x 213.79875pt>
-File: ./Bilder/selection.png Graphic file (type png)
-
-<use ./Bilder/selection.png>
-Package pdftex.def Info: ./Bilder/selection.png used on input line 513.
-(pdftex.def)             Requested size: 393.71239pt x 129.02077pt.
- [26]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 535.
-
-) [27 <./Bilder/selection.png>] [28
-
-
-] (build/metz17.lof)
+) [24] (build/metz17.lof)
 \tf@lof=\write5
 \openout5 = `metz17.lof'.
 
- (build/metz17.bbl
-[29
+ (build/metz17.bbl [25
 
 
-] [30
+
+
+] [26
 
 
 ]
@@ -695,7 +672,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--11
 
  []
 
-[31]
+[27]
 Underfull \hbox (badness 1616) in paragraph at lines 116--121
 []\OT1/cmr/m/n/10.95 Zahira Mer-chant, Ernest T Goetz, Lau-ren Ci-fuentes, Wend
 y Keeney-
@@ -707,9 +684,9 @@ Underfull \hbox (badness 3536) in paragraph at lines 142--145
 : / / en . wikipedia . org / wiki /
  []
 
-[32] [33])
+[28] [29])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
- [34]
+ [30]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
  (build/metz17.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
@@ -719,10 +696,10 @@ Package rerunfilecheck Info: File `metz17.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
  ) 
 Here is how much of TeX's memory you used:
- 11580 strings out of 494910
- 174808 string characters out of 6179836
- 367024 words of memory out of 5000000
- 14292 multiletter control sequences out of 15000+600000
+ 11536 strings out of 494910
+ 174038 string characters out of 6179836
+ 366204 words of memory out of 5000000
+ 14270 multiletter control sequences out of 15000+600000
  14735 words of font info for 53 fonts, out of 8000000 for 9000
  77 hyphenation exceptions out of 8191
  41i,10n,66p,1969b,1351s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -731,25 +708,24 @@ e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/r
-sfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on build/metz17.pdf (44 pages, 1513281 bytes).
+/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on build/metz17.pdf (40 pages, 1436940 bytes).
 PDF statistics:
- 917 PDF objects out of 1000 (max. 8388607)
- 828 compressed objects within 9 object streams
- 361 named destinations out of 1000 (max. 500000)
- 295 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 844 PDF objects out of 1000 (max. 8388607)
+ 764 compressed objects within 8 object streams
+ 341 named destinations out of 1000 (max. 500000)
+ 269 words of extra memory for PDF output out of 10000 (max. 10000000)
 

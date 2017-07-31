@@ -3,8 +3,6 @@
 \contentsline {section}{\numberline {2.1}Mesh saliency and human perception}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Human attention in Virtual Reality}{5}{section.2.2}
 \contentsline {chapter}{\numberline {3}Concept}{9}{chapter.3}
-\contentsline {subsection}{\numberline {3.0.1}Implementing a selection application for the V2C's projection installation}{9}{subsection.3.0.1}
-\contentsline {subsection}{\numberline {3.0.2}Spatial indexing of 3D data}{9}{subsection.3.0.2}
 \contentsline {chapter}{\numberline {4}Selection Application}{11}{chapter.4}
 \contentsline {section}{\numberline {4.1}Additional Third Party Libraries}{11}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}OpenGL}{11}{subsection.4.1.1}
@@ -27,7 +25,7 @@
 \contentsline {subsection}{\numberline {4.3.2}User Selection}{21}{subsection.4.3.2}
 \contentsline {subsubsection}{\numberline {4.3.2.1}\texttt {addVerticesToSelectionByCoordinates()}}{21}{subsubsection.4.3.2.1}
 \contentsline {subsubsection}{\numberline {4.3.2.2}\texttt {removeVerticesFromSelectionByCoordinates()}}{26}{subsubsection.4.3.2.2}
-\contentsline {subsection}{\numberline {4.3.3}Tracking Selection}{26}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}Tracking Selection}{27}{subsection.4.3.3}
 \contentsline {subsection}{\numberline {4.3.4}Testing Setup}{27}{subsection.4.3.4}
 \contentsline {chapter}{\nonumberline List of Figures}{29}{chapter*.2}
 \contentsline {chapter}{\nonumberline Bibliography}{31}{chapter*.3}
