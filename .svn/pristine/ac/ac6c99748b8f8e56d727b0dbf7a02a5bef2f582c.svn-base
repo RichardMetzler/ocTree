@@ -4,7 +4,6 @@
 #endif 
 #include <dirent.h>
 #include <iostream>
-#include <math.h>
 #include <sstream>
 #include <fstream>
 #include <string>
@@ -51,29 +50,12 @@ FIBITMAP* loadImage(const std::string filename);
 
 // Global variables
 
-
-/**
- * ##############################################################
- * #################	Pfaede zu .txt Files	#################
- * #################	 Ggf. Anpassen!!		#################
- * ##############################################################
- */
-// Auge draufbehalten!
+// @FIXME: weniger absolut machen
+const char *CombinedUserSelectionPath = "/home/ri43hiq/Desktop/txt_files/01_cow/selected_saliency_values.txt";
 const char *SelctionLogPath="/home/ri43hiq/Desktop/txt_files/selection_log.txt";
 const char *ComputedSaliencyTxtPath="/home/ri43hiq/Desktop/txt_files/computed_saliency_values.txt";
-
-// RESULTS
-const char *differencesWeightedPath = "/home/ri43hiq/Desktop/txt_files/RESULTS/differences_weighted.txt";
-const char *differencesPath = "/home/ri43hiq/Desktop/txt_files/RESULTS/differences_values.txt";
-
-// RELATIV ZU Object -> UNBEDINGT ANPASSEN!
-const char *AverageUserSelectionPath = "/home/ri43hiq/Desktop/txt_files/01_cow/selected_saliency_values.txt";
-const char *UserSelectedSaliencyTxtPath="/home/ri43hiq/Desktop/txt_files/01_cow/selected_saliency_values.txt";
+const char *NeighbouringValuesTxtPath = "/home/ri43hiq/Desktop/txt_files/weighted_saliency_values.txt";
 const char *UserSelectionLogFilesPath = "/home/ri43hiq/Desktop/txt_files/01_cow/";
-/**
- * ##############################################################
- */
-
 
 glm::mat4 proj_matrix;
 glm::mat4 view_matrix;
@@ -85,14 +67,6 @@ ocTree* myOcTree;
 
 std::set<size_t> vertexSelection;
 
-/**
- * vector to hold difference- and weighted difference values of each vertex
- * size_t	ID					<0>
- * float	difference			<1>
- * float	differenceWeighted	<2>
- */
-std::vector<std::tuple <size_t, float, float> > saliency_differences;
-
 std::vector<std::pair<size_t, float> > saliency_values;	// temporary vector to hold pairs of [vertexID, computedSaliencyValue]
 
 float screen_width = 30.0; //real size in cm
@@ -101,10 +75,6 @@ float near_clipping = 50.; //how far is the screen away from the user (in cm)
 float far_clipping = 4000.; // up to where do we want to render (in cm)
 
 float maxSearchRadius;
-
-// SUPER WICHTIG!!!
-float threshold_weighted = 0.2;
-float threshold_difference = 0.001;
 
 int max_window_width;
 int max_window_height;
@@ -137,8 +107,6 @@ Object object1;
 std::vector<Mesh*> meshes;
 std::vector<glm::vec3> vertices;
 
-float circleAtOriginRadiusOne(float x);
-
 /* #####################################################
 /	Main program
 /  ##################################################### */
@@ -159,7 +127,7 @@ int main(int argc, char **argv) {
 
 //	 std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
 //	std::string obj_path = "/home/ri43hiq/workspace/mesh-saliency-climberpi/Mesh-Saliency-master/object/iphone_noNormals.obj";
-	std::string obj_path = "obj_files/cow_subsurf1_FINAL.obj";
+	std::string obj_path = "obj_files/cow_FINAL.obj";
 
 
 	glutInit(&argc, argv);		// First initialise GLUT
@@ -235,10 +203,6 @@ int main(int argc, char **argv) {
 /	create Window, setup openGL states
 /  ##################################################### */
 void setup(void) {
-	std::cout << circleAtOriginRadiusOne(0.0) << std::endl;
-	std::cout << circleAtOriginRadiusOne(0.5) << std::endl;
-	std::cout << circleAtOriginRadiusOne(1.0) << std::endl;
-
 	/* ######################
 	/ GLUT Setup
 	/  ###################### */
@@ -305,12 +269,6 @@ void setup(void) {
 	arcball.set_damping(.01f);
 	arcball.set_params(glm::vec2(float(max_window_width)/2.,float(max_window_height)/2.f),1000.f);
 	arcball.idle();
-}
-
-float circleAtOriginRadiusOne(float x) {
-	float result;
-	result = sqrt(1.0-pow((x-1.0),2.0));
-	return result;
 }
 
 //	Clean up function
@@ -428,6 +386,13 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		case 50:	// 2/down
 			break;
 
+		case 'f':
+		case 'F':
+		{
+			meshes[0]->TESTdebugColorOfVertex(1531);
+			break;
+		}
+
 		case 'h':
 		case 'H':	// highlight a selection @FIXME testing purpose
 		{
@@ -468,7 +433,6 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			break;
 		}
 
-
 		/**
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		 * Get vertices by ID of input text file; store them in saliency_values
@@ -508,12 +472,10 @@ void keyboardFunction(unsigned char k, int x, int y) {
 					saliency_values.push_back(std::make_pair(id, std::atof(line_saliency_value.c_str())));
 				}
 				auto it = saliency_values.begin();
-
-				// debug messages
-//				for (int n = 0; n != saliency_values.size(); ++n) {
+				for (int n = 0; n != saliency_values.size(); ++n) {
 //					std::cout << "vertex stored, computed mesh saliency value for vertex " << saliency_values[n].first << ": " << saliency_values[n].second << std::endl;
-//					std::advance(it, 1);
-//				}
+					std::advance(it, 1);
+				}
 				/**
 				 * saliency_values now temporarily holds mesh saliency values for all the vertices in the form of
 				 * saliency_value[[siz_t id][float mesh_saliency_value]]
@@ -527,7 +489,6 @@ void keyboardFunction(unsigned char k, int x, int y) {
 
 			break;
 		}
-
 
 		/**
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -543,16 +504,14 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			std::vector<std::pair<size_t, int>> idCount;
 			// userSelectedSaliency: list of pairs of <vertexId, float> to store saliency for each vertex based on how often it was selected by users
 			std::vector<std::pair<size_t, float>> userSelectedSaliency;
-			DIR *dir;
-			struct dirent *ent;
-			int maxCount = 0;
-			size_t maxSelectedVert = 0;
 
 			auto it = saliency_values.begin();
 			for (int n = 0; n != saliency_values.size(); ++n) {
 				idCount.push_back(std::make_pair(saliency_values[n].first, 0));
 			}
 
+			DIR *dir;
+			struct dirent *ent;
 			if ((dir = opendir (UserSelectionLogFilesPath)) != NULL) {
 				// iterate through all files in USERSELECTIONLOGFILESPATH
 				while ((ent = readdir (dir)) != NULL) {
@@ -574,15 +533,8 @@ void keyboardFunction(unsigned char k, int x, int y) {
 								if (line.find("vertId") != std::string::npos) {
 									continue;		// ignore first (header) line
 								} else {
-									// each line is the id of a selected vertex-> direct conversion to int is possible
 									int vId = std::stoi(line);
-
-									// find & keep track of maximum amount of number a single vertex was selected
 									idCount[vId].second++;
-									if (idCount[vId].second > maxCount) {
-										maxCount = idCount[vId].second;
-										maxSelectedVert = idCount[vId].first;
-									}
 								}
 							}
 
@@ -592,16 +544,23 @@ void keyboardFunction(unsigned char k, int x, int y) {
 						in.close();
 					}
 				}
-				std::cout << "Vertex Nr. " << maxSelectedVert << " was selected " << maxCount << " times, which makes it the most popular vertex" << std::endl;
 				closedir (dir);
 			} else {
 				perror ("could not open directory");
 			}
 
+			// find out maximum amount of number a single vertex was selected
+			int maxCount = 0;
+			for (int n = 0; n != idCount.size(); ++n) {
+				if (idCount[n].second > maxCount) {
+					maxCount = idCount[n].second;
+				}
+			}
 			std::cout << "max number of selections for one or more vertices: " << maxCount << std::endl;
 
 			// finally, print average user selected saliencies to txt file
-			std::ofstream out(AverageUserSelectionPath);
+			std::ofstream out(CombinedUserSelectionPath);
+			std::stringstream line_out;
 			std::string line;
 
 			line = "vertexId\tuser saliency";
@@ -618,118 +577,61 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			break;
 		}
 
-
 		/**
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		 * Read from input files the computed well as the user selected combined saliency values for each vertex pi
-		 * compute difference as absolute value (diff²)
-		 * compute average computed saliency value of vertices surrounding pi
-		 * if neighboring saliency is greater than MEAN_NEIGHBOR_SALIENCY, multiply diff by FACTOR
+		 * Read saliency_values and get combined neighboring saliency values for each vertex pi
+		 * Multiply computed saliency value for pi by FACTOR if neighbors have a mean computed saliency
+		 * higher than MEAN_NEIGHBOR_SALIENY
 		 *
-		 *	write total combined saliency to output file
-		 *
-		 * @PARAM FACTOR:					123
-		 * @PARAM MEAN_NEIGHBOR_SALIENCY:	0.2
+		 * FACTOR:					123
+		 * MEAN_NEIGHBOR_SALIENCY:	0.2
 		 *
 		 * @INPUT_FILE:
-		 * 		path	/txt_files/computed_saliency_values.txt
-		 * 		file containing computed saliency values
+		 * 		path
+		 * 		vertId	computed saliency value		[first line, different than every following line]
 		 *
-		 * @INPUT_FILE:
-		 * 		path	/txt_files/01_cow/selected_saliency_values.txt		// KEEP UP TO DATE!
-		 * 		file containing user selected saliency values
-		 *
-		 *
-		 * @OUTPUT_FILE:
-		 * 		path 	/txt_files/RESULTS/differences_values.txt
-		 * 		output file containing differences
-		 *
-		 * @OUTPUT_FILE:
-		 * 		path 	/txt_files/RESULTS/differences_weighted.txt
-		 * 		output file containing final weighted differences
+		 * @OUTPUT_FILE: NeighbouringValuesTxtPath
+		 * 		path to text file containing combined saliency values for neighboring vertices in this format:
+		 * 		0		0.068022					[first line, like every other line]
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		 */
 		case 'l':
 		case 'L':
 		{
-			// @TODO vermutlich ca. 80% löschen; das machen was oben in den Comments steht
 			bool firstline = true;
 
 			int counter = 0;
 			std::cout << "L pressed" << std::endl;
-			std::ifstream in_computed (ComputedSaliencyTxtPath);
-			std::ifstream in_selected (UserSelectedSaliencyTxtPath);
-
+			std::ifstream in (ComputedSaliencyTxtPath);
 			std::string line;
 			std::string line_saliency_value;
 
+			std::ofstream out(NeighbouringValuesTxtPath);
 			std::stringstream line_out;
-			std::stringstream line_out_weighted;
 
-			// temporary vectors to hold computed and user-selected saliency values
-			std::vector <float> computed_saliency_values;
-			std::vector <float> user_selected_saliency_values;
-
-			// temporary vectors to hold pairs of unweighted and weighted differences
-			std::vector <float> temp_diffs_unweighted;
-			std::vector <float> temp_diffs_weighted;
-
-
-		// step 1: get computed saliency values and store them in computed_saliency_values
-			while (getline (in_computed,line)) {
-				// ignore first line
-				if (line.find("vertId") != std::string::npos) {
-					continue;
+			while (getline (in,line)) {
+				if(firstline) {
+					if (line.find("vertId") != std::string::npos) {
+					    firstline = false;
+						continue;
+					}
 				}
-				line_saliency_value = line.substr(line.find("\t")+1, line.size());
-				computed_saliency_values.push_back((float)std::stof(line_saliency_value));
-			}
-
-		// step 2: get user selected saliency values and store them in user_selected_saliency_values
-			while (getline (in_selected, line)) {
-				// ignore first line
-				if (line.find("vertexId") != std::string::npos) {
-					continue;
+				if (counter%1000 == 0) {
+					std::cout << "[" << counter << "]" << std::endl;
 				}
+
 				line_saliency_value = line.substr(line.find("\t")+1, line.size());
-				user_selected_saliency_values.push_back((float)std::stof(line_saliency_value));
-			}
+				line = line.substr(0, line.find("\t", 0));
+				size_t id = (size_t)std::stoi(line);	// id vertex
 
-		// step 3: calculate differences and store them in temp_diffs_unweighted
-			for (int a=0; a!= computed_saliency_values.size(); a++) {
-				float difference = computed_saliency_values[a] - user_selected_saliency_values[a];
-				// store the (squared), absolute value of the difference in temp_diffs_weighted
-//				temp_diffs_unweighted.push_back(pow(fabs(difference),2.0));
-				temp_diffs_unweighted.push_back(fabs(difference));
-			}
-
-		// step 4: print unweighted differences to differencesPath
-			std::ofstream out(differencesPath);
-			std::string line_o = "";
-			for (int b=0; b!=temp_diffs_unweighted.size(); b++) {
-				line_o.append(std::to_string(verticesList[b].first));
-				line_o.append("\t");
-				line_o.append(std::to_string(temp_diffs_unweighted[b]));
-				out << line_o << std::endl;
-				line_o = "";
-			}
-			out.close();
-
-		// step 5: iterate through unweighted difference values
-		// where needed - compute weighted values and store everything in temp_diffs_weighted
-		// print results to differences_weighted.txt
-			std::ofstream out_weighted(differencesWeightedPath);
-			int countWeighted = 0;
-			for (int c=0; c!= temp_diffs_unweighted.size(); c++) {
 				vertexSelection.clear();	// clear selection
-				myOcTree->addVerticesToSelectionByCoordinates (verticesList[c].second, maxSearchRadius, vertexSelection, false);
+				myOcTree->addVerticesToSelectionByCoordinates (verticesList[id].second, maxSearchRadius, vertexSelection, false);
 
 				// compute average computed mesh saliency
 				std::set<size_t>::iterator it = vertexSelection.begin();
-				int number = 0;	// number of neighbor vertices that have a saliency value other than 0.0
+				int number = 0;
 				float average = 0.0;
 				for (int n=0; n != vertexSelection.size(); ++n) {
-					std::string line_out_dif_weighted = "";
 					if (saliency_values[*it].second != 0.0) {
 						++number;
 						average += saliency_values[*it].second;
@@ -738,55 +640,17 @@ void keyboardFunction(unsigned char k, int x, int y) {
 						std::advance(it, 1);
 					}
 				}
-				std::string line_out_dif_weighted = "";
-				line_out_dif_weighted.append(std::to_string(verticesList[c].first));
-				line_out_dif_weighted.append("\t");
-
-				if(number > 0) {
-					if (average/number > threshold_weighted) {
-						countWeighted++;
-						float weighted_value = circleAtOriginRadiusOne(computed_saliency_values[c]);
-						temp_diffs_weighted.push_back(weighted_value);
-						line_out_dif_weighted.append(std::to_string(weighted_value));
-					} else {
-						temp_diffs_weighted.push_back(temp_diffs_unweighted[c]);
-						line_out_dif_weighted.append(std::to_string(temp_diffs_unweighted[c]));
-					}
+				if (number > 0) {
+					line.append ("\t");
+					line.append(std::to_string(average/number));
+					out << line << std::endl;
 				} else {
-					temp_diffs_weighted.push_back(temp_diffs_unweighted[c]);
-					line_out_dif_weighted.append(std::to_string(temp_diffs_unweighted[c]));
+					line.append ("\t0.0");
+					out << line << std::endl;
 				}
-
-				line_out_dif_weighted.append("\t");
-				line_out_dif_weighted.append(std::to_string(vertexSelection.size()));
-				out_weighted << line_out_dif_weighted << std::endl;
-				line_out_dif_weighted = "";
+				number = 0;
+				average = 0.0;
 			}
-			out_weighted.close();
-
-			std::cout << "number of weighted values: " << countWeighted << std::endl;
-
-		// Step 6: compute overall difference and weighted difference
-			float unweightedDifferenceOverall = 0.0;
-			float weightedDifferenceOverall = 0.0;
-			int lengthOverall = static_cast<int>(temp_diffs_unweighted.size());
-			int countRelevantOnes = 0;
-
-			for (int f=0; f<= temp_diffs_unweighted.size(); f++) {
-				if (temp_diffs_unweighted[f] > threshold_difference) {
-					countRelevantOnes++;
-					unweightedDifferenceOverall += temp_diffs_unweighted[f];
-					weightedDifferenceOverall += temp_diffs_weighted[f];
-				} else {
-					continue;
-				}
-			}
-
-			std::cout << "number of differences > 0.001: " << countRelevantOnes << std::endl;
-			std::cout << "OVERALL DIFFERENCE (unweighted): " << unweightedDifferenceOverall/countRelevantOnes << std::endl;
-			std::cout << "OVERALL DIFFERENCE (weighted): " << weightedDifferenceOverall/countRelevantOnes << std::endl;
-
-			break;
 		}
 
 		case 'c':

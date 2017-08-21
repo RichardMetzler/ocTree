@@ -104,7 +104,6 @@ float maxSearchRadius;
 
 // SUPER WICHTIG!!!
 float threshold_weighted = 0.2;
-float threshold_difference = 0.001;
 
 int max_window_width;
 int max_window_height;
@@ -159,7 +158,7 @@ int main(int argc, char **argv) {
 
 //	 std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
 //	std::string obj_path = "/home/ri43hiq/workspace/mesh-saliency-climberpi/Mesh-Saliency-master/object/iphone_noNormals.obj";
-	std::string obj_path = "obj_files/cow_subsurf1_FINAL.obj";
+	std::string obj_path = "obj_files/cow_FINAL.obj";
 
 
 	glutInit(&argc, argv);		// First initialise GLUT
@@ -305,12 +304,6 @@ void setup(void) {
 	arcball.set_damping(.01f);
 	arcball.set_params(glm::vec2(float(max_window_width)/2.,float(max_window_height)/2.f),1000.f);
 	arcball.idle();
-}
-
-float circleAtOriginRadiusOne(float x) {
-	float result;
-	result = sqrt(1.0-pow((x-1.0),2.0));
-	return result;
 }
 
 //	Clean up function
@@ -636,7 +629,7 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		 * 		file containing computed saliency values
 		 *
 		 * @INPUT_FILE:
-		 * 		path	/txt_files/01_cow/selected_saliency_values.txt		// KEEP UP TO DATE!
+		 * 		path	/txt_files/selected_saliency_values.txt
 		 * 		file containing user selected saliency values
 		 *
 		 *
@@ -698,9 +691,8 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		// step 3: calculate differences and store them in temp_diffs_unweighted
 			for (int a=0; a!= computed_saliency_values.size(); a++) {
 				float difference = computed_saliency_values[a] - user_selected_saliency_values[a];
-				// store the (squared), absolute value of the difference in temp_diffs_weighted
-//				temp_diffs_unweighted.push_back(pow(fabs(difference),2.0));
-				temp_diffs_unweighted.push_back(fabs(difference));
+				// store the squared, absolute value of the difference in temp_diffs_weighted
+				temp_diffs_unweighted.push_back(pow(fabs(difference),2.0));
 			}
 
 		// step 4: print unweighted differences to differencesPath
@@ -719,7 +711,6 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		// where needed - compute weighted values and store everything in temp_diffs_weighted
 		// print results to differences_weighted.txt
 			std::ofstream out_weighted(differencesWeightedPath);
-			int countWeighted = 0;
 			for (int c=0; c!= temp_diffs_unweighted.size(); c++) {
 				vertexSelection.clear();	// clear selection
 				myOcTree->addVerticesToSelectionByCoordinates (verticesList[c].second, maxSearchRadius, vertexSelection, false);
@@ -742,20 +733,21 @@ void keyboardFunction(unsigned char k, int x, int y) {
 				line_out_dif_weighted.append(std::to_string(verticesList[c].first));
 				line_out_dif_weighted.append("\t");
 
-				if(number > 0) {
-					if (average/number > threshold_weighted) {
-						countWeighted++;
-						float weighted_value = circleAtOriginRadiusOne(computed_saliency_values[c]);
-						temp_diffs_weighted.push_back(weighted_value);
-						line_out_dif_weighted.append(std::to_string(weighted_value));
-					} else {
-						temp_diffs_weighted.push_back(temp_diffs_unweighted[c]);
-						line_out_dif_weighted.append(std::to_string(temp_diffs_unweighted[c]));
-					}
+
+				if (average/number > threshold_weighted) {
+					// @TODO: ORDNUNG REINBRINGEN!
+					float weighted_value = circleAtOriginRadiusOne(computed_saliency_values[c]);
+				}
+
+				if (number > 0) {
+					temp_diffs_weighted.push_back(average/number);
+					line_out_dif_weighted.append(std::to_string(average/number));
 				} else {
 					temp_diffs_weighted.push_back(temp_diffs_unweighted[c]);
 					line_out_dif_weighted.append(std::to_string(temp_diffs_unweighted[c]));
 				}
+
+
 
 				line_out_dif_weighted.append("\t");
 				line_out_dif_weighted.append(std::to_string(vertexSelection.size()));
@@ -764,29 +756,51 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			}
 			out_weighted.close();
 
-			std::cout << "number of weighted values: " << countWeighted << std::endl;
 
-		// Step 6: compute overall difference and weighted difference
-			float unweightedDifferenceOverall = 0.0;
-			float weightedDifferenceOverall = 0.0;
-			int lengthOverall = static_cast<int>(temp_diffs_unweighted.size());
-			int countRelevantOnes = 0;
 
-			for (int f=0; f<= temp_diffs_unweighted.size(); f++) {
-				if (temp_diffs_unweighted[f] > threshold_difference) {
-					countRelevantOnes++;
-					unweightedDifferenceOverall += temp_diffs_unweighted[f];
-					weightedDifferenceOverall += temp_diffs_weighted[f];
-				} else {
-					continue;
-				}
-			}
 
-			std::cout << "number of differences > 0.001: " << countRelevantOnes << std::endl;
-			std::cout << "OVERALL DIFFERENCE (unweighted): " << unweightedDifferenceOverall/countRelevantOnes << std::endl;
-			std::cout << "OVERALL DIFFERENCE (weighted): " << weightedDifferenceOverall/countRelevantOnes << std::endl;
-
-			break;
+//			while (getline (in_computed,line)) {
+//				if(firstline) {
+//					if (line.find("vertId") != std::string::npos) {
+//					    firstline = false;
+//						continue;
+//					}
+//				}
+//				if (counter%1000 == 0) {
+//					std::cout << "[" << counter << "]" << std::endl;
+//				}
+//
+//				line_saliency_value = line.substr(line.find("\t")+1, line.size());
+//				line = line.substr(0, line.find("\t", 0));
+//				size_t id = (size_t)std::stoi(line);	// id vertex
+//
+//				vertexSelection.clear();	// clear selection
+//				myOcTree->addVerticesToSelectionByCoordinates (verticesList[id].second, maxSearchRadius, vertexSelection, false);
+//
+//				// compute average computed mesh saliency
+//				std::set<size_t>::iterator it = vertexSelection.begin();
+//				int number = 0;
+//				float average = 0.0;
+//				for (int n=0; n != vertexSelection.size(); ++n) {
+//					if (saliency_values[*it].second != 0.0) {
+//						++number;
+//						average += saliency_values[*it].second;
+////						line.append("\t");
+////						line.append(std::to_string(saliency_values[*it].second));
+//						std::advance(it, 1);
+//					}
+//				}
+//				if (number > 0) {
+//					line.append ("\t");
+//					line.append(std::to_string(average/number));
+//					out << line << std::endl;
+//				} else {
+//					line.append ("\t0.0");
+//					out << line << std::endl;
+//				}
+//				number = 0;
+//				average = 0.0;
+//			}
 		}
 
 		case 'c':

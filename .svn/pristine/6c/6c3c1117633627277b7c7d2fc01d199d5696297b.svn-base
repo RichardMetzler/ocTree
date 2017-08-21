@@ -159,7 +159,7 @@ int main(int argc, char **argv) {
 
 //	 std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
 //	std::string obj_path = "/home/ri43hiq/workspace/mesh-saliency-climberpi/Mesh-Saliency-master/object/iphone_noNormals.obj";
-	std::string obj_path = "obj_files/cow_subsurf1_FINAL.obj";
+	std::string obj_path = "obj_files/cow_FINAL.obj";
 
 
 	glutInit(&argc, argv);		// First initialise GLUT
