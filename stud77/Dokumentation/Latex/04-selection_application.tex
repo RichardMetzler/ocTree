@@ -348,7 +348,7 @@ This private, recursive function adds vertices to a set of selected vertices by 
 \begin{enumerate*}
 	\item an input coordinate depicting the point in real space where a user was using the input device (a \texttt{glm::vec3} was used in this work),
 	\item a \texttt{float} value describing the radius around thee input coordinate in which vertices are to be added to the selection and
-	\item a reference to the set of indexes of vertices (\texttt{std::set<size\_t} was used in this work)
+	\item a reference to the set of indexes of vertices (\texttt{std::set<size\_t>} was used in this work)
 	\item bool debugInfo
 \end{enumerate*}.
 
@@ -422,7 +422,7 @@ ocTree* ocTree::addVerticesToSelectionByCoordinates(...) {
 \end{lstlisting}
 \end{minipage}
 
-In lines 2 - 6, it is validated whether the input coordinates of $P_q$ given via \texttt{target} is located within the bounds of the calling node - that is usually going to be the root node of an \texttt{ocTree} structure. If this is not the case, null is returned.
+In lines 2 - 6, it is validated whether the input coordinates of $P_q$ given via \texttt{target} is located within the bounds of the calling node - that is usually going to be the root node of an \texttt{ocTree} structure. If this is not the case, \texttt{null} is returned.
 If line 8 evaluates to \texttt{true}, this means that the current node is a leaf node and since given input coordinates do not lie outside its bounds, this has to be target node of the query $N_q$.
 
 In line 10 - 13, a new \texttt{vector} of \texttt{pairs} consisting of \texttt{size\_t} values and \texttt{glm::vec3} vectors, representing the set of vertices to be checked is created. The \texttt{size\_t} parts of  \texttt{pairs} in this vector provide unique indexing, ensuring fast and direct access to each element. However, at this stage, this set only contains vertices within initial target node $N_q$. Without the rest of the code, vertices within one or multiple \textit{neighbour nodes} that contain $P_{q}^{'}$ vertices which sould get selected, would be ignored.
