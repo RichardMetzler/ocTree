@@ -25,6 +25,11 @@ Arridhana Ciptadi, Tucker Hermans, and James~M Rehg.
 \newblock An in depth view of saliency.
 \newblock Georgia Institute of Technology, 2013.
 
+\bibitem[clm]{clms}
+{mesh saliency by climberpi - github repository} weblink.
+\newblock \url{https://github.com/climberpi/Mesh-Saliency}.
+\newblock Accessed: 2017-06-07.
+
 \bibitem[CMS98]{cignoni1998comparison}
 Paolo Cignoni, Claudio Montani, and Roberto Scopigno.
 \newblock A comparison of mesh simplification algorithms.

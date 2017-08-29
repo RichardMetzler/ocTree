@@ -140,8 +140,6 @@ The five minute time limit was an absolute upper limit for each selection proces
 
 Besides the five minute \textit{tutorial phase} - the time users could take to get familiar with the application - and the actual tasks to be fulfilled (as described at the beginning of this section), only one more minor request was asked to be considered by users: An approximate symmetrical selection, meaning that, in cases where it was possible, parts of objects users selected on one side of an object would also be selected on the opposite side. Other than that, no additional information or hints were given. Users were told that there is no \textit{correct} way of to fulfill the selection task. They were encouraged to select whatever they deemed relevant according to the tasks based on their personal judgement.
 
-
-
 	\section {Measure of differences}
 	\label{sec:measure_of_difference}
 % Mit Details, Formelns & Pseudo-Code beschreiben, hierauf dann im "Auswertung sonstwas" chapter verweisen
@@ -153,11 +151,52 @@ I consider both \textit{raw} and \textit{weighted difference} values,
 
 		\subsection{Terms and abbreviations}
 		\label{sec:concept_terms_and_abbreviations}
-% mesh_saliency, user_saliency, difference_unweighted, neighborhood, difference_weighted, threshold x, y..
+The following terms, symbols and abbreviations will be used in the subsequent sections to explain the measure of difference used in this work.
+
+\begin{description}
+	\item [user saliency map] - a saliency map for an object based on the average times each vertex was selected by users
+	\item [mesh saliency map] - a saliency map for an object that was computed as described in \cite{lee2005mesh}
+	\item[difference ratio] - a float number, normalised to a value between 0.0 and 1.0 indicating how much the generated \textit{user saliency map} differs from the pre-computed \textit{mesh saliency map}, based on unweighted (raw) difference values
+	\item[weighted difference ratio] - a float number, normalised to a value between 0.0 and 1.0 indicating how much the generated \textit{user saliency map} differs from the pre-computed \textit{mesh saliency map}, based on weighted difference values
+	\item[$N(vi)$] - a part of an object consisting of multiple vertices $v_1$, ... $v_j$ which are located in a certain radius $r$ around currently considered vertex $v_i$
+	\item[$v_i$] - the currently considered vertex \textit{i} $\in$ set of all vertices $V$ belonging to an object
+	\item[$S_{M}(v_i)$] - the computed mesh saliency value for $v_i$
+	\item[$S_{U}(v_i)$] - the user generated saliency value for $v_i$
+	\item[$\Delta_{raw}(v_i)$] - the unweighted (raw) difference between the user and mesh saliency values $S_{U}(v_i)$ - $S_{M}(vi_i)$. The absolute value of the result is normalised to a value between 0.0 and 1.0
+	\item[$\Delta_{weighted}(v_i)$] - the weighted difference between the user and mesh saliency values $S_{U}(v_i)$ - $S_{M}(vi_i)$. The absolute value of the result is normalised to a value between 0.0 and 1.0
+	\item[$V_{proximty}(v_i)$] - a \textit{proximity set} of vertices $v_1$, ... $v_j$ that are located within radius $r$ around the coordinates of given vertex $v_i$
+	\item[$\omega$] - a threshold value derived from mesh saliency values $S_{M}(v_1)$, ... $S_{M}(v_j)$ for all vertices $v_1$, ... $v_j$ $\in$ a \textit{proximity set} $V_{proximty}(v_i)$ of $vi$
+\end{description}
 
 		\subsection{unweighted difference index}
 		\label{sec:unweighted_difference_index}
+As stated above, $\Delta_{raw}(v_i)$, or the unweighted (raw) difference between user generated and computed mesh saliency value can easily be obtained by taking the absolute value of $S_{M}(v_i) - S_{U}(v_i)$. For each of the objects used in the user study, we computed a mesh saliency map using \texttt{climberpi's} implementation of \textit{mesh saliency} \cite{clms}, providing $S_{M}(v_i)$ for every vertex $v$ in either $V_{bunny}$, $V_{cow}$ or $V_{P-51}$ where $V_{l}$ is the set of all vertices that make up the object with label $l$.
+
+Values $S_{U}(v_i)$ are computed via a simple, average-based comparison of how many users selected each vertex. As mentioned in \ref{sec:user_selection}, user selections are written to simple structured text files containing one unique vertex ID and the time they were added to the selection (in seconds since the application was started) in every line, seperated by a tab symbol as depicted in table \ref{tab:user_selection_log_file}.
+
+\begin{table}[]
+\centering
+	\begin{tabular}{l|l}
+	vertId & timestamp \\ \hline
+	27 & 64 \\
+	59 & 62 \\
+	63 & 62 \\
+	64 & 62 \\
+	65 & 62 \\
+	67 & 62 \\
+	68 & 62 \\
+	69 & 62
+	\end{tabular}
+	\caption{Sample content of a user selection log file}
+	\label{tab:user_selection_log_file}
+\end{table}
+% table 3.3
+
+% vetex mit ID 27 steht in 20 von 50 logfiles..., am öftesten selektiertes vert wird ermittelt,... durchschnitt ..bla
 
 		\subsection{weighted difference index}
 		\label{sec:weighted_difference_index}
 
+		\subsection{step-wise summery}
+		\label{sec:ste_wise_summery}
+% @TODO: Comments (beginnend z. 678) aus Quelltext copy-pasteten
