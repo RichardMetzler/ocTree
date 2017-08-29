@@ -46,8 +46,7 @@ Available across multiple operating systems including Android and iOS, The Open 
 \section{Relevant class files}
 \label{sec:relevant_class_files}
 
-This section will cover all the relevant C++ classes used to implement the selection application. Note that these descriptions will only cover the general structure and purpose of these classes within the context of the applicatoin. For a more detailed description of the most crucial functions as well as a complete UML diagram representation of the application, please refer to \hyperref[sec:key_features]{Key Features}.
-% @TODO "UML diagram" *hust*
+This section will cover all the relevant C++ classes used to implement the selection application. Note that these descriptions will only cover the general structure and purpose of these classes within the context of the applicatoin. For a more detailed description of the most crucial functions, please refer to \hyperref[sec:key_features]{Key Features}.
 
 \subsection{Object}
 \label{sec:object}
@@ -62,7 +61,6 @@ One object can consist of multiple meshes. These meshes are coherent with instan
 \subsection{ocTree}
 \label{sec:octree}
 Spatial indexing of loaded objects in the application is entirely handled in this class. It has been one of the most labour-intensive parts of the application since formal guides to implementing it, independent of coding language, are next to non-existent and working with the data that was stored in the object and mesh classes above required an extensive amount of customisation.
-% aktuell noch ocTreeLeaf
 
 \section{Key Features}
 \label{sec:key_features}
@@ -430,9 +428,7 @@ In line 10 - 13, a new \texttt{vector} of \texttt{pairs} consisting of \texttt{s
 Line 14 - 36 show two out of six possible types of \textit{neighbour node queries} - both possible ways in which \textit{r} can cross the bounds of $N_q$ in x direction and how they are handled are illustrated. Note how parameter \texttt{radius} is used here (line 14). If it is set to 0, this request (which is also handled by \texttt{addVerticesToSelectionByCoordinates} can be classified as a \textit{neighbour query} which means that it cannot possibly envoke further \textit{neighbour queries}. In lines 17 and 28, varying intermediate versions of $P_{q}^{'}$ are derived by adding and subtracting \texttt{radius} to initial x value of $P_{q}$ after it was found that they are located within a neighbouring node of $N_q$ (lines 16 and 24). After this, assitional queries are processed via \texttt{addVerticesToSelectionByCoordinates} with crucial input parameters $P_{q}^{'}$ and \texttt{radius} = 0 (lines 18, 19 and 26, 27). Finally, the vertices within the found \textit{neighbour node} are added to the set of vertices to be checked (lines 20 - 22 and 28 - 30). As hinted by the comment in line 32, this process is repeated for y and z directions.
 
 Before recursively returning the calling node in line 41, the most important part of this function - that is actually determining which vertices are located in raidus \textit{r} around input coordinates $N_q$ - takes place in lines 36 - 40. Here, we see a \texttt{for} loop through $V_{check}$, the set of vertices that lie within the bounds of $N_q$ as well as those within one or more \textit{neighbour nodes} $N_q^{'}$. The simple utility function \texttt{radiusContainsCoordinates} takes care of this. Note that, in case it evaluates to \texttt{true}, the \texttt{first} element of a pair within \texttt{verticesToCheck} (or $V_{check}$) is added to \texttt{intermediateSelection} (or $V_{result}$). This first element is a simple \texttt{size\_t} number which serves as a unique identifier for every vertex of the entire loaded object. This approach ensures that almost negligibly small amounts of data are actually transferred within the application - between server to client instances (see
-% @TODO: Referenz zu dem Kapitel einbauen)
-% @TODO: Wie groß sind size_t?
-% @TODO: auch größe von vec3 prüfen
+\ref{sec:selection_process})
 ). Depending on what system architecture the application is ran on, these \texttt{size\_t} values only take 32 or 64 bits of space in memory, whereas \texttt{glm::vec3} take up to 12 times as much space.
 
 Note that the code-snippet above only considers cases in which \texttt{radius} $r$ around $N_q$ crosses one set of bounds of \texttt{ocTree} nodes. However, it is a trivial observation of the conceptual structure of octrees that, depending on combinations of a large \texttt{radius}, a low maximum allowed number of vertices per node and a high maximum allowed \texttt{level}, critical situations could emerge. Such a situation could take place in a fine-grained octree structure with a large number of high level leaf nodes. For any node $N$ on a level $l$, the following is true.

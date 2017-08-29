@@ -1,0 +1,528 @@
+@incollection{koch1987shifts,
+  title={Shifts in selective visual attention: towards the underlying neural circuitry},
+  author={Koch, Christof and Ullman, Shimon},
+  booktitle={Matters of intelligence},
+  pages={115--141},
+  year={1987},
+  publisher={Springer}
+}
+
+@article{wu2013mesh,
+  title={Mesh saliency with global rarity},
+  author={Wu, Jinliang and Shen, Xiaoyong and Zhu, Wei and Liu, Ligang},
+  journal={Graphical Models},
+  volume={75},
+  number={5},
+  pages={255--264},
+  year={2013},
+  publisher={Elsevier}
+}
+
+@inproceedings{taubin1995estimating,
+  title={Estimating the tensor of curvature of a surface from a polyhedral approximation},
+  author={Taubin, Gabriel},
+  booktitle={Computer Vision, 1995. Proceedings., Fifth International Conference on},
+  pages={902--907},
+  year={1995},
+  organization={IEEE}
+}
+
+@inproceedings{ciptadi2013depth,
+  title={An in depth view of saliency},
+  author={Ciptadi, Arridhana and Hermans, Tucker and Rehg, James M},
+  year={2013},
+  organization={Georgia Institute of Technology}
+}
+
+@inproceedings{koschan2003perception,
+  title={Perception-based 3D triangle mesh segmentation using fast marching watersheds},
+  author={Koschan, AF},
+  booktitle={Computer Vision and Pattern Recognition, 2003. Proceedings. 2003 IEEE Computer Society Conference on},
+  volume={2},
+  pages={II--II},
+  year={2003},
+  organization={IEEE}
+}
+
+@article{dutagaci2012evaluation,
+  title={Evaluation of 3D interest point detection techniques via human-generated ground truth},
+  author={Dutagaci, Helin and Cheung, Chun Pan and Godil, Afzal},
+  journal={The Visual Computer},
+  volume={28},
+  number={9},
+  pages={901--917},
+  year={2012},
+  publisher={Springer}
+}
+
+@inproceedings{surazhsky2005fast,
+  title={Fast exact and approximate geodesics on meshes},
+  author={Surazhsky, Vitaly and Surazhsky, Tatiana and Kirsanov, Danil and Gortler, Steven J and Hoppe, Hugues},
+  booktitle={ACM transactions on graphics (TOG)},
+  volume={24},
+  number={3},
+  pages={553--560},
+  year={2005},
+  organization={Acm}
+}
+
+@article{munaretti2007perceptual,
+  title={Perceptual guidance in mesh processing and rendering using mesh saliency},
+  author={Munaretti, Rodrigo Barni},
+  year={2007}
+}
+
+@inproceedings{stouffs2013happening,
+  title={WHAT IS HAPPENING TO VIRTUAL AND AUGMENTED REALITY APPLIED TO ARCHITECTURE?},
+  author={Stouffs, R and Janssen, P and Roudavski, S and Tun{\c{c}}er, B},
+  booktitle={Conference on Computer-Aided Architectural Design Research in Asia (CAADRIA 2013)},
+  volume={1},
+  pages={10},
+  year={2013}
+}
+
+@article{steuer1992defining,
+  title={Defining virtual reality: Dimensions determining telepresence},
+  author={Steuer, Jonathan},
+  journal={Journal of communication},
+  volume={42},
+  number={4},
+  pages={73--93},
+  year={1992},
+  publisher={Wiley Online Library}
+}
+
+@article{le2015social,
+  title={A social virtual reality based construction safety education system for experiential learning},
+  author={Le, Quang Tuan and Pedro, Akeem and Park, Chan Sik},
+  journal={Journal of Intelligent \& Robotic Systems},
+  volume={79},
+  number={3-4},
+  pages={487},
+  year={2015},
+  publisher={Springer Science \& Business Media}
+}
+
+@inproceedings{nguyen2016applying,
+  title={Applying Virtual Reality in City Planning},
+  author={Nguyen, Minh-Tu and Nguyen, Hai-Khanh and Vo-Lam, Khanh-Duy and Nguyen, Xuan-Gieng and Tran, Minh-Triet},
+  booktitle={International Conference on Virtual, Augmented and Mixed Reality},
+  pages={724--735},
+  year={2016},
+  organization={Springer}
+}
+
+@inproceedings{wendrich2016hybrid,
+  title={Hybrid design tools in a social virtual reality using networked oculus rift: a feasibility study in remote real-time interaction},
+  author={Wendrich, Robert E and Chambers, Kris-Howard and Al-Halabi, Wadee and Seibel, Eric J and Grevenstuk, Olaf and Ullman, David and Hoffman, Hunter G},
+  booktitle={ASME 2016 International Design Engineering Technical Conferences and Computers and Information in Engineering Conference},
+  pages={V01BT02A042--V01BT02A042},
+  year={2016},
+  organization={American Society of Mechanical Engineers}
+}
+
+@incollection{ovtcharova2015innovation,
+  title={Innovation braucht Resourceful Humans Aufbruch in eine neue Arbeitskultur durch Virtual Engineering},
+  author={Ovtcharova, Jivka and H{\"a}fner, Polina and H{\"a}fner, Victor and Katicic, Jurica and Vinke, Christina},
+  booktitle={Zukunft der Arbeit in Industrie 4.0},
+  pages={111--124},
+  year={2015},
+  publisher={Springer}
+}
+
+@inproceedings{marks2014towards,
+  title={Towards the Holodeck: fully immersive virtual reality visualisation of scientific and engineering data},
+  author={Marks, Stefan and Estevez, Javier E and Connor, Andy M},
+  booktitle={Proceedings of the 29th International Conference on Image and Vision Computing New Zealand},
+  pages={42--47},
+  year={2014},
+  organization={ACM}
+}
+
+@incollection{de2014healthcare,
+  title={Healthcare training enhancement through virtual reality and serious games},
+  author={de Ribaupierre, Sandrine and Kapralos, Bill and Haji, Faizal and Stroulia, Eleni and Dubrowski, Adam and Eagleson, Roy},
+  booktitle={Virtual, Augmented Reality and Serious Games for Healthcare 1},
+  pages={9--27},
+  year={2014},
+  publisher={Springer}
+}
+
+@incollection{merians2014rehabilitation,
+  title={Rehabilitation Applications Using Virtual Reality for Persons with Residual Impairments Following Stroke},
+  author={Merians, Alma S and Fluet, Gerard G},
+  booktitle={Virtual Reality for Physical and Motor Rehabilitation},
+  pages={119--144},
+  year={2014},
+  publisher={Springer}
+}
+
+@article{thorsteinsson2008developing,
+  title={Developing an understanding of the pedagogy of using a Virtual Reality Learning Environment (VRLE) to support Innovation Education (IE) in Iceland: a literature survey},
+  author={Thorsteinsson, Gisli and Denton, Howard},
+  journal={Design and Technology Education: an International Journal},
+  volume={13},
+  number={2},
+  year={2008}
+}
+
+@article{zyda2005visual,
+  title={From visual simulation to virtual reality to games},
+  author={Zyda, Michael},
+  journal={Computer},
+  volume={38},
+  number={9},
+  pages={25--32},
+  year={2005},
+  publisher={IEEE}
+}
+
+@article{cruz1993surround,
+  title={Surround-Screen Projection-Based Virtual Reality: The Design and Implementation of the CAVE},
+  author={Cruz-Neira, Carolina and Sandin, Daniel J and DeFanti, Thomas A},
+  year={1993}
+}
+
+@inproceedings{ott2015literature,
+  title={A literature review on immersive virtual reality in education: state of the art and perspectives},
+  author={Ott, Michela and FREINA, Laura and others},
+  booktitle={Conference proceedings of eLearning and Software for Education(eLSE)},
+  number={01},
+  pages={133--141},
+  year={2015},
+  organization={Universitatea Nationala de Aparare Carol I}
+}
+
+@article{merchant2014effectiveness,
+  title={Effectiveness of virtual reality-based instruction on students' learning outcomes in K-12 and higher education: A meta-analysis},
+  author={Merchant, Zahira and Goetz, Ernest T and Cifuentes, Lauren and Keeney-Kennicutt, Wendy and Davis, Trina J},
+  journal={Computers \& Education},
+  volume={70},
+  pages={29--40},
+  year={2014},
+  publisher={Elsevier}
+}
+
+@article{baus2014moving,
+  title={Moving from virtual reality exposure-based therapy to augmented reality exposure-based therapy: a review},
+  author={Baus, Oliver and Bouchard, St{\'e}phane},
+  journal={Frontiers in human neuroscience},
+  volume={8},
+  pages={112},
+  year={2014},
+  publisher={Frontiers}
+}
+
+@book{de2012models,
+  title={Models of information processing in the visual cortex},
+  author={De Ladurantaye, Vincent and Vanden-Abeele, Jacques and Rouat, Jean},
+  year={2012},
+  publisher={INTECH Open Access Publisher}
+}
+
+@article{santos2009head,
+  title={Head-mounted display versus desktop for 3D navigation in virtual reality: a user study},
+  author={Santos, Beatriz Sousa and Dias, Paulo and Pimentel, Angela and Baggerman, Jan-Willem and Ferreira, Carlos and Silva, Samuel and Madeira, Joaquim},
+  journal={Multimedia Tools and Applications},
+  volume={41},
+  number={1},
+  pages={161},
+  year={2009},
+  publisher={Springer}
+}
+
+@inproceedings{ware1993fish,
+  title={Fish tank virtual reality},
+  author={Ware, Colin and Arthur, Kevin and Booth, Kellogg S},
+  booktitle={Proceedings of the INTERACT'93 and CHI'93 conference on Human factors in computing systems},
+  pages={37--42},
+  year={1993},
+  organization={ACM}
+}
+
+@article{mizell2002comparing,
+  title={Comparing immersive virtual reality with other display modes for visualizing complex 3D geometry},
+  author={Mizell, David W and Jones, Stephen P and Slater, Mel and Spanlang, Bernhard},
+  journal={University College London, technical report},
+  year={2002}
+}
+
+@article{chen2012schelling,
+  title={Schelling points on 3D surface meshes},
+  author={Chen, Xiaobai and Saparov, Abulhair and Pang, Bill and Funkhouser, Thomas},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={31},
+  number={4},
+  pages={29},
+  year={2012},
+  publisher={ACM}
+}
+
+
+@inproceedings{qi2006comparison,
+  title={A comparison of immersive HMD, fish tank VR and fish tank with haptics displays for volume visualization},
+  author={Qi, Wen and Taylor II, Russell M and Healey, Christopher G and Martens, Jean-Bernard},
+  booktitle={Proceedings of the 3rd Symposium on Applied Perception in Graphics and Visualization},
+  pages={51--58},
+  year={2006},
+  organization={ACM}
+}
+
+@inproceedings{pausch1997quantifying,
+  title={Quantifying immersion in virtual reality},
+  author={Pausch, Randy and Proffitt, Dennis and Williams, George},
+  booktitle={Proceedings of the 24th annual conference on Computer graphics and interactive techniques},
+  pages={13--18},
+  year={1997},
+  organization={ACM Press/Addison-Wesley Publishing Co.}
+}
+
+@article{sampaio2014application,
+  title={The application of virtual reality technology in the construction of bridge: The cantilever and incremental launching methods},
+  author={Sampaio, Alc{\'\i}nia Z and Martins, Oct{\'a}vio P},
+  journal={Automation in construction},
+  volume={37},
+  pages={58--67},
+  year={2014},
+  publisher={Elsevier}
+}
+
+@inproceedings{sandor2010augmented,
+  title={An augmented reality x-ray system based on visual saliency},
+  author={Sandor, Christian and Cunningham, Andrew and Dey, Arindam and Mattila, Ville-Veikko},
+  booktitle={Mixed and Augmented Reality (ISMAR), 2010 9th IEEE International Symposium on},
+  pages={27--36},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{sokolov2008virtual,
+  title={Virtual world explorations by using topological and semantic knowledge},
+  author={Sokolov, Dmitry and Plemenos, Dimitri},
+  journal={The Visual Computer},
+  volume={24},
+  number={3},
+  pages={173--185},
+  year={2008},
+  publisher={Springer}
+}
+
+@article{o1999fmri,
+  title={fMRI evidence for objects as the units of attentional selection},
+  author={O'craven, Kathleen M and Downing, Paul E and Kanwisher, Nancy},
+  journal={Nature},
+  volume={401},
+  number={6753},
+  pages={584--587},
+  year={1999},
+  publisher={Nature Publishing Group}
+}
+
+@inproceedings{lee2007real,
+  title={Real-time tracking of visually attended objects in interactive virtual environments},
+  author={Lee, Sungkil and Kim, Gerard Jounghyun and Choi, Seungmoon},
+  booktitle={Proceedings of the 2007 ACM symposium on Virtual reality software and technology},
+  pages={29--38},
+  year={2007},
+  organization={ACM}
+}
+
+@article{atchleyattentional,
+  title={Attentional Control Within 3-D Space},
+  author={Atchley, Paul and Kramer, Arthur F}
+}
+
+@inproceedings{potapova2011learning,
+  title={Learning what matters: combining probabilistic models of 2d and 3d saliency cues},
+  author={Potapova, Ekaterina and Zillich, Michael and Vincze, Markus},
+  booktitle={International Conference on Computer Vision Systems},
+  pages={132--142},
+  year={2011},
+  organization={Springer}
+}
+
+@article{howlett2005predicting,
+  title={Predicting and evaluating saliency for simplified polygonal models},
+  author={Howlett, Sarah and Hamill, John and O'Sullivan, Carol},
+  journal={ACM Transactions on Applied Perception (TAP)},
+  volume={2},
+  number={3},
+  pages={286--308},
+  year={2005},
+  publisher={ACM}
+}
+
+@inproceedings{lee2005mesh,
+  title={Mesh saliency},
+  author={Lee, Chang Ha and Varshney, Amitabh and Jacobs, David W},
+  booktitle={ACM transactions on graphics (TOG)},
+  volume={24},
+  number={3},
+  pages={659--666},
+  year={2005},
+  organization={ACM}
+}
+
+@inproceedings{zhao2012saliency,
+  title={A saliency detection based method for 3d surface simplification},
+  author={Zhao, Yitian and Liu, Yonghuai and Song, Ran and Zhang, Min},
+  booktitle={Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE International Conference on},
+  pages={889--892},
+  year={2012},
+  organization={IEEE}
+}
+
+@inproceedings{kho2003user,
+  title={User-guided simplification},
+  author={Kho, Youngihn and Garland, Michael},
+  booktitle={Proceedings of the 2003 symposium on Interactive 3D graphics},
+  pages={123--126},
+  year={2003},
+  organization={ACM}
+}
+
+@misc{garland1997qslim,
+  title={QSlim simplification software},
+  author={Garland, Michael and Heckbert, Paul S},
+  year={1997}
+}
+
+@misc{GLUT,
+  title = {{GLUT - The OpenGL Utility Toolkit} Official Website},
+  howpublished = {\url{https://www.opengl.org/resources/libraries/glut/}},
+  note = {Accessed: 2017-06-07}
+}
+
+@misc{Octree,
+ title = {{Octree - Wikipedia} Weblink},
+ howpublished = {\url{https://en.wikipedia.org/wiki/Octree}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{set,
+ title = {{set - cplusplus.com reference} Weblink},
+ howpublished = {\url{http://www.cplusplus.com/reference/set/set/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{octAp,
+ title = {{gkoctree - Apple Developer Documentation} Weblink},
+ howpublished = {\url{https://developer.apple.com/documentation/gameplaykit/gkoctree}},
+ note = {Accessed: 2017-22-09}
+}
+
+@misc{vector,
+ title = {{vector - cplusplus.com reference} Weblink},
+ howpublished = {\url{http://www.cplusplus.com/reference/vector/vector/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{v2c,
+ title = {{V2C} Official Website},
+ howpublished = {\url{https://www.lrz.de/services/v2c_en/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{cow,
+ title = {{cow} MIT computer science and artificial intelligence laboratory - weblink},
+ howpublished = {\url{https://groups.csail.mit.edu/graphics/classes/6.837/F03/models/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{bun,
+ title = {{bunny} Stanford computer graphics laboratory - weblink},
+ howpublished = {\url{https://graphics.stanford.edu/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{P51,
+ title = {{P-51 Mustang} cadnav.com - weblink},
+ howpublished = {\url{http://www.cadnav.com/3d-models/model-37216.html}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{OpenGL,
+ title = {{OpenGL - The Industry Standard for High Performance Graphics} Official Website},
+ howpublished = {\url{https://www.opengl.org/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{GLEW,
+ title = {{GLEW - The OpenGL Extension Wrangler Library} Official Website},
+ howpublished = {\url{http://glew.sourceforge.net/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@misc{ASP,
+ title = {{ASSIMP - Open Asset Import Library} Official Website},
+ howpublished = {http://www.assimp.org/}},
+ note = {Accessed: 2017-06-07}
+}
+
+@inproceedings{shaffer2001efficient,
+  title={Efficient adaptive simplification of massive meshes},
+  author={Shaffer, Eric and Garland, Michael},
+  booktitle={Proceedings of the conference on Visualization'01},
+  pages={127--134},
+  year={2001},
+  organization={IEEE Computer Society}
+}
+
+@article{1992defining,
+  title={Defining virtual reality: Dimensions determining telepresence},
+  author={Steuer, Jonathan},
+  journal={Journal of communication},
+  volume={42},
+  number={4},
+  pages={73--93},
+  year={1992},
+  publisher={Wiley Online Library}
+}
+
+@article{valente2016live,
+  title={Live-action virtual reality games},
+  author={Valente, Luis and Clua, Esteban and Silva, Alexandre Ribeiro and Feij{\'o}, Bruno},
+  journal={arXiv preprint arXiv:1601.01645},
+  year={2016}
+}
+
+@article{wei2010feature,
+  title={Feature preserving mesh simplification using feature sensitive metric},
+  author={Wei, Jin and Lou, Yu},
+  journal={Journal of Computer Science and Technology},
+  volume={25},
+  number={3},
+  pages={595--605},
+  year={2010},
+  publisher={Springer}
+}
+
+@article{cignoni1998comparison,
+  title={A comparison of mesh simplification algorithms},
+  author={Cignoni, Paolo and Montani, Claudio and Scopigno, Roberto},
+  journal={Computers \& Graphics},
+  volume={22},
+  number={1},
+  pages={37--54},
+  year={1998},
+  publisher={Elsevier}
+}
+
+@inproceedings{shamir2008survey,
+  title={A survey on mesh segmentation techniques},
+  author={Shamir, Ariel},
+  booktitle={Computer graphics forum},
+  volume={27},
+  number={6},
+  pages={1539--1556},
+  year={2008},
+  organization={Wiley Online Library}
+}
+
+@MANUAL{scrguide07,
+  author       = {Kohm, Markus and Morawski, Jens-Uwe},
+  title        = {KOMA-Script -- Die Anleitung},
+  year         = {2011},
+  month        = apr,
+  note         = {\url{http://www.bitlib.net/mirror/ctan/macros/latex/contrib/koma-script/scrguide.pdf}},
+}

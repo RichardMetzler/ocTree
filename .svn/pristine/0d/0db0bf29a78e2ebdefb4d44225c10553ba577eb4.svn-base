@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ./build/metz17.aux
+The style file: alpha.bst
+Database file #1: ./Bib/metz17.bib
+Warning--to sort, need author or key in Octree
+Warning--to sort, need author or key in octAp
+Warning--to sort, need author or key in v2c
+Warning--to sort, need author or key in cow
+Warning--to sort, need author or key in P51
+Warning--to sort, need author or key in bun
+Warning--to sort, need author or key in OpenGL
+Warning--to sort, need author or key in GLUT
+Warning--to sort, need author or key in GLEW
+Warning--to sort, need author or key in ASP
+Warning--to sort, need author or key in set
+Warning--to sort, need author or key in vector
+Warning--empty journal in atchleyattentional
+Warning--empty year in atchleyattentional
+Warning--empty booktitle in ciptadi2013depth
+Warning--can't use both volume and number fields in lee2005mesh
+Warning--empty journal in munaretti2007perceptual
+Warning--there's a number but no series in ott2015literature
+Warning--can't use both volume and number fields in shamir2008survey
+Warning--can't use both volume and number fields in surazhsky2005fast
+You've used 54 entries,
+            2543 wiz_defined-function locations,
+            859 strings with 14250 characters,
+and the built_in function-call counts, 23683 in all, are:
+= -- 2463
+> -- 1043
+< -- 34
++ -- 377
+- -- 368
+* -- 1629
+:= -- 3578
+add.period$ -- 180
+call.type$ -- 54
+change.case$ -- 346
+chr.to.int$ -- 53
+cite$ -- 86
+duplicate$ -- 974
+empty$ -- 1811
+format.name$ -- 408
+if$ -- 5096
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 41
+newline$ -- 271
+num.names$ -- 126
+pop$ -- 451
+preamble$ -- 1
+purify$ -- 400
+quote$ -- 0
+skip$ -- 826
+stack$ -- 0
+substring$ -- 1338
+swap$ -- 275
+text.length$ -- 34
+text.prefix$ -- 6
+top$ -- 0
+type$ -- 432
+warning$ -- 20
+while$ -- 208
+width$ -- 58
+write$ -- 694
+(There were 20 warnings)

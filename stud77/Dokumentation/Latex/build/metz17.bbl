@@ -15,6 +15,11 @@ Oliver Baus and St{\'e}phane Bouchard.
   reality exposure-based therapy: a review.
 \newblock {\em Frontiers in human neuroscience}, 8:112, 2014.
 
+\bibitem[bun]{bun}
+{bunny} stanford computer graphics laboratory - weblink.
+\newblock \url{https://graphics.stanford.edu/}.
+\newblock Accessed: 2017-06-07.
+
 \bibitem[CHR13]{ciptadi2013depth}
 Arridhana Ciptadi, Tucker Hermans, and James~M Rehg.
 \newblock An in depth view of saliency.
@@ -24,6 +29,12 @@ Arridhana Ciptadi, Tucker Hermans, and James~M Rehg.
 Paolo Cignoni, Claudio Montani, and Roberto Scopigno.
 \newblock A comparison of mesh simplification algorithms.
 \newblock {\em Computers \& Graphics}, 22(1):37--54, 1998.
+
+\bibitem[cow]{cow}
+{cow} mit computer science and artificial intelligence laboratory - weblink.
+\newblock
+  \url{https://groups.csail.mit.edu/graphics/classes/6.837/F03/models/}.
+\newblock Accessed: 2017-06-07.
 
 \bibitem[CSPF12]{chen2012schelling}
 Xiaobai Chen, Abulhair Saparov, Bill Pang, and Thomas Funkhouser.
@@ -178,6 +189,11 @@ Jivka Ovtcharova, Polina H{\"a}fner, Victor H{\"a}fner, Jurica Katicic, and
 {OpenGL - The Industry Standard for High Performance Graphics} official
   website.
 \newblock \url{https://www.opengl.org/}.
+\newblock Accessed: 2017-06-07.
+
+\bibitem[P51]{P51}
+{P-51 Mustang} cadnav.com - weblink.
+\newblock \url{http://www.cadnav.com/3d-models/model-37216.html}.
 \newblock Accessed: 2017-06-07.
 
 \bibitem[PPW97]{pausch1997quantifying}

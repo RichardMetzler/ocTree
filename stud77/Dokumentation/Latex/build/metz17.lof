@@ -4,10 +4,11 @@
 \contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{10}{figure.3.1}
 \contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces An octree structure indexing four vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}}{11}{figure.3.2}
 \contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The input device used at the V2C}}{12}{figure.3.3}
-\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces The trackable, stereoscopic glasses used at the V2C}}{13}{figure.3.4}
+\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces The trackable, stereoscopic glasses used at the V2C}}{14}{figure.3.4}
+\contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces The 3D objects used for the user study}}{15}{figure.3.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{23}{figure.4.1}
-\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{25}{figure.4.2}
-\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{26}{figure.4.3}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{31}{figure.4.4}
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{25}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{27}{figure.4.2}
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{28}{figure.4.3}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{33}{figure.4.4}
 \addvspace {10\p@ }

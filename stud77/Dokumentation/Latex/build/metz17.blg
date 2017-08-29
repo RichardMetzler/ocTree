@@ -6,6 +6,9 @@ Database file #1: ./Bib/metz17.bib
 Warning--to sort, need author or key in Octree
 Warning--to sort, need author or key in octAp
 Warning--to sort, need author or key in v2c
+Warning--to sort, need author or key in cow
+Warning--to sort, need author or key in P51
+Warning--to sort, need author or key in bun
 Warning--to sort, need author or key in OpenGL
 Warning--to sort, need author or key in GLUT
 Warning--to sort, need author or key in GLEW
@@ -20,45 +23,45 @@ Warning--empty journal in munaretti2007perceptual
 Warning--there's a number but no series in ott2015literature
 Warning--can't use both volume and number fields in shamir2008survey
 Warning--can't use both volume and number fields in surazhsky2005fast
-You've used 51 entries,
+You've used 54 entries,
             2543 wiz_defined-function locations,
-            849 strings with 13914 characters,
-and the built_in function-call counts, 23029 in all, are:
-= -- 2394
-> -- 1040
+            859 strings with 14250 characters,
+and the built_in function-call counts, 23683 in all, are:
+= -- 2463
+> -- 1043
 < -- 34
 + -- 377
 - -- 368
-* -- 1599
-:= -- 3506
-add.period$ -- 171
-call.type$ -- 51
-change.case$ -- 334
-chr.to.int$ -- 50
-cite$ -- 77
-duplicate$ -- 944
-empty$ -- 1730
+* -- 1629
+:= -- 3578
+add.period$ -- 180
+call.type$ -- 54
+change.case$ -- 346
+chr.to.int$ -- 53
+cite$ -- 86
+duplicate$ -- 974
+empty$ -- 1811
 format.name$ -- 408
-if$ -- 4940
+if$ -- 5096
 int.to.chr$ -- 2
 int.to.str$ -- 0
 missing$ -- 41
-newline$ -- 256
+newline$ -- 271
 num.names$ -- 126
-pop$ -- 415
+pop$ -- 451
 preamble$ -- 1
-purify$ -- 385
+purify$ -- 400
 quote$ -- 0
-skip$ -- 805
+skip$ -- 826
 stack$ -- 0
-substring$ -- 1314
-swap$ -- 272
+substring$ -- 1338
+swap$ -- 275
 text.length$ -- 34
 text.prefix$ -- 6
 top$ -- 0
-type$ -- 408
-warning$ -- 17
+type$ -- 432
+warning$ -- 20
 while$ -- 208
-width$ -- 55
-write$ -- 661
-(There were 17 warnings)
+width$ -- 58
+write$ -- 694
+(There were 20 warnings)
