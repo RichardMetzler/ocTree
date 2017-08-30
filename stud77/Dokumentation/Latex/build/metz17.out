@@ -9,8 +9,8 @@
 \BOOKMARK [1][-]{section.3.2}{Conduct user study with the selection application}{chapter.3}% 9
 \BOOKMARK [1][-]{section.3.3}{Measure of differences}{chapter.3}% 10
 \BOOKMARK [2][-]{subsection.3.3.1}{Terms and abbreviations}{section.3.3}% 11
-\BOOKMARK [2][-]{subsection.3.3.2}{unweighted difference index}{section.3.3}% 12
-\BOOKMARK [2][-]{subsection.3.3.3}{weighted difference index}{section.3.3}% 13
+\BOOKMARK [2][-]{subsection.3.3.2}{unweighted difference ratio}{section.3.3}% 12
+\BOOKMARK [2][-]{subsection.3.3.3}{weighted difference ratio}{section.3.3}% 13
 \BOOKMARK [2][-]{subsection.3.3.4}{step-wise summery}{section.3.3}% 14
 \BOOKMARK [0][-]{chapter.4}{Selection Application}{}% 15
 \BOOKMARK [1][-]{section.4.1}{Additional third party libraries}{chapter.4}% 16
@@ -21,7 +21,7 @@
 \BOOKMARK [1][-]{section.4.2}{Relevant class files}{chapter.4}% 21
 \BOOKMARK [2][-]{subsection.4.2.1}{Object}{section.4.2}% 22
 \BOOKMARK [2][-]{subsection.4.2.2}{Mesh}{section.4.2}% 23
-\BOOKMARK [2][-]{subsection.4.2.3}{ocTree}{section.4.2}% 24
+\BOOKMARK [2][-]{subsection.4.2.3}{Octree}{section.4.2}% 24
 \BOOKMARK [1][-]{section.4.3}{Key Features}{chapter.4}% 25
 \BOOKMARK [2][-]{subsection.4.3.1}{Spatial indexing via Octree}{section.4.3}% 26
 \BOOKMARK [3][-]{subsubsection.4.3.1.1}{Root constructor ocTree\(\)}{subsection.4.3.1}% 27

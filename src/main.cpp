@@ -652,7 +652,6 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		case 'l':
 		case 'L':
 		{
-			// @TODO vermutlich ca. 80% löschen; das machen was oben in den Comments steht
 			bool firstline = true;
 
 			int counter = 0;

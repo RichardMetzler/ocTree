@@ -142,15 +142,14 @@ Besides the five minute \textit{tutorial phase} - the time users could take to g
 
 	\section {Measure of differences}
 	\label{sec:measure_of_difference}
-% Mit Details, Formelns & Pseudo-Code beschreiben, hierauf dann im "Auswertung sonstwas" chapter verweisen
 Since a large portion of the workload of this work was the implementation of the selection application itself, as well as customizing it to the point it is executable in the V2C, the comparison of user generated and pre-computed mesh saliency maps was designed to be quick and easy. In this chapter I will describe how I conceptualised a basic way to compute a \textit{difference ratio}, normalised to a decimal value between 0 and 1, describing how much user saliency maps differ from mesh saliency maps. It is based on a simple vertex-wise comparison of saliency-values and makes use of the proximity queries provided by the octree structure, which is also the basis for the selection application itself as described in section \ref{sec:spatial_indexing_via_octree}.
-% @TODO Mail an Markus rauskramen und uebernehmen was ich da geschrieben hab. Vielleicht lustige Bilders machen
 
 In chapter % @TODO ref zu chapter "results usw" 1fügen. Selbiges davor noch anlegen
-I consider both \textit{raw} and \textit{weighted difference} values, 
+I consider both \textit{raw} and \textit{weighted difference} values, for a detailed explanation of these terms, see the following subsections. For a brief summery and step-wise explanation, see subsection \ref{sec:ste_wise_summery}.
 
 		\subsection{Terms and abbreviations}
 		\label{sec:concept_terms_and_abbreviations}
+% @TODO threshold einbauen!! Hier und im Quelltext
 The following terms, symbols and abbreviations will be used in the subsequent sections to explain the measure of difference used in this work.
 
 \begin{description}
@@ -168,9 +167,9 @@ The following terms, symbols and abbreviations will be used in the subsequent se
 	\item[$\omega$] - a threshold value derived from mesh saliency values $S_{M}(v_1)$, ... $S_{M}(v_j)$ for all vertices $v_1$, ... $v_j$ $\in$ a \textit{proximity set} $V_{proximty}(v_i)$ of $vi$
 \end{description}
 
-		\subsection{unweighted difference index}
-		\label{sec:unweighted_difference_index}
-As stated above, $\Delta_{raw}(v_i)$, or the unweighted (raw) difference between user generated and computed mesh saliency value can easily be obtained by taking the absolute value of $S_{M}(v_i) - S_{U}(v_i)$. For each of the objects used in the user study, we computed a mesh saliency map using \texttt{climberpi's} implementation of \textit{mesh saliency} \cite{clms}, providing $S_{M}(v_i)$ for every vertex $v$ in either $V_{bunny}$, $V_{cow}$ or $V_{P-51}$ where $V_{l}$ is the set of all vertices that make up the object with label $l$.
+		\subsection{unweighted difference ratio}
+		\label{sec:unweighted_difference_ratio}
+As stated above, $\Delta_{raw}(v_i)$, or the unweighted (raw) difference between user generated and computed mesh saliency value can easily be obtained by taking the absolute value of $S_{M}(v_i) - S_{U}(v_i)$. For each of the objects used in the user study, we computed a mesh saliency map using \texttt{climberpi's} implementation of \textit{mesh saliency} \cite{clms}, providing $S_{M}(v_i)$ for every vertex $v$ in $V_{bunny}$, $V_{cow}$ and $V_{P-51}$ where $V_{l}$ is the set of all vertices that make up the object with label $l$.
 
 Values $S_{U}(v_i)$ are computed via a simple, average-based comparison of how many users selected each vertex. As mentioned in \ref{sec:user_selection}, user selections are written to simple structured text files containing one unique vertex ID and the time they were added to the selection (in seconds since the application was started) in every line, seperated by a tab symbol as depicted in table \ref{tab:user_selection_log_file}.
 
@@ -192,10 +191,48 @@ Values $S_{U}(v_i)$ are computed via a simple, average-based comparison of how m
 \end{table}
 % table 3.3
 
-% vetex mit ID 27 steht in 20 von 50 logfiles..., am öftesten selektiertes vert wird ermittelt,... durchschnitt ..bla
+In the simple evaluation tool used for this work, before each logfile is read, a \texttt{std::vector<size\_t, int>} is created with size equivalent to the number of vertices of the currently considered object. After the last log file is processed, this \texttt{set} $userselections$ contains a mapping for each vertex $v_i$, describing how many users selected it with the \texttt{int} value at offset $i$, which equals the vertex ID represented as a \texttt{size\_t} value. In other words, let $userselections[i] = t$ for each vertex $v_i$ of an object where $t$ is the amount of users that selected $v_i$.
 
-		\subsection{weighted difference index}
-		\label{sec:weighted_difference_index}
+Next, the maximum number of times one or multiple vertices were selected $t_{max}$ is computed. Based on this maximum value, \textit{user saliency} values are $S_{U}(v_i)$ generated as follows.
+
+$S_{U}(v_i) = userselections[i]/t_{max}$
+
+\textit{User saliency} values for each of most selected vertices - those selected by $t_{max}$ users - will be 1.0, and 0.0 for those which were not selected by a single user. Every other \textit{user saliency} value will be somewhere in that range, describing what one could informally call the \textit{popularity} of the vertices.
+
+With both \textit{mesh} and \textit{mesh saliency} values for each vertex $v_i$, we can use the absolute value of their difference as the \textit{unweighted (raw) difference}. The final step to generate the overall \textit{unweighted difference ratio} is a simple addition of $S_{U}(v_i)$ values for every $v_i \in V$, where $V$ is the total number of one object and dividing the result by $V$. This ratio gives a quick, first impression of how much the average user selection differs from a \textit{mesh saliency map} computed according to \cite{lee2005mesh}.
+
+		\subsection{weighted difference ratio}
+		\label{sec:weighted_difference_ratio}
+The unweighted \textit{difference ratio}, being very basic and average based, lacks expressiveness. During research and preparation for this work, it became clear that \textit{mesh saliency maps} offer a solid basis for prediction models of what parts of 3D objects human attention tends to gravitate towards. By further developing and refining the concept, these predictions became precice and reliably, see chapter \cite{sec:related_work}. I based my idea for the \textit{weighted difference ratio} on the assumption that differences in saliency values for some vertices are more interesting than others.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.0\textwidth]{mss_gorilla_alpha.png}\\ % PNG-File
+  \caption{A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit{et al.} \cite{nouri2015multi}}\label{fig:gorilla_saliency_map}
+\end{figure}
+
+Consider figure \ref{gorilla_saliency_map}. It depicts an object and its multi-scale mesh saliency map as well as a scale for reference. The scale describes how yellow and red colored vertices indicate high mesh saliency values for those vertices while green and blue colored ones suggest lower values. Note that this map was not computed via the \textit{standard} mesh saliency model but an enhanced, multi-scale based one. The figure is suitable to explain the idea behind which point-wise difference value in user and mesh saliency values are \textit{weighted} in this work.
+
+Based on the assumption that a very low \textit{user saliency value} of vertices which lays in a yellow or red shaded area is more interesting than one that is located in a green or blue area, I based the decision which vertex-wise difference ratios would be weighted on a comparison of other vertices surroundind them. Consider a vertex $v_i$ in the following cases.
+
+\begin{description}
+	\item [case 1:] $v_i$ has a \textit{user saliency} value of 0.2 or lower and vertices located in its proximity have an average \textit{mesh saliency} value of 0.8 or higher.
+	\item [case 2:] $v_i$ has a \textit{user saliency} value of 0.2 or lower and vertices located in its proximity have an average \textit{mesh saliency} value of 0.3 or lower
+	\item [case 3:] $v_i$ has a \textit{user saliency} value of 0.8 or higher and vertices located in its proximity have an average \textit{mesh saliency} value of 0.8 or higher
+	\item [case 4:] $v_i$ has a \textit{user saliency} value of 0.8 or lower and vertices located in its proximity have an average \textit{mesh saliency} value of 0.3 or lower
+\end{description}
+
+I decided to base this simple evaluation process on the assumption that realistic, reliable results are achieved by the model of \textit{mesh saliency}. So I focused on finding deviations within parts and regions of objects that have higher mesh saliency values. Thus, only in cases 1 and 3, vertex-wise differences get weighted. High vertex-wise differences in regions that with a low overall mesh saliency value still are considered for the final \textit{weighted difference ratio}, but not as much as those that that emerge from cases 1 and 3.
+% @TODO: 0.2? Hier beschreiben und im Quelltext ggf anpassen (threshold = average_saliency_val oder sowas)
+
+Regarding how the actual weighting is done, a simple function that increases the vertex-wise \textit{raw difference} values, normalizes between 0.0 and 1.0 without getting greater than 1.0. So I chose to use an altered, restricted function describing a circle that has its centre at $x = 1.0, y = 0.0$ and radius $r = 1.0$. See figure{da unte halt}
+% @TODO: Bild 1fuegen
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.5\textwidth]{weighting_function.png}\\ % PNG-File
+  \caption{Graphic representation of the weighting function in relation}\label{fig:weighting_function}
+\end{figure}
 
 		\subsection{step-wise summery}
 		\label{sec:ste_wise_summery}

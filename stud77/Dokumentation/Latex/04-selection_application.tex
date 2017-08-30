@@ -1,8 +1,8 @@
 \chapter{Selection Application}
 \label{sec:selection_application}
 
-In this chapter, I will describe the implemented selection application used for this work. After a rundown of third party requirements and a summery of relevant C++ classes the description will be further segmented subdivided according to its abstract, key requirements.
-The goal of this chapter is to describe how the application, especially the Octree\cite{Octree} was designed and implemented. Accordingly, key lines of source code as well als plenty of explanatory comments will be provided.
+In this chapter, I will describe the implemented selection application used for this work. After a rundown of third party requirements and a summary of relevant C++ classes, the description will be further subdivided according to its abstract, key requirements.
+The goal of this chapter is to describe how the application, especially the Octree\cite{Octree}, was designed and implemented. Accordingly, key lines of source code as well as plenty of explanatory comments will be provided.
 
 \section{Additional third party libraries}
 \label{sec:additional_third_party_libraries}
@@ -14,15 +14,15 @@ To ensure a scalable, platform independent implementation of the application, th
 \subsection{OpenGL}
 \label{sec:opengl}
 
-The Open Graphics Library OpenGL \cite{OpenGL} is a powerful, industry standard API for rendering 2D and 3D grahpics, independently of programming language and operating system. One of its most outstanding features is its ability to directly perform operations on the graphics processing unit of a pc, allowing fast, hardware-accelerated display of graphic elements. For this work, openGL was used for displaying the 3D objects both in the user study and throughout development of the selection application. The task of displaying rendered images across multiple projection surfaces on a 360\degree panorama view was handled by software developed at the Zentrum f\"ur Virtuelle Realit\"at und Visualisierung (V2C) of the Leibniz-Rechenzentrum \cite{v2c}.
+The Open Graphics Library OpenGL \cite{OpenGL} is a powerful industry standard API for rendering 2D and 3D graphics, independently of programming language and operating system. One of its most outstanding features is its ability to directly perform operations on the graphics processing unit of a computer, allowing fast, hardware-accelerated display of graphic elements. For this work, OpenGL was used for displaying the 3D objects both in the user study and throughout development of the selection application. The task of displaying rendered images across multiple projection surfaces on a 360\degree panorama view was handled by software developed at the Zentrum f\"ur Virtuelle Realit\"at und Visualisierung (V2C) of the Leibniz-Rechenzentrum \cite{v2c}.
 
-OpenGL is based on the following basic structures and concepts.
+OpenGL is based on the following basic structures and concepts:
 
 \begin{description}
+	\item[Vertex Buffer Objects] (VBOs) contain the actual vertex data. Coordinates, normal and color information, texture mapping and any other kind of data that is desired can be saved in these kinds of objects. They are designed as buffer objects to be stored directly within the memory of the video card, ensuring extremely fast access times.
 	\item[Vertex Array Objects] (VAOs) are objects which can contain one or more Vertex Buffer Objects and store information for complete, rendered objects. In other words, VAOs store descriptions of vertex data stored in VBOs. For example, the number of coordinates the vertices are made of, in which order etc. From a performance aware point of view, they are a great improvement over older, deprectecated concepts in OpenGL since multiple calls to bind and upload distinct sets of data belonging to the same object to the graphics processing unit can be bundled in one call to a VAO.
-	\item[Vertex Buffer Objects] (VBOs) contain the actual vertex data. Coordinates, normal and color information, texture mapping and any other kind of data that is desired can be saved in these kinds of objects. They are designed as buffer objects to be stored directly within the memopry of the video card, ensuring extremely fast access times.
 	\item[Vertex Shaders] are small pieces of C-like code which can perform fast, basic operations on every vertex of a vertex data input stream. They are fed vertex attribute data, as specified in a VAO by the call of a openGL draw function. In many cases, vertex shaders will solely compute the position of 3D data on a 2D screen as well as paint it in basic colors. For more complex applications, vertex shaders can also perform super fast manipulation of large amounts of vertex data to achieve transitions in geometry, texture mapping, directions of normals \dots
-	\item[Fragment Shaders] Fragments, not to be confused with triangles or faces, are sets of values resulting from rasterisation. They are frequently, informally described as \textit{potential pixels}, meaning the color value they describe, is what could be seen on a screen at a specific pixel under certain circumstances. For each fragment, one or more sets of values may be computed and things like lighting and postprocessing effects, bump maps, antialiasing or simply occlusion by another object may be determining factors as to which one will be rendered to one specific pixel on the output screen. Fragment shaders are used to define how color values for fragments will be selected to be displayed at their respective pixel.
+	\item[Fragment Shaders] Fragments, not to be confused with triangles or faces, are sets of values resulting from rasterisation. They are frequently, informally described as \textit{potential pixels}, meaning the color value they describe is what could be seen on a screen at a specific pixel under certain circumstances. For each fragment, one or more sets of values may be computed, so things like lighting and postprocessing effects, bump maps, antialiasing or simply occlusion by another object may be determining factors as to which one will be rendered to one specific pixel on the output screen. Fragment shaders are used to define how color values for fragments will be selected to be displayed at their respective pixel.
 \end{description}
 
 \subsection{GLUT}
@@ -41,7 +41,7 @@ The OpenGL Extension Wrangler Library (GLEW)\cite{GLEW} is a cross-platform exte
 Available across multiple operating systems including Android and iOS, The Open Asset Import Library \cite{ASP}, is a powerful open source library that offers import, export and post-processing functions for most commonly used 3D data formats. In this work, its easy to use import function for OBJ files was used loading the 3D objects to be displayed in the user study. ASSIMP implements a set of hierarchically organised data structures or so-called nodes. Two of the most relevant ones for this work will be briefly described below.
 
 \begin{description}
-	\item[aiScene] is the root of all the imported data returned from a successful call to one of ASSIMPs import functions. Global information such as the direction of the coordinate system, its origin location as well as references to all the other data in the scene are stored here.
+	\item[aiScene] is the root of all the imported data returned from a successful call to one of ASSIMP's import functions. Global information such as the direction of the coordinate system, its origin location as well as references to all the other data in the scene are stored here.
 	\item[aiMeshes] represent imported meshes within the scene. Each aiMesh has its own local coordinate system with an origin point and all the vertices belonging to it. Multiple sets of data describing one imported mesh can be stored in these mesh objects but sets of vertices and faces are always guaranteed to be present, thus enabling a basic graphic representation of the mesh.
 \end{description}
 
@@ -58,18 +58,18 @@ The object class is used to represent a 3D object within the project. It uses im
 \subsection{Mesh}
 \label{sec:mesh}
 
-One object can consist of multiple meshes. These meshes are coherent with instances of aiMesh (see \hyperref[sec:assimp]{ASSIMP}) and all the important attributes such as vertices, faces, normals, texture coordinates and IDs are stored here. OpenGL functions such as uploading vertex buffer data to the graphics proccessing unit and drawing are implemented here. Some of the applications most crucial functionalities such as adding to and removing vertices from the global selection of vertics to be highlighted are implemented in this class, see \hyperref[sec:key_features]{Key Features}.
+One object can consist of multiple meshes. These meshes are coherent with instances of aiMesh (see \hyperref[sec:assimp]{ASSIMP}) and all the important attributes such as vertices, faces, normals, texture coordinates and IDs are stored here. OpenGL functions such as uploading vertex buffer data to the graphics proccessing unit and drawing are implemented here. Some of the application's most crucial functionalities such as adding to and removing vertices from the global selection of vertices to be highlighted are implemented in this class, see \hyperref[sec:key_features]{Key Features}.
 
-\subsection{ocTree}
+\subsection{Octree}
 \label{sec:octree}
-Spatial indexing of loaded objects in the application is entirely handled in this class. It has been one of the most labour-intensive parts of the application since formal guides to implementing it, independent of coding language, are next to non-existent and working with the data that was stored in the object and mesh classes above required an extensive amount of customisation.
+Spatial indexing of loaded objects in the application is entirely handled in this class. This has been one of the most labour-intensive parts of the application because formal guides to implementing it, independent of coding language, are scarce and working with the data that was stored in the object and mesh classes above required an extensive amount of customisation.
 
 \section{Key Features}
 \label{sec:key_features}
 This section will describe the following features and functionalities which are most crucial to the selection application.
 
 \begin{itemize}  
-	\item Spatial indexing via ocTree
+	\item Spatial indexing via Octree
 	\item User selection
 	\item Tracking selection
 	\item Testing setup 
@@ -78,17 +78,17 @@ This section will describe the following features and functionalities which are 
 \subsection{Spatial indexing via Octree}
 \label{sec:spatial_indexing_via_octree}
 
-As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of ocTrees was desigend with a heavy emphasis on its recursive features. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents, they solely save vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
+As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of Octree was designed with a heavy emphasis on its recursive features. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents, they solely store vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
 
-For better understanding during development and clearer, human-readable log messages, the unique, binary identifiers were implemented with care. Each node of the tree has a private \texttt{std::vector} which serves as a unique combination of boolean values describing its identifier. It can be used for directly accessig any desired \texttt{ocTree} (subtree) object within a tree through its root node.
+For better understanding during development and clearer, human-readable log messages, unique binary identifiers were implemented with care. Each node of the tree has a private \texttt{std::vector} which serves as a unique combination of boolean values describing its identifier. It can be used for directly accessing any desired \texttt{ocTree} (subtree) object within a tree through its root node.
 
-Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at a time. At any level \textit{l}, those  values of \texttt{Id} can be found at positions \textit{$O_l$}, \textit{$O_l$+1} and \textit{$O_l$+2} within it, where $O_l$ is the \textit{level offset} $l*3-3$. If \textit{$O_l$+2} equals its length \texttt{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes' maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \texttt{p} for new values refers to the parent node, \texttt{[n]} is the \texttt{n}th element of identifer \texttt{ID}. $O_l$ describes the \textit{level offset} $l*3-3$. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
+Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at a time. At any level \textit{l}, those  values of \texttt{Id} can be found at positions \textit{$O_l$}, \textit{$O_l$+1} and \textit{$O_l$+2} within it, where $O_l$ is the \textit{level offset} $l*3-3$. If \textit{$O_l$+2} equals its length \texttt{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes' maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \textit{p} for new values refers to the parent node, \texttt{[n]} is the \texttt{n}th element of identifer \texttt{ID}. $O_l$ describes the \textit{level offset} $l*3-3$. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
 
 \begin{table}[]
 \begin{tabular}{l|llllll}
 Id{[}$O_l$, $O_l$+1, $O_l$+2{]} & X min & X max & Y min & Y max & Z min & Z max \\ \hline
 000 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
-001 & \textit{p}.X mean & \textit{p}. X max & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
+001 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z mean & \textit{p}.Z max \\
 010 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z mean & \textit{p}.Z max \\
 011 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z mean & \textit{p}.Z max \\
 100 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y mean & \textit{p}.Y max & \textit{p}.Z min & \textit{p}.Z mean \\
@@ -96,7 +96,7 @@ Id{[}$O_l$, $O_l$+1, $O_l$+2{]} & X min & X max & Y min & Y max & Z min & Z max 
 110 & \textit{p}.X min & \textit{p}.X mean & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z min & \textit{p}.Z mean \\
 111 & \textit{p}.X mean & \textit{p}.X max & \textit{p}.Y min & \textit{p}.Y mean & \textit{p}.Z min & \textit{p}.Z mean
 \end{tabular}
-\caption{child node bounding values}\label{tab:child_node_bounding_values}
+\caption{Child node bounding values}\label{tab:child_node_bounding_values}
 \end{table}
 % table 4.1
 
@@ -106,7 +106,7 @@ The most important functions of the \texttt{ocTree} class, as implemented in thi
 	This public constructor will create a new instance of the class \texttt{ocTree}. Parameters required are
 	\begin{enumerate*}
 		\item a sequence container, such as an array (\texttt{std::vector} was used in this work) holding the \texttt{mesh} objects to be spatially indexed,
-		\item an integer determing the maximum amount of vertices that one leaf node can store and
+		\item an integer determing the maximum amount of vertices that one leaf node can store, and
 		\item an integer determing the maximum split depth, in other words the maximum depth of the tree
 	\end{enumerate*}.
 	As an optional fourth parameter, a boolean flag can be passed as well. Its default value is set to be \texttt{false}, if it is set to \texttt{true}, additional information regarding the recursive construction of the tree, including identifiers, level, dimensions and number of vertices held by each subtree, will be printed to the console via \texttt{std::cout}. During subsequent creation of subtrees, this parameter will be used for each new object.
@@ -122,14 +122,14 @@ myOcTree = new ocTree(meshes, 100, 4, true);
 This will create a spatial indexing structure for the 3D data stored in \texttt{meshes} where each node can hold up to 100 vertices and the maximum level of nodes is 4. Additional information will be printed to the console because the last parameter is set to \texttt{true}.
 
 \subsubsection{Subtree constructor \texttt{ocTree()}}
-	This, somewhat more complex, private constructor is used for every \texttt{ocTree} object that is not a node. In addition to the parameters that were used for the root node, the following parameters are required.
+	This somewhat more complex, private constructor is used for every \texttt{ocTree} object that is not a node. In addition to the parameters that were used for the root node, the following parameters are required:
 	\begin{enumerate*}
-		\item a set of vertices to be searched through for those located within the bounds of this particular subtree (\texttt{std::vector} of \texttt{glm::vec3} objects was used in this work), 
-		\item an integer determing the level of the parent node, the level of this new subtree will be set to that level plus one,
-		\item an array of nine float values describing its parents dimensions (together wit the \textit{split directions}, this will be used to determine the bounds, or dimensions, of this new subtree),
-		\item a reference to the root node of this subtree,
-		\item a vector of boolean values describing its parents unique identifier and
-		\item a vector of three boolean values describing the \textit{split directions} passed by the parent node
+		\item A set of vertices to be searched through for those located within the bounds of this particular subtree (\texttt{std::vector} of \texttt{glm::vec3} objects was used in this work), 
+		\item An integer determing the level of the parent node, the level of this new subtree will be set to that level plus one,
+		\item An array of nine float values describing its parents dimensions (together wit the \textit{split directions}, this will be used to determine the bounds, or dimensions, of this new subtree),
+		\item A reference to the root node of this subtree,
+		\item A vector of boolean values describing its parents unique identifier, and
+		\item A vector of three boolean values describing the \textit{split directions} passed by the parent node
 	\end{enumerate*}.
 	Again, an additional boolean flag determing whether, during the recursive building proccess of the subtree, information will be printed to the console or not, is also passed with the value of the respective member variable of the parent node.
 
@@ -158,22 +158,23 @@ ocTree::ocTree(...) {
 \end{lstlisting}
 \end{minipage}
 
-After setting up the essential variables, lines 6 - 8 copy the parts of the parents identifier up until the current level offset. Every new subtree node is a child of a lower-level node and this step implicitly entails that relationship. If an \texttt{ocTree} object at a level higher than 0 has child nodes - which makes it the root of a subtree within the octree - has the unique identifier 010000, the first three values of the identifiers of its eight children nodes will be 010.
+After setting up the essential variables, lines 6 - 8 copy the parts of the parent's identifier up until the current level offset. Every new subtree node is a child of a lower-level node and this step implicitly entails that relationship. If an \texttt{ocTree} object at a level higher than 0 has child nodes - which makes it the root of a subtree within the Octree - has the unique identifier 010000, the first three values of the identifiers of its eight children nodes will be 010.
 
 Lines 10 - 11 set the crucial values at the level offset $O_l$, $O_l+1$ and $O_l+2$ according to the values passed via \texttt{splitDirections}. In the context of a parent node calling \texttt{split()}, these passed values are eight sets of three boolean values each that can be represented as 000, 001, 010, 011, 100, 101, 110 and 111.
 
-Since every identifier of every node within an octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 14 - 16 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 17, the final identifier of the current node is set as its private member variable.
+Since every identifier of every node within an Octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 14 - 16 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 17, the final identifier of the current node is set as its private member variable.
 
 	\subsubsection{\texttt{getRootDimensions()}}
-This is called by a newly created root \texttt{ocTree}. In this first, basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
+This is called by a newly created root \texttt{ocTree}. In this first basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
 
 	\subsubsection{\texttt{setDimensions()}}
 	\label{sec:setDimensions}
-This simple private function takes care of setting up correct minimum, mean and maximum values in x, y and z dimension for a newly created subtree node. The following parameters are required.
+This simple private function takes care of setting up correct minimum, mean and maximum values in x, y and z dimension for a newly created subtree node. The following parameters are required:
 \begin{enumerate*}
-	\item an array of nine \texttt{float} values containing the parent nodes' bounding and mean values and
-	\item a reference to an \texttt{std::vector} of three boolean values containing the \textit{split directions}
+	\item An array of nine \texttt{float} values containing the parent nodes' bounding and mean values, and
+	\item A reference to an \texttt{std::vector} of three boolean values containing the \textit{split directions}
 \end{enumerate*}.
+
 Based on the \textit{split directions} given via the second parameter, setting up the bounding values for the new subtree is a matter of assigning the correct value of the first parameter. Said second parameter - a vector of \texttt{float} values - will always contain its values in the following order:
 \begin{enumerate*}
 % \setcounter{enum}{0}
@@ -281,7 +282,7 @@ Lines 20 and 21 show the assignments of newly created subtree nodes to their pla
 	\label{set:getNodeByIdentifierArray}
 This recursive, public function returns a pointer to a leaf node via a boolean input vector representing its identifier. Starting at the root node, it traverses through tree and will return the node with given identifier at the lowest level. The only parameter required is a \texttt{std::vector} \textit{Id} of \textit{n} = \textit{L}*3 boolean values where \textit{L} is the maximum level of the \texttt{ocTree} object calling this function.
 
-As described above, a node at level \textit{l} that is recursively calling this function, first calculates the current level offset $O_l = l*3-3$ and then considers elements $O_l, O_l+1$ and $O_l+2$ of passed identifier vector \textit{Id}. Depending on these values, the matching child node will perform the next recursive call of \texttt{getNodeByIdentifierArray()}. Every \texttt{ocTree} object has a private array as a member variable that holds eight other \texttt{ocTree} objects, its children nodes. Given the bounds of a parent node, which are defined as minimum and maximum values in x, y and z direction, calculating the three mean values in all three dimensions is trivial. The resulting  set of minimum, maximum and mean values can be combined in multiple ways and used for minimum and maximum values of all eight subtree nodes, see table \ref{tab:child_node_bounding_values}. To geometrically locate the children nodes, one must check the three relevant boolean values and search either before or beyond the median values in x, y and z direction. A \texttt{false} value of x means, the respective child node lies within the parent node's minimum and mean values in x direction, \texttt{true} means it lies within mean and maximum x values. This pattern is inverted in directions y and z. In both cases, \texttt{false} means the child node starts at the mean value of the parent node (its minimum value equals the mean value of the parent) and ends at its maximum value, whereas \texttt{true} indicates the opposite. Figure \ref{fig:child_node_000_101.png} depicts two exemplary parent nodes at level \textit{l} (checkered) and their bounds with one of their eight subtree nodes, the ones indicated by \textit{Id}[$O_l$, $O_l+1$, $O_l+2$], highlighted in red. Again, note that \texttt{$O_l+3$} determines the bounds in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z direction.
+As described above, a node at level \textit{l} that is recursively calling this function, first calculates the current level offset $O_l = l*3-3$ and then considers elements $O_l, O_l+1$ and $O_l+2$ of passed identifier vector \textit{Id}. Depending on these values, the matching child node will perform the next recursive call of \texttt{getNodeByIdentifierArray()}. Every \texttt{ocTree} object has a private array as a member variable that holds eight other \texttt{ocTree} objects, its children nodes. Given the bounds of a parent node, which are defined as minimum and maximum values in x, y and z direction, calculating the three mean values in all three dimensions is trivial. The resulting  set of minimum, maximum and mean values can be combined in multiple ways and used for minimum and maximum values of all eight subtree nodes, see table \ref{tab:child_node_bounding_values}. To geometrically locate the children nodes, one must check the three relevant boolean values and search either before or beyond the median values in x, y and z direction. A \texttt{false} value of x means the respective child node lies within the parent node's minimum and mean values in x direction, \texttt{true} means it lies within mean and maximum x values. This pattern is inverted in directions y and z. In both cases, \texttt{false} means the child node starts at the mean value of the parent node (its minimum value equals the mean value of the parent) and ends at its maximum value, whereas \texttt{true} indicates the opposite. Figure \ref{fig:child_node_000_101.png} depicts two exemplary parent nodes at level \textit{l} (checkered) and their bounds with one of their eight subtree nodes, the ones indicated by \textit{Id}[$O_l$, $O_l+1$, $O_l+2$], highlighted in red. Again, note that \texttt{$O_l+3$} determines the bounds in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z direction.
 
 \begin{figure}[htb]
   \centering
@@ -323,11 +324,11 @@ void ocTree:: buildTreeRecursively(...) {
 \end{lstlisting}
 \end{minipage}
 
-Lines 2 - 11 check whether the current vertex lies within the bounds of the calling node. Note that each node calling this function will consider every vertex its parent node held in their member variable \texttt{m\_verticesInBounds}. In turn, if the calling node is to call \texttt{split()} later on, creating eight new subtree nodes, those nodes will consider each of the vertices that, via this loop have been determined to be located within their parent node. This stems from the trivial observation that a subtree can only contain vertices that are also contain by their parent node. So the root node of an \texttt{ocTree} will always check every single vertex of the loaded 3D object but the higher their level, the subtree nodes will have to check fewer and fewer vertices.
+Lines 2 - 11 check whether the current vertex lies within the bounds of the calling node. Note that each node calling this function will consider every vertex its parent node held in their member variable \texttt{m\_verticesInBounds}. In turn, if the calling node is to call \texttt{split()} later on, creating eight new subtree nodes, those nodes will consider each of the vertices that, via this loop have been determined to be located within their parent node. This stems from the trivial observation that a subtree can only contain vertices that are also contained by their parent node. So the root node of an \texttt{ocTree} will always check every single vertex of the loaded 3D object. However, the higher the level of its subtree nodes, the fewer vertices will have to be checked by those nodes.
 
 Line 13 shows the crucial check wheter the number of vertices within the bounds of the calling node exceeds the maximum allowed number of vertices per node. If this is the case and the maximum allowed level (\texttt{m\_maxSplitDepth}) of subtrees is not reached yet (line 13), a call of \texttt{split()} by this node follows.
 
-Figure \ref{fig:ocTree_levels.png} depicts a simple \texttt{ocTree} structure that could result from indexing a small set of 3D data. This particular tree has a root node at level zero, represented as a basic cube, in the upper left part of the figure. As the number of vertices within the bounds of the root exceeds the maximum numbers of vertices a node may hold in this particular tree, the root will call \texttt{split()} so that eight new subtrees are created and the root switches its boolean flag \texttt{isLeaf} to \texttt{false}, indicating that it is no longer a leaf node but the root of an actual subtree within the entire \texttt{ocTree}. Given that the maximum level of subtrees visible in the figure is 2, we assume that this is also the maximum allowed level for subtrees. This would mean that the identifier \texttt{vectors} of every node within this tree will have a length of $3*2$. The level 1 subtrees 000100 and 000111, as shown in the figure, also have more vertices within their bounds than what is the maximum number of vertices per node so they, too, split and created a total of 16 new child nodes, each at level 2.
+Figure \ref{fig:ocTree_levels.png} depicts a simple \texttt{ocTree} structure that could result from indexing a small set of 3D data. This particular tree has a root node at level zero, represented as a basic cube in the upper left part of the figure. As the number of vertices within the bounds of the root exceeds the maximum numbers of vertices a node may hold in this particular tree, the root will call \texttt{split()} so that eight new subtrees are created and the root switches its boolean flag \texttt{isLeaf} to \texttt{false}, indicating that it is no longer a leaf node but the root of an actual subtree within the entire \texttt{ocTree}. Given that the maximum level of subtrees visible in the figure is 2, we assume that this is also the maximum allowed level for subtrees. This would mean that the identifier \texttt{vectors} of every node within this tree will have a length of $3*2$. The level 1 subtrees 000100 and 000111, as shown in the figure, also have more vertices within their bounds than what is the maximum number of vertices per node so they, too, split and creat a total of 16 new child nodes, each at level 2.
 
 \begin{figure}[htb]
   \centering
@@ -344,25 +345,24 @@ This section covers the elementary functions that handle the selection of vertic
 
 	\subsubsection{\texttt{addVerticesToSelectionByCoordinates()}}
 	\label{sec:addVerticesToSelectionByCoordinates()}
-This private, recursive function adds vertices to a set of selected vertices by reference, based on three-dimensional coordinates and a search radius. The following parameters are required.
+This private, recursive function adds vertices to a set of selected vertices by reference, based on three-dimensional coordinates and a search radius. The following parameters are required:
 \begin{enumerate*}
-	\item an input coordinate depicting the point in real space where a user was using the input device (a \texttt{glm::vec3} was used in this work),
-	\item a \texttt{float} value describing the radius around thee input coordinate in which vertices are to be added to the selection and
-	\item a reference to the set of indexes of vertices (\texttt{std::set<size\_t>} was used in this work)
-	\item bool debugInfo
+	\item An input coordinate depicting the point in real space where a user was using the input device (a \texttt{glm::vec3} was used in this work),
+	\item A \texttt{float} value describing the radius around thee input coordinate in which vertices are to be added to the selection, and
+	\item A reference to the set of indexes of vertices (\texttt{std::set<size\_t>} was used in this work)
 \end{enumerate*}.
 
-An additional boolean flag determing whether, during the recursive search for the correct node, information will be printed to the console or not, is passed with a default value of \texttt{false}. If set to \texttt{true}, it cuases information to be displayed. The general course of events within this function proceeds as follows:
+An additional boolean flag determing whether, during the recursive search for the correct node, information will be printed to the console or not, is passed with a default value of \texttt{false}. If set to \texttt{true}, it causes information to be displayed. The general course of events within this function proceeds as follows:
 \begin{enumerate}
-	\item check if any of the given input point's coordinates are located outside of the bounds of the root of the \texttt{ocTree} indexing the 3D object. Throws exception if this is the case.
-	\item check if the current node is a leaf (i.e. has no child nodes). This terminates the recursive search and proceeds with finding vertices around the given input coordinates, as it is save to assume that the correct node was found.
-	\item add all vertices within this node to the set of vertices to be checked.
-	\item determine if the radius around the query point crosses the bounds of this node in any direction. If so, add all the vertices of the neighbouring node to the set of vertices to be checked.
-	\item iterate over the entire set of vertices to be checked to find which ones lie in radius around the query point and add those to the set of selected vertices.
-	\item if this node is not a leaf node - steps 3, 4 and 5 were skipped in this case - determine the correct child node in which the query point is located and have that node recursively call \texttt{addVerticesToSelectionByCoordinates()}.
+	\item Check if any of the given input point's coordinates are located outside of the bounds of the root of the \texttt{ocTree} indexing the 3D object. Throws exception if this is the case.
+	\item Check if the current node is a leaf (i.e. has no child nodes). This terminates the recursive search and proceeds with finding vertices around the given input coordinates, as it is safe to assume that the correct node was found.
+	\item Add all vertices within this node to the set of vertices to be checked.
+	\item Determine if the radius around the query point crosses the bounds of this node in any direction. If so, add all vertices of the neighbouring node to the set of vertices to be checked.
+	\item Iterate over the entire set of vertices to be checked to find which ones lie in radius around the query point and add those to the set of selected vertices.
+	\item If this node is not a leaf node - steps 3, 4 and 5 are skipped in this case - determine the correct child node in which the query point is located and have that node recursively call \texttt{addVerticesToSelectionByCoordinates()}.
 \end{enumerate}
 
-Consider figure \ref{fig:a01_without_neighbours} for a clear depection of the process. For the sake of a simplified, clear presentation, an orthographic top view which only considers axes x and y was is shown here. Four of an implicitly shown parent node's eight subtree nodes are shown. The figure illustrates, from left to right, three vital steps towards finding vertices that lie within a search radius $r$ around an input query coordinate $P_q$. Throughout these steps, $P_q$ is depicted as an orange point, $r$ is shaded blue. Vertices within this radius will compose the result of the query $V_{result}$ and get added to the set of currently selected vertices. Vertices which are considered to get checked if they lay within $r$, $V_{check}$, are highlighted blue, the ones where this is not the case are plain grey.
+Consider figure \ref{fig:a01_without_neighbours} for a clear depiction of the process. For the sake of a simplified, clear presentation, an orthographic top view which only considers axes x and y is shown here. Four of an implicitly shown parent node's eight subtree nodes are shown. The figure illustrates, from left to right, three vital steps towards finding vertices that lie within a search radius $r$ around an input query coordinate $P_q$. Throughout these steps, $P_q$ is depicted as an orange point, $r$ is shaded blue. Vertices within this radius will compose the result of the query $V_{result}$ and get added to the set of currently selected vertices. Vertices which are considered to get checked if they lay within $r$, $V_{check}$, are highlighted blue, the ones where this is not the case are plain grey.
 
 \begin{figure}[htb]
   \centering
