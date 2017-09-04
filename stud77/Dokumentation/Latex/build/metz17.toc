@@ -7,11 +7,11 @@
 \contentsline {subsection}{\numberline {3.1.1}Spatial indexing of 3D data}{9}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Selection process}{11}{subsection.3.1.2}
 \contentsline {section}{\numberline {3.2}Conduct user study with the selection application}{13}{section.3.2}
-\contentsline {section}{\numberline {3.3}Measure of differences}{15}{section.3.3}
+\contentsline {section}{\numberline {3.3}Measure of differences}{16}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Terms and abbreviations}{16}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}unweighted difference ratio}{17}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}weighted difference ratio}{18}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}step-wise summery}{19}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.4}step-wise summery}{20}{subsection.3.3.4}
 \contentsline {chapter}{\numberline {4}Selection Application}{21}{chapter.4}
 \contentsline {section}{\numberline {4.1}Additional third party libraries}{21}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}OpenGL}{21}{subsection.4.1.1}
@@ -36,5 +36,11 @@
 \contentsline {subsubsection}{\numberline {4.3.2.2}\texttt {removeVerticesFromSelectionByCoordinates()}}{36}{subsubsection.4.3.2.2}
 \contentsline {subsection}{\numberline {4.3.3}Tracking selection}{36}{subsection.4.3.3}
 \contentsline {subsection}{\numberline {4.3.4}Testing setup}{37}{subsection.4.3.4}
-\contentsline {chapter}{\nonumberline List of Figures}{39}{chapter*.2}
-\contentsline {chapter}{\nonumberline Bibliography}{41}{chapter*.3}
+\contentsline {chapter}{\numberline {5}Results and discussion}{39}{chapter.5}
+\contentsline {section}{\numberline {5.1}User study data}{39}{section.5.1}
+\contentsline {section}{\numberline {5.2}Interpretation}{39}{section.5.2}
+\contentsline {chapter}{\numberline {6}Conclusion and future work}{41}{chapter.6}
+\contentsline {section}{\numberline {6.1}Insights and conclusions}{41}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future work}{41}{section.6.2}
+\contentsline {chapter}{\nonumberline List of Figures}{43}{chapter*.2}
+\contentsline {chapter}{\nonumberline Bibliography}{45}{chapter*.3}

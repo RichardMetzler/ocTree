@@ -67,8 +67,7 @@ Figure \ref{fig:wand} depicts the \textit{wand} used in the V2C. The yellow joys
 scene. The two essential functions of the application are mapped to two of the three buttons surrounding the joystick: The (from the perspective of a user holding the \textit{wand}) left button adds vertices near the current position of the wand to the vertex selection and the righthand button removes such vertices from it. The button in the middle does not have a function in this application, as well as the trigger-like fourth button on the button side of the \textit{wand} (not in view in the figure).
 In accordance with the simplistic structure of the user study, the interaction was designed to be as little complex as possible, hence only these two buttons having actual, distinct purposes. 
 
-With this setup in place, everything needed to implement the user selection part of the application is at hand. In order to provide as much visual accuracy as possible, a bright green diamond shaped object at the tracked position of the \textit{wand} is projected into the scene in addition to the loaded model. To additionally provide clear visual feedback, vertices selected are painted in bright red, clearly seperating them from non-selected parts of the object, displayed in plain grey. For more details on the visual presentation of the application, see 
-% @TODO Verweis auf Kapitel User Study bzw. den Teil wo Fotos sind 1bauen
+With this setup in place, everything needed to implement the user selection part of the application is at hand. In order to provide as much visual accuracy as possible, a bright green diamond shaped object at the tracked position of the \textit{wand} is projected into the scene in addition to the loaded model. To additionally provide clear visual feedback, vertices selected are painted in bright red, clearly seperating them from non-selected parts of the object, displayed in plain grey. For more details on the visual presentation of the application, see section \ref{sec:conduct_user_study_with_the_selection_application}.
 
 Whenever a user presses the left button of the \textit{wand}, a proximity query is performed on the octree structure indexing the object with its current position as the input. The position is passed as a \texttt{glm::vec3} variable, a basic 3D vector type provided by openGL's mathematics library. For a detailed description of how such a query is handled in this application, see section \ref{sec:addVerticesToSelectionByCoordinates()}.
 
@@ -132,7 +131,7 @@ I decided to use three objects described table in \ref{tab:userstudy_objects} an
   \caption{The 3D objects used for the user study}\label{fig:all_objects}
 \end{figure}
 
-Figure \ref{fig:all_objects} shows the objects used in the user study. From left to right, the 3D scanned bunny, the modelled cow and the low-poly, modelled aircraft are shown. Consider the grid to get a sense of their proportions. I did not scale them according to their real world sizes and instead made them take up approximately equal space in the virtual scene. This was done with the intention to provide a similar level of visual detail, independent of the actual geometric level of detail, for each object. %@TODO: Markus nach besserer Begründung fragen
+Figure \ref{fig:all_objects} shows the objects used in the user study. From left to right, the 3D scanned bunny, the modelled cow and the low-poly, modelled aircraft are shown. Consider the grid to get a sense of their proportions. I did not scale them according to their real world sizes and instead made them take up approximately equal space in the virtual scene. This was done with the intention to provide a similar level of visual detail, independent of the actual geometric level of detail, for each object. Furthermore, I wanted to prevent the size of the objects from having any sort of influence on how users perceived them.
 
 I took two steps to eliminate the possibility of user selections being influenced by them first having to adapt to and getting familiar with the selection application. First, Every user was given five minutes to get familiar with the navigation and selection workflow. Selections made here were not considered for the results of the userstudy. After that, the three objects were presented in a randomly chosen order for five minutes each. The users were given the tasks stated at the beginning of this section and were free to use as much of the five minutes as they wanted to perform vertex selection and deselection operations.
 
@@ -153,19 +152,17 @@ I consider both \textit{raw} and \textit{weighted difference} values, for a deta
 The following terms, symbols and abbreviations will be used in the subsequent sections to explain the measure of difference used in this work.
 
 \begin{description}
-	\item [user saliency map] - a saliency map for an object based on the average times each vertex was selected by users
-	\item [mesh saliency map] - a saliency map for an object that was computed as described in \cite{lee2005mesh}
-	\item[difference ratio] - a float number, normalised to a value between 0.0 and 1.0 indicating how much the generated \textit{user saliency map} differs from the pre-computed \textit{mesh saliency map}, based on unweighted (raw) difference values
+	\item[unweighted difference ratio] - a float number, normalised to a value between 0.0 and 1.0 indicating how much the generated \textit{user saliency map} differs from the pre-computed \textit{mesh saliency map}, based on unweighted (raw) difference values
 	\item[weighted difference ratio] - a float number, normalised to a value between 0.0 and 1.0 indicating how much the generated \textit{user saliency map} differs from the pre-computed \textit{mesh saliency map}, based on weighted difference values
-	\item[$N(vi)$] - a part of an object consisting of multiple vertices $v_1$, ... $v_j$ which are located in a certain radius $r$ around currently considered vertex $v_i$
 	\item[$v_i$] - the currently considered vertex \textit{i} $\in$ set of all vertices $V$ belonging to an object
-	\item[$S_{M}(v_i)$] - the computed mesh saliency value for $v_i$
-	\item[$S_{U}(v_i)$] - the user generated saliency value for $v_i$
+	\item[$S_{M}(v_i)$] - the computed mesh saliency value for $v_i$ as described in \cite{lee2005mesh}
+	\item[$S_{U}(v_i)$] - the user generated saliency value for $v_i$, describing its \textit{perceived importance} value based on how many times it was selected by users in relation to the most-selected vertices.
 	\item[$\Delta_{raw}(v_i)$] - the unweighted (raw) difference between the user and mesh saliency values $S_{U}(v_i)$ - $S_{M}(vi_i)$. The absolute value of the result is normalised to a value between 0.0 and 1.0
 	\item[$\Delta_{weighted}(v_i)$] - the weighted difference between the user and mesh saliency values $S_{U}(v_i)$ - $S_{M}(vi_i)$. The absolute value of the result is normalised to a value between 0.0 and 1.0
 	\item[$V_{proximty}(v_i)$] - a \textit{proximity set} of vertices $v_1$, ... $v_j$ that are located within radius $r$ around the coordinates of given vertex $v_i$
 	\item[$\omega$] - a threshold value derived from mesh saliency values $S_{M}(v_1)$, ... $S_{M}(v_j)$ for all vertices $v_1$, ... $v_j$ $\in$ a \textit{proximity set} $V_{proximty}(v_i)$ of $vi$
 \end{description}
+% @TODO: OMEGA beschreiben, im Quelltext & hier!!! (mit Markus abklären!)
 
 		\subsection{unweighted difference ratio}
 		\label{sec:unweighted_difference_ratio}
@@ -216,24 +213,45 @@ Consider figure \ref{gorilla_saliency_map}. It depicts an object and its multi-s
 Based on the assumption that a very low \textit{user saliency value} of vertices which lays in a yellow or red shaded area is more interesting than one that is located in a green or blue area, I based the decision which vertex-wise difference ratios would be weighted on a comparison of other vertices surroundind them. Consider a vertex $v_i$ in the following cases.
 
 \begin{description}
-	\item [case 1:] $v_i$ has a \textit{user saliency} value of 0.2 or lower and vertices located in its proximity have an average \textit{mesh saliency} value of 0.8 or higher.
-	\item [case 2:] $v_i$ has a \textit{user saliency} value of 0.2 or lower and vertices located in its proximity have an average \textit{mesh saliency} value of 0.3 or lower
-	\item [case 3:] $v_i$ has a \textit{user saliency} value of 0.8 or higher and vertices located in its proximity have an average \textit{mesh saliency} value of 0.8 or higher
-	\item [case 4:] $v_i$ has a \textit{user saliency} value of 0.8 or lower and vertices located in its proximity have an average \textit{mesh saliency} value of 0.3 or lower
+	\item [case 1:] $v_i$ has a \textit{user saliency} value of 0.2 or lower and vertices in $V_{proximty}(v_i)$ have an average \textit{mesh saliency} value of $\omega$ or higher.
+	\item [case 2:] $v_i$ has a \textit{user saliency} value of 0.2 or lower and vertices in $V_{proximty}(v_i)$ have an average \textit{mesh saliency} lower than $\omega$
+	\item [case 3:] $v_i$ has a \textit{user saliency} value of 0.8 or higher and vertices in $V_{proximty}(v_i)$ have an average \textit{mesh saliency} value of $\omega$ or higher
+	\item [case 4:] $v_i$ has a \textit{user saliency} value of 0.8 or lower and vertices in $V_{proximty}(v_i)$ have an average \textit{mesh saliency} lower than $\omega$
 \end{description}
 
-I decided to base this simple evaluation process on the assumption that realistic, reliable results are achieved by the model of \textit{mesh saliency}. So I focused on finding deviations within parts and regions of objects that have higher mesh saliency values. Thus, only in cases 1 and 3, vertex-wise differences get weighted. High vertex-wise differences in regions that with a low overall mesh saliency value still are considered for the final \textit{weighted difference ratio}, but not as much as those that that emerge from cases 1 and 3.
-% @TODO: 0.2? Hier beschreiben und im Quelltext ggf anpassen (threshold = average_saliency_val oder sowas)
+I decided to base this simple evaluation process on the assumption that realistic, reliable results are achieved by the model of \textit{mesh saliency}. So I focused on finding deviations within parts and regions of objects that have higher mesh saliency values. Thus, only in cases 1 and 3, vertex-wise differences get weighted. High vertex-wise differences in regions with a low overall mesh saliency value still are considered for the final \textit{weighted difference ratio}, but not as much as those at hand in cases 1 and 3.
+% @TODO: 0.2, 0.8? Hier beschreiben und im Quelltext ggf anpassen (threshold = average_saliency_val oder sowas)
+% @TODO: überhaupt checken ob das so stimmt / Sinn ergibt / etc
 
-Regarding how the actual weighting is done, a simple function that increases the vertex-wise \textit{raw difference} values, normalizes between 0.0 and 1.0 without getting greater than 1.0. So I chose to use an altered, restricted function describing a circle that has its centre at $x = 1.0, y = 0.0$ and radius $r = 1.0$. See figure{da unte halt}
-% @TODO: Bild 1fuegen
+Regarding how the actual weighting is done, I aimed for a simple function that increases the vertex-wise \textit{raw difference} values, normalising them between 0.0 and 1.0 without getting greater than 1.0. So I chose to use an altered, restricted function describing a circle that has its centre at $x = 1.0, y = 0.0$ and radius $r = 1.0$. Figure \ref{fig:weighting_function} depicts this \textit{weighting function}. It shows how vertex-wise differences between \textit{mesh saliency} and \textit{user saliency} values are used for computation of the final, overall difference ratios - both \textit{unweighted} (black line) and \textit{weighted} (blue curve).
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=.5\textwidth]{weighting_function.png}\\ % PNG-File
-  \caption{Graphic representation of the weighting function in relation}\label{fig:weighting_function}
+  \includegraphics[width=.7\textwidth]{weighting_function.png}\\ % PNG-File
+  \caption{Graphic representation of the weighting function in relation to the \textit{unweighted} difference values (straight, black line)}\label{fig:weighting_function}
 \end{figure}
+% @TODO: blaue Kurva halb-transparent machen
+
+Consider figure \ref{fig:weighting_function}. The straight, black line, being a steady identity function of float values, shows normalised \textit{unweighted} vertex-wise difference values. For such values, both in regards to \textit{unweighted} and \textit{weighted} overall \textit{difference ratios}, their unaltered, absolute value $\Delta_{raw}(v_i)$ is used for computation. However, should vertices in $V_{proximty}(v_i)$ have an average \textit{mesh saliency} value of $\omega$ or greater, the difference between \textit{mesh saliency} and \textit{user saliency} values at $v_i$ is weighted according to the blue curve function shown in the figure.
+
+In conclusion, if $v_i$ is surrounded by vertices whose average of computed \textit{mesh saliency} values surpasses a certain threshold $\omega$, I assume it is located in a greater, contiguous patch of the object with high importance as determined by the processing according to \textit{mesh saliency}. Hence, $\Delta_{raw}(v_i)$ is used for generating the overall \textit{unweighted difference ratio} and $\Delta_{weighted}(v_i)$ is used used for generating the overall \textit{weighted difference ratio}.
 
 		\subsection{step-wise summery}
 		\label{sec:ste_wise_summery}
-% @TODO: Comments (beginnend z. 678) aus Quelltext copy-pasteten
+This subsection provides a brief summary of the steps to computing overall \textit{unweighted} and \textit{weighted difference ratios} described in greater detail in the precedig subsections. It provides more insight into how I organised and prepared the data for evaluation. It describes the workflow for a single 3D object.
+
+\begin{enumerate}
+	\item Compute the \textit{mesh saliency} map for a given object using using \texttt{climberpi's} implementation \cite{clms} and store the result in an external textfile \texttt{computed\_saliency} for later use.
+	\item Read \textit{n} textfiles \texttt{u\_00}, ... \texttt{u\_n}, each containing one user selection, compute the \textit{user saliency} map based on how many times each vertex was selected in relation to the most-selected vertices and store the result in an external textfile \texttt{user\_saliency} for later use.
+	\item Read \texttt{computed\_saliency} and \texttt{user\_saliency}, store the contents in two \texttt{std::vector} containers \textit{computed\_saliency\_values} and \textit{user\_saliency\_values}.
+	\item calculate vertex-wise saliency differences and store them in an a \texttt{std::vector differences\_unweighted}.
+	\item Iterate through the list of vertices of the currently considered object. For every such vertex $v_i$, find vertices $v_1$, ... $v_j$ $\in$ $V_{proximty}(v_i)$ via a range-query to the \texttt{ocTree} instance indexing the object (see section \ref{sec:addVerticesToSelectionByCoordinates()}).
+	\item For each vertex $v_i$, look up \textit{mesh saliency} values for vertices $v_1$, ... $v_j$ in the \textit{mesh saliency} map. Compute the average of those values.
+	\begin{enumerate}
+		\item if average is $\omega$ or greater, compute $\Delta_{weighted}(v_i)$ and storte it in a \texttt{std::vector differences\_weighted}.
+		\item if average is less than $\omega$, keep $\Delta_{raw}(v_i)$ as it is in \texttt{differences\_unweighted}.
+	\end{enumerate}
+	\item Iterate through \texttt{differences\_unweighted}, calculate the average and return it as the overall \textit{unweighted difference ratio}.
+	\item Iterate through \texttt{differences\_weighted}, calculate the average and return it as the overall \textit{weighted difference ratio}
+\end{enumerate}
+

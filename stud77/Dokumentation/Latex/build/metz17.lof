@@ -8,10 +8,12 @@
 \contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces The trackable, stereoscopic glasses used at the V2C}}{14}{figure.3.4}
 \contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces The 3D objects used for the user study}}{15}{figure.3.5}
 \contentsline {figure}{\numberline {\relax 3.6}{\ignorespaces A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit {et al.} \cite {nouri2015multi}}}{18}{figure.3.6}
-\contentsline {figure}{\numberline {\relax 3.7}{\ignorespaces Graphic representation of the weighting function in relation}}{19}{figure.3.7}
+\contentsline {figure}{\numberline {\relax 3.7}{\ignorespaces Graphic representation of the weighting function in relation to the \textit {unweighted} difference values (straight, black line)}}{19}{figure.3.7}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{29}{figure.4.1}
 \contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{31}{figure.4.2}
 \contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{32}{figure.4.3}
 \contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{37}{figure.4.4}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
 \addvspace {10\p@ }

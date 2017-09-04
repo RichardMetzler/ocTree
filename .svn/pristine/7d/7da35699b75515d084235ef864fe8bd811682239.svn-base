@@ -1,0 +1,268 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{steuer1992defining}
+\citation{sampaio2014application}
+\citation{le2015social}
+\citation{stouffs2013happening}
+\citation{baus2014moving}
+\citation{merians2014rehabilitation}
+\citation{de2014healthcare}
+\citation{marks2014towards}
+\citation{wendrich2016hybrid}
+\citation{valente2016live}
+\citation{zyda2005visual}
+\citation{merchant2014effectiveness}
+\citation{ott2015literature}
+\citation{ovtcharova2015innovation}
+\citation{nguyen2016applying}
+\citation{wei2010feature}
+\citation{shaffer2001efficient}
+\citation{zhao2012saliency}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\newlabel{sec:introduction}{{1}{1}{Introduction}{chapter.1}{}}
+\citation{lee2005mesh}
+\citation{koch1987shifts}
+\citation{cignoni1998comparison}
+\citation{shamir2008survey}
+\citation{lee2005mesh}
+\citation{lee2005mesh}
+\citation{taubin1995estimating}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Related work}{3}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\newlabel{sec:related_work}{{2}{3}{Related work}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Mesh saliency and human perception}{3}{section.2.1}}
+\newlabel{sec:mesh_saliency_and_human_perception}{{2.1}{3}{Mesh saliency and human perception}{section.2.1}{}}
+\citation{wu2013mesh}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces A model and its computes mesh saliency map. Published by Lee \textit  {et al.} \cite  {lee2005mesh}. Bright colors (yellow and red) indicate high saliency values for their respective vertices, dark colors (shades of blue) indicate low values.}}{4}{figure.2.1}}
+\newlabel{fig:lee_arma_map}{{\relax 2.1}{4}{A model and its computes mesh saliency map. Published by Lee \textit {et al.} \cite {lee2005mesh}. Bright colors (yellow and red) indicate high saliency values for their respective vertices, dark colors (shades of blue) indicate low values}{figure.2.1}{}}
+\citation{ciptadi2013depth}
+\citation{potapova2011learning}
+\citation{koschan2003perception}
+\citation{dutagaci2012evaluation}
+\citation{howlett2005predicting}
+\citation{kho2003user}
+\citation{garland1997qslim}
+\citation{munaretti2007perceptual}
+\citation{surazhsky2005fast}
+\citation{santos2009head}
+\citation{qi2006comparison}
+\citation{ware1993fish}
+\citation{mizell2002comparing}
+\citation{pausch1997quantifying}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Human attention in Virtual Reality}{6}{section.2.2}}
+\newlabel{sec:human_attention_in_virtual_reality}{{2.2}{6}{Human attention in Virtual Reality}{section.2.2}{}}
+\citation{atchleyattentional}
+\citation{lee2007real}
+\citation{o1999fmri}
+\citation{chen2012schelling}
+\citation{lee2005mesh}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Concept}{9}{chapter.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\newlabel{sec:concept}{{3}{9}{Concept}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Implementing a selection application for the V2C's projection installation}{9}{section.3.1}}
+\newlabel{sec:implementing_selection_application_v2c}{{3.1}{9}{Implementing a selection application for the V2C's projection installation}{section.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Spatial indexing of 3D data}{9}{subsection.3.1.1}}
+\newlabel{sec:impl_spatial_indexing_3d}{{3.1.1}{9}{Spatial indexing of 3D data}{subsection.3.1.1}{}}
+\citation{Octree}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{10}{figure.3.1}}
+\newlabel{fig:obj_content}{{\relax 3.1}{10}{Notation in .OBJ format}{figure.3.1}{}}
+\citation{octAp}
+\citation{v2c}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces An octree structure indexing four vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}}{11}{figure.3.2}}
+\newlabel{fig:ocTree_apple}{{\relax 3.2}{11}{An octree structure indexing four vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}{figure.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Selection process}{11}{subsection.3.1.2}}
+\newlabel{sec:selection_process}{{3.1.2}{11}{Selection process}{subsection.3.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The input device used at the V2C}}{12}{figure.3.3}}
+\newlabel{fig:wand}{{\relax 3.3}{12}{The input device used at the V2C}{figure.3.3}{}}
+\citation{v2c}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Conduct user study with the selection application}{13}{section.3.2}}
+\newlabel{sec:conduct_user_study_with_the_selection_application}{{3.2}{13}{Conduct user study with the selection application}{section.3.2}{}}
+\citation{cow}
+\citation{P51}
+\citation{bun}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces The trackable, stereoscopic glasses used at the V2C}}{14}{figure.3.4}}
+\newlabel{fig:glasses}{{\relax 3.4}{14}{The trackable, stereoscopic glasses used at the V2C}{figure.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax 3.1}{\ignorespaces 3D objects used in the study}}{15}{table.3.1}}
+\newlabel{tab:userstudy_objects}{{\relax 3.1}{15}{3D objects used in the study}{table.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces The 3D objects used for the user study}}{15}{figure.3.5}}
+\newlabel{fig:all_objects}{{\relax 3.5}{15}{The 3D objects used for the user study}{figure.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Measure of differences}{15}{section.3.3}}
+\newlabel{sec:measure_of_difference}{{3.3}{15}{Measure of differences}{section.3.3}{}}
+\citation{lee2005mesh}
+\citation{clms}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Terms and abbreviations}{16}{subsection.3.3.1}}
+\newlabel{sec:concept_terms_and_abbreviations}{{3.3.1}{16}{Terms and abbreviations}{subsection.3.3.1}{}}
+\citation{lee2005mesh}
+\citation{sec:related_work}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax 3.2}{\ignorespaces Sample content of a user selection log file}}{17}{table.3.2}}
+\newlabel{tab:user_selection_log_file}{{\relax 3.2}{17}{Sample content of a user selection log file}{table.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}unweighted difference ratio}{17}{subsection.3.3.2}}
+\newlabel{sec:unweighted_difference_ratio}{{3.3.2}{17}{unweighted difference ratio}{subsection.3.3.2}{}}
+\citation{nouri2015multi}
+\citation{nouri2015multi}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}weighted difference ratio}{18}{subsection.3.3.3}}
+\newlabel{sec:weighted_difference_ratio}{{3.3.3}{18}{weighted difference ratio}{subsection.3.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.6}{\ignorespaces A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit  {et al.} \cite  {nouri2015multi}}}{18}{figure.3.6}}
+\newlabel{fig:gorilla_saliency_map}{{\relax 3.6}{18}{A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit {et al.} \cite {nouri2015multi}}{figure.3.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.7}{\ignorespaces Graphic representation of the weighting function in relation}}{19}{figure.3.7}}
+\newlabel{fig:weighting_function}{{\relax 3.7}{19}{Graphic representation of the weighting function in relation}{figure.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}step-wise summery}{19}{subsection.3.3.4}}
+\newlabel{sec:ste_wise_summery}{{3.3.4}{19}{step-wise summery}{subsection.3.3.4}{}}
+\citation{Octree}
+\citation{OpenGL}
+\citation{v2c}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Selection Application}{21}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\newlabel{sec:selection_application}{{4}{21}{Selection Application}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Additional third party libraries}{21}{section.4.1}}
+\newlabel{sec:additional_third_party_libraries}{{4.1}{21}{Additional third party libraries}{section.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}OpenGL}{21}{subsection.4.1.1}}
+\newlabel{sec:opengl}{{4.1.1}{21}{OpenGL}{subsection.4.1.1}{}}
+\citation{GLUT}
+\citation{GLEW}
+\citation{ASP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}GLUT}{22}{subsection.4.1.2}}
+\newlabel{sec:glut}{{4.1.2}{22}{GLUT}{subsection.4.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}GLEW}{22}{subsection.4.1.3}}
+\newlabel{sec:glew}{{4.1.3}{22}{GLEW}{subsection.4.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}ASSIMP}{22}{subsection.4.1.4}}
+\newlabel{sec:assimp}{{4.1.4}{22}{ASSIMP}{subsection.4.1.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Relevant class files}{23}{section.4.2}}
+\newlabel{sec:relevant_class_files}{{4.2}{23}{Relevant class files}{section.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Object}{23}{subsection.4.2.1}}
+\newlabel{sec:object}{{4.2.1}{23}{Object}{subsection.4.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Mesh}{23}{subsection.4.2.2}}
+\newlabel{sec:mesh}{{4.2.2}{23}{Mesh}{subsection.4.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Octree}{23}{subsection.4.2.3}}
+\newlabel{sec:octree}{{4.2.3}{23}{Octree}{subsection.4.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Key Features}{23}{section.4.3}}
+\newlabel{sec:key_features}{{4.3}{23}{Key Features}{section.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax 4.1}{\ignorespaces Child node bounding values}}{24}{table.4.1}}
+\newlabel{tab:child_node_bounding_values}{{\relax 4.1}{24}{Child node bounding values}{table.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Spatial indexing via Octree}{24}{subsection.4.3.1}}
+\newlabel{sec:spatial_indexing_via_octree}{{4.3.1}{24}{Spatial indexing via Octree}{subsection.4.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.1}Root constructor \texttt  {ocTree()}}{24}{subsubsection.4.3.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.2}Subtree constructor \texttt  {ocTree()}}{25}{subsubsection.4.3.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.3}\texttt  {getRootDimensions()}}{26}{subsubsection.4.3.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.4}\texttt  {setDimensions()}}{26}{subsubsection.4.3.1.4}}
+\newlabel{sec:setDimensions}{{4.3.1.4}{26}{\texttt {setDimensions()}}{subsubsection.4.3.1.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax 4.2}{\ignorespaces bounding values of subtree nodes according to \texttt  {setDimensions()}}}{27}{table.4.2}}
+\newlabel{tab:bounding_values_subtree_nodes}{{\relax 4.2}{27}{bounding values of subtree nodes according to \texttt {setDimensions()}}{table.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.5}\texttt  {split()}}{27}{subsubsection.4.3.1.5}}
+\newlabel{sec:split}{{4.3.1.5}{27}{\texttt {split()}}{subsubsection.4.3.1.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.6}\texttt  {getNodeByIdentifierArray()}}{28}{subsubsection.4.3.1.6}}
+\newlabel{set:getNodeByIdentifierArray}{{4.3.1.6}{28}{\texttt {getNodeByIdentifierArray()}}{subsubsection.4.3.1.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{29}{figure.4.1}}
+\newlabel{fig:child_node_000_101.png}{{\relax 4.1}{29}{Parent node (checkered) highlighted child nodes. Left: 000, right: 101}{figure.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.7}\texttt  {buildTreeRecursively()}}{29}{subsubsection.4.3.1.7}}
+\newlabel{sec:buildTreeRecursively}{{4.3.1.7}{29}{\texttt {buildTreeRecursively()}}{subsubsection.4.3.1.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt  {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{31}{figure.4.2}}
+\newlabel{fig:ocTree_levels.png}{{\relax 4.2}{31}{depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}{figure.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}User selection}{31}{subsection.4.3.2}}
+\newlabel{sec:user_selection}{{4.3.2}{31}{User selection}{subsection.4.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.1}\texttt  {addVerticesToSelectionByCoordinates()}}{31}{subsubsection.4.3.2.1}}
+\newlabel{sec:addVerticesToSelectionByCoordinates()}{{4.3.2.1}{31}{\texttt {addVerticesToSelectionByCoordinates()}}{subsubsection.4.3.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{32}{figure.4.3}}
+\newlabel{fig:a01_without_neighbours}{{\relax 4.3}{32}{Determing vertices to check and final set of selected vertices}{figure.4.3}{}}
+\citation{set}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.2}\texttt  {removeVerticesFromSelectionByCoordinates()}}{36}{subsubsection.4.3.2.2}}
+\newlabel{sec:removeVerticesFromSelectionByCoordinates()}{{4.3.2.2}{36}{\texttt {removeVerticesFromSelectionByCoordinates()}}{subsubsection.4.3.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Tracking selection}{36}{subsection.4.3.3}}
+\newlabel{sec:tracking_selection}{{4.3.3}{36}{Tracking selection}{subsection.4.3.3}{}}
+\citation{vector}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{37}{figure.4.4}}
+\newlabel{fig:selection.png}{{\relax 4.4}{37}{A basic vertex selection process}{figure.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax 4.3}{\ignorespaces content of \texttt  {verticesList} at startup}}{37}{table.4.3}}
+\newlabel{tab:verticesList-startup}{{\relax 4.3}{37}{content of \texttt {verticesList} at startup}{table.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Testing setup}{37}{subsection.4.3.4}}
+\newlabel{sec:testing_setup}{{4.3.4}{37}{Testing setup}{subsection.4.3.4}{}}
+\citation{lee2005mesh}
+\citation{nouri2015multi}
+\bibstyle{alpha}
+\bibdata{./Bib/metz17}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline List of Figures}{39}{chapter*.2}}
+\bibcite{atchleyattentional}{AK}
+\bibcite{ASP}{ASP}
+\bibcite{baus2014moving}{BB14}
+\bibcite{bun}{bun}
+\bibcite{ciptadi2013depth}{CHR13}
+\bibcite{clms}{clm}
+\bibcite{cignoni1998comparison}{CMS98}
+\bibcite{cow}{cow}
+\bibcite{chen2012schelling}{CSPF12}
+\bibcite{dutagaci2012evaluation}{DCG12}
+\bibcite{de2014healthcare}{dRKH{$^{+}$}14}
+\bibcite{garland1997qslim}{GH97}
+\bibcite{GLEW}{GLE}
+\bibcite{GLUT}{GLU}
+\bibcite{howlett2005predicting}{HHO05}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline Bibliography}{41}{chapter*.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\bibcite{kho2003user}{KG03}
+\bibcite{koschan2003perception}{Kos03}
+\bibcite{koch1987shifts}{KU87}
+\bibcite{lee2007real}{LKC07}
+\bibcite{le2015social}{LPP15}
+\bibcite{lee2005mesh}{LVJ05}
+\bibcite{marks2014towards}{MEC14}
+\bibcite{merians2014rehabilitation}{MF14}
+\bibcite{merchant2014effectiveness}{MGC{$^{+}$}14}
+\bibcite{mizell2002comparing}{MJSS02}
+\bibcite{munaretti2007perceptual}{Mun07}
+\bibcite{nouri2015multi}{NCL15}
+\bibcite{nguyen2016applying}{NNVL{$^{+}$}16}
+\bibcite{octAp}{octa}
+\bibcite{Octree}{Octb}
+\bibcite{o1999fmri}{ODK99}
+\bibcite{ott2015literature}{OF{$^{+}$}15}
+\bibcite{ovtcharova2015innovation}{OHH{$^{+}$}15}
+\bibcite{OpenGL}{Ope}
+\bibcite{P51}{P51}
+\bibcite{pausch1997quantifying}{PPW97}
+\bibcite{potapova2011learning}{PZV11}
+\bibcite{qi2006comparison}{QTIHM06}
+\bibcite{santos2009head}{SDP{$^{+}$}09}
+\bibcite{set}{set}
+\bibcite{shaffer2001efficient}{SG01}
+\bibcite{shamir2008survey}{Sha08}
+\bibcite{stouffs2013happening}{SJRT13}
+\bibcite{sampaio2014application}{SM14}
+\bibcite{surazhsky2005fast}{SSK{$^{+}$}05}
+\bibcite{steuer1992defining}{Ste92}
+\bibcite{taubin1995estimating}{Tau95}
+\bibcite{v2c}{v2c}
+\bibcite{valente2016live}{VCSF16}
+\bibcite{vector}{vec}
+\bibcite{ware1993fish}{WAB93}
+\bibcite{wendrich2016hybrid}{WCAH{$^{+}$}16}
+\bibcite{wei2010feature}{WL10}
+\bibcite{wu2013mesh}{WSZL13}
+\bibcite{zhao2012saliency}{ZLSZ12}
+\bibcite{zyda2005visual}{Zyd05}

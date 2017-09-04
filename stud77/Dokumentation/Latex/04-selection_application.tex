@@ -19,10 +19,14 @@ The Open Graphics Library OpenGL \cite{OpenGL} is a powerful industry standard A
 OpenGL is based on the following basic structures and concepts:
 
 \begin{description}
-	\item[Vertex Buffer Objects] (VBOs) contain the actual vertex data. Coordinates, normal and color information, texture mapping and any other kind of data that is desired can be saved in these kinds of objects. They are designed as buffer objects to be stored directly within the memory of the video card, ensuring extremely fast access times.
+	\item[Vertex Buffer Objects] (VBOs) contain actual vertex data. Coordinates, normal and color information, texture mapping and any other kind of data that is desired can be saved in these kinds of objects. They are designed as buffer objects to be stored directly within the memory of the video card, ensuring extremely fast access times.
 	\item[Vertex Array Objects] (VAOs) are objects which can contain one or more Vertex Buffer Objects and store information for complete, rendered objects. In other words, VAOs store descriptions of vertex data stored in VBOs. For example, the number of coordinates the vertices are made of, in which order etc. From a performance aware point of view, they are a great improvement over older, deprectecated concepts in OpenGL since multiple calls to bind and upload distinct sets of data belonging to the same object to the graphics processing unit can be bundled in one call to a VAO.
-	\item[Vertex Shaders] are small pieces of C-like code which can perform fast, basic operations on every vertex of a vertex data input stream. They are fed vertex attribute data, as specified in a VAO by the call of a openGL draw function. In many cases, vertex shaders will solely compute the position of 3D data on a 2D screen as well as paint it in basic colors. For more complex applications, vertex shaders can also perform super fast manipulation of large amounts of vertex data to achieve transitions in geometry, texture mapping, directions of normals \dots
+
+	\item[Vertex Shaders] are small pieces of C-like code which can perform fast, basic operations on every vertex of a vertex data input stream. They are fed vertex attribute data, as specified in a VAO by the call of a openGL draw function. Usually, the sole purpose of the vertex shader is to perform perspective projection of 3D points (vertices) to their on-screen position in relation to a cemara within the scene. In other words, an incoming vertex $v$ is multiplied by a so-called \textit{model-view-perspective matrix}, resulting in a transformed vertex $v^[}'$.
+
 	\item[Fragment Shaders] Fragments, not to be confused with triangles or faces, are sets of values resulting from rasterisation. They are frequently, informally described as \textit{potential pixels}, meaning the color value they describe is what could be seen on a screen at a specific pixel under certain circumstances. For each fragment, one or more sets of values may be computed, so things like lighting and postprocessing effects, bump maps, antialiasing or simply occlusion by another object may be determining factors as to which one will be rendered to one specific pixel on the output screen. Fragment shaders are used to define how color values for fragments will be selected to be displayed at their respective pixel.
+
+
 \end{description}
 
 \subsection{GLUT}
