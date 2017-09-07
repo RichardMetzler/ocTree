@@ -57,12 +57,6 @@ The most important parameter for an octree is the maximum allowed number of vert
 
 To gather data to compare with computer generated mesh saliency maps, tracking user input was needed. In the five-sided projection installation of the \cite{v2c}, 3D objects would be loaded and spatially indexed using octrees as described in the section above. Now, the selection function had to be implemented. Using a handheld input device, a so-called \textit{wand}, as depicted in figure \ref{fig:wand}, users can interact with the scene in two essential ways - navigation and performing arbitrary operations mapped to the device's buttons. Each such operation can, among other information, use the current position and rotation of the wand as parameters.
 
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=.9\textwidth]{concept_wand.jpg}\\ % PNG-File
-  \caption{The input device used at the V2C}\label{fig:wand}
-\end{figure}
-
 Figure \ref{fig:wand} depicts the \textit{wand} used in the V2C. The yellow joystick in the middle of its top side, in combination with the current rotation of the device, can be used to navigate the user's view onto the 
 scene. The two essential functions of the application are mapped to two of the three buttons surrounding the joystick: The (from the perspective of a user holding the \textit{wand}) left button adds vertices near the current position of the wand to the vertex selection and the righthand button removes such vertices from it. The button in the middle does not have a function in this application, as well as the trigger-like fourth button on the button side of the \textit{wand} (not in view in the figure).
 In accordance with the simplistic structure of the user study, the interaction was designed to be as little complex as possible, hence only these two buttons having actual, distinct purposes. 
@@ -77,23 +71,9 @@ Due to the design of the synchronisation routine between server and client threa
 	\section {Conduct user study with the selection application}
 	\label{sec:conduct_user_study_with_the_selection_application}
 % generell beschreiben (Aufbau, Ziel, Zusammenhang mit vorigen Sections), Details in eigenem grossen Kapitel
-Another essential part of this work was conducting a user study where all of the aspects described in this chapter so far would be put to use. The goal was to collect data on what parts of 3D objects users found visually interesting or important. Users put on the stereoscopic, trackable glasses depicted in figure \ref{fig:glasses}, stepped inside the five-sided projection installation of the \cite{v2c} and were asked to mark regions of the object currently displayed that they considered to be intersting or important. The exact wording of the task given to participants in the user study reads as follows.
+Another essential part of this work was conducting a user study where all of the aspects described in this chapter so far would be put to use. The goal was to collect data on what parts of 3D objects users found visually interesting or important. Users put on the stereoscopic, trackable glasses depicted in figure \ref{fig:glasses}, stepped inside the five-sided projection installation of the \cite{v2c} and were asked to mark regions of the object currently displayed that they considered to be intersting or important.
 
-\textit{Please select parts and regions of the object that}
-
-\begin{itemize}
-	\item \textit{you would consider visually interesting or important}
-	\item \textit{you would assume are natural focus points of attention}
-	\item \textit{are vital for identifying the object}
-\end{itemize}
-
-After taking up to five minutes getting familiar with navigating and interaction within the projection installation, as well as selecting and deselecting vertices with the wand (\ref{fig:wand}, the main part of the user study began. 
-
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=.9\textwidth]{concept_glasses.jpg}\\ % PNG-File
-  \caption{The trackable, stereoscopic glasses used at the V2C}\label{fig:glasses}
-\end{figure}
+After taking a few minutes to get familiar with navigating and interaction within the projection installation, as well as selecting and deselecting vertices with the \textit{wand} (\ref{fig:wand}, the main part of the user study began. For a detailed documentation of how the user study was designed and executed, see section \ref{sec:user_study_chapter}.
 
 Selections of the users would be gathered to compute user-weighted importance maps for the displayed 3D objects. These would be compared to previously computed mesh saliency maps. For the results and discussion of this comparison, see chapter 
 % @TODO ref zu chapter "results usw" 1fügen. Selbiges davor noch anlegen
@@ -108,30 +88,6 @@ In this selection application, selection and deselection operations are executed
 \end{itemize}
 
 % @TODO: Bild rausrendern (user mit Wand in der Hand, geladenem Object + wand_pos), schneiden und uploaden
-
-Regarding objects used for the study, I aimed at offering as much variety of types of objects among as few objects as possible. The motivation for this was to achieve results that are genereally applicable for any type of geometric data, at least to an basic extent. Also, to avoid the users losing motivation due to repeating tasks during the study, keeping the number of objects to a minimum was another constraint to be considered.
-I decided to use three objects described table in \ref{tab:userstudy_objects} and depicted in figure \ref{fig:all_objects}.
-
-\begin{table}[]
-\centering
-	\begin{tabular}{l|l|l|l|l}
-		object	& created through	& source	& vertex count	& class of objects	\\ \hline
-		cow	& 3D modelling		& \cite{cow}	& 69,648	& purely natural	\\
-		P51 Mustang	&	3D modelling	& \cite{P51}	& 51,708	& purely mechanical	\\
-		bunny sculpture	&	3D scan	& \cite{bun}	& 68,754	& natural, man-made	
-	\end{tabular}
-	\caption{3D objects used in the study}
-	\label{tab:userstudy_objects}
-\end{table}
-% table 3.1
-
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=1.0\textwidth]{userstudy_all_objects.png}\\ % PNG-File
-  \caption{The 3D objects used for the user study}\label{fig:all_objects}
-\end{figure}
-
-Figure \ref{fig:all_objects} shows the objects used in the user study. From left to right, the 3D scanned bunny, the modelled cow and the low-poly, modelled aircraft are shown. Consider the grid to get a sense of their proportions. I did not scale them according to their real world sizes and instead made them take up approximately equal space in the virtual scene. This was done with the intention to provide a similar level of visual detail, independent of the actual geometric level of detail, for each object. Furthermore, I wanted to prevent the size of the objects from having any sort of influence on how users perceived them.
 
 I took two steps to eliminate the possibility of user selections being influenced by them first having to adapt to and getting familiar with the selection application. First, Every user was given five minutes to get familiar with the navigation and selection workflow. Selections made here were not considered for the results of the userstudy. After that, the three objects were presented in a randomly chosen order for five minutes each. The users were given the tasks stated at the beginning of this section and were free to use as much of the five minutes as they wanted to perform vertex selection and deselection operations.
 
@@ -230,7 +186,6 @@ Regarding how the actual weighting is done, I aimed for a simple function that i
   \includegraphics[width=.7\textwidth]{weighting_function.png}\\ % PNG-File
   \caption{Graphic representation of the weighting function in relation to the \textit{unweighted} difference values (straight, black line)}\label{fig:weighting_function}
 \end{figure}
-% @TODO: blaue Kurva halb-transparent machen
 
 Consider figure \ref{fig:weighting_function}. The straight, black line, being a steady identity function of float values, shows normalised \textit{unweighted} vertex-wise difference values. For such values, both in regards to \textit{unweighted} and \textit{weighted} overall \textit{difference ratios}, their unaltered, absolute value $\Delta_{raw}(v_i)$ is used for computation. However, should vertices in $V_{proximty}(v_i)$ have an average \textit{mesh saliency} value of $\omega$ or greater, the difference between \textit{mesh saliency} and \textit{user saliency} values at $v_i$ is weighted according to the blue curve function shown in the figure.
 
@@ -243,8 +198,8 @@ This subsection provides a brief summary of the steps to computing overall \text
 \begin{enumerate}
 	\item Compute the \textit{mesh saliency} map for a given object using using \texttt{climberpi's} implementation \cite{clms} and store the result in an external textfile \texttt{computed\_saliency} for later use.
 	\item Read \textit{n} textfiles \texttt{u\_00}, ... \texttt{u\_n}, each containing one user selection, compute the \textit{user saliency} map based on how many times each vertex was selected in relation to the most-selected vertices and store the result in an external textfile \texttt{user\_saliency} for later use.
-	\item Read \texttt{computed\_saliency} and \texttt{user\_saliency}, store the contents in two \texttt{std::vector} containers \textit{computed\_saliency\_values} and \textit{user\_saliency\_values}.
-	\item calculate vertex-wise saliency differences and store them in an a \texttt{std::vector differences\_unweighted}.
+	\item Read \texttt{computed\_saliency} and \texttt{user\_saliency}, store the contents in two containers of type \texttt{std::vector} called \textit{computed\_saliency\_values} and \textit{user\_saliency\_values}.
+	\item calculate vertex-wise saliency differences and store them in an a \texttt{std::vector} \textit{differences\_unweighted}.
 	\item Iterate through the list of vertices of the currently considered object. For every such vertex $v_i$, find vertices $v_1$, ... $v_j$ $\in$ $V_{proximty}(v_i)$ via a range-query to the \texttt{ocTree} instance indexing the object (see section \ref{sec:addVerticesToSelectionByCoordinates()}).
 	\item For each vertex $v_i$, look up \textit{mesh saliency} values for vertices $v_1$, ... $v_j$ in the \textit{mesh saliency} map. Compute the average of those values.
 	\begin{enumerate}
