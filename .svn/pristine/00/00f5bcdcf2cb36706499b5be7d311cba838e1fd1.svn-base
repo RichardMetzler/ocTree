@@ -1,0 +1,20 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces A model and its computes mesh saliency map. Published by Lee \textit {et al.} \cite {lee2005mesh}. Bright colors (yellow and red) indicate high saliency values for their respective vertices, dark colors (shades of blue) indicate low values.}}{4}{figure.2.1}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{10}{figure.3.1}
+\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces An octree structure indexing four vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}}{11}{figure.3.2}
+\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit {et al.} \cite {nouri2015multi}}}{16}{figure.3.3}
+\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Graphic representation of the weighting function in relation to the \textit {unweighted} difference values (straight, black line)}}{18}{figure.3.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{27}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{29}{figure.4.2}
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{30}{figure.4.3}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{35}{figure.4.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The trackable, stereoscopic glasses used at the V2C}}{38}{figure.5.1}
+\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces The input device used at the V2C}}{39}{figure.5.2}
+\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces The 3D objects used for the user study}}{39}{figure.5.3}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

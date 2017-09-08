@@ -38,18 +38,18 @@
 \contentsline {subsection}{\numberline {4.3.4}Testing setup}{35}{subsection.4.3.4}
 \contentsline {chapter}{\numberline {5}User study}{37}{chapter.5}
 \contentsline {section}{\numberline {5.1}Hardware used}{37}{section.5.1}
-\contentsline {section}{\numberline {5.2}Models used}{37}{section.5.2}
-\contentsline {section}{\numberline {5.3}Tasks given}{38}{section.5.3}
-\contentsline {section}{\numberline {5.4}Shortcomings of the study design}{40}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Task, instructions and questions}{40}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Technical issues}{40}{subsection.5.4.2}
-\contentsline {section}{\numberline {5.5}Participant demographics}{40}{section.5.5}
-\contentsline {chapter}{\numberline {6}Results and discussion}{41}{chapter.6}
-\contentsline {section}{\numberline {6.1}User study data}{41}{section.6.1}
-\contentsline {section}{\numberline {6.2}Individual feedback and comments}{41}{section.6.2}
-\contentsline {section}{\numberline {6.3}Interpretation}{41}{section.6.3}
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{43}{chapter.7}
-\contentsline {section}{\numberline {7.1}Insights and conclusions}{43}{section.7.1}
-\contentsline {section}{\numberline {7.2}Future work}{43}{section.7.2}
-\contentsline {chapter}{\nonumberline List of Figures}{45}{chapter*.2}
-\contentsline {chapter}{\nonumberline Bibliography}{47}{chapter*.3}
+\contentsline {section}{\numberline {5.2}Models used}{38}{section.5.2}
+\contentsline {section}{\numberline {5.3}Tasks given}{39}{section.5.3}
+\contentsline {section}{\numberline {5.4}Questionnaire}{40}{section.5.4}
+\contentsline {section}{\numberline {5.5}Shortcomings of the study design}{41}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Task, instructions and questions}{41}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Technical issues}{42}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Results and discussion}{43}{chapter.6}
+\contentsline {section}{\numberline {6.1}Participant demographics}{43}{section.6.1}
+\contentsline {section}{\numberline {6.2}Individual feedback and comments}{43}{section.6.2}
+\contentsline {section}{\numberline {6.3}Interpretation}{43}{section.6.3}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{45}{chapter.7}
+\contentsline {section}{\numberline {7.1}Insights and conclusions}{45}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future work}{45}{section.7.2}
+\contentsline {chapter}{\nonumberline List of Figures}{47}{chapter*.2}
+\contentsline {chapter}{\nonumberline Bibliography}{49}{chapter*.3}

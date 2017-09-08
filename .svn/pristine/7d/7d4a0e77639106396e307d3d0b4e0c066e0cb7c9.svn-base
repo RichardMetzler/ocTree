@@ -1,0 +1,105 @@
+
+%
+% Einfache LaTeX-Vorlage für Arbeiten am Lehrstuhl Kranzlmüller / MNM-Team
+% - optimiert für die Arbeit mit gängigen LaTeX-Editoren
+% - funktioniert ohne Makefile und Anpassungen der LaTeX-Verzeichnisstruktur
+% - verwendet Komaskript für ein (nach europäischen Gepflogenheiten) schöneres Layout
+% 
+% v1, 2007 (Michael Brenner)
+% Diese Version: v1.1, 2012 (Michael Brenner)
+%
+
+
+\documentclass[bibliography=totoc,listof=totoc,BCOR=5mm,DIV=12]{scrbook} % Rand für Bindung: 5mm / falls Index verwendet, ergänze "index=totoc" zu den Optionen 
+% \usepackage{bibgerm}       % deutsche Literaturverzeichnisse
+\usepackage{courier}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{gensymb}
+\usepackage[inline]{enumitem}
+\usepackage[latin1]{inputenc} % Umlaute im Text
+\usepackage{listings}
+\addtokomafont{labelinglabel}{\sffamily}
+
+\newcommand\realnumberstyle[1]{}
+
+\makeatletter
+\newcommand{\zebra}[3]{%
+    {\realnumberstyle{#3}}%
+    \begingroup
+    \lst@basicstyle
+    \ifodd\value{lstnumber}%
+        \color{#1}%
+    \else
+        \color{#2}%
+    \fi
+        \rlap{\hspace*{\lst@numbersep}%
+        \color@block{\linewidth}{\ht\strutbox}{\dp\strutbox}%
+        }%
+    \endgroup
+}
+\makeatother
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\lstset { %
+    language=C++,
+    %backgroundcolor=\color{Black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting,
+    commentstyle=\color{ForestGreen},
+    basicstyle=\footnotesize\ttfamily,
+    % breaklines=true,
+	numberstyle=\zebra{black!5}{white},
+    % numbers=left,
+    % firstnumber=1,
+    % numberfirstline=true,
+    % stepnumber=1,
+    keywordstyle=\color{MidnightBlue}
+}
+
+\usepackage{graphicx} % Einfügen von Grafiken  - für PDF-Latex: .pdf und .png (.jpg möglich, sollte aber vermieden werden)
+\usepackage{mathtools}		% schönere Summenzeichen usw
+\usepackage{mathrsfs}		% kursive Buchstaben
+\usepackage{url}           % URL's (z.B. in Literatur) schöner formatieren
+\usepackage{hyperref} % sorgt für für Hyperlinks in PDF-Dokumenten
+%\usepackage{cite}
+\usepackage[noadjust]{cite}
+\graphicspath{{./Bilder/}}
+
+\input{hyphenation} % in dieses File kommen Wörter die Latex nicht richtig trennt
+
+\begin{document}
+
+% ---------------------------------------------------------------
+\frontmatter % Titelblätter und Erklärung jeweils spezifisch für die jeweilige Uni einbinden
+    \input{./Titel/titel-lmu} % Titelblätter LMU - auskommentieren falls TUM-Arbeit
+%    \input{./Titel/titel-tum} % Titelblätter TUM - auskommentiert lassen falls LMU-Arbeit
+    \thispagestyle{empty}
+    \cleardoublepage
+    \input{./Titel/erklaerung-lmu} % Erklärung (Arbeit selbstständig verfasst) - auskommentieren falls TUM-Arbeit
+%    \input{./Titel/erklaerung-tum} % Erklärung (Arbeit selbstständig verfasst) - auskommentiert lassen falls LMU-Arbeit
+    \thispagestyle{empty}
+    \cleardoublepage
+    \input{abstract} % Abstract
+    \thispagestyle{empty}
+    \tableofcontents % Inhaltsverzeichnis
+
+% ---------------------------------------------------------------
+\mainmatter % die eigentliche Arbeit
+
+	\input{01-introduction}
+	\input{02-related_work}
+	\input{03-concept}
+	\input{04-selection_application}
+	\input{05-user_study}
+	\input{06-results}
+	\input{07-conclusion}
+%    \input{spickzettel}
+
+% ---------------------------------------------------------------
+\backmatter % ab hier keine Nummerierung mehr
+    \listoffigures
+    \bibliographystyle{alpha}
+    \bibliography{./Bib/metz17}
+
+\end{document}
