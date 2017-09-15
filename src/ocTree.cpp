@@ -491,11 +491,6 @@ void ocTree::debugTreeInfo(void)
 		std::cout << "dimension x: " << m_minX << " to " << m_maxX << ", mean value: " << m_meanX << std::endl;
 		std::cout << "dimension y: " << m_minY << " to " << m_maxY << ", mean value: " << m_meanY << std::endl;
 		std::cout << "dimension z: " << m_minZ << " to " << m_maxZ << ", mean value: " << m_meanZ << std::endl;
-		std::cout << "total number of nodes: [@FIXME]" << std::endl;
-		std::cout << "total number of leafs: [@FIXME]" << std::endl;
-		std::cout << "average number of vertices / leaf: [@FIXME]" << std::endl;
-		std::cout << "highest number of vertices in one leaf: [@FIXME]" << std::endl;
-		std::cout << "lowest number of vertices in one leaf: [@FIXME]" << std::endl;
 		std::cout << "===============[ocTree INFO END]===============" << std::endl;
 }
 

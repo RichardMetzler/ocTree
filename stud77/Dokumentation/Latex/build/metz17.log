@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  8 SEP 2017 13:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,6 +414,9 @@ Package: cite 2015/02/27  v 5.5
 ) (./hyphenation.tex)
 (build/metz17.aux
 
+LaTeX Warning: Label `sec:setDimensions' multiply defined.
+
+
 LaTeX Warning: Label `fig:selection_cave' multiply defined.
 
 )
@@ -495,7 +498,7 @@ LaTeX Info: Redefining \nameref on input line 71.
 \openout3 = `metz17.out'.
 
  (./Titel/titel-lmu.tex
-<./Bilder/lmu_siegel.pdf, id=225, 201.75375pt x 201.75375pt>
+<./Bilder/lmu_siegel.pdf, id=237, 201.75375pt x 201.75375pt>
 File: ./Bilder/lmu_siegel.pdf Graphic file (type pdf)
 
 <use ./Bilder/lmu_siegel.pdf>
@@ -561,7 +564,7 @@ Class scrbook Warning: \float@addtolists detected!
 
 ]) (./02-related_work.tex [2]
 chapter 2.
-<./Bilder/arma.png, id=389, 813.0375pt x 482.80376pt>
+<./Bilder/arma.png, id=404, 813.0375pt x 482.80376pt>
 File: ./Bilder/arma.png Graphic file (type png)
  <use ./Bilder/arma.png>
 Package pdftex.def Info: ./Bilder/arma.png used on input line 15.
@@ -572,7 +575,7 @@ Package pdftex.def Info: ./Bilder/arma.png used on input line 15.
 
 ] [4 <./Bilder/arma.png>] [5] [6]) (./03-concept.tex [7] [8]
 chapter 3.
-<./Bilder/obj_content.png, id=473, 440.64626pt x 343.2825pt>
+<./Bilder/obj_content.png, id=488, 440.64626pt x 343.2825pt>
 File: ./Bilder/obj_content.png Graphic file (type png)
 
 <use ./Bilder/obj_content.png>
@@ -582,7 +585,7 @@ Package pdftex.def Info: ./Bilder/obj_content.png used on input line 31.
 
 
 ]
-<./Bilder/ocTree_apple.png, id=487, 1341.01pt x 816.04875pt>
+<./Bilder/ocTree_apple.png, id=502, 1341.01pt x 816.04875pt>
 File: ./Bilder/ocTree_apple.png Graphic file (type png)
 
 <use ./Bilder/ocTree_apple.png>
@@ -625,7 +628,7 @@ ore each log-file is read, a \OT1/pcr/m/n/10.95 std::vector<size[]t,
 LaTeX Warning: Citation `sec:related_work' on page 16 undefined on input line 1
 57.
 
-<./Bilder/mss_gorilla_alpha.png, id=540, 611.28375pt x 329.23pt>
+<./Bilder/mss_gorilla_alpha.png, id=555, 611.28375pt x 329.23pt>
 File: ./Bilder/mss_gorilla_alpha.png Graphic file (type png)
 
 <use ./Bilder/mss_gorilla_alpha.png>
@@ -638,7 +641,7 @@ LaTeX Warning: Reference `gorilla_saliency_map' on page 16 undefined on input l
 ine 165.
 
 [16 <./Bilder/mss_gorilla_alpha.png>]
-<./Bilder/weighting_function.png, id=551, 884.30376pt x 883.3pt>
+<./Bilder/weighting_function.png, id=566, 884.30376pt x 883.3pt>
 File: ./Bilder/weighting_function.png Graphic file (type png)
 
 <use ./Bilder/weighting_function.png>
@@ -664,139 +667,154 @@ Overfull \hbox (11.74294pt too wide) in paragraph at lines 91--102
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 108.
 [22]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 119--124
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 120--125
 []$[]$ 
  []
 
 
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 141--163
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 143--165
 []$[]$ 
  []
 
 [23]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 198--231
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 202--235
 []$[]$ 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 232.
+               Default added (so using `tbp') on input line 236.
 
 [24]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 246--275
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 250--279
 []$[]$ 
  []
 
-[25] [26] <./Bilder/child_node_000_101.png, id=730, 1027.84pt x 513.92pt>
+[25] [26] <./Bilder/child_node_000_101.png, id=745, 1027.84pt x 513.92pt>
 File: ./Bilder/child_node_000_101.png Graphic file (type png)
 
 <use ./Bilder/child_node_000_101.png>
-Package pdftex.def Info: ./Bilder/child_node_000_101.png used on input line 292
+Package pdftex.def Info: ./Bilder/child_node_000_101.png used on input line 296
 .
 (pdftex.def)             Requested size: 349.97028pt x 174.98926pt.
 
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 304--329
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 308--333
 []$[]$ 
  []
 
 [27 <./Bilder/child_node_000_101.png>]
-<./Bilder/ocTree_levels.png, id=738, 1007.765pt x 727.71875pt>
+<./Bilder/ocTree_levels.png, id=753, 1007.765pt x 727.71875pt>
 File: ./Bilder/ocTree_levels.png Graphic file (type png)
 
 <use ./Bilder/ocTree_levels.png>
-Package pdftex.def Info: ./Bilder/ocTree_levels.png used on input line 338.
+Package pdftex.def Info: ./Bilder/ocTree_levels.png used on input line 342.
 (pdftex.def)             Requested size: 415.58678pt x 300.09885pt.
  [28] [29 <./Bilder/ocTree_levels.png>]
-<./Bilder/a01_without_neighbors.png, id=775, 2668.97125pt x 827.09pt>
+<./Bilder/a01_without_neighbors.png, id=790, 2668.97125pt x 827.09pt>
 File: ./Bilder/a01_without_neighbors.png Graphic file (type png)
 
 <use ./Bilder/a01_without_neighbors.png>
 Package pdftex.def Info: ./Bilder/a01_without_neighbors.png used on input line 
-372.
+376.
 (pdftex.def)             Requested size: 437.46118pt x 135.55528pt.
  [30 <./Bilder/a01_without_neighbors.png>]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 380--427
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 384--431
 []$[]$ 
  []
 
 [31] [32]
-Overfull \hbox (10.95003pt too wide) in paragraph at lines 449--493
+Overfull \hbox (10.95003pt too wide) in paragraph at lines 453--497
 []$[]$ 
  []
 
-[33] <./Bilder/selection.png, id=892, 652.4375pt x 213.79875pt>
+[33] <./Bilder/selection.png, id=907, 652.4375pt x 213.79875pt>
 File: ./Bilder/selection.png Graphic file (type png)
 
 <use ./Bilder/selection.png>
-Package pdftex.def Info: ./Bilder/selection.png used on input line 514.
+Package pdftex.def Info: ./Bilder/selection.png used on input line 518.
 (pdftex.def)             Requested size: 393.71239pt x 129.02077pt.
  [34]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 536.
+               Default added (so using `tbp') on input line 540.
 
-) (./05-user_study.tex [35 <./Bilder/selection.png>] [36
+[35 <./Bilder/selection.png>]
+<./Bilder/edge_case.png, id=934, 809.0225pt x 809.0225pt>
+File: ./Bilder/edge_case.png Graphic file (type png)
+
+<use ./Bilder/edge_case.png>
+Package pdftex.def Info: ./Bilder/edge_case.png used on input line 568.
+(pdftex.def)             Requested size: 218.73059pt x 218.72292pt.
+
+<./Bilder/test_file.png, id=937, 1016.29688pt x 745.28438pt>
+File: ./Bilder/test_file.png Graphic file (type png)
+
+<use ./Bilder/test_file.png>
+Package pdftex.def Info: ./Bilder/test_file.png used on input line 576.
+(pdftex.def)             Requested size: 262.47937pt x 192.48431pt.
+) (./05-user_study.tex [36 <./Bilder/edge_case.png>] [37 <./Bilder/test_file.pn
+g>] [38
 
 
 ]
 chapter 5.
 
-LaTeX Warning: Reference `fig:glasses' on page 37 undefined on input line 18.
+LaTeX Warning: Reference `fig:glasses' on page 39 undefined on input line 18.
 
 
-LaTeX Warning: Reference `fig:wand' on page 37 undefined on input line 20.
+LaTeX Warning: Reference `fig:wand' on page 39 undefined on input line 20.
 
 
-LaTeX Warning: Reference `fig:wand' on page 37 undefined on input line 22.
+LaTeX Warning: Reference `fig:wand' on page 39 undefined on input line 22.
 
-<./Bilder/concept_hardware.png, id=925, 3007.235pt x 933.4875pt>
+<./Bilder/concept_hardware.png, id=959, 3007.235pt x 933.4875pt>
 File: ./Bilder/concept_hardware.png Graphic file (type png)
 
 <use ./Bilder/concept_hardware.png>
 Package pdftex.def Info: ./Bilder/concept_hardware.png used on input line 26.
 (pdftex.def)             Requested size: 415.58678pt x 128.99234pt.
 
-<./Bilder/selection_cave.png, id=926, 1027.84pt x 1027.84pt>
+<./Bilder/selection_cave.png, id=960, 1027.84pt x 1027.84pt>
 File: ./Bilder/selection_cave.png Graphic file (type png)
 
 <use ./Bilder/selection_cave.png>
 Package pdftex.def Info: ./Bilder/selection_cave.png used on input line 33.
 (pdftex.def)             Requested size: 349.97028pt x 349.97853pt.
- [37]
+ [39]
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 54.
 
-<./Bilder/userstudy_all_objects.png, id=938, 1353.055pt x 431.6125pt>
+<./Bilder/userstudy_all_objects.png, id=973, 1353.055pt x 431.6125pt>
 File: ./Bilder/userstudy_all_objects.png Graphic file (type png)
 
 <use ./Bilder/userstudy_all_objects.png>
 Package pdftex.def Info: ./Bilder/userstudy_all_objects.png used on input line 
 69.
 (pdftex.def)             Requested size: 437.46118pt x 139.54794pt.
- [38 <./Bilder/concept_hardware.png>]
-[39 <./Bilder/selection_cave.png>] [40 <./Bilder/userstudy_all_objects.png>]
-[41]) (./06-results.tex [42]
+ [40 <./Bilder/concept_hardware.png>]
+[41 <./Bilder/selection_cave.png>] [42 <./Bilder/userstudy_all_objects.png>]
+[43]) (./06-results.tex [44]
 chapter 6.
-) (./07-conclusion.tex [43
+) (./07-conclusion.tex [45
 
 
-] [44
+] [46
 
 
 ]
 chapter 7.
-) [45] [46
+) [47] [48
 
 
 ] (build/metz17.lof)
 \tf@lof=\write5
 \openout5 = `metz17.lof'.
 
- (build/metz17.bbl [47
+ (build/metz17.bbl [49
 
 
-] [48
+] [50
 
 
 ]
@@ -819,13 +837,13 @@ Underfull \hbox (badness 2368) in paragraph at lines 39--43
 ce lab-o-ra-tory - we-
  []
 
-[49]
+[51]
 Underfull \hbox (badness 1616) in paragraph at lines 137--142
 []\OT1/cmr/m/n/10.95 Zahira Mer-chant, Ernest T Goetz, Lau-ren Ci-fuentes, Wend
 y Keeney-
  []
 
-[50]
+[52]
 Underfull \hbox (badness 3536) in paragraph at lines 174--177
 []\OT1/cmr/m/n/10.95 Octree - Wikipedia we-blink.  []$\OT1/pcr/m/n/10.95 https 
 : / / en . wikipedia . org / wiki /
@@ -837,9 +855,9 @@ Underfull \hbox (badness 4582) in paragraph at lines 206--209
 95 http : / / www . cadnav . com /
  []
 
-[51] [52])
+[53] [54])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 105.
- [53]
+ [55]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 105.
  (build/metz17.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 105.
@@ -856,10 +874,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 105.
  ) 
 Here is how much of TeX's memory you used:
- 11767 strings out of 494910
- 178035 string characters out of 6179836
- 369389 words of memory out of 5000000
- 14392 multiletter control sequences out of 15000+600000
+ 11795 strings out of 494910
+ 178618 string characters out of 6179836
+ 369986 words of memory out of 5000000
+ 14411 multiletter control sequences out of 15000+600000
  14735 words of font info for 53 fonts, out of 8000000 for 9000
  77 hyphenation exceptions out of 8191
  41i,10n,66p,1968b,1351s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -883,10 +901,10 @@ ublic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/r
 sfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on build/metz17.pdf (63 pages, 8920429 bytes).
+Output written on build/metz17.pdf (65 pages, 9473713 bytes).
 PDF statistics:
- 1231 PDF objects out of 1440 (max. 8388607)
- 1104 compressed objects within 12 object streams
- 432 named destinations out of 1000 (max. 500000)
- 506 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1270 PDF objects out of 1440 (max. 8388607)
+ 1137 compressed objects within 12 object streams
+ 439 named destinations out of 1000 (max. 500000)
+ 540 words of extra memory for PDF output out of 10000 (max. 10000000)
 

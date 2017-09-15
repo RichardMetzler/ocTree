@@ -106,6 +106,7 @@ Id{[}$O_l$, $O_l$+1, $O_l$+2{]} & X min & X max & Y min & Y max & Z min & Z max 
 The most important functions of the \texttt{ocTree} class, as implemented in this work, are described below.
 
 \subsubsection{Root constructor \texttt{ocTree()}}
+\label{sec:root_constructor}
 	This public constructor will create a new instance of the class \texttt{ocTree}. Parameters required are
 	\begin{enumerate*}
 		\item a sequence container, such as an array (\texttt{std::vector} was used in this work) holding the \texttt{mesh} objects to be spatially indexed,
@@ -125,6 +126,7 @@ myOcTree = new ocTree(meshes, 100, 4, true);
 This will create a spatial indexing structure for the 3D data stored in \texttt{meshes} where each node can hold up to 100 vertices and the maximum level of nodes is 4. Additional information will be printed to the console because the last parameter is set to \texttt{true}.
 
 \subsubsection{Subtree constructor \texttt{ocTree()}}
+\label{sec:subtree_constructor}
 	This somewhat more complex, private constructor is used for every \texttt{ocTree} object that is not a node. In addition to the parameters that were used for the root node, the following parameters are required:
 	\begin{enumerate*}
 		\item A set of vertices to be searched through for those located within the bounds of this particular subtree (\texttt{std::vector} of \texttt{glm::vec3} objects was used in this work), 
@@ -168,9 +170,11 @@ Lines 10 - 11 set the crucial values at the level offset $O_l$, $O_l+1$ and $O_l
 Since every identifier of every node within an Octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 14 - 16 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 17, the final identifier of the current node is set as its private member variable.
 
 	\subsubsection{\texttt{getRootDimensions()}}
+	\label{sec:getRootDimensions}
 This is called by a newly created root \texttt{ocTree}. In this first basic step, all vertices of every passed \texttt{mesh} object are iterated through to find maximum values which will be used as its general bounds in x, y and z direction. For convenience, a margin value of 0.0001 is added to maximum values and subtracted from minimum values to enable one common rule of unambiguously assigning any given vertex (expecially the ones that are located on boundaries of subtrees) to exactly one subtree - for the root node as well as all subtree nodes.
 
 	\subsubsection{\texttt{setDimensions()}}
+	\label{sec:setDimensions}
 	\label{sec:setDimensions}
 This simple private function takes care of setting up correct minimum, mean and maximum values in x, y and z dimension for a newly created subtree node. The following parameters are required:
 \begin{enumerate*}
@@ -551,6 +555,36 @@ After the setup process of the application, \texttt{verticesList} will essential
 
 \subsection{Testing setup}
 \label{sec:testing_setup}
-This section will describe the steps I took to ensure that the selection application meets all its requirements and ensures its key features described above are implemented correclty.
+% Helper- & Debug-Funktionen; Blend-File; Eigenhändige Tests in CAVE(?)
 
-% Testfile, Blender, etc
+This section will describe the steps taken to ensure that the selection application meets all its requirements and ensures its key features described above are implemented correclty. While it is not formally verified that the application works correctly in every use case conceivable, it was tested up until a point where fluent, real-time and comfortable interaction was possible from a user perspective.
+
+\subsubsection{Test files}
+\label{sec:test_files}
+While developing the selection application, I used 3D modeling software to create a set of simple test files that would be exported to .obj format so they could be used for testing purposes. These objects were designed to test whether common queries are handled quickly and correctly as well as what happens in unfortunate edge cases. Such a fairly complex edge case is depicted in figure \ref{fig:edge_case}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{edge_case.png}
+  \caption{A fairly complex query to the octree structure of the selection application}\label{fig:edge_case}
+\end{figure}
+
+For the sake of readabilty, figure \ref{fig:edge_case} depicts an orthographic view on the structure of a test file used, showing only x and y axes. In such a case, all vertices shaded blue must be considered but only the one vertex shaded white is a correct result to the query. An additional query with input coordinates depicted by the point shaded in purple and radius 0 must be invoked and correctly handled as well, since the righthand border of the target subtree is crossed by the search radius. All vertices shaded grey must not be considered. The behavior of the application must be congruent to what is described in section \ref{sec:additional_third_party_libraries}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{test_file.png}
+  \caption{A test file used during implementation, perspective view. Its bounding box and edges are depicted.}\label{fig:test_thing}
+\end{figure}
+
+Figure \ref{fig:test_thing} shows a test file used during all stages of implementing the selection application. It is designed for the Octree structure to be built in a clearly predictable way. For each combination of the maximum allowed number of vertices per node and the maximum allowed level, construction of the structure can be precicely predicted because all parts of the object are positioned in eighths of the space encapsulated by its bounding box. This file was used to a great extent for many testing queries as well as debugging.
+
+The debugging process encompassed a multitude of test calls to the applications core functions using arbitrary coordinates as well as extensive use of the helper and debugging functions described in the subsequent subsection.
+
+\subsubsection{Helper and debugging functions}
+\label{sec:helper_and_debugging_functions}
+The following functions which are non-essential to the functionality of the application are included. They were used during implementation for documentation, debugging and controlling the correctness of the core features.
+
+\subsubsection{Testing at the V2C}
+\label{sec:testing_at_the_v2c}
+

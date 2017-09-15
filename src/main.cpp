@@ -29,6 +29,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <colormap.h>
 
 // Forward declarations of the needed functions
 void setup(void);
@@ -59,7 +60,6 @@ FIBITMAP* loadImage(const std::string filename);
  * ##############################################################
  */
 // Auge draufbehalten!
-const char *SelctionLogPath="/home/ri43hiq/Desktop/txt_files/selection_log.txt";
 const char *ComputedSaliencyTxtPath="/home/ri43hiq/Desktop/txt_files/computed_saliency_values.txt";
 
 // RESULTS
@@ -67,9 +67,9 @@ const char *differencesWeightedPath = "/home/ri43hiq/Desktop/txt_files/RESULTS/d
 const char *differencesPath = "/home/ri43hiq/Desktop/txt_files/RESULTS/differences_values.txt";
 
 // RELATIV ZU Object -> UNBEDINGT ANPASSEN!
-const char *AverageUserSelectionPath = "/home/ri43hiq/Desktop/txt_files/01_cow/selected_saliency_values.txt";
-const char *UserSelectedSaliencyTxtPath="/home/ri43hiq/Desktop/txt_files/01_cow/selected_saliency_values.txt";
-const char *UserSelectionLogFilesPath = "/home/ri43hiq/Desktop/txt_files/01_cow/";
+const char *AverageUserSelectionPath = "/home/ri43hiq/Desktop/txt_files/03_P51/selected_saliency_values.txt";
+const char *UserSelectedSaliencyTxtPath="/home/ri43hiq/Desktop/txt_files/03_P51/selected_saliency_values.txt";
+const char *UserSelectionLogFilesPath = "/home/ri43hiq/Desktop/txt_files/03_P51/";
 /**
  * ##############################################################
  */
@@ -78,6 +78,9 @@ const char *UserSelectionLogFilesPath = "/home/ri43hiq/Desktop/txt_files/01_cow/
 glm::mat4 proj_matrix;
 glm::mat4 view_matrix;
 glm::mat4 model_matrix;
+unsigned char colormap_1[255*3];
+
+
 
 std::vector <std::pair <size_t, glm::vec3> >  verticesList;
 
@@ -91,12 +94,16 @@ std::set<size_t> vertexSelection;
  * float	difference			<1>
  * float	differenceWeighted	<2>
  */
-std::vector<std::tuple <size_t, float, float> > saliency_differences;
+std::vector<std::pair<size_t, float> > saliency_values;					// vector to hold pairs of [vertexID, computedSaliencyValue]
+std::vector<std::pair<size_t, float> > user_selected_saliency_values;
+std::vector<float> user_saliency_values;	// vector to hold paris of [verteixID, userSelectedSaliencyValue]
 
-std::vector<std::pair<size_t, float> > saliency_values;	// temporary vector to hold pairs of [vertexID, computedSaliencyValue]
+// temporary vectors to hold pairs of unweighted and weighted differences
+std::vector <float> temp_diffs_unweighted;
+std::vector <float> temp_diffs_weighted;
 
-float screen_width = 30.0; //real size in cm
-float screen_height = 30.0; //real size in cm
+float screen_width = 60.0; //real size in cm
+float screen_height = 37.5; //real size in cm
 float near_clipping = 50.; //how far is the screen away from the user (in cm)
 float far_clipping = 4000.; // up to where do we want to render (in cm)
 
@@ -118,6 +125,7 @@ int left_button_state = 0;
 int middle_button_state = 0;
 
 glm::vec3 translation = glm::vec3(0.f,0.f,-100.f);
+float xRot = 0., yRot =0.;
 
 FIBITMAP* img_texture = 0;
 GLuint shaderprogram;
@@ -139,6 +147,9 @@ std::vector<glm::vec3> vertices;
 
 float circleAtOriginRadiusOne(float x);
 
+glm::vec4 mapToColorMap(float input);
+int fround(float input);
+
 /* #####################################################
 /	Main program
 /  ##################################################### */
@@ -153,12 +164,6 @@ int main(int argc, char **argv) {
 
 #endif
 	// PATH TO INPUT OBJECT
-//	 std::string obj_path = "obj_files/teapot.obj";		// teapot
-//	 std::string obj_path = "obj_files/pedal.obj";		// drum pedal
-//	 std::string obj_path = "obj_files/suzie.obj";		// monkey
-
-//	 std::string obj_path = "obj_files/testthing_n_c.ply";		// test thing
-//	std::string obj_path = "/home/ri43hiq/workspace/mesh-saliency-climberpi/Mesh-Saliency-master/object/iphone_noNormals.obj";
 	std::string obj_path = "obj_files/P51_FINAL.obj";
 
 
@@ -235,9 +240,36 @@ int main(int argc, char **argv) {
 /	create Window, setup openGL states
 /  ##################################################### */
 void setup(void) {
-	std::cout << circleAtOriginRadiusOne(0.0) << std::endl;
-	std::cout << circleAtOriginRadiusOne(0.5) << std::endl;
-	std::cout << circleAtOriginRadiusOne(1.0) << std::endl;
+//	ColorMap::BrewerQualitative(255,colormap_1);
+//	ColorMap::BrewerDiverging(255, colormap_1, 0.50, 50.0, 1.0, 1.0, 0.0);
+	//	int n,
+	//	unsigned char* colormap,
+	//	float hue,
+	//	float divergence,
+	//	float contrast,
+	//	float saturation,
+	//	float brightness
+
+
+//	ColorMap::PLSequentialSaturation(255, colormap_1, 1.0, 1.0, 210.0);
+//	int n,
+//	unsigned char* colormap,
+//	float lightness,
+//	float saturation,
+//	float hue
+
+	ColorMap::PLSequentialLightness(255, colormap_1, 1.0, 42.0);
+//	int n,
+//	unsigned char* colormap,
+//	float saturation,
+//	float hue
+
+
+
+
+//	std::cout << circleAtOriginRadiusOne(0.0) << std::endl;
+//	std::cout << circleAtOriginRadiusOne(0.5) << std::endl;
+//	std::cout << circleAtOriginRadiusOne(1.0) << std::endl;
 
 	/* ######################
 	/ GLUT Setup
@@ -307,6 +339,26 @@ void setup(void) {
 	arcball.idle();
 }
 
+// unsigned char colormap_1; size: 255*3
+// ColorMap::BrewerSequential(255,colormap_1);
+// @TODO: map values 0.0 - 1.0 to one of the 255 values in colormap_1
+
+glm::vec4 mapToColorMap(float input) {
+	if (input < 0.0 || input > 1.0) {
+		return glm::vec4(0.,0.,0.,1.);
+	}
+	int a = fround(input*255)*3;
+
+	return glm::vec4(float(colormap_1[a])/255.,float(colormap_1[a+1])/255.,float(colormap_1[a+2])/255.,1.);
+
+}
+
+int fround(float input)
+{
+  return std::floor(input + 0.5);
+}
+
+
 float circleAtOriginRadiusOne(float x) {
 	float result;
 	result = sqrt(1.0-pow((x-1.0),2.0));
@@ -346,8 +398,9 @@ void draw(void) {
 	glUseProgram(shaderprogram);
 
 	view_matrix = glm::translate(translation);
-	model_matrix =	glm::scale(glm::vec3(10.,10.,10.f));
-	model_matrix = model_matrix * arcball.rot;
+	model_matrix =	glm::scale(glm::vec3(0.1,.1,.1f));
+	model_matrix = model_matrix * glm::rotate(yRot,glm::vec3(0.0,1.,0.)) * glm::rotate(xRot,glm::vec3(1.0,0.,0.));
+//	model_matrix = model_matrix * arcball.rot;
 
 	glm::mat4 pvmMatrix = proj_matrix * view_matrix * model_matrix;
 	for (int i=0; i!=4; i++) {
@@ -391,7 +444,8 @@ void reshape(int w, int h) {
 	float bottom = top - float(h) / float(max_window_height) * screen_height;
 
 	//create new frustum
-	proj_matrix = glm::frustum(left, right, bottom, top, near_clipping, far_clipping);
+//	proj_matrix = glm::frustum(left, right, bottom, top, near_clipping, far_clipping);
+	proj_matrix = glm::ortho(left, right, bottom, top, near_clipping, far_clipping);//;
 
 	glutPostRedisplay();
 }
@@ -419,6 +473,23 @@ void keyboardFunction(unsigned char k, int x, int y) {
 		case 'D':	// right
 			translation[0] -= 0.2f;
 			break;
+		case 'q':
+		case 'Q':	// backwards
+			yRot -= 0.2f;
+			break;
+		case 'e':
+		case 'E':	// right
+			yRot += 0.2f;
+			break;
+		case 'y':
+		case 'Y':	// backwards
+			xRot -= 0.2f;
+			break;
+		case 'x':
+		case 'X':	// right
+			xRot += 0.2f;
+			break;
+
 		case 52:	// 4/left
 			break;
 		case 56:	// 8/up
@@ -449,22 +520,118 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			break;
 		}
 
-		case 'p':
-		case 'P':
+		// computed mesh saliency values
+		case 'n':
+		case 'N':
 		{
-			// save current selection to text file
-			std::ofstream file(SelctionLogPath);
-			std::string data("vertId\tx\t\ty\t\tz\n");
-			file << data;
+			std::list<glm::vec4> colorsl;
+			std::vector<glm::vec4> colors;
+			colors.resize(meshes[0]->get_m_vertices().size());
+			double count = 0.;
+			for(auto it = saliency_values.begin(); it != saliency_values.end(); ++it) {
+//			for(size_t it = 0; it < meshes[0]->get_m_vertices().size();++it){
+//				std::cout << "stored saliency_value read: " << it->second << std::endl;
 
-			std::set<size_t>::iterator it = vertexSelection.begin();
-			for (int n=0; n != vertexSelection.size(); ++n) {
-				std::stringstream line;
-				line << *it << "\t" << verticesList[*it].second.x << "\t" << verticesList[*it].second.y << "\t" << verticesList[*it].second.z << "\n";
-				file << line.str();
-				std::advance(it, 1);
+				colors[it->first] = mapToColorMap(it->second);
+//				count += 1./double(meshes[0]->get_m_vertices().size());
 			}
-			std::cout << "vertex selection printed to selection_log.txt" << std::endl;
+
+			for(auto it = colors.begin(); it != colors.end(); ++it){
+				colorsl.push_back(*it);
+			}
+			meshes[0]->changeColorsForAllVertices(colorsl);
+			object1.updateAllMeshes();
+			break;
+		}
+
+		// average user saliency mapping
+		case 'm':
+		case 'M':
+		{
+			std::ifstream in_selected (UserSelectedSaliencyTxtPath);
+			std::string line;
+			std::string line_saliency_value;
+
+			while (getline (in_selected, line)) {
+				// ignore first line
+				if (line.find("vertexId") != std::string::npos) {
+					continue;
+				}
+
+				line_saliency_value = line.substr(line.find("\t")+1, line.size());
+
+				user_saliency_values.push_back((float)std::stof(line_saliency_value));
+			}
+
+			std::list<glm::vec4> colorsl;
+			std::vector<glm::vec4> colors;
+			colors.resize(meshes[0]->get_m_vertices().size());
+			double count = 0.;
+			int counter = 0;
+
+			for(auto it = saliency_values.begin(); it != saliency_values.end(); ++it) {
+				colors[it->first] = mapToColorMap(user_saliency_values[counter]);
+				++counter;
+			}
+			counter = 0;
+
+			for(auto it = colors.begin(); it != colors.end(); ++it){
+				colorsl.push_back(*it);
+			}
+			meshes[0]->changeColorsForAllVertices(colorsl);
+			object1.updateAllMeshes();
+			break;
+		}
+
+
+		// unweighted differences
+		case 'u':
+		case 'U':
+		{
+			std::list<glm::vec4> colorsl;
+			std::vector<glm::vec4> colors;
+			colors.resize(meshes[0]->get_m_vertices().size());
+			double count = 0.;
+			int counter = 0;
+
+
+			for (int i = 0; i != temp_diffs_unweighted.size(); i++) {
+				colors[counter] = mapToColorMap(temp_diffs_unweighted[counter]);
+				++counter;
+			}
+			counter = 0;
+
+			for(auto it = colors.begin(); it != colors.end(); ++it){
+				colorsl.push_back(*it);
+			}
+			meshes[0]->changeColorsForAllVertices(colorsl);
+			object1.updateAllMeshes();
+			break;
+		}
+
+
+		// weighted differences
+		case 'i':
+		case 'I':
+		{
+			std::list<glm::vec4> colorsl;
+			std::vector<glm::vec4> colors;
+			colors.resize(meshes[0]->get_m_vertices().size());
+			double count = 0.;
+			int counter = 0;
+
+
+			for (int i = 0; i != temp_diffs_weighted.size(); i++) {
+				colors[counter] = mapToColorMap(temp_diffs_weighted[counter]);
+				++counter;
+			}
+			counter = 0;
+
+			for(auto it = colors.begin(); it != colors.end(); ++it){
+				colorsl.push_back(*it);
+			}
+			meshes[0]->changeColorsForAllVertices(colorsl);
+			object1.updateAllMeshes();
 			break;
 		}
 
@@ -502,6 +669,8 @@ void keyboardFunction(unsigned char k, int x, int y) {
 					}
 
 					line_saliency_value = line.substr(line.find("\t")+1, line.size());		// get computed saliency value (everything after the tab)
+					std::cout << "mesh saliency value read: " << line_saliency_value << std::endl;
+
 					line = line.substr(0, line.find("\t", 0));								// get id & make it the new content of the line
 					id = (size_t)std::stoi(line);											// id vertex
 
@@ -524,6 +693,7 @@ void keyboardFunction(unsigned char k, int x, int y) {
 
 //			saliency_values.clear();
 			in.close();
+			std::cout << "computed saliency values read from Desktop/txt_files/computed_saliency_values.txt" << std::endl;
 
 			break;
 		}
@@ -542,7 +712,6 @@ void keyboardFunction(unsigned char k, int x, int y) {
 			// idCount: empty list of pairs of <vertexId, 0> to count how many times selected each vertex
 			std::vector<std::pair<size_t, int>> idCount;
 			// userSelectedSaliency: list of pairs of <vertexId, float> to store saliency for each vertex based on how often it was selected by users
-			std::vector<std::pair<size_t, float>> userSelectedSaliency;
 			DIR *dir;
 			struct dirent *ent;
 			int maxCount = 0;
@@ -565,6 +734,7 @@ void keyboardFunction(unsigned char k, int x, int y) {
 						std::strcpy (wholePath, UserSelectionLogFilesPath);
 						std::strcat (wholePath, filename.c_str());
 						std::ifstream in (wholePath);
+						std::string id;
 
 						if (in.is_open()) {
 							std::string line;
@@ -574,8 +744,10 @@ void keyboardFunction(unsigned char k, int x, int y) {
 								if (line.find("vertId") != std::string::npos) {
 									continue;		// ignore first (header) line
 								} else {
-									// each line is the id of a selected vertex-> direct conversion to int is possible
-									int vId = std::stoi(line);
+									// each line is the id of a selected vertex id plus a timestamp (in seconds) t seperated by a tab (id\tt)
+									// -> get the line up until the tab [\t] and convert that to int
+									id = line.substr(0, line.find("\t"));
+									int vId = std::stoi(id);
 
 									// find & keep track of maximum amount of number a single vertex was selected
 									idCount[vId].second++;
@@ -667,11 +839,7 @@ void keyboardFunction(unsigned char k, int x, int y) {
 
 			// temporary vectors to hold computed and user-selected saliency values
 			std::vector <float> computed_saliency_values;
-			std::vector <float> user_selected_saliency_values;
-
-			// temporary vectors to hold pairs of unweighted and weighted differences
-			std::vector <float> temp_diffs_unweighted;
-			std::vector <float> temp_diffs_weighted;
+//			std::vector <float> user_selected_saliency_values;
 
 
 		// step 1: get computed saliency values and store them in computed_saliency_values
@@ -691,12 +859,18 @@ void keyboardFunction(unsigned char k, int x, int y) {
 					continue;
 				}
 				line_saliency_value = line.substr(line.find("\t")+1, line.size());
-				user_selected_saliency_values.push_back((float)std::stof(line_saliency_value));
+
+				user_selected_saliency_values.push_back(
+						std::make_pair((size_t)counter, (float)std::stof(line_saliency_value))
+//						(float)std::stof(line_saliency_value)
+				);
+				++counter;
 			}
+			counter = 0;
 
 		// step 3: calculate differences and store them in temp_diffs_unweighted
 			for (int a=0; a!= computed_saliency_values.size(); a++) {
-				float difference = computed_saliency_values[a] - user_selected_saliency_values[a];
+				float difference = computed_saliency_values[a] - user_selected_saliency_values[a].second;
 				// store the (squared), absolute value of the difference in temp_diffs_weighted
 //				temp_diffs_unweighted.push_back(pow(fabs(difference),2.0));
 				temp_diffs_unweighted.push_back(fabs(difference));

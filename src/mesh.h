@@ -44,7 +44,7 @@ public:
     /**
      * getter for private m_vertices
      */
-    std::vector<glm::vec3> get_m_vertices(void);
+    std::vector<glm::vec3>& get_m_vertices(void);
 
     /**
      * @brief addTexture Add a texture and its coordinates to this mesh
@@ -114,6 +114,9 @@ public:
      * @param float color[4] - RGB value of desired new color
      */
     void changeColors (std::set <size_t> &selectionIndices, float color[4]);
+
+    // @TODO docu
+    void changeColorsForAllVertices (std::list<glm::vec4>& color);
 
     /**
      * change color of a single vertex at position given via index to color given via color

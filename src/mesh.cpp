@@ -29,7 +29,7 @@ bool Mesh::saysomethingmeshy(void) {
 	return true;
 }
 
-std::vector<glm::vec3> Mesh::get_m_vertices(void) {
+std::vector<glm::vec3>& Mesh::get_m_vertices(void) {
 	return m_vertices;
 }
 
@@ -433,6 +433,15 @@ void Mesh::changeColors (std::set <size_t> &selectionIndices, float color[4])
 		}
 	}
 	// m_colors[i][0] = 0.89;
+}
+
+void Mesh::changeColorsForAllVertices (std::list<glm::vec4>& color) {
+	auto itCol = color.begin();
+	size_t index = 0;
+	for(auto itCol = color.begin(); itCol != color.end(); ++itCol){
+			m_colors[index] = *itCol;
+			++index;
+	}
 }
 
 // change color of a single vertex

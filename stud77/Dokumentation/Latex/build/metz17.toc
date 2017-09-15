@@ -36,20 +36,23 @@
 \contentsline {subsubsection}{\numberline {4.3.2.2}\texttt {removeVerticesFromSelectionByCoordinates()}}{34}{subsubsection.4.3.2.2}
 \contentsline {subsection}{\numberline {4.3.3}Tracking selection}{34}{subsection.4.3.3}
 \contentsline {subsection}{\numberline {4.3.4}Testing setup}{35}{subsection.4.3.4}
-\contentsline {chapter}{\numberline {5}User study}{37}{chapter.5}
-\contentsline {section}{\numberline {5.1}Hardware used}{37}{section.5.1}
-\contentsline {section}{\numberline {5.2}Models used}{38}{section.5.2}
-\contentsline {section}{\numberline {5.3}Tasks given}{39}{section.5.3}
-\contentsline {section}{\numberline {5.4}Questionnaire}{40}{section.5.4}
-\contentsline {section}{\numberline {5.5}Shortcomings of the study design}{41}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Task, instructions and questions}{41}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Technical issues}{42}{subsection.5.5.2}
-\contentsline {chapter}{\numberline {6}Results and discussion}{43}{chapter.6}
-\contentsline {section}{\numberline {6.1}Participant demographics}{43}{section.6.1}
-\contentsline {section}{\numberline {6.2}Individual feedback and comments}{43}{section.6.2}
-\contentsline {section}{\numberline {6.3}Interpretation}{43}{section.6.3}
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{45}{chapter.7}
-\contentsline {section}{\numberline {7.1}Insights and conclusions}{45}{section.7.1}
-\contentsline {section}{\numberline {7.2}Future work}{45}{section.7.2}
-\contentsline {chapter}{\nonumberline List of Figures}{47}{chapter*.2}
-\contentsline {chapter}{\nonumberline Bibliography}{49}{chapter*.3}
+\contentsline {subsubsection}{\numberline {4.3.4.1}Test files}{36}{subsubsection.4.3.4.1}
+\contentsline {subsubsection}{\numberline {4.3.4.2}Helper and debugging functions}{36}{subsubsection.4.3.4.2}
+\contentsline {subsubsection}{\numberline {4.3.4.3}Testing at the V2C}{36}{subsubsection.4.3.4.3}
+\contentsline {chapter}{\numberline {5}User study}{39}{chapter.5}
+\contentsline {section}{\numberline {5.1}Hardware used}{39}{section.5.1}
+\contentsline {section}{\numberline {5.2}Models used}{40}{section.5.2}
+\contentsline {section}{\numberline {5.3}Tasks given}{41}{section.5.3}
+\contentsline {section}{\numberline {5.4}Questionnaire}{42}{section.5.4}
+\contentsline {section}{\numberline {5.5}Shortcomings of the study design}{43}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Task, instructions and questions}{43}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Technical issues}{44}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Results and discussion}{45}{chapter.6}
+\contentsline {section}{\numberline {6.1}Participant demographics}{45}{section.6.1}
+\contentsline {section}{\numberline {6.2}Individual feedback and comments}{45}{section.6.2}
+\contentsline {section}{\numberline {6.3}Interpretation}{45}{section.6.3}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{47}{chapter.7}
+\contentsline {section}{\numberline {7.1}Insights and conclusions}{47}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future work}{47}{section.7.2}
+\contentsline {chapter}{\nonumberline List of Figures}{49}{chapter*.2}
+\contentsline {chapter}{\nonumberline Bibliography}{51}{chapter*.3}

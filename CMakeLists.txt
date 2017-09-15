@@ -122,6 +122,7 @@ set(HEADER_FILES
 	src/mesh.h
 	src/object.h
 	src/ocTree.h
+	src/colormap.h
 	)
 set(SOURCE_FILES
 	src/arcball.cpp
@@ -130,6 +131,7 @@ set(SOURCE_FILES
 	src/object.cpp
 	src/main.cpp
 	src/ocTree.cpp
+	src/colormap.cpp
 	)
 
 
