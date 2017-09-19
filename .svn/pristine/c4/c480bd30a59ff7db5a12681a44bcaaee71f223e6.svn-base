@@ -1,0 +1,90 @@
+= INTRODUCTION
+-- Mesh Saliency:
+	Prominence = Herausragen / Hervortreten
+	Menschl. Wahrnehmung: Ähnlichkeit, Nähe Geschlossenheit
+-- immersive VR Umgebungen:
+	Beispiele: HMD (HTC VIVE, Oculus Rift) oder mehrseitige Projektionsanlagen
+	tatsächliche Stimuli = Realität
+-- Räumliche Speicherstrukturen:
+	Übliche Aufgaben wie Räumliches Indizieren von Punkten, Nächste-Nachbarn Anfragen
+
+
+= RELATED WORK
+-- Mesh Saliency
+	Wiederholung: Beschreibt wahrgenommene Wichtigkeit
+	radius: Üblicherweise SIGMA * 0.3% der Hauptdiagonale des Objekts
+	(SIGMA 1 - 6)
+	Ergebnis: Saliency Map (FOLIE VORHER ZEIGEN)
+	Paper von Lee et al, siehe Link unter den 3 Bildern
+	Bilder: Polygon(Punkte)zahl um jeweils 75% verringert
+	Hintergrund: Zu wenig Rechenleistung; Immer stärker steigende Ansprüche
+	(Datenmenge, Qualität, Komfort (bestenfalls keine Kabel))
+
+
+= CONCEPT
+-- Major tasks
+	Octree: C++
+	Auswahl-Funktionalität: Select & Deselect
+	Bildet Grundlage für die Applikation
+
+	User Study:
+	Nutzer in Studie verwenden App zum Selektieren von "wichtigen" Teilen
+
+	measure:
+	Als grundlegenden Vorschlag
+
+-- Measure of difference:
+	Normalisierung: mesh & user saliency an jeweils möchstem Wert
+
+
+= IMPLEMENTATION
+-- high lvl taskplanung
+	Rekursiver Aufbau, nachdem root constructor gecallt wurde
+	Octree: Schnell (logarithmische Komplexität bei finden, einfügen, löschen)
+	-> Geeignet für Echtzeit-Interaktion
+
+-- octree
+	assimp lädt, octree indiziert, Parameter!
+	margin: Gleiches Zuordnen für JEDEN subtree (inkl. root) möglich
+	-> Grenzen >, => usw, geht sicher auch bei root
+
+-- vertex selection
+	Hier Vorteil Octree: Nicht beachten vieler vertices
+	
+
+= USER STUDY
+	Selection-Radius: nicht sichtbar, nur grünes Objekt
+		Radius fest = 1 Variable weniger
+		Radius sichtbar = könnte verleitern, diesen verändern zu wollen
+		Radius sichtbar = vllt unnatürlicher als sonst (halbdurchsichtig = komisch)
+		grünes Objekt soll nur Position der Wand nachvollziehbar machen
+
+	Wand = Eingabegerät, wird getrackt
+	Wand-Position bei Drücken von Knöpfen = Input-KOs für Queries an Octree
+
+-- Objekte
+	cow:	natürlich, organisch
+	bunny:	natürlich, "mensch-gemacht" (eingescannt)
+	P51:	mechansich, "mensch-gemacht"
+
+	ca. gleiche Größe, um diesen Faktor festzumachen
+
+-- Anweisungen
+	Alles passiert in kugelförmigen Radius um gründes Objekt, Radius abhängig von Objektgröße:
+	subjektiv: Ziel war, zu ermitteln was "interessant" ist -> sehr subjektiv
+	Fragebogen: Technisches Interesse, war Application angenehm/intuitiv?
+	
+-- Ziel
+	timestamp: in Sekunden ab Start der Selektion
+
+
+= RESULTS
+-- Demographie
+	Sehkraft: 3 mit 5 oder mehr Dioptrin, Brille aufgelassen
+	nichts, was Ergebnisse unbrauchbar macht
+
+
+= FUTURE WORK
+-- variables
+	Radius: Veränderbar, sichtbar
+	BONUS: Mehr Dreh-Achsen, Skalieren (mehr User-Interaktion)
