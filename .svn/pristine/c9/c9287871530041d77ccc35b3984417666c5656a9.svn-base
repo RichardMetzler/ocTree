@@ -1,0 +1,15 @@
+\vspace*{2cm}
+
+\begin{center}
+    \textbf{Abstract}
+\end{center}
+
+\vspace*{1cm}
+
+\noindent The subject of this work is to inspect which parts of 3D objects are visually interesting, which are not, and how \textit{perceived importance} is distributed on the surface of such models. Two fundamentally different answers to this question are considered in this work. First, \textit{importance maps} computed by an automated, mathematically founded procedure are considered. Seconldy, such distributions of perceived importance, based in direct user input gathered from an application based on virtual reality technology, are considered. The goal of this work is to collect enough data to start such an evaluation of differences.
+
+In order to establish a foundation of this discussion, a user study was conducted with 32 participants. They would each use the software developed in the scope of this work to select parts of objects they deemed \textit{interesting}. Beforehand, a basic measure of difference was conceptualised in order to describe differences that were expected to be found. The goal was to compute one percentage-ratio which, based on vertex-wise comparison of importance values provided by user input and computation, indicates how much the user selection differs from the results of computation.
+
+The computational that provides calculated \textit{importance maps} for this work is called \textit{mesh saliency}. It was suggested in 2005 by Lee et al. and published in \cite{lee2005mesh}. \textit{User importance maps} are derived directly from user inputs gathered via the application implemented for this work. These two make up the data the discussion in the last part of this work is based on. User selections were shown to resemble computed distributions of perceived importance in some regards more than in others. Both sets of results tended to highlight contours and geometrically interesting parts of the objects but users seemed to put a heavier emphasis on larger, characteristic parts of the objects.
+
+\newpage

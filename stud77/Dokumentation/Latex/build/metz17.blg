@@ -4,11 +4,11 @@ The top-level auxiliary file: ./build/metz17.aux
 The style file: alpha.bst
 Database file #1: ./Bib/metz17.bib
 Warning--I didn't find a database entry for "sec:related_work"
+Warning--to sort, need author or key in v2c
 Warning--to sort, need author or key in Octree
 Warning--to sort, need author or key in octAp
 Warning--to sort, need author or key in clms
 Warning--to sort, need author or key in OpenGL
-Warning--to sort, need author or key in v2c
 Warning--to sort, need author or key in GLUT
 Warning--to sort, need author or key in GLEW
 Warning--to sort, need author or key in ASP

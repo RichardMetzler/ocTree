@@ -1,45 +1,47 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 1.1}{\ignorespaces Schematic depiction of how the \textit {selection application} works from a user perspective}}{3}{figure.1.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces A model and its computes mesh saliency map. Published by Lee \textit {et al.} \cite {lee2005mesh}. Bright colors (yellow and red) indicate high saliency values for their respective vertices, dark colors (shades of blue) indicate low values.}}{4}{figure.2.1}
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces A model and its computes mesh saliency map. Published by Lee \textit {et al.} \cite {lee2005mesh}. Bright colors (yellow and red) indicate high saliency values for their respective vertices, dark colors (shades of blue) indicate low values.}}{6}{figure.2.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{10}{figure.3.1}
-\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces An octree structure indexing five vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}}{11}{figure.3.2}
-\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit {et al.} \cite {nouri2015multi}}}{16}{figure.3.3}
-\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Graphic representation of the weighting function in relation to the \textit {unweighted} difference values (straight, black line)}}{18}{figure.3.4}
+\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{12}{figure.3.1}
+\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces An octree structure indexing five vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}}{13}{figure.3.2}
+\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit {et al.} \cite {nouri2015multi}}}{18}{figure.3.3}
+\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Graphic representation of the weighting function in relation to the \textit {unweighted} difference values (straight, black line)}}{20}{figure.3.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{29}{figure.4.1}
-\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{31}{figure.4.2}
-\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{32}{figure.4.3}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{37}{figure.4.4}
-\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces A fairly complex query to the octree structure of the selection application}}{38}{figure.4.5}
-\contentsline {figure}{\numberline {\relax 4.6}{\ignorespaces A test file used during implementation, perspective view. Its bounding box and edges are depicted.}}{39}{figure.4.6}
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{31}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{33}{figure.4.2}
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{34}{figure.4.3}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{39}{figure.4.4}
+\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces A fairly complex query to the octree structure of the selection application}}{40}{figure.4.5}
+\contentsline {figure}{\numberline {\relax 4.6}{\ignorespaces A test file used during implementation, perspective view. Its bounding box and edges are depicted}}{41}{figure.4.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The hardware components available at the V2C. Left: A pair of active, stereoscopic shutter glasses. Right: The main input device, referred to as \textit {wand}}}{44}{figure.5.1}
-\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces The selection process using the available hardware at the V2C}}{45}{figure.5.2}
-\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces A real selection process. }}{49}{figure.5.3}
-\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces The 3D objects used for the user study}}{50}{figure.5.4}
+\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The hardware components available at the V2C. Left: A pair of active, stereoscopic shutter glasses. Right: The main input device, referred to as \textit {wand}}}{46}{figure.5.1}
+\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces The selection process using the available hardware at the V2C}}{47}{figure.5.2}
+\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces A real selection process}}{48}{figure.5.3}
+\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces The 3D objects used for the user study}}{49}{figure.5.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 6.1}{\ignorespaces Age distribution of participants in the user study}}{51}{figure.6.1}
-\contentsline {figure}{\numberline {\relax 6.2}{\ignorespaces Working situation of participants in the user study}}{52}{figure.6.2}
-\contentsline {figure}{\numberline {\relax 6.3}{\ignorespaces Feedback on the application gathered from the questionnaire. \textit {No comment} answers are not considered.}}{53}{figure.6.3}
-\contentsline {figure}{\numberline {\relax 6.4}{\ignorespaces The uniform scale used for figures in this section.}}{53}{figure.6.4}
-\contentsline {figure}{\numberline {\relax 6.5}{\ignorespaces Normalised saliency maps for the first model, orthographic front view. Left: \textit {mesh saliency}, right: \textit {user saliency}.}}{54}{figure.6.5}
-\contentsline {figure}{\numberline {\relax 6.6}{\ignorespaces Normalised difference maps for the first model, orthographic front view. Left: \textit {unweighted differences}, right: \textit {weighted differences}.}}{55}{figure.6.6}
-\contentsline {figure}{\numberline {\relax 6.7}{\ignorespaces Normalised saliency maps for the first model, orthographic side view. Left: \textit {mesh saliency}, right: \textit {user saliency}.}}{55}{figure.6.7}
-\contentsline {figure}{\numberline {\relax 6.8}{\ignorespaces Normalised difference maps for the first model, orthographic side view. Left: \textit {unweighted differences}, right: \textit {weighted differences}.}}{56}{figure.6.8}
-\contentsline {figure}{\numberline {\relax 6.9}{\ignorespaces Normalised saliency maps for the first model, orthographic top view. Left: \textit {mesh saliency}, right: \textit {user saliency}.}}{56}{figure.6.9}
-\contentsline {figure}{\numberline {\relax 6.10}{\ignorespaces Normalised difference maps for the first model, orthographic top view. Left: \textit {unweighted differences}, right: \textit {weighted differences}.}}{56}{figure.6.10}
-\contentsline {figure}{\numberline {\relax 6.11}{\ignorespaces Normalised saliency maps for the second model, orthographic front view. Left: \textit {mesh saliency}, right: \textit {user saliency}.}}{57}{figure.6.11}
-\contentsline {figure}{\numberline {\relax 6.12}{\ignorespaces Normalised difference maps for the second model, orthographic front view. Left: \textit {unweighted differences}, right: \textit {weighted differences}.}}{57}{figure.6.12}
-\contentsline {figure}{\numberline {\relax 6.13}{\ignorespaces Normalised saliency maps for the second model, orthographic side view. Left: \textit {mesh saliency}, right: \textit {user saliency}.}}{58}{figure.6.13}
-\contentsline {figure}{\numberline {\relax 6.14}{\ignorespaces Normalised difference maps for the second model, orthographic side view. Left: \textit {unweighted differences}, right: \textit {weighted differences}.}}{58}{figure.6.14}
-\contentsline {figure}{\numberline {\relax 6.15}{\ignorespaces Normalised saliency maps for the second model, orthographic front view. Top: \textit {mesh saliency}, bottom: \textit {user saliency}.}}{58}{figure.6.15}
-\contentsline {figure}{\numberline {\relax 6.16}{\ignorespaces Normalised difference maps for the second model, orthographic top view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}.}}{59}{figure.6.16}
-\contentsline {figure}{\numberline {\relax 6.17}{\ignorespaces Normalised saliency maps for the third model, orthographic front view. Top: \textit {mesh saliency}, bottom: \textit {user saliency}.}}{59}{figure.6.17}
-\contentsline {figure}{\numberline {\relax 6.18}{\ignorespaces Normalised difference maps for the third model, orthographic front view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}.}}{60}{figure.6.18}
-\contentsline {figure}{\numberline {\relax 6.19}{\ignorespaces Normalised saliency maps for the third model, orthographic side view. Top: \textit {mesh saliency}, bottom: \textit {user saliency}.}}{60}{figure.6.19}
-\contentsline {figure}{\numberline {\relax 6.20}{\ignorespaces Normalised difference maps for the third model, orthographic side view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}.}}{61}{figure.6.20}
-\contentsline {figure}{\numberline {\relax 6.21}{\ignorespaces Normalised saliency maps for the third model, orthographic top view. Left: \textit {mesh saliency}, right: \textit {user saliency}.}}{61}{figure.6.21}
-\contentsline {figure}{\numberline {\relax 6.22}{\ignorespaces Normalised difference maps for the third model, orthographic top view. Left: \textit {unweighted differences}, right: \textit {weighted differences}.}}{62}{figure.6.22}
+\contentsline {figure}{\numberline {\relax 6.1}{\ignorespaces Age distribution of participants in the user study}}{53}{figure.6.1}
+\contentsline {figure}{\numberline {\relax 6.2}{\ignorespaces Working situation of participants in the user study}}{54}{figure.6.2}
+\contentsline {figure}{\numberline {\relax 6.3}{\ignorespaces Feedback on the application gathered from the questionnaire. \textit {No comment} answers are not considered.}}{55}{figure.6.3}
+\contentsline {figure}{\numberline {\relax 6.4}{\ignorespaces The uniform scale used for figures in this section.}}{56}{figure.6.4}
+\contentsline {figure}{\numberline {\relax 6.5}{\ignorespaces Normalised saliency maps for the first model, orthographic front view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{56}{figure.6.5}
+\contentsline {figure}{\numberline {\relax 6.6}{\ignorespaces Normalised difference maps for the first model, orthographic front view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{57}{figure.6.6}
+\contentsline {figure}{\numberline {\relax 6.7}{\ignorespaces Normalised saliency maps for the first model, orthographic side view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{57}{figure.6.7}
+\contentsline {figure}{\numberline {\relax 6.8}{\ignorespaces Normalised difference maps for the first model, orthographic side view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{58}{figure.6.8}
+\contentsline {figure}{\numberline {\relax 6.9}{\ignorespaces Normalised saliency maps for the first model, orthographic top view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{58}{figure.6.9}
+\contentsline {figure}{\numberline {\relax 6.10}{\ignorespaces Normalised difference maps for the first model, orthographic top view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{58}{figure.6.10}
+\contentsline {figure}{\numberline {\relax 6.11}{\ignorespaces Normalised saliency maps for the second model, orthographic front view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{59}{figure.6.11}
+\contentsline {figure}{\numberline {\relax 6.12}{\ignorespaces Normalised difference maps for the second model, orthographic front view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{59}{figure.6.12}
+\contentsline {figure}{\numberline {\relax 6.13}{\ignorespaces Normalised saliency maps for the second model, orthographic side view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{60}{figure.6.13}
+\contentsline {figure}{\numberline {\relax 6.14}{\ignorespaces Normalised difference maps for the second model, orthographic side view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{60}{figure.6.14}
+\contentsline {figure}{\numberline {\relax 6.15}{\ignorespaces Normalised saliency maps for the second model, orthographic top view. Top: \textit {mesh saliency}, bottom: \textit {user saliency}}}{60}{figure.6.15}
+\contentsline {figure}{\numberline {\relax 6.16}{\ignorespaces Normalised difference maps for the second model, orthographic top view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}}}{61}{figure.6.16}
+\contentsline {figure}{\numberline {\relax 6.17}{\ignorespaces Normalised saliency maps for the third model, orthographic front view. Top: \textit {mesh saliency}, bottom: \textit {user saliency}}}{62}{figure.6.17}
+\contentsline {figure}{\numberline {\relax 6.18}{\ignorespaces Normalised difference maps for the third model, orthographic front view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}}}{62}{figure.6.18}
+\contentsline {figure}{\numberline {\relax 6.19}{\ignorespaces Normalised saliency maps for the third model, orthographic side view. Top: \textit {mesh saliency}, bottom: \textit {user saliency}}}{63}{figure.6.19}
+\contentsline {figure}{\numberline {\relax 6.20}{\ignorespaces Normalised difference maps for the third model, orthographic side view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}}}{63}{figure.6.20}
+\contentsline {figure}{\numberline {\relax 6.21}{\ignorespaces Normalised saliency maps for the third model, orthographic top view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{64}{figure.6.21}
+\contentsline {figure}{\numberline {\relax 6.22}{\ignorespaces Normalised difference maps for the third model, orthographic top view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{64}{figure.6.22}
+\contentsline {figure}{\numberline {\relax 6.23}{\ignorespaces Perspective detail view on object three (P51)}}{68}{figure.6.23}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

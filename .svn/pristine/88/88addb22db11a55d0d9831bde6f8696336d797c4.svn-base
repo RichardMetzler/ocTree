@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% dritte Seite (Kopie der ersten)
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{-2cm}
+
+{\Huge INSTITUT FÜR INFORMATIK\\[1mm]}
+DER LUDWIG--MAXIMILIANS--UNIVERSITÄT MÜNCHEN\\
+
+\vspace*{1cm}
+
+\includegraphics[width=0.3\textwidth]{lmu_siegel}
+
+\vspace*{2cm}
+
+{\Large \textbf{Master's Thesis}}\\ % oder Fortgeschrittenenpraktikum, SEP etc.
+
+\vspace{2.0cm}
+{\Huge \textbf{Evaluation of Virtual Reality based Mesh Saliency Maps}}\\
+% \vspace*{3mm}
+% {\Huge \textbf{-- additional line}}\\
+\vspace{1.5cm}
+
+\vspace{1.5cm}
+
+{\LARGE Richard Metzler} % Name des Autors
+\vspace{2cm}
+
+\parbox{1cm}{
+\begin{large}
+\begin{tabbing}
+Aufgabensteller: \hspace{.5cm} \=Prof. Dr. Dieter Kranzlmüller\\[2mm]
+Betreuer:
+\>Markus Wiedemann\\ % alphabetische Reihenfolge (Nachname)
+%\>MNM-Team-Betreuer 2\\
+%\>Externer Betreuer 1 (Firma)\\[5mm]
+Abgabetermin: \> 29. September 2017\\
+\end{tabbing}
+\end{large}}\\
+\vspace{5mm}
+
+\end{center}

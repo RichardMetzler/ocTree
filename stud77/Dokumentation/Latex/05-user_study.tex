@@ -6,8 +6,7 @@
 
 From August 21th to September 12th 2017, I conducted a user study that aimed at gathering data to compare with the results of processing 3D objects according to \textit{mesh saliency} \cite{lee2005mesh}. However, due to the fact that the projection installation at the V2C was not available for me at all times, I could not use every day in that timespan. The installation was assigned to me for a total seven days. I was able to collect a reasonable amount of data from a sufficiently sized group of participants. This chapter will go over details of how I organised and conducted the user study.
 
-As briefly described before in section \ref{sec:conduct_user_study_with_the_selection_application}, I asked participants to use my selection application and the hardware available at the V2C to select regions of 3D objects they found \textit{interesting}. In general, participants got familiar with the devices and interaction mechanics quickly and were able to make selections according to their perception of what was of importance.
-% @TODO: Kurzen Spoiler einbauen, wie es sich mit den Unterschieden verhalten hat (das Ziel der ganzen verf*ckten Arbeit halt)
+As briefly described before in section \ref{sec:conduct_user_study_with_the_selection_application}, I asked participants to use my selection application and the hardware available at the V2C to select regions of 3D objects they found \textit{interesting}. In general, participants got familiar with the devices and interaction mechanics quickly and were able to make selections according to their perception of what was of importance. In general, the ratio of overall differences between \textit{mesh saliency} and \textit{user saliency} is fairly low for the three objects used in this work, ranging from about 0.23 to 0.38. However, whether this can be used as basis for any type of statement regarding how differently important parts of 3D data are recognised by humans in VR and computational, automatic procedures, is doubtful as discussed at the end of this chapter.
 
 	\section{Hardware used}
 	\label{sec:hardware_used}
@@ -39,7 +38,7 @@ Figure \ref{fig:selection_cave} depicts what the selection process inside the pr
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.6\textwidth]{real_selection_row.png}\\ % PNG-File
-  \caption{A real selection process. }\label{fig:real_selection}
+  \caption{A real selection process}\label{fig:real_selection}
 \end{figure}
 
 Consider figure \ref{fig:real_selection}. Starting with the top photograph of the figure, it shows a loaded object where with nothing selected yet. The middle photograph shows the same object after a selection has been made. The bottm photograph shows the object after vertices have been deselected again. Note the green object that is also projected onto the walls. For the user, through the tracked glasses, it is visible at the tracked location of the input device at all times.
@@ -151,6 +150,4 @@ The projection installation at the V2C, while still fully functioning and perfor
 	\item Tracking of the stereoscopig glasses and the \textit{wand} did not work properly when they got near to the bottom or the walls of the projection installation. If they entered that \textit{outer area} of the room, projection would freeze in place until the user stepped closer to the centre of it again.
 	\item This might have been a problem with my application - I could not reliably reproduce this error. Sometimes the application simply froze during the user selection process. I tried to reproduce this behavior but I can only speculate from what I have observed. This kind of freeze occured more often when the \textit{wand} was moved very quickly over an extend period of time, while constantly pressing the \textit{select} button.
 \end{itemize}
-%
-% TECHNICAL ISSUES
-%
+
