@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  20 SEP 2017 18:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  25 SEP 2017 14:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -527,22 +527,14 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 (./Titel/erklaerung-lmu.tex) [3] [4
 
 
-] (./abstract.tex [5])
-(./acknoledgements.tex
-Overfull \hbox (0.84354pt too wide) in paragraph at lines 20--21
-[]\OT1/cmr/m/n/10.95 My friends To-bias Bjarsch, Christa Bichlmayer, Mar-tin Er
-thel, Robert Het-zner and Manuel
- []
+] (./abstract.tex [5]) [6
 
-) [6] (build/metz17.toc
+
+] (build/metz17.toc
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 27.
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [7
-
-
-])
+) [7])
 \tf@toc=\write4
 \openout4 = `metz17.toc'.
 
@@ -564,22 +556,19 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              a package that still implements the
 (scrbook)              deprecated \float@addtolist interface .
 
-
-LaTeX Warning: Reference `v2c' on page 1 undefined on input line 12.
-
 [1
 
 
 
 
-] <./Bilder/selection_cave.png, id=452, 1027.84pt x 1027.84pt>
+] <./Bilder/selection_cave.png, id=454, 1027.84pt x 1027.84pt>
 File: ./Bilder/selection_cave.png Graphic file (type png)
 
 <use ./Bilder/selection_cave.png>
-Package pdftex.def Info: ./Bilder/selection_cave.png used on input line 22.
-(pdftex.def)             Requested size: 218.73059pt x 218.72285pt.
+Package pdftex.def Info: ./Bilder/selection_cave.png used on input line 20.
+(pdftex.def)             Requested size: 349.97028pt x 349.97853pt.
 
-Underfull \hbox (badness 1264) in paragraph at lines 23--23
+Underfull \hbox (badness 1264) in paragraph at lines 21--21
 [][]\OT1/cmr/m/n/10.95 Schematic de-pic-tion of how the \OT1/cmr/m/it/10.95 se-
 lec-tion ap-pli-ca-tion \OT1/cmr/m/n/10.95 works from a user
  []
@@ -589,7 +578,7 @@ lec-tion ap-pli-ca-tion \OT1/cmr/m/n/10.95 works from a user
 
 ]
 chapter 2.
-<./Bilder/arma.png, id=480, 813.0375pt x 482.80376pt>
+<./Bilder/arma.png, id=481, 813.0375pt x 482.80376pt>
 File: ./Bilder/arma.png Graphic file (type png)
  <use ./Bilder/arma.png>
 Package pdftex.def Info: ./Bilder/arma.png used on input line 15.
@@ -597,7 +586,7 @@ Package pdftex.def Info: ./Bilder/arma.png used on input line 15.
 
 [5] [6 <./Bilder/arma.png>] [7] [8]) (./03-concept.tex [9] [10]
 chapter 3.
-<./Bilder/obj_content.png, id=563, 440.64626pt x 343.2825pt>
+<./Bilder/obj_content.png, id=564, 440.64626pt x 343.2825pt>
 File: ./Bilder/obj_content.png Graphic file (type png)
 
 <use ./Bilder/obj_content.png>
@@ -607,7 +596,7 @@ Package pdftex.def Info: ./Bilder/obj_content.png used on input line 28.
 
 
 ]
-<./Bilder/ocTree_appleb.png, id=578, 1316.92pt x 791.95876pt>
+<./Bilder/ocTree_appleb.png, id=579, 1316.92pt x 791.95876pt>
 File: ./Bilder/ocTree_appleb.png Graphic file (type png)
 
 <use ./Bilder/ocTree_appleb.png>
@@ -634,7 +623,7 @@ LaTeX Warning: No positions in optional float specifier.
 LaTeX Warning: Citation `sec:related_work' on page 18 undefined on input line 1
 53.
 
-<./Bilder/mss_gorilla_alpha.png, id=630, 611.28375pt x 329.23pt>
+<./Bilder/mss_gorilla_alpha.png, id=631, 611.28375pt x 329.23pt>
 File: ./Bilder/mss_gorilla_alpha.png Graphic file (type png)
 
 <use ./Bilder/mss_gorilla_alpha.png>
@@ -647,7 +636,7 @@ LaTeX Warning: Reference `gorilla_saliency_map' on page 18 undefined on input l
 ine 161.
 
 [18 <./Bilder/mss_gorilla_alpha.png>]
-<./Bilder/weighting_function.png, id=641, 884.30376pt x 883.3pt>
+<./Bilder/weighting_function.png, id=642, 884.30376pt x 883.3pt>
 File: ./Bilder/weighting_function.png Graphic file (type png)
 
 <use ./Bilder/weighting_function.png>
@@ -696,7 +685,7 @@ Overfull \hbox (10.95003pt too wide) in paragraph at lines 250--279
 []$[]$ 
  []
 
-[29] [30] <./Bilder/child_node_000_101.png, id=829, 1027.84pt x 513.92pt>
+[29] [30] <./Bilder/child_node_000_101.png, id=830, 1027.84pt x 513.92pt>
 File: ./Bilder/child_node_000_101.png Graphic file (type png)
 
 <use ./Bilder/child_node_000_101.png>
@@ -716,14 +705,14 @@ Overfull \hbox (10.95003pt too wide) in paragraph at lines 308--333
  []
 
 [31 <./Bilder/child_node_000_101.png>]
-<./Bilder/ocTree_levels.png, id=836, 1007.765pt x 727.71875pt>
+<./Bilder/ocTree_levels.png, id=837, 1007.765pt x 727.71875pt>
 File: ./Bilder/ocTree_levels.png Graphic file (type png)
 
 <use ./Bilder/ocTree_levels.png>
 Package pdftex.def Info: ./Bilder/ocTree_levels.png used on input line 342.
 (pdftex.def)             Requested size: 415.58678pt x 300.09885pt.
  [32] [33 <./Bilder/ocTree_levels.png>]
-<./Bilder/a01_without_neighbors.png, id=874, 2668.97125pt x 827.09pt>
+<./Bilder/a01_without_neighbors.png, id=875, 2668.97125pt x 827.09pt>
 File: ./Bilder/a01_without_neighbors.png Graphic file (type png)
 
 <use ./Bilder/a01_without_neighbors.png>
@@ -740,7 +729,7 @@ Overfull \hbox (10.95003pt too wide) in paragraph at lines 453--497
 []$[]$ 
  []
 
-[37] <./Bilder/selection.png, id=991, 652.4375pt x 213.79875pt>
+[37] <./Bilder/selection.png, id=992, 652.4375pt x 213.79875pt>
 File: ./Bilder/selection.png Graphic file (type png)
 
 <use ./Bilder/selection.png>
@@ -752,14 +741,14 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 537.
 
 [39 <./Bilder/selection.png>]
-<./Bilder/edge_case.png, id=1018, 809.0225pt x 809.0225pt>
+<./Bilder/edge_case.png, id=1019, 809.0225pt x 809.0225pt>
 File: ./Bilder/edge_case.png Graphic file (type png)
 
 <use ./Bilder/edge_case.png>
 Package pdftex.def Info: ./Bilder/edge_case.png used on input line 565.
 (pdftex.def)             Requested size: 218.73059pt x 218.72292pt.
 
-<./Bilder/test_file.png, id=1021, 1016.29688pt x 745.28438pt>
+<./Bilder/test_file.png, id=1022, 1016.29688pt x 745.28438pt>
 File: ./Bilder/test_file.png Graphic file (type png)
 
 <use ./Bilder/test_file.png>
@@ -777,7 +766,7 @@ cr/m/n/10.95 debugInfo\OT1/cmr/m/n/10.95 ,
 
 ]
 chapter 5.
-<./Bilder/concept_hardware.png, id=1055, 3007.235pt x 933.4875pt>
+<./Bilder/concept_hardware.png, id=1056, 3007.235pt x 933.4875pt>
 File: ./Bilder/concept_hardware.png Graphic file (type png)
 
 <use ./Bilder/concept_hardware.png>
@@ -788,7 +777,7 @@ File: ./Bilder/selection_cave.png Graphic file (type png)
 Package pdftex.def Info: ./Bilder/selection_cave.png used on input line 32.
 (pdftex.def)             Requested size: 349.97028pt x 349.97853pt.
  [45]
-<./Bilder/real_selection_row.png, id=1062, 670.505pt x 1642.135pt>
+<./Bilder/real_selection_row.png, id=1063, 670.505pt x 1642.135pt>
 File: ./Bilder/real_selection_row.png Graphic file (type png)
 
 <use ./Bilder/real_selection_row.png>
@@ -800,7 +789,7 @@ Package pdftex.def Info: ./Bilder/real_selection_row.png used on input line 40.
 LaTeX Warning: Float too large for page by 33.9153pt on input line 42.
 
 [46 <./Bilder/concept_hardware.png>] [47] [48 <./Bilder/real_selection_row.png>
-] <./Bilder/userstudy_all_objects.png, id=1081, 1353.055pt x 431.6125pt>
+] <./Bilder/userstudy_all_objects.png, id=1082, 1353.055pt x 431.6125pt>
 File: ./Bilder/userstudy_all_objects.png Graphic file (type png)
 
 <use ./Bilder/userstudy_all_objects.png>
@@ -816,14 +805,14 @@ LaTeX Warning: No positions in optional float specifier.
 
  <./Bilder/userstudy_all_objects.png>] [50] [51]) (./06-results.tex [52]
 chapter 6.
-<./Bilder/results_agegroups.png, id=1121, 606.265pt x 558.085pt>
+<./Bilder/results_agegroups.png, id=1122, 606.265pt x 558.085pt>
 File: ./Bilder/results_agegroups.png Graphic file (type png)
 
 <use ./Bilder/results_agegroups.png>
 Package pdftex.def Info: ./Bilder/results_agegroups.png used on input line 11.
 (pdftex.def)             Requested size: 328.09589pt x 302.02563pt.
 
-<./Bilder/results_working_situation.png, id=1122, 710.655pt x 582.175pt>
+<./Bilder/results_working_situation.png, id=1123, 710.655pt x 582.175pt>
 File: ./Bilder/results_working_situation.png Graphic file (type png)
 
 <use ./Bilder/results_working_situation.png>
@@ -838,7 +827,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
  <./Bilder/results_agegroups.png>]
-<./Bilder/feedback_v2.png, id=1134, 1002.74625pt x 742.775pt>
+<./Bilder/feedback_v2.png, id=1135, 1002.74625pt x 742.775pt>
 File: ./Bilder/feedback_v2.png Graphic file (type png)
 
 <use ./Bilder/feedback_v2.png>
@@ -850,7 +839,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [54 <./Bilder/results_working_situation.png>] [55 <./Bilder/feedback_v2.png (PN
 G copy)>]
-<./Bilder/result_maps/scale_values.png, id=1154, 430.60875pt x 55.20625pt>
+<./Bilder/result_maps/scale_values.png, id=1155, 430.60875pt x 55.20625pt>
 File: ./Bilder/result_maps/scale_values.png Graphic file (type png)
 
 <use ./Bilder/result_maps/scale_values.png>
@@ -858,7 +847,7 @@ Package pdftex.def Info: ./Bilder/result_maps/scale_values.png used on input li
 ne 66.
 (pdftex.def)             Requested size: 306.22148pt x 39.25987pt.
 
-<./Bilder/result_maps/bunny/bunny_front_A.png, id=1155, 710.655pt x 453.695pt>
+<./Bilder/result_maps/bunny/bunny_front_A.png, id=1156, 710.655pt x 453.695pt>
 File: ./Bilder/result_maps/bunny/bunny_front_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/bunny/bunny_front_A.png>
@@ -866,7 +855,7 @@ Package pdftex.def Info: ./Bilder/result_maps/bunny/bunny_front_A.png used on i
 nput line 79.
 (pdftex.def)             Requested size: 306.22148pt x 195.50041pt.
 
-<./Bilder/result_maps/bunny/bunny_front_B.png, id=1156, 710.655pt x 453.695pt>
+<./Bilder/result_maps/bunny/bunny_front_B.png, id=1157, 710.655pt x 453.695pt>
 File: ./Bilder/result_maps/bunny/bunny_front_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/bunny/bunny_front_B.png>
@@ -874,7 +863,7 @@ Package pdftex.def Info: ./Bilder/result_maps/bunny/bunny_front_B.png used on i
 nput line 85.
 (pdftex.def)             Requested size: 306.22148pt x 195.50041pt.
 
-<./Bilder/result_maps/bunny/bunny_side_A.png, id=1157, 923.45pt x 450.68375pt>
+<./Bilder/result_maps/bunny/bunny_side_A.png, id=1158, 923.45pt x 450.68375pt>
 File: ./Bilder/result_maps/bunny/bunny_side_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/bunny/bunny_side_A.png>
@@ -882,7 +871,7 @@ Package pdftex.def Info: ./Bilder/result_maps/bunny/bunny_side_A.png used on in
 put line 92.
 (pdftex.def)             Requested size: 371.84467pt x 181.47374pt.
 
-<./Bilder/result_maps/bunny/bunny_side_B.png, id=1158, 923.45pt x 450.68375pt>
+<./Bilder/result_maps/bunny/bunny_side_B.png, id=1159, 923.45pt x 450.68375pt>
 File: ./Bilder/result_maps/bunny/bunny_side_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/bunny/bunny_side_B.png>
@@ -890,7 +879,7 @@ Package pdftex.def Info: ./Bilder/result_maps/bunny/bunny_side_B.png used on in
 put line 98.
 (pdftex.def)             Requested size: 371.84467pt x 181.47374pt.
 
-<./Bilder/result_maps/bunny/bunny_top_A.png, id=1159, 917.4275pt x 347.2975pt>
+<./Bilder/result_maps/bunny/bunny_top_A.png, id=1160, 917.4275pt x 347.2975pt>
 File: ./Bilder/result_maps/bunny/bunny_top_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/bunny/bunny_top_A.png>
@@ -898,7 +887,7 @@ Package pdftex.def Info: ./Bilder/result_maps/bunny/bunny_top_A.png used on inp
 ut line 105.
 (pdftex.def)             Requested size: 393.71239pt x 149.04355pt.
 
-<./Bilder/result_maps/bunny/bunny_top_B.png, id=1160, 917.4275pt x 347.2975pt>
+<./Bilder/result_maps/bunny/bunny_top_B.png, id=1161, 917.4275pt x 347.2975pt>
 File: ./Bilder/result_maps/bunny/bunny_top_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/bunny/bunny_top_B.png>
@@ -910,7 +899,7 @@ front_A.png>] [57 <./Bilder/result_maps/bunny/bunny_front_B.png> <./Bilder/resu
 lt_maps/bunny/bunny_side_A.png>] [58 <./Bilder/result_maps/bunny/bunny_side_B.p
 ng> <./Bilder/result_maps/bunny/bunny_top_A.png> <./Bilder/result_maps/bunny/bu
 nny_top_B.png>]
-<./Bilder/result_maps/cow/cow_front_A.png, id=1187, 439.6425pt x 394.47375pt>
+<./Bilder/result_maps/cow/cow_front_A.png, id=1188, 439.6425pt x 394.47375pt>
 File: ./Bilder/result_maps/cow/cow_front_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/cow/cow_front_A.png>
@@ -918,7 +907,7 @@ Package pdftex.def Info: ./Bilder/result_maps/cow/cow_front_A.png used on input
  line 124.
 (pdftex.def)             Requested size: 240.60498pt x 215.88379pt.
 
-<./Bilder/result_maps/cow/cow_front_B.png, id=1188, 439.6425pt x 394.47375pt>
+<./Bilder/result_maps/cow/cow_front_B.png, id=1189, 439.6425pt x 394.47375pt>
 File: ./Bilder/result_maps/cow/cow_front_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/cow/cow_front_B.png>
@@ -926,7 +915,7 @@ Package pdftex.def Info: ./Bilder/result_maps/cow/cow_front_B.png used on input
  line 130.
 (pdftex.def)             Requested size: 240.60498pt x 215.88379pt.
 
-<./Bilder/result_maps/cow/cow_side_A.png, id=1189, 1286.8075pt x 392.46625pt>
+<./Bilder/result_maps/cow/cow_side_A.png, id=1190, 1286.8075pt x 392.46625pt>
 File: ./Bilder/result_maps/cow/cow_side_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/cow/cow_side_A.png>
@@ -934,7 +923,7 @@ Package pdftex.def Info: ./Bilder/result_maps/cow/cow_side_A.png used on input
 line 137.
 (pdftex.def)             Requested size: 437.46118pt x 133.41878pt.
 
-<./Bilder/result_maps/cow/cow_side_B.png, id=1190, 1286.8075pt x 392.46625pt>
+<./Bilder/result_maps/cow/cow_side_B.png, id=1191, 1286.8075pt x 392.46625pt>
 File: ./Bilder/result_maps/cow/cow_side_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/cow/cow_side_B.png>
@@ -942,7 +931,7 @@ Package pdftex.def Info: ./Bilder/result_maps/cow/cow_side_B.png used on input
 line 143.
 (pdftex.def)             Requested size: 437.46118pt x 133.41878pt.
 
-<./Bilder/result_maps/cow/cow_top_A.png, id=1191, 641.39626pt x 435.6275pt>
+<./Bilder/result_maps/cow/cow_top_A.png, id=1192, 641.39626pt x 435.6275pt>
 File: ./Bilder/result_maps/cow/cow_top_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/cow/cow_top_A.png>
@@ -950,7 +939,7 @@ Package pdftex.def Info: ./Bilder/result_maps/cow/cow_top_A.png used on input l
 ine 150.
 (pdftex.def)             Requested size: 306.22148pt x 207.9821pt.
 
-<./Bilder/result_maps/cow/cow_top_B.png, id=1192, 641.39626pt x 435.6275pt>
+<./Bilder/result_maps/cow/cow_top_B.png, id=1193, 641.39626pt x 435.6275pt>
 File: ./Bilder/result_maps/cow/cow_top_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/cow/cow_top_B.png>
@@ -963,7 +952,7 @@ ine 156.
 _B.png>] [60 <./Bilder/result_maps/cow/cow_side_A.png> <./Bilder/result_maps/co
 w/cow_side_B.png> <./Bilder/result_maps/cow/cow_top_A.png>] [61 <./Bilder/resul
 t_maps/cow/cow_top_B.png>]
-<./Bilder/result_maps/P51/P51_front_A.png, id=1218, 899.36pt x 704.6325pt>
+<./Bilder/result_maps/P51/P51_front_A.png, id=1220, 899.36pt x 704.6325pt>
 File: ./Bilder/result_maps/P51/P51_front_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/P51/P51_front_A.png>
@@ -971,7 +960,7 @@ Package pdftex.def Info: ./Bilder/result_maps/P51/P51_front_A.png used on input
  line 169.
 (pdftex.def)             Requested size: 306.22148pt x 239.91594pt.
 
-<./Bilder/result_maps/P51/P51_front_B.png, id=1219, 899.36pt x 704.6325pt>
+<./Bilder/result_maps/P51/P51_front_B.png, id=1221, 899.36pt x 704.6325pt>
 File: ./Bilder/result_maps/P51/P51_front_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/P51/P51_front_B.png>
@@ -979,7 +968,7 @@ Package pdftex.def Info: ./Bilder/result_maps/P51/P51_front_B.png used on input
  line 175.
 (pdftex.def)             Requested size: 306.22148pt x 239.91594pt.
 
-<./Bilder/result_maps/P51/P51_side_A.png, id=1220, 769.87625pt x 708.6475pt>
+<./Bilder/result_maps/P51/P51_side_A.png, id=1222, 769.87625pt x 708.6475pt>
 File: ./Bilder/result_maps/P51/P51_side_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/P51/P51_side_A.png>
@@ -987,7 +976,7 @@ Package pdftex.def Info: ./Bilder/result_maps/P51/P51_side_A.png used on input
 line 182.
 (pdftex.def)             Requested size: 284.34709pt x 261.74132pt.
 
-<./Bilder/result_maps/P51/P51_side_B.png, id=1221, 769.87625pt x 708.6475pt>
+<./Bilder/result_maps/P51/P51_side_B.png, id=1223, 769.87625pt x 708.6475pt>
 File: ./Bilder/result_maps/P51/P51_side_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/P51/P51_side_B.png>
@@ -995,7 +984,7 @@ Package pdftex.def Info: ./Bilder/result_maps/P51/P51_side_B.png used on input
 line 188.
 (pdftex.def)             Requested size: 284.34709pt x 261.74132pt.
 
-<./Bilder/result_maps/P51/P51_top_A.png, id=1222, 1212.53pt x 528.97626pt>
+<./Bilder/result_maps/P51/P51_top_A.png, id=1224, 1212.53pt x 528.97626pt>
 File: ./Bilder/result_maps/P51/P51_top_A.png Graphic file (type png)
 
 <use ./Bilder/result_maps/P51/P51_top_A.png>
@@ -1003,7 +992,7 @@ Package pdftex.def Info: ./Bilder/result_maps/P51/P51_top_A.png used on input l
 ine 195.
 (pdftex.def)             Requested size: 393.71239pt x 171.76189pt.
 
-<./Bilder/result_maps/P51/P51_top_B.png, id=1223, 1212.53pt x 528.97626pt>
+<./Bilder/result_maps/P51/P51_top_B.png, id=1225, 1212.53pt x 528.97626pt>
 File: ./Bilder/result_maps/P51/P51_top_B.png Graphic file (type png)
 
 <use ./Bilder/result_maps/P51/P51_top_B.png>
@@ -1022,7 +1011,7 @@ LaTeX Warning: No positions in optional float specifier.
 
 [65
 
-] [66] <./Bilder/ms_mechanical.png, id=1274, 1048.91875pt x 1039.885pt>
+] [66] <./Bilder/ms_mechanical.png, id=1275, 1048.91875pt x 1039.885pt>
 File: ./Bilder/ms_mechanical.png Graphic file (type png)
 
 <use ./Bilder/ms_mechanical.png>
@@ -1037,16 +1026,23 @@ chapter 7.
 [69
 
 
-] [70] [71]) [72] (build/metz17.lof [73
+] [70] [71]) (./acknoledgements.tex [72]
+Overfull \hbox (0.84354pt too wide) in paragraph at lines 20--21
+[]\OT1/cmr/m/n/10.95 My friends Christa Bichlmayer, To-bias Bjarsch, Mar-tin Er
+thel, Robert Het-zner and Manuel
+ []
+
+) [73] [74
 
 
+] (build/metz17.lof [75
 
 
 ])
 \tf@lof=\write5
 \openout5 = `metz17.lof'.
 
- (build/metz17.bbl [74]
+ (build/metz17.bbl [76]
 chapter without number
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--11
@@ -1066,7 +1062,7 @@ Underfull \hbox (badness 2368) in paragraph at lines 39--43
 ce lab-o-ra-tory - we-
  []
 
-[75
+[77
 
 
 ]
@@ -1075,7 +1071,7 @@ Underfull \hbox (badness 1616) in paragraph at lines 137--142
 y Keeney-
  []
 
-[76]
+[78]
 Underfull \hbox (badness 3536) in paragraph at lines 174--177
 []\OT1/cmr/m/n/10.95 Octree - Wikipedia we-blink.  []$\OT1/pcr/m/n/10.95 https 
 : / / en . wikipedia . org / wiki /
@@ -1087,13 +1083,13 @@ Underfull \hbox (badness 4582) in paragraph at lines 206--209
 95 http : / / www . cadnav . com /
  []
 
-[77] [78])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
- [79]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
+[79] [80])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
+ [81]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
  (build/metz17.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 110.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 109.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
 Package rerunfilecheck Info: File `metz17.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
@@ -1103,12 +1099,12 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 12063 strings out of 494910
- 185572 string characters out of 6179836
- 374336 words of memory out of 5000000
+ 12065 strings out of 494910
+ 185589 string characters out of 6179836
+ 374347 words of memory out of 5000000
  14575 multiletter control sequences out of 15000+600000
  14735 words of font info for 53 fonts, out of 8000000 for 9000
  77 hyphenation exceptions out of 8191
@@ -1133,10 +1129,10 @@ ublic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/r
 sfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on build/metz17.pdf (87 pages, 15013418 bytes).
+Output written on build/metz17.pdf (89 pages, 15002047 bytes).
 PDF statistics:
- 1612 PDF objects out of 1728 (max. 8388607)
- 1407 compressed objects within 15 object streams
- 504 named destinations out of 1000 (max. 500000)
+ 1624 PDF objects out of 1728 (max. 8388607)
+ 1417 compressed objects within 15 object streams
+ 506 named destinations out of 1000 (max. 500000)
  756 words of extra memory for PDF output out of 10000 (max. 10000000)
 

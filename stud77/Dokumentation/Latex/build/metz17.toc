@@ -62,9 +62,9 @@
 \contentsline {chapter}{\numberline {7}Conclusion and future work}{69}{chapter.7}
 \contentsline {section}{\numberline {7.1}Insights and conclusions}{69}{section.7.1}
 \contentsline {section}{\numberline {7.2}Future work}{70}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Improve measure of difference}{71}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Variables}{71}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.1}Improving measure of difference}{71}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Altering variables}{71}{subsection.7.2.2}
 \contentsline {subsection}{\numberline {7.2.3}More extensive user study}{72}{subsection.7.2.3}
 \contentsline {subsection}{\numberline {7.2.4}Unused data}{72}{subsection.7.2.4}
-\contentsline {chapter}{\nonumberline List of Figures}{73}{chapter*.2}
-\contentsline {chapter}{\nonumberline Bibliography}{75}{chapter*.3}
+\contentsline {chapter}{\nonumberline List of Figures}{75}{chapter*.2}
+\contentsline {chapter}{\nonumberline Bibliography}{77}{chapter*.3}

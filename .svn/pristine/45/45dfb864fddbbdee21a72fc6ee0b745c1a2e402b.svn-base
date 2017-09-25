@@ -1,0 +1,23 @@
+\begin{center}
+    \textbf{Kurzzusammenfassung}
+\end{center}
+
+\noindent Im Rahmen dieser Arbeit wird untersucht, welche Teile von 3D Objekten als visuell interessanter empfunden werden als andere und wie sich die \textit{wahrgenommene Wichtigkeit} auf der Oberfl\"ache solcher Modelle verteilt. Zwei grunds\"atzlich verschiedene L\"osungsansätze zu dieser Frage werden zu Hilfe gezogen. Es werden automatisch, anhand eines mathematisch begr\"undeten Prozesses errechnete Verteilungen von Wichtigkeit betrachtet. Mit diesen Ergebnissen werden Verteilungen wahrgenommener Wichtigkeit verglichen, welche durch direkte Nutzer-Interaktion mit einer Auswahl-Applikation entstanden sind, die im Rahmen dieser Arbeit erstellt wurde. Das Ziel dieser Arbeit ist das Bereitstellen einer Grundlage von Daten, welche den Anfang einer Evaluation von Unterschieden dieser beiden Vorgehensweisen erm\"oglicht.
+
+32 Nutzer nahmen bei der Studie teil, welche durchgef\"uhrt wurde um die Grundlage f\"ur diese Diskussion zu schaffen. Die Teilnehmer nutzten die im Rahmen dieser Arbeit erstellte Software um Punkt-weise Teile von 3D Objekten, die sie als interessant empfanden, zu markieren. Gleichzeitig wurde ein grundlegendes Differenz-Ma{\ss} entwickelt, welches etwaige Unterschiede beschreiben soll. Dieses hat zum Ziel, eine Prozentzahl als Ergebnis zu liefern, welche beschreibt wie stark die durchschnittliche Nutzer-Auswahl von den vorab errechneten Ergebnissen abweicht.
+
+Während eindeutige \"Ahnlichkeiten erkennbar sind und diese sich auch in den Kennzahlen widerspiegeln, besteht diese Evaluation mehr auf qualitative Beschreibungen von Tendenzen und Mustern, da eine fundierte, umfassende Analyse von Unterschieden solcher Datentypen den Rahmen dieser Arbeit gesprengt h\"atte.
+
+\vspace*{1.5cm}
+
+\begin{center}
+    \textbf{Abstract}
+\end{center}
+
+\noindent The subject of this work is to inspect which parts of 3D objects are visually interesting, which are not, and how \textit{perceived importance} is distributed on the surface of such models. Two fundamentally different approaches to this question are compared in this work. First, \textit{importance maps} computed by an automated, mathematically founded procedure are considered. Second, distributions of perceived importance, based on direct user input, gathered from an application based on virtual reality technology, are considered. The goal of this work is to collect enough data to start an evaluation of differences between the results of these two approaches.
+
+In order to establish a foundation of this discussion, a user study was conducted with 32 participants. They would each use the software developed in the scope of this work to select parts of objects they deemed \textit{interesting}. Beforehand, a basic measure of difference was conceptualised in order to describe differences that were speculated to be found. The goal was to compute one percentage-ratio which, based on vertex-wise comparison of importance values provided by user input and computation, indicates how much the user selection differs from the results of computation.
+
+While there are clear similarities, this evaluation os more based on observation of tendencies and patterns since a sound, exhaustive analysis of differences in such types of data would have gone beyond the scope of this work.
+
+\newpage

@@ -16,9 +16,9 @@ As briefly described before in section \ref{sec:conduct_user_study_with_the_sele
 
 The five-sided projection installation at the V2C is equipped with several devices which can be tracked inside of it. Users taking part in the user study were asked to put on a pair of lightweight stereoscopic glasses, shown in figure \ref{fig:concept_hardware}. Note the three white, spherical parts on each side of the glasses. These are used for tracking their position, orientation, tilt and yaw within the projection installation. According to these parameters, two images are projected onto the walls of the installation from behind, each for one eye. The glasses are in synchronisation with the projectors and actively switch between left and right 120 times per second, only showing one of the projected images at a time. This way, an immersive 3D effect for one user wearing the glasses within the installation is created.  
 
-For interaction, a handheld device called \textit{wand} see figure \ref{fig:concept_hardware}, is used within the projection installation. It allows for navigation within the scene via a little joystick as well as interaction with four buttons. The joystick moves the scene in the opposite way the user pushes it. This has been described as counter-intuitive by some users.
+For interaction, a hand-held device called \textit{wand} see figure \ref{fig:concept_hardware}, is used within the projection installation. It allows for navigation within the scene via a little joystick as well as interaction with four buttons. The joystick moves the scene in the opposite way the user pushes it. This has been described as counter-intuitive by some users.
 
-As described in \ref{sec:selection_process}, two of the three buttons surrounding the joystick are enough for the selection application's needs. The two essential functions of the application are mapped to them in the following way. The button on top of the \textit{wand}, on the left side of the joystick is used for making selections on the currently loaded 3D object, the button  right to it can be used to clear already marked selections. Figure \ref{fig:concept_hardware} shows the device. Again, note the white, spherical parts used for tracking position, orientation, tild and yaw of the device attached to it.
+As described in \ref{sec:selection_process}, two of the three buttons surrounding the joystick are enough for the selection application's needs. The two essential functions of the application are mapped to them in the following way. The button on top of the \textit{wand}, on the left side of the joystick is used for making selections on the currently loaded 3D object, the button  right to it can be used to clear already marked selections. Figure \ref{fig:concept_hardware} shows the device. Again, note the white, spherical parts used for tracking position, orientation, tilt and yaw of the device attached to it.
 
 \begin{figure}[htb]
   \centering
@@ -33,7 +33,7 @@ As described in \ref{sec:selection_process}, two of the three buttons surroundin
   \caption{The selection process using the available hardware at the V2C}\label{fig:selection_cave}
 \end{figure}
 
-Figure \ref{fig:selection_cave} depicts what the selection process inside the projection installation at the V2C is like form a user perspective. Users utilise the \textit{wand} for navigation as well as selecting and deselecting parts of the presented objects they deem \textit{interesting}. The stereoscopic glasses provide a spatially convincing, three-dimensional immersion of the object. In the figure, the object is a simple cube with two iterative subdivisions. Its vertices are shaded grey, the edges connecting them are shaded black. The diamond-shaped object indicating the position of the \textit{wand} within the 3D scene is shaded bright green. The blue circle around it represents the spherical query radius for selection and deselection operations. Vertices within that lie within that circle are shaded orange. Figure \ref{fig:real_selection} shows a real selection process within the projection installation at the V2C.
+Figure \ref{fig:selection_cave} depicts what the selection process inside the projection installation at the V2C is like form a user perspective. Users utilise the \textit{wand} for navigation as well as selecting and deselecting parts of the presented objects they deem \textit{interesting}. The stereoscopic glasses provide a spatially convincing, three-dimensional immersion of the object. In the figure, the object is a simple cube with two iterative subdivisions. Its vertices are shaded gray, the edges connecting them are shaded black. The diamond-shaped object indicating the position of the \textit{wand} within the 3D scene is shaded bright green. The blue circle around it represents the spherical query radius for selection and deselection operations. Vertices within that lie within that circle are shaded orange. Figure \ref{fig:real_selection} shows a real selection process within the projection installation at the V2C.
 
 \begin{figure}[htb]
   \centering
@@ -41,7 +41,7 @@ Figure \ref{fig:selection_cave} depicts what the selection process inside the pr
   \caption{A real selection process}\label{fig:real_selection}
 \end{figure}
 
-Consider figure \ref{fig:real_selection}. Starting with the top photograph of the figure, it shows a loaded object where with nothing selected yet. The middle photograph shows the same object after a selection has been made. The bottm photograph shows the object after vertices have been deselected again. Note the green object that is also projected onto the walls. For the user, through the tracked glasses, it is visible at the tracked location of the input device at all times.
+Consider figure \ref{fig:real_selection}. Starting with the top photograph of the figure, it shows a loaded object where with nothing selected yet. The middle photograph shows the same object after a selection has been made. The bottom photograph shows the object after vertices have been deselected again. Note the green object that is also projected onto the walls. For the user, through the tracked glasses, it is visible at the tracked location of the input device at all times.
 
 	\section{Models used}
 	\label{sec:models_used}
@@ -55,7 +55,7 @@ Consider figure \ref{fig:real_selection}. Starting with the top photograph of th
   \caption{The 3D objects used for the user study}\label{fig:all_objects}
 \end{figure}
 
-Regarding objects used for the study, I aimed at offering as much variety of types of objects among as few objects as possible. The motivation for this was to achieve results that are genereally applicable for any type of geometric data, at least to an basic extent. Also, to avoid the users losing motivation due to repeating tasks during the study, keeping the number of objects to a minimum was a constraint to be considered. I decided to use three objects described table in \ref{tab:userstudy_objects} and depicted in figure \ref{fig:all_objects}. Note that the models are from third-party vendors. I made sure they are all free to use for educational purposes and weblinks to where they have been published originally are provided in the bibliography.
+Regarding objects used for the study, I aimed at offering as much variety of types of objects among as few objects as possible. The motivation for this was to achieve results that are generally applicable for any type of geometric data, at least to an basic extent. Also, to avoid the users losing motivation due to repeating tasks during the study, keeping the number of objects to a minimum was a constraint to be considered. I decided to use three objects described table in \ref{tab:userstudy_objects} and depicted in figure \ref{fig:all_objects}. Note that the models are from third-party vendors. I made sure they are all free to use for educational purposes and weblinks to where they have been published originally are provided in the bibliography.
 
 Figure \ref{fig:all_objects} shows the objects used in the user study. From left to right, the 3D scanned bunny, the modelled cow and the low-poly, modelled aircraft are shown. Consider the grid to get a sense of their proportions. I did not scale them according to their real world sizes and instead made them take up approximately equal space in the virtual scene. This was done with the intention to provide a similar level of visual detail, independent of the actual geometric level of detail, for each object. Furthermore, I wanted to prevent the size of the objects from having any sort of influence on how users perceived them.
 
@@ -122,7 +122,6 @@ Users were asked to rate each of these statements on a Likert-scale. I offered f
 	\item \textit{I strongly agree}
 \end{enumerate*}.
 An example of the questionnaire (in German) can be found the appendix of this work.
-% @TODO Das wirklich machen 
 
 	\section{Shortcomings of the study design}
 	\label{sec:shortcomings_of_the_study_design}
@@ -142,12 +141,11 @@ While I did my best to design the tasks and questions (see section \ref{sec:ques
 		\subsection{Technical issues}
 		\label{sec:technical_issues}
 The projection installation at the V2C, while still fully functioning and performing well for the majority of time, is not state of the art anymore. The hardware has been in use for xx years, some parts of it display signs of deterioration and some have even been replaced already. Maintenance work is frequently required. This section will cover some aspects that were a result of this and may have had influence on user behavior during the study.
-% @TODO "Einbaudatum" herausfinden und dokumentieren
 
 \begin{itemize}
-	\item Weeks prior to the user study for this work started, parts of the projector that covered the top wall of the installation were replaced. This led to projections onto that wall running at a significantly higher framerate. As a result, quick head movements, especially horizontal, with the image being spread over the upper wall and any of the others at the same time, caused the part visible on the upper wall to move much faster than the rest of the projection.
+	\item Weeks prior to the user study for this work started, parts of the projector that covered the top wall of the installation were replaced. This led to projections onto that wall running at a significantly higher frame rate. As a result, quick head movements, especially horizontal, with the image being spread over the upper wall and any of the others at the same time, caused the part visible on the upper wall to move much faster than the rest of the projection.
 	\item On Monday, September 4th, the sixth day of the study, with five more days still ahead, one of the projectors died. The lower part of the \textit{southern} wall could not be used for displaying anything from then on. I had to advice users to try and only use the other sides of the installation but this certainly impaired the immersion. 
-	\item Tracking of the stereoscopig glasses and the \textit{wand} did not work properly when they got near to the bottom or the walls of the projection installation. If they entered that \textit{outer area} of the room, projection would freeze in place until the user stepped closer to the centre of it again.
-	\item This might have been a problem with my application - I could not reliably reproduce this error. Sometimes the application simply froze during the user selection process. I tried to reproduce this behavior but I can only speculate from what I have observed. This kind of freeze occured more often when the \textit{wand} was moved very quickly over an extend period of time, while constantly pressing the \textit{select} button.
+	\item Tracking of the stereoscopic glasses and the \textit{wand} did not work properly when they got near to the bottom or the walls of the projection installation. If they entered that \textit{outer area} of the room, projection would freeze in place until the user stepped closer to the centre of it again.
+	\item This might have been a problem with my application - I could not reliably reproduce this error. Sometimes the application simply froze during the user selection process. I tried to reproduce this behavior but I can only speculate from what I have observed. This kind of freeze occurred more often when the \textit{wand} was moved very quickly over an extend period of time, while constantly pressing the \textit{select} button.
 \end{itemize}
 

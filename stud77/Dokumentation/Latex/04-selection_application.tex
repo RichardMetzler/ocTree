@@ -2,14 +2,15 @@
 \label{sec:selection_application}
 
 This chapter describes the of the selection application used for this work. After a rundown of third party requirements and a summary of relevant C++ classes, the description is further subdivided according to its abstract, key requirements.
-The goal of this chapter is to describe how the application, especially the Octree\cite{Octree}, is designed and implemented. Accordingly, key lines of source code as well as plenty of explanatory comments are provided.
+The goal of this chapter is to describe how the application, especially the ctree\cite{Octree}, is designed and implemented. Accordingly, key lines of source code as well as plenty of explanatory comments are provided.
 
 \section{Additional third party libraries}
 \label{sec:additional_third_party_libraries}
-
-% @TODO climberpi mesh saliency einbauen incl Verlinkung im libfile
-
 To ensure a scalable, platform independent implementation of the application, the following third party libraries, frameworks and APIs are used.
+
+\subsection{Mesh saliency by climberpi}
+\label{sec:mesh_saliency_by_climberpi}
+A student at Zhejiang University \cite{zju} has implemented the concept of \textit{mesh saliency} following the original paper by Lee \textit{et al.} This implementation is written in C++ and available at \cite{clms}. It is of vital importance to this work, as \textit{mesh saliency} maps are computed using this piece of software.
 
 \subsection{OpenGL}
 \label{sec:opengl}
@@ -31,7 +32,7 @@ OpenGL is based on the following basic structures and concepts:
 \subsection{GLUT}
 \label{sec:glut}
 
-As stated on its official webpage \cite{GLUT}, GLUT is an official OpenGL Utility Toolkit which provides, among other features, support for multiple windows, control of such windows and handling input from devices such as keyboards and mouses. It is commonly used to achieve interactive windows with cross-platform compatibility displaying rendered images produced by OpenGL. Handling input via the handheld controller in the user study is achieved with the help of GLUT during this work.
+As stated on its official webpage \cite{GLUT}, GLUT is an official OpenGL Utility Toolkit which provides, among other features, support for multiple windows, control of such windows and handling input from devices such as keyboards and mouses. It is commonly used to achieve interactive windows with cross-platform compatibility displaying rendered images produced by OpenGL. Handling input via the hand-held controller in the user study is achieved with the help of GLUT during this work.
 
 \subsection{GLEW}
 \label{sec:glew}
@@ -81,11 +82,11 @@ This section describes the following features and functionalities which are most
 \subsection{Spatial indexing via Octree}
 \label{sec:spatial_indexing_via_octree}
 
-As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of Octree is designed with a heavy emphasis on its recursive features. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents, they solely store vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
+As mentioned above, the \texttt{ocTree} class handles spatial indexing and, therefor, provides quick access to every vertex of an imported 3D object via a set of integer-like (\texttt{size\_t}) indices. The general approach to this implementation of the concept of octree is designed with a heavy emphasis on its recursive features. Instances of it can be created from everywhere in the application by the call of its public root constructor function. Nodes can be leafs or not, which is indicated by a boolean flag for every instance of an \texttt{ocTree} object. Leaf nodes do not have subtree-nodes that refer to them as parents, they solely store vertices within their bounds. Non-leaf nodes have eight children nodes, in other words, eight more \texttt{ocTree} objects which refer to them as their parent node.
 
 For better understanding during development and clearer, human-readable log messages, unique binary identifiers were implemented with care. Each node of the tree has a private \texttt{std::vector} which serves as a unique combination of boolean values describing its identifier. It can be used for directly accessing any desired \texttt{ocTree} (subtree) object within a tree through its root node.
 
-Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at a time. At any level \textit{l}, those  values of \texttt{Id} can be found at positions \textit{$O_l$}, \textit{$O_l$+1} and \textit{$O_l$+2} within it, where $O_l$ is the \textit{level offset} $l*3-3$. If \textit{$O_l$+2} equals its length \texttt{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes' maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \textit{p} for new values refers to the parent node, \texttt{[n]} is the \texttt{n}th element of identifer \texttt{ID}. $O_l$ describes the \textit{level offset} $l*3-3$. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
+Starting from the root node (level \textit{l} = 0), such an identifier \textit{Id} with a length of \textit{n} boolean values can be used for locating the respective node within 3D space by considering three of its consecutive values at a time. At any level \textit{l}, those  values of \texttt{Id} can be found at positions \textit{$O_l$}, \textit{$O_l$+1} and \textit{$O_l$+2} within it, where $O_l$ is the \textit{level offset} $l*3-3$. If \textit{$O_l$+2} equals its length \texttt{n}, the search ends and the resulting node can be queried for the vertices within its bounds. Every non-leaf node has eight subtree nodes on level \textit{l+1} where \textit{l} is the level of that node. Their bounds can be derived directly from the parent nodes' maximum and minimum values as table \ref{tab:child_node_bounding_values} depicts. The suffix \textit{p} for new values refers to the parent node, \texttt{[n]} is the \texttt{n}th element of identifier \texttt{ID}. $O_l$ describes the \textit{level offset} $l*3-3$. Note that \texttt{$O_l+3$} determines the child node's minimum and maximum values in x, \texttt{$O_l+2$} in y and \texttt{$O_l$} in z dimension.
 
 \begin{table}[]
 \begin{tabular}{l|llllll}
@@ -163,11 +164,11 @@ ocTree::ocTree(...) {
 \end{lstlisting}
 \end{minipage}
 
-After setting up the essential variables, lines 6 - 8 copy the parts of the parent's identifier up until the current level offset. Every new subtree node is a child of a lower-level node and this step implicitly entails that relationship. If an \texttt{ocTree} object at a level higher than 0 has child nodes - which makes it the root of a subtree within the Octree - has the unique identifier 010000, the first three values of the identifiers of its eight children nodes is 010.
+After setting up the essential variables, lines 6 - 8 copy the parts of the parent's identifier up until the current level offset. Every new subtree node is a child of a lower-level node and this step implicitly entails that relationship. If an \texttt{ocTree} object at a level higher than 0 has child nodes - which makes it the root of a subtree within the octree - has the unique identifier 010000, the first three values of the identifiers of its eight children nodes is 010.
 
 Lines 10 - 11 set the crucial values at the level offset $O_l$, $O_l+1$ and $O_l+2$ according to the values passed via \texttt{splitDirections}. In the context of a parent node calling \texttt{split()}, these passed values are eight sets of three boolean values each that can be represented as 000, 001, 010, 011, 100, 101, 110 and 111.
 
-Since every identifier of every node within an Octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 14 - 16 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 17, the final identifier of the current node is set as its private member variable.
+Since every identifier of every node within an octree, in this implementation, has to have the same length (that is $3*maximumLevel$ where \textit{maximumLevel} is the maximum allowed level of subtree nodes), lines 14 - 16 take care of assigning \texttt{false} as placeholders to every position that is not relevant due to the node's level. In line 17, the final identifier of the current node is set as its private member variable.
 
 	\subsubsection{\texttt{getRootDimensions()}}
 	\label{sec:getRootDimensions}
@@ -344,7 +345,7 @@ Figure \ref{fig:ocTree_levels.png} depicts a simple \texttt{ocTree} structure th
 \end{figure}
 
 
-\pagebreak % @TODO Das im Auge behalten! Zeilenumbruch usw
+\pagebreak
 \subsection{User selection}
 \label{sec:user_selection}
 
@@ -369,7 +370,7 @@ An additional boolean flag determing whether, during the recursive search for th
 	\item If this node is not a leaf node - steps 3, 4 and 5 are skipped in this case - determine the correct child node in which the query point is located and have that node recursively call \texttt{addVerticesToSelectionByCoordinates()}.
 \end{enumerate}
 
-Consider figure \ref{fig:a01_without_neighbours} for a clear depiction of the process. For the sake of a simplified, clear presentation, an orthographic top view which only considers axes x and y is shown here. Four of an implicitly shown parent node's eight subtree nodes are shown. The figure illustrates, from left to right, three vital steps towards finding vertices that lie within a search radius $r$ around an input query coordinate $P_q$. Throughout these steps, $P_q$ is depicted as an orange point, $r$ is shaded blue. Vertices within this radius compose the result of the query $V_{result}$ and get added to the set of currently selected vertices. Vertices which are considered to get checked if they lay within $r$, $V_{check}$, are highlighted blue, the ones where this is not the case are plain grey.
+Consider figure \ref{fig:a01_without_neighbours} for a clear depiction of the process. For the sake of a simplified, clear presentation, an orthographic top view which only considers axes x and y is shown here. Four of an implicitly shown parent node's eight subtree nodes are shown. The figure illustrates, from left to right, three vital steps towards finding vertices that lie within a search radius $r$ around an input query coordinate $P_q$. Throughout these steps, $P_q$ is depicted as an orange point, $r$ is shaded blue. Vertices within this radius compose the result of the query $V_{result}$ and get added to the set of currently selected vertices. Vertices which are considered to get checked if they lay within $r$, $V_{check}$, are highlighted blue, the ones where this is not the case are plain gray.
 
 \begin{figure}[htb]
   \centering
@@ -511,7 +512,7 @@ This is the counterpart to \texttt{addVerticesToSelectionByCoordinates} and the 
 	\item if this node is not a leaf node - steps 3, 4 and 5 were skipped in this case - determine the correct child node in which the query point is located and have that node recursively call \textbf{\texttt{removeVerticesFromSelectionByCoordinates()}}.
 \end{enumerate}
 
-At this point it is worth noting that these two fundamental functions were mapped to two different buttons on the handheld controller used at the V2C. Figure \ref{fig:selection.png} shows a simple 3D object at various stages during consecutively performing these fundamental operations on it. The leftmost part of the figure shows a simple sphere with no vertices selected. The middle part shows the same sphere after eight vertices have been added to the selection and how they are highlighted. The righthand part of the figure shows the object after four vertices have been removed from the selection via \texttt{addVerticesToSelectionByCoordinates} with other coordinates.
+At this point it is worth noting that these two fundamental functions were mapped to two different buttons on the hand-held controller used at the V2C. Figure \ref{fig:selection.png} shows a simple 3D object at various stages during consecutively performing these fundamental operations on it. The leftmost part of the figure shows a simple sphere with no vertices selected. The middle part shows the same sphere after eight vertices have been added to the selection and how they are highlighted. The righthand part of the figure shows the object after four vertices have been removed from the selection via \texttt{addVerticesToSelectionByCoordinates} with other coordinates.
 
 \begin{figure}[htb]
   \centering
@@ -554,7 +555,7 @@ After the setup process of the application, \texttt{verticesList} essentially ho
 \label{sec:testing_setup}
 % Helper- & Debug-Funktionen; Blend-File; Eigenhändige Tests in CAVE(?)
 
-This section describes the steps taken to ensure that the selection application meets all its requirements and ensures its key features described above are implemented correclty. While it is not formally verified that the application works correctly in every use case conceivable, it was tested up until a point where fluent, real-time and comfortable interaction was possible from a user perspective.
+This section describes the steps taken to ensure that the selection application meets all its requirements and ensures its key features described above are implemented correctly. While it is not formally verified that the application works correctly in every use case conceivable, it was tested up until a point where fluent, real-time and comfortable interaction was possible from a user perspective.
 
 		\subsubsection{Test files}
 		\label{sec:test_files}
@@ -566,7 +567,7 @@ While developing the selection application, I used 3D modeling software to creat
   \caption{A fairly complex query to the octree structure of the selection application}\label{fig:edge_case}
 \end{figure}
 
-For the sake of readabilty, figure \ref{fig:edge_case} depicts an orthographic view on the structure of a test file used, showing only x and y axes. In such a case, all vertices shaded blue must be considered but only the one vertex shaded white is a correct result to the query. An additional query with input coordinates depicted by the point shaded in purple and radius 0 must be invoked and correctly handled as well, since the righthand border of the target subtree is crossed by the search radius. All vertices shaded grey must not be considered. The behavior of the application must be congruent to what is described in section \ref{sec:additional_third_party_libraries}.
+For the sake of readability, figure \ref{fig:edge_case} depicts an orthographic view on the structure of a test file used, showing only x and y axes. In such a case, all vertices shaded blue must be considered but only the one vertex shaded white is a correct result to the query. An additional query with input coordinates depicted by the point shaded in purple and radius 0 must be invoked and correctly handled as well, since the righthand border of the target subtree is crossed by the search radius. All vertices shaded gray must not be considered. The behavior of the application must be congruent to what is described in section \ref{sec:additional_third_party_libraries}.
 
 \begin{figure}[htb]
   \centering
@@ -574,7 +575,7 @@ For the sake of readabilty, figure \ref{fig:edge_case} depicts an orthographic v
   \caption{A test file used during implementation, perspective view. Its bounding box and edges are depicted}\label{fig:test_thing}
 \end{figure}
 
-Figure \ref{fig:test_thing} shows a test file used during all stages of implementing the selection application. It is designed for the Octree structure to be built in a clearly predictable way. For each combination of the maximum allowed number of vertices per node and the maximum allowed level, construction of the structure can be precicely predicted because all parts of the object are positioned in eighths of the space encapsulated by its bounding box. This file was used to a great extent for many testing queries as well as debugging.
+Figure \ref{fig:test_thing} shows a test file used during all stages of implementing the selection application. It is designed for the octree structure to be built in a clearly predictable way. For each combination of the maximum allowed number of vertices per node and the maximum allowed level, construction of the structure can be precisely predicted because all parts of the object are positioned in eighths of the space encapsulated by its bounding box. This file was used to a great extent for many testing queries as well as debugging.
 
 The debugging process encompassed a multitude of test calls to the applications core functions using arbitrary coordinates as well as extensive use of the helper and debugging functions described in the subsequent subsection.
 
@@ -588,7 +589,7 @@ The following functions which are non-essential to the functionality of the appl
 	\item[\texttt{void debugTreeInfo()}] - prints information about the finished \texttt{ocTree} object to the console, including total number of vertices stored by it, maximum allowed number of vertices per leaf, maximum allowed split depth and dimensions in x, y and z direction.
 	\item[\texttt{void debugFirstVertex()}] - prints the coordinates of vertex at index 0 \texttt{m\_vertices} to the console. This is a quick way to verify that import via ASSIMP worked.
 	\item[\texttt{debugAllVertices()}] - prints the coordinates of all vertices to the console. This is a way to verify that import via ASSIMP worked correctly.
-	\item[\texttt{void debugIdentifierasString()}] - prints the boolean identify array of the calling subtree to the console in an easily readable form, i.e. 001101 for example. If the calling node is the root, "I am root" is printed instead. Additionally, \texttt{m\_level} as well as the identifer array of the parent node of the calling subtree node are printed.
+	\item[\texttt{void debugIdentifierasString()}] - prints the boolean identify array of the calling subtree to the console in an easily readable form, i.e. 001101 for example. If the calling node is the root, "I am root" is printed instead. Additionally, \texttt{m\_level} as well as the identifier array of the parent node of the calling subtree node are printed.
 \end{description}
 
 In addition, all essential functions of the \texttt{ocTree} class have an optional parameter \texttt{debugInfo}, which is set to \texttt{false} by default. If set to \texttt{true}, information is printed to the console during execution of the functions. Depending on what function is called, this information varies strongly obviously. In general, all subtree nodes that recursively call any relevant functions as a result of the initially called function, call \texttt{debugIdentifierasString()}.
@@ -596,14 +597,14 @@ In addition, all essential functions of the \texttt{ocTree} class have an option
 		\subsubsection{Testing at the V2C}
 		\label{sec:testing_at_the_v2c}
 
-I spent multiple hours in the projection installation, trying the application myself. By experiencing the application from a user perspective, I wanted to make sure the feedback is quick, clearly noticable and easiyl understandable. I tried to find bugs and wrong behavior by using the hardware in ways that were not planned on. Formally describing the procedure does not make sense, so consider the following brief descriptions of things I tried and what insights I gathered from them.
+I spent multiple hours in the projection installation, trying the application myself. By experiencing the application from a user perspective, I wanted to make sure the feedback is quick, clearly noticeable and easily understandable. I tried to find bugs and wrong behavior by using the hardware in ways that were not planned on. Formally describing the procedure does not make sense, so consider the following brief descriptions of things I tried and what insights I gathered from them.
 
 \begin{description}
 	\item[Finding limitations to the tracking setup] - The projection installation of the V2C is 2.7 meters in width, height and depth. I tried to find out where the tracking system was working reliably and precisely and where the tracked space ended. I did not take exact measures but I found out that at a distance of about 30 centimeters away from the walls and the floor, the tracking started to get inaccurate. The positions of the tracked devices would freeze at the last position it was tracked correctly, thus making further selection or deselection operations impossible as well as leading to wrong projection of the scene.
-	\item[Finding limitations to response time] - At a slow pace of movements, the projection thrown onto the walls surrounding the user, the visual feedback on where selection operations take place as well as indication of their results are in perfect synchronisation with what a user would expect. However, when moving the handheld input device rapidly, its tracked position would get corrupted and the bright green object indicating its position within the 3D scene would only be rendered every dozen or so frames, being frozen in place in the meantime.
-	\item[Finding limitations to synchronisation] - During the selection process and during the user study, the application froze multiple times. One or more projection programs would not react anymore, leaving no option but force-quitting and restarting the application. I was not able to reproduce this behavior. I can only speculate, based on various times trying this myself, that if a button is pressed for an ongoing timespan while rapidly moving the handheld input device, this behavior seemed to occur mor frequently. Again, a formal description of what happened as well as the reasons why it happened can not be provided. A more extended testing and bugfixing process would be needed and this goes beyond the scope of this work.
-	\item[Evaluating immersiveness and projection quality] - As described in section \ref{sec:technical_issues}, the framerate of the projection onto the the top wall was noticeably higher than those of the other projectors. During the user study, no remarks regarding this were made but from a developer stance, this can potentially impair immersion. Upon taking a look as close as possible to details of projected objects, the overlay of the two projections became visible, causing an incorrect spatial effect and blurriness. However, this only was noticeable when the tracked stereoscopic glasses got really close to the surface of a projected model.
+	\item[Finding limitations to response time] - At a slow pace of movements, the projection thrown onto the walls surrounding the user, the visual feedback on where selection operations take place as well as indication of their results are in perfect synchronisation with what a user would expect. However, when moving the hand-held input device rapidly, its tracked position would get corrupted and the bright green object indicating its position within the 3D scene would only be rendered every dozen or so frames, being frozen in place in the meantime.
+	\item[Finding limitations to synchronisation] - During the selection process and during the user study, the application froze multiple times. One or more projection programs would not react anymore, leaving no option but force-quitting and restarting the application. I was not able to reproduce this behavior. I can only speculate, based on various times trying this myself, that if a button is pressed for an ongoing timespan while rapidly moving the hand-held input device, this behavior seemed to occur mor frequently. Again, a formal description of what happened as well as the reasons why it happened can not be provided. A more extended testing and bugfixing process would be needed and this goes beyond the scope of this work.
+	\item[Evaluating immersion and projection quality] - As described in section \ref{sec:technical_issues}, the framerate of the projection onto the the top wall was noticeably higher than those of the other projectors. During the user study, no remarks regarding this were made but from a developer stance, this can potentially impair immersion. Upon taking a look as close as possible to details of projected objects, the overlay of the two projections became visible, causing an incorrect spatial effect and blurriness. However, this only was noticeable when the tracked stereoscopic glasses got really close to the surface of a projected model.
 \end{description}
 
-In conclusion, it is fair to say that the \textit{selection application} provides clear feedback on what is happening based on user interaction and interaction is possible at a not too fast movement speed. Users should keep in mind that the tracking system has limitations. Not getting close to walls and not moving the handheld input device rapidly while simultaneously keeping buttons pressed ensures a convenient, fluent interaction.
+In conclusion, it is fair to say that the \textit{selection application} provides clear feedback on what is happening based on user interaction and interaction is possible at a not too fast movement speed. Users should keep in mind that the tracking system has limitations. Not getting close to walls and not moving the hand-held input device rapidly while simultaneously keeping buttons pressed ensures a convenient, fluent interaction.
 
