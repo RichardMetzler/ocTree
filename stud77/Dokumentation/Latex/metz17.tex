@@ -18,6 +18,8 @@
 \usepackage[inline]{enumitem}
 \usepackage[latin1]{inputenc} % Umlaute im Text
 \usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{attachfile2}
 \addtokomafont{labelinglabel}{\sffamily}
 
 \newcommand\realnumberstyle[1]{}
@@ -105,5 +107,10 @@
     \listoffigures
     \bibliographystyle{alpha}
     \bibliography{./Bib/metz17}
+    
+\appendix
+
+\includepdf[pages={1-2}]{appendix/Umfrage-08-26-2017.pdf}
+\includepdf[pages={1-2},angle=90]{appendix/userstudy_data_print.pdf}
 
 \end{document}

@@ -3,11 +3,11 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ./build/metz17.aux
 The style file: alpha.bst
 Database file #1: ./Bib/metz17.bib
-Warning--I didn't find a database entry for "sec:related_work"
 Warning--to sort, need author or key in v2c
 Warning--to sort, need author or key in Octree
 Warning--to sort, need author or key in octAp
 Warning--to sort, need author or key in clms
+Warning--to sort, need author or key in zju
 Warning--to sort, need author or key in OpenGL
 Warning--to sort, need author or key in GLUT
 Warning--to sort, need author or key in GLEW
@@ -25,45 +25,45 @@ Warning--empty journal in munaretti2007perceptual
 Warning--there's a number but no series in ott2015literature
 Warning--can't use both volume and number fields in shamir2008survey
 Warning--can't use both volume and number fields in surazhsky2005fast
-You've used 56 entries,
+You've used 57 entries,
             2543 wiz_defined-function locations,
-            868 strings with 14573 characters,
-and the built_in function-call counts, 24350 in all, are:
-= -- 2533
-> -- 1069
+            870 strings with 14625 characters,
+and the built_in function-call counts, 24568 in all, are:
+= -- 2556
+> -- 1070
 < -- 34
 + -- 386
 - -- 377
-* -- 1675
-:= -- 3678
-add.period$ -- 186
-call.type$ -- 56
-change.case$ -- 357
-chr.to.int$ -- 55
-cite$ -- 90
-duplicate$ -- 998
-empty$ -- 1867
+* -- 1685
+:= -- 3702
+add.period$ -- 189
+call.type$ -- 57
+change.case$ -- 361
+chr.to.int$ -- 56
+cite$ -- 93
+duplicate$ -- 1008
+empty$ -- 1894
 format.name$ -- 418
-if$ -- 5236
+if$ -- 5288
 int.to.chr$ -- 2
 int.to.str$ -- 0
 missing$ -- 42
-newline$ -- 281
+newline$ -- 286
 num.names$ -- 129
-pop$ -- 467
+pop$ -- 479
 preamble$ -- 1
-purify$ -- 413
+purify$ -- 418
 quote$ -- 0
-skip$ -- 845
+skip$ -- 852
 stack$ -- 0
-substring$ -- 1378
-swap$ -- 277
+substring$ -- 1386
+swap$ -- 278
 text.length$ -- 34
 text.prefix$ -- 6
 top$ -- 0
-type$ -- 448
-warning$ -- 21
+type$ -- 456
+warning$ -- 22
 while$ -- 213
-width$ -- 60
-write$ -- 718
+width$ -- 61
+write$ -- 729
 (There were 22 warnings)

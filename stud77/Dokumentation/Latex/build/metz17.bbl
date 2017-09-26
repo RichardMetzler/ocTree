@@ -326,6 +326,11 @@ Jinliang Wu, Xiaoyong Shen, Wei Zhu, and Ligang Liu.
 \newblock Mesh saliency with global rarity.
 \newblock {\em Graphical Models}, 75(5):255--264, 2013.
 
+\bibitem[zju]{zju}
+{Zhejiang University} weblink.
+\newblock \url{http://www.zju.edu.cn/english/}.
+\newblock Accessed: 2017-06-07.
+
 \bibitem[ZLSZ12]{zhao2012saliency}
 Yitian Zhao, Yonghuai Liu, Ran Song, and Min Zhang.
 \newblock A saliency detection based method for 3d surface simplification.

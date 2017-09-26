@@ -6,14 +6,14 @@
 \contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Notation in .OBJ format}}{12}{figure.3.1}
 \contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces An octree structure indexing five vertices. Left: 3D view, right: tree structure; 2017, https://developer.apple.com/documentation/}}{13}{figure.3.2}
 \contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces A multi-scale mesh saliency map for an object including color scale. Published by Nouri \textit {et al.} \cite {nouri2015multi}}}{18}{figure.3.3}
-\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Graphic representation of the weighting function in relation to the \textit {unweighted} difference values (straight, black line)}}{20}{figure.3.4}
+\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Graphic representation of the weighting function in relation to the \textit {unweighted} difference values (straight, black line)}}{19}{figure.3.4}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Parent node (checkered) highlighted child nodes. Left: 000, right: 101}}{31}{figure.4.1}
 \contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces depiction of a simple \texttt {ocTree}. Left: 3D view, step-wise representation of the splitting process (downwards from the top). right: final 2D representation of the tree's structure}}{33}{figure.4.2}
-\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{34}{figure.4.3}
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Determing vertices to check and final set of selected vertices}}{35}{figure.4.3}
 \contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces A basic vertex selection process}}{39}{figure.4.4}
-\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces A fairly complex query to the octree structure of the selection application}}{40}{figure.4.5}
-\contentsline {figure}{\numberline {\relax 4.6}{\ignorespaces A test file used during implementation, perspective view. Its bounding box and edges are depicted}}{41}{figure.4.6}
+\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces A fairly complex query to the octree structure of the selection application}}{41}{figure.4.5}
+\contentsline {figure}{\numberline {\relax 4.6}{\ignorespaces A test file used during implementation, perspective view. Its bounding box and edges are depicted}}{42}{figure.4.6}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The hardware components available at the V2C. Left: A pair of active, stereoscopic shutter glasses. Right: The main input device, referred to as \textit {wand}}}{46}{figure.5.1}
 \contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces The selection process using the available hardware at the V2C}}{47}{figure.5.2}
@@ -42,6 +42,6 @@
 \contentsline {figure}{\numberline {\relax 6.20}{\ignorespaces Normalised difference maps for the third model, orthographic side view. Top: \textit {unweighted differences}, bottom: \textit {weighted differences}}}{63}{figure.6.20}
 \contentsline {figure}{\numberline {\relax 6.21}{\ignorespaces Normalised saliency maps for the third model, orthographic top view. Left: \textit {mesh saliency}, right: \textit {user saliency}}}{64}{figure.6.21}
 \contentsline {figure}{\numberline {\relax 6.22}{\ignorespaces Normalised difference maps for the third model, orthographic top view. Left: \textit {unweighted differences}, right: \textit {weighted differences}}}{64}{figure.6.22}
-\contentsline {figure}{\numberline {\relax 6.23}{\ignorespaces Perspective detail view on object three (P51)}}{68}{figure.6.23}
+\contentsline {figure}{\numberline {\relax 6.23}{\ignorespaces Perspective detail view on object three (P51)}}{67}{figure.6.23}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
